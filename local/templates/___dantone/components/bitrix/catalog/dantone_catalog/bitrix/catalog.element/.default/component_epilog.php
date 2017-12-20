@@ -1,0 +1,45 @@
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+/** @var array $templateData */
+/** @var @global CMain $APPLICATION */
+use Bitrix\Main\Loader;
+global $APPLICATION;
+
+/* $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/owljs.js');
+$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/owl.css"); */
+
+if (isset($templateData['TEMPLATE_THEME']))
+{
+	$APPLICATION->SetAdditionalCSS($templateData['TEMPLATE_THEME']);
+}
+if (isset($templateData['TEMPLATE_LIBRARY']) && !empty($templateData['TEMPLATE_LIBRARY']))
+{
+	$loadCurrency = false;
+	if (!empty($templateData['CURRENCIES']))
+		$loadCurrency = Loader::includeModule('currency');
+	CJSCore::Init($templateData['TEMPLATE_LIBRARY']);
+	if ($loadCurrency)
+	{
+	?>
+	<script type="text/javascript">
+		BX.Currency.setCurrencies(<? echo $templateData['CURRENCIES']; ?>);
+	</script>
+<?
+	}
+}
+if (isset($templateData['JS_OBJ']))
+{
+?><script type="text/javascript">
+BX.ready(BX.defer(function(){
+	if (!!window.<? echo $templateData['JS_OBJ']; ?>)
+	{
+		window.<? echo $templateData['JS_OBJ']; ?>.allowViewedCount(true);
+	}
+}));
+</script><?
+}
+if($arResult['RECOMMENDS']){
+	$GLOBALS['recommendFilter']=array('SECTION_ID'=>$arResult['RECOMMENDS'], 'INCLUDE_SUBSECTIONS'=>'Y');
+	define('RECOMMEND_FILTER', 1);
+
+}
+?>

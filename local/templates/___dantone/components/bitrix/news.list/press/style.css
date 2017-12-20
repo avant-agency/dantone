@@ -1,0 +1,108 @@
+.pressa-wrap {
+		width: 850px;
+		background: #e8e9eb;
+		border: 1px solid #bbbdc3;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		font-family: 'Roboto', sans-serif;
+		padding-top: 36px;
+		height: 248px;
+		position: relative;
+		margin-bottom: 160px;
+		padding-elft: 10px;
+		padding-right: 10px;
+		cursor: pointer;
+	}
+	.journal-title {
+		font-size: 16px;
+		color: #66738b;
+		
+	}
+	.publ-title {
+		font-size: 30px;
+		line-height: 35px;
+		color: #1c2337;
+		font-weight: 300;
+		width: 350px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		display: block;
+		text-decoration: none;
+	}
+	.pressa-about {
+		font-size: 14px;
+		text-transform: uppercase;
+		color: #1c2337;
+		width: 290px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.line {
+		display: block;
+		width: 87px;
+		height: 1px;
+		background: #1d2437;
+		float: left;
+		margin-top: 10px;
+		
+	}
+	
+	.about-text {
+		display: block;
+		float: left;
+		margin: 0 14px;
+	}
+	.pressa-img {
+		position: absolute;
+		top: 20px;
+		right: -46px;
+		transition: all .3s; 
+	}
+	
+	.pressa-wrap:hover .pressa-img {
+		top: 0;
+	}
+	
+	
+	@media screen and (max-width:1050px) {
+		.pressa-wrap {
+			height: auto;
+			width: 90%;
+			padding-bottom: 150px;
+		}
+		
+		.pressa-img {			
+			bottom: -150px;
+			left: 50%;
+			transform: translateX(-50%);
+			top: auto;
+		}
+		
+		
+		.pressa-wrap:hover .pressa-img {
+		top: auto;
+	}
+	
+	}
+	
+	
+	@media screen and (max-width: 400px) {
+		
+		.publ-title {
+			font-size:24px;
+			line-height: 30px;
+			width: 90%;
+			max-width: 90%;
+		}
+		
+		.line {
+			width: 70px;
+		}
+		
+		.pressa-about {
+			width: 255px;
+		}
+	}
