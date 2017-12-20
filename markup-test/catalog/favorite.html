@@ -1,0 +1,1253 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://dantonehome.ru/bitrix/js/main/core/css/core.min.css?15037848202854" type="text/css"
+          rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/news.list/flat/themes/green/style.min.css?1503784816205"
+          type="text/css" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/sale.basket.basket.line/header_basket/style.min.css?15037848163569"
+          type="text/css" data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/menu/top_menu/style.min.css?1503784815490"
+          type="text/css" data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/catalog.section.list/menu_catalog/style.css?15037848157305"
+          type="text/css" data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/news.list/flat/style.min.css?15037848163329"
+          type="text/css" data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/css/main/bootstrap.min.css?1503784821117487" type="text/css"
+          data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/css/main/font-awesome.min.css?150378482123748" type="text/css"
+          data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/news.list/flat/themes/blue/style.min.css?1503784816205"
+          type="text/css" data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/catalog.section.list/footer_catalog/style.css?15037848157305"
+          type="text/css" data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/form.result.new/dantone_callback/style.css?1503784816666"
+          type="text/css" data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/components/ims/pwd/templates/.default/style.css?1503784808151"
+          type="text/css" data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/components/bitrix/system.auth.form/templates/modal/style.min.css?1503784808424"
+          type="text/css" data-template-style="true" rel="stylesheet"/>
+    <link href="https://dantonehome.ru/bitrix/templates/dantone/template_styles.css?150654223021827" type="text/css"
+          data-template-style="true" rel="stylesheet"/>
+    <script type="text/javascript">if (!window.BX)window.BX = {
+        message: function (mess) {
+            if (typeof mess == 'object') for (var i in mess) BX.message[i] = mess[i];
+            return true;
+        }
+    };</script>
+    <script type="text/javascript">(window.BX || top.BX).message({
+        'JS_CORE_LOADING': 'Загрузка...',
+        'JS_CORE_NO_DATA': '- Нет данных -',
+        'JS_CORE_WINDOW_CLOSE': 'Закрыть',
+        'JS_CORE_WINDOW_EXPAND': 'Развернуть',
+        'JS_CORE_WINDOW_NARROW': 'Свернуть в окно',
+        'JS_CORE_WINDOW_SAVE': 'Сохранить',
+        'JS_CORE_WINDOW_CANCEL': 'Отменить',
+        'JS_CORE_WINDOW_CONTINUE': 'Продолжить',
+        'JS_CORE_H': 'ч',
+        'JS_CORE_M': 'м',
+        'JS_CORE_S': 'с',
+        'JSADM_AI_HIDE_EXTRA': 'Скрыть лишние',
+        'JSADM_AI_ALL_NOTIF': 'Показать все',
+        'JSADM_AUTH_REQ': 'Требуется авторизация!',
+        'JS_CORE_WINDOW_AUTH': 'Войти',
+        'JS_CORE_IMAGE_FULL': 'Полный размер'
+    });</script>
+    <script type="text/javascript">(window.BX || top.BX).message({'YANDEX_KEY': 'trnsl.1.1.20170718T163026Z.c2c445683d41ca19.24f04e6596fcad16473aa3ff44e79ed36067c13a'});
+    (window.BX || top.BX).message({
+        'TRANS_FROM': 'а,б,в,г,д,е,ё,ж,з,и,й,к,л,м,н,о,п,р,с,т,у,ф,х,ц,ч,ш,щ,ъ,ы,ь,э,ю,я,А,Б,В,Г,Д,Е,Ё,Ж,З,И,Й,К,Л,М,Н,О,П,Р,С,Т,У,Ф,Х,Ц,Ч,Ш,Щ,Ъ,Ы,Ь,Э,Ю,Я,і,І,ї,Ї,ґ,Ґ',
+        'TRANS_TO': 'a,b,v,g,d,e,ye,zh,z,i,y,k,l,m,n,o,p,r,s,t,u,f,kh,ts,ch,sh,shch,,y,,e,yu,ya,A,B,V,G,D,E,YE,ZH,Z,I,Y,K,L,M,N,O,P,R,S,T,U,F,KH,TS,CH,SH,SHCH,,Y,,E,YU,YA,i,I,i,I,g,G',
+        'CORRECT_FROM': 'й ц у к е н г ш щ з х ъ ф ы в а п р о л д ж э \\ я ч с м и т ь б ю . Й Ц У К Е Н Г Ш Щ З Х Ъ Ф Ы В А П Р О Л Д Ж Э / Я Ч С М И Т Ь Б Ю , \" № ; : ?',
+        'CORRECT_TO': 'q w e r t y u i o p [ ] a s d f g h j k l ; \' \\ z x c v b n m , . / Q W E R T Y U I O P { } A S D F G H J K L : | ~ Z X C V B N M < > ? @ # $ ^ &'
+    });</script>
+    <script type="text/javascript">(window.BX || top.BX).message({
+        'LANGUAGE_ID': 'ru',
+        'FORMAT_DATE': 'DD.MM.YYYY',
+        'FORMAT_DATETIME': 'DD.MM.YYYY HH:MI:SS',
+        'COOKIE_PREFIX': 'BITRIX_SM',
+        'SERVER_TZ_OFFSET': '10800',
+        'SITE_ID': 's1',
+        'SITE_DIR': '/',
+        'USER_ID': '',
+        'SERVER_TIME': '1506584859',
+        'USER_TZ_OFFSET': '0',
+        'USER_TZ_AUTO': 'Y',
+        'bitrix_sessid': '2c137334f6a108d75d34f0398f417d4a'
+    });</script>
+
+
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/js/main/core/core.min.js?150378482073556"></script>
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/js/main/core/core_translit.min.js?15037848205742"></script>
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/js/main/core/core_fx.min.js?15037848209592"></script>
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/js/main/core/core_ajax.min.js?150378482021031"></script>
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/js/main/jquery/jquery-1.8.3.min.js?150378482093636"></script>
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+
+            var counter = function () {
+                var cookie = (function (name) {
+                    var parts = ("; " + document.cookie).split("; " + name + "=");
+                    if (parts.length == 2) {
+                        try {
+                            return JSON.parse(decodeURIComponent(parts.pop().split(";").shift()));
+                        }
+                        catch (e) {
+                        }
+                    }
+                })("BITRIX_CONVERSION_CONTEXT_s1");
+
+                if (!cookie || cookie.EXPIRE < BX.message("SERVER_TIME")) {
+                    var request = new XMLHttpRequest();
+                    request.open("POST", "/bitrix/tools/conversion/ajax_counter.php", true);
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    request.send(
+                            "SITE_ID=" + encodeURIComponent(BX.message("SITE_ID")) + "&" +
+                            "sessid=" + encodeURIComponent(BX.bitrix_sessid()) + "&" +
+                            "HTTP_REFERER=" + encodeURIComponent(document.referrer)
+                    );
+                }
+            };
+
+            if (window.frameRequestStart === true)
+                BX.addCustomEvent("onFrameDataReceived", counter);
+            else
+                BX.ready(counter);
+        })();
+    </script>
+    <link rel="alternate" type="application/rss+xml" title="https://dantonehome.ru/news/rss/"
+          href="https://dantonehome.ru/news/rss/"/>
+
+
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/sale.basket.basket.line/header_basket/script.min.js?15037848163834"></script>
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/news.list/flat/script.min.js?15037848163288"></script>
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/components/ims/pwd/script/pr.pwd.js?1505391255703"></script>
+    <script type="text/javascript">var _ba = _ba || [];
+    _ba.push(["aid", "212badf28d21925113b86934d9ab544b"]);
+    _ba.push(["host", "dantonehome.ru"]);
+    (function () {
+        var ba = document.createElement("script");
+        ba.type = "text/javascript";
+        ba.async = true;
+        ba.src = (document.location.protocol == "https:" ? "https://" : "http://") + "bitrix.info/ba.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(ba, s);
+    })();</script>
+
+
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/sale.basket.basket.line/header_basket/script.min.js?15037848163834"></script>
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/templates/dantone/components/bitrix/news.list/flat/script.min.js?15037848163288"></script>
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/components/ims/pwd/script/pr.pwd.js?1505391255703"></script>
+    <script type="text/javascript">var _ba = _ba || [];
+    _ba.push(["aid", "212badf28d21925113b86934d9ab544b"]);
+    _ba.push(["host", "dantonehome.ru"]);
+    (function () {
+        var ba = document.createElement("script");
+        ba.type = "text/javascript";
+        ba.async = true;
+        ba.src = (document.location.protocol == "https:" ? "https://" : "http://") + "bitrix.info/ba.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(ba, s);
+    })();</script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="KrwMwRLASso_EU0U_X82S2AyqLyXiOATOyJT5sKM5As"/>
+
+    <title>Каталог</title>
+
+    <link rel="icon" href="https://dantonehome.ru/bitrix/templates/dantone/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://dantonehome.ru/bitrix/templates/dantone/favicon2x.png">
+    <script type="text/javascript">var SITE_DIR = '/';</script>
+    <link rel="stylesheet" href="https://dantonehome.ru/bitrix/templates/dantone/css/jquery.fancybox.css"/>
+    <link rel="stylesheet" href="https://dantonehome.ru/bitrix/templates/dantone/css/animate.css"/>
+    <link rel="stylesheet" href="https://dantonehome.ru/bitrix/templates/dantone/css/style.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,cyrillic'
+          rel='stylesheet' type='text/css'>
+    <script src="//api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
+    <script src="https://dantonehome.ru/bitrix/templates/dantone/js/jquery-1.11.1.min.js"></script>
+    <script src="https://dantonehome.ru/bitrix/templates/dantone/js/jquery.cookie.js"></script>
+    <script src="https://dantonehome.ru/bitrix/templates/dantone/js/jquery.maskedInput.js"></script>
+    <script type="text/javascript" src="https://dantonehome.ru/bitrix/templates/dantone/js/owl.js"></script>
+    <script type="text/javascript" src="https://dantonehome.ru/bitrix/templates/dantone/js/plugins.js"></script>
+    <!--<script src="js/dantone.js"></script>-->
+    <script type="text/javascript"
+            src="https://dantonehome.ru/bitrix/templates/dantone/js/jquery.elevateZoom-3.0.8.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <script src="https://analytics.alloka.ru/v4/alloka.js" type="text/javascript"></script>
+
+
+    <script>
+        $(function () {
+            $('.phone-input').mask("+7(999)999-99-99");
+        })
+    </script>
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+    </script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="ru-version ">
+
+<div class="wrapper remodal-bg">
+
+    <header id="header" class="1header-light inner-header">
+        <div class="header-dark-line">
+            <div class="container">
+                <div class="callback-lnk"><a href="#callback">Заказать звонок</a></div>
+                <div class="product-cart" id="cartInHeaderWrapper">
+
+
+                    <script>
+                        var bx_basketFKauiI = new BitrixSmallCart;
+                    </script>
+
+                    <div id="bx_basketFKauiI" class=""><!--'start_frame_cache_bx_basketFKauiI'-->
+
+                        <a href="/personal/cart/">
+                            <i class="icon-cart"></i>Ваша корзина		        <span class="product-cart-detail">
+		            <span class="cart-count">2</span> шт. на 84 300 руб.		        </span>
+                        </a>
+
+                        <a href="#" class="header-dark-line-favorite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="512px" height="512px">
+<g>
+	<path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1   c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3   l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4   C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3   s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4   c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3   C444.801,187.101,434.001,213.101,414.401,232.701z" fill="#ffffff"/>
+</g>
+</svg>
+                            <span class="count">25</span>
+                        </a>
+
+
+                        <script>
+                            BX.ready(function () {
+                                bx_basketFKauiI.fixCart();
+                            });
+                        </script>
+                        <!--'end_frame_cache_bx_basketFKauiI'--></div>
+                    <script type="text/javascript">
+                        bx_basketFKauiI.siteId = 's1';
+                        bx_basketFKauiI.cartId = 'bx_basketFKauiI';
+                        bx_basketFKauiI.ajaxPath = 'https://dantonehome.ru/bitrix/components/bitrix/sale.basket.basket.line/ajax.php';
+                        bx_basketFKauiI.templateName = 'header_basket';
+                        bx_basketFKauiI.arParams = {
+                            'HIDE_ON_BASKET_PAGES': 'Y',
+                            'PATH_TO_BASKET': '/personal/cart/',
+                            'PATH_TO_ORDER': '/personal/order/make/',
+                            'PATH_TO_PERSONAL': '/personal/',
+                            'PATH_TO_PROFILE': '/personal/',
+                            'PATH_TO_REGISTER': '/login/',
+                            'SHOW_AUTHOR': 'Y',
+                            'SHOW_DELAY': 'N',
+                            'SHOW_EMPTY_VALUES': 'Y',
+                            'SHOW_IMAGE': 'Y',
+                            'SHOW_NOTAVAIL': 'N',
+                            'SHOW_NUM_PRODUCTS': 'Y',
+                            'SHOW_PERSONAL_LINK': 'N',
+                            'SHOW_PRICE': 'Y',
+                            'SHOW_PRODUCTS': 'Y',
+                            'SHOW_SUBSCRIBE': 'Y',
+                            'SHOW_SUMMARY': 'Y',
+                            'SHOW_TOTAL_PRICE': 'Y',
+                            'CACHE_TYPE': 'A',
+                            'POSITION_FIXED': 'N',
+                            'POSITION_VERTICAL': 'top',
+                            'POSITION_HORIZONTAL': 'right',
+                            'AJAX': 'N',
+                            '~HIDE_ON_BASKET_PAGES': 'Y',
+                            '~PATH_TO_BASKET': '/personal/cart/',
+                            '~PATH_TO_ORDER': '/personal/order/make/',
+                            '~PATH_TO_PERSONAL': '/personal/',
+                            '~PATH_TO_PROFILE': '/personal/',
+                            '~PATH_TO_REGISTER': '/login/',
+                            '~SHOW_AUTHOR': 'Y',
+                            '~SHOW_DELAY': 'N',
+                            '~SHOW_EMPTY_VALUES': 'Y',
+                            '~SHOW_IMAGE': 'Y',
+                            '~SHOW_NOTAVAIL': 'N',
+                            '~SHOW_NUM_PRODUCTS': 'Y',
+                            '~SHOW_PERSONAL_LINK': 'N',
+                            '~SHOW_PRICE': 'Y',
+                            '~SHOW_PRODUCTS': 'Y',
+                            '~SHOW_SUBSCRIBE': 'Y',
+                            '~SHOW_SUMMARY': 'Y',
+                            '~SHOW_TOTAL_PRICE': 'Y',
+                            '~CACHE_TYPE': 'A',
+                            '~POSITION_FIXED': 'N',
+                            '~POSITION_VERTICAL': 'top',
+                            '~POSITION_HORIZONTAL': 'right',
+                            '~AJAX': 'N',
+                            'cartId': 'bx_basketFKauiI'
+                        }; // TODO \Bitrix\Main\Web\Json::encode
+                        bx_basketFKauiI.closeMessage = 'Скрыть';
+                        bx_basketFKauiI.openMessage = 'Раскрыть';
+                        bx_basketFKauiI.activate();
+                    </script>
+
+
+                </div>
+
+                <div class="login-lnk"><a href="#login">Войти</a></div>
+                <div class="reg-lnk"><a href="/auth/?register=yes">Зарегистрироваться</a></div>
+            </div>
+        </div>
+        <div class="header-main-contant ">
+            <div class='container'>
+                <div class='phone-desctop'>
+                    <div class="phone">
+                        <i class="icon-phone" style='position: relative; top: 12px; transform: scale(1.2)'></i>
+                        <span class="kupislova" style='font-size: 18px'>+7 (495) 727 02 17</span> <br>
+                                    <span style='font-size: 16px; display: inline-block; float: right;'>
+                                        <a target="_blank" style='font-size:13px;'
+                                           href='https://yandex.ru/maps/213/moscow/?source=wizbiz_new_map_single&z=14&ll=37.559634%2C55.758517&mode=search&text=dantone&sll=37.559634%2C55.758517&sspn=0.070896%2C0.024441&sctx=CAAAAAEAa9WuCWnPQkD%2FPuPCgeBLQJP8iF%2BxhuQ%2Faw2l9iLa3T8CAAAAAQIBAAAAAAAAAAFZNXutBeFby9UAAAABAACAPwAAAAAAAAAA&ol=biz&oid=1736135840'>
+                                            Салон в центре Москвы</a></span> <br>
+
+                        <a href="#callback" class="btn smart-visible">Обратный звонок</a>
+                    </div>
+                    <p style="font-size: 16px; float: right; margin-top: 41px">
+                        Пн-Сб с 11:00 до 20:00<br>Вс с 11:00 до 18:00
+
+                    </p>
+                </div>
+
+
+                <div id="logo"><a href="/" title="Dantone Home"></a></div>
+            </div>
+        </div>
+        <!--изменения тут-->
+        <div class="nav-container">
+            <div class="mb-nav-icons">
+                <a href="#" class="mb-nav-iconBlock">
+                    <div class="navCircle-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg"  version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve" width="512px" height="512px">
+<g>
+	<path d="M440.1,422.7l-28-315.3c-0.6-7-6.5-12.3-13.4-12.3h-57.6C340.3,42.5,297.3,0,244.5,0s-95.8,42.5-96.6,95.1H90.3   c-7,0-12.8,5.3-13.4,12.3l-28,315.3c0,0.4-0.1,0.8-0.1,1.2c0,35.9,32.9,65.1,73.4,65.1h244.6c40.5,0,73.4-29.2,73.4-65.1   C440.2,423.5,440.2,423.1,440.1,422.7z M244.5,27c37.9,0,68.8,30.4,69.6,68.1H174.9C175.7,57.4,206.6,27,244.5,27z M366.8,462   H122.2c-25.4,0-46-16.8-46.4-37.5l26.8-302.3h45.2v41c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h139.3v41   c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z" fill="#FFFFFF"/>
+</g>
+</svg>
+                        <span class="countNav">5</span>
+                    </div>
+                    <div class="mb-nav-icon-descrition">
+                        Корзина
+                    </div>
+                </a>
+                <a href="#" class="mb-nav-iconBlock">
+                    <div class="navCircle-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="512px" height="512px">
+<g>
+	<path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1   c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3   l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4   C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3   s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4   c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3   C444.801,187.101,434.001,213.101,414.401,232.701z" fill="#666666"/>
+</g>
+</svg>
+                        <span class="countNav">25</span>
+                    </div>
+                    <div class="mb-nav-icon-descrition">
+                        Избранное
+                    </div>
+                </a>
+                <a href="#" class="mb-nav-iconBlock">
+                    <div class="navCircle-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512px" height="512px">
+<g>
+	<g>
+		<path d="M256,0c-74.439,0-135,60.561-135,135s60.561,135,135,135s135-60.561,135-135S330.439,0,256,0z M256,240    c-57.897,0-105-47.103-105-105c0-57.897,47.103-105,105-105c57.897,0,105,47.103,105,105C361,192.897,313.897,240,256,240z" fill="#FFFFFF"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M423.966,358.195C387.006,320.667,338.009,300,286,300h-60c-52.008,0-101.006,20.667-137.966,58.195    C51.255,395.539,31,444.833,31,497c0,8.284,6.716,15,15,15h420c8.284,0,15-6.716,15-15    C481,444.833,460.745,395.539,423.966,358.195z M61.66,482c7.515-85.086,78.351-152,164.34-152h60    c85.989,0,156.825,66.914,164.34,152H61.66z" fill="#FFFFFF"/>
+	</g>
+</g>
+</svg>
+
+                    </div>
+                    <div class="mb-nav-icon-descrition">
+                        Мой профиль
+                    </div>
+                </a>
+            </div>
+            <div class="container">
+
+
+                <nav class="main-menu" id="ddmenu">
+                    <ul>
+
+                        <li class=" haspopup full-width  ">
+                            <a href="https://dantonehome.ru/catalog/">Каталог</a>
+                            <div class="dropdown">
+                                <ul class="sub-menu-catalog">
+                                    <li id="bx_1847241719_53"><a href="https://dantonehome.ru/catalog/city/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/0b7/0b798d9b91ff356ac97c9d78c0052f24.jpg"
+                            alt="City by James Patterson"/>
+					</span>
+                                        <span class="title">City by James Patterson</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_16"><a href="https://dantonehome.ru/catalog/sofas/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/e5f/e5f2757d28af7642d2f8cd9c0a0611d6.jpg"
+                            alt="Диваны"/>
+					</span>
+                                        <span class="title">Диваны</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_17"><a href="https://dantonehome.ru/catalog/bedroom/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/877/877cc7255c00799d82159764c894f1bc.jpg"
+                            alt="Кровати и изголовья"/>
+					</span>
+                                        <span class="title">Кровати и изголовья</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_54"><a href="https://dantonehome.ru/catalog/dantone-kitchen/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/6fa/6fa0abce194b2ab18b5f8192882ee3f2.jpg"
+                            alt="Кухня Dantone"/>
+					</span>
+                                        <span class="title">Кухня Dantone</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_18"><a
+                                            href="https://dantonehome.ru/catalog/armchairs_and_chairs/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/d88/d88c070cae4e528079829e5ef0c31739.jpg"
+                            alt="Кресла и стулья"/>
+					</span>
+                                        <span class="title">Кресла и стулья</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_19"><a
+                                            href="https://dantonehome.ru/catalog/tables_and_consoles/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/174/174d24952fdd5a771ffb8f58ee2fdec8.jpg"
+                            alt="Столы и консоли"/>
+					</span>
+                                        <span class="title">Столы и консоли</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_20"><a
+                                            href="https://dantonehome.ru/catalog/bedside_tables_and_chests_of_drawers/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/12a/12a02dd2daf59566d7c9beb66c6e300a.jpg"
+                            alt="Тумбочки и комоды"/>
+					</span>
+                                        <span class="title">Тумбочки и комоды</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_21"><a
+                                            href="https://dantonehome.ru/catalog/cabinets_and_cupboards/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/2e0/2e06c7e834e8d087ab4b91c63c31bcad.jpg"
+                            alt="Шкафы и буфеты"/>
+					</span>
+                                        <span class="title">Шкафы и буфеты</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_22"><a
+                                            href="https://dantonehome.ru/catalog/sistema-garderobnyh-schafov/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/6ae/6ae48b5d39e1062a0f8a66ba534dd7d5.jpg"
+                            alt="Система гардеробных шкафов"/>
+					</span>
+                                        <span class="title">Система гардеробных шкафов</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_23"><a
+                                            href="https://dantonehome.ru/catalog/poufs_and_stools/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/daf/daf912dcde6340202d567b71e0e6877b.jpg"
+                            alt="Пуфы и банкетки"/>
+					</span>
+                                        <span class="title">Пуфы и банкетки</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_24"><a href="https://dantonehome.ru/catalog/light/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/3bf/3bf10c0bbacfd93af3a9396c202379d2.jpg"
+                            alt="Свет"/>
+					</span>
+                                        <span class="title">Свет</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_46"><a href="https://dantonehome.ru/catalog/mirrors/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/8e3/8e3172c678918cebc2003d1dcae84583.jpg"
+                            alt="Зеркала"/>
+					</span>
+                                        <span class="title">Зеркала</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_25"><a href="https://dantonehome.ru/catalog/dacha/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/6d0/6d035306ffa0244baa59b5b61cbd84dd.jpg"
+                            alt="Dantone Dacha"/>
+					</span>
+                                        <span class="title">Dantone Dacha</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_26"><a
+                                            href="https://dantonehome.ru/catalog/home_accessories/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/784/7840cbdb61a33b7a3ab352ac10bc12de.jpg"
+                            alt="Аксессуары для дома"/>
+					</span>
+                                        <span class="title">Аксессуары для дома</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_52"><a href="https://dantonehome.ru/catalog/alfombras/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/a68/a6860479b0d848fdd23611de67ce74de.jpg"
+                            alt="Ковры"/>
+					</span>
+                                        <span class="title">Ковры</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_58"><a
+                                            href="https://dantonehome.ru/catalog/soft-furniture-in-stock/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/11a/11aef54704c6e586141438b1c3858677.jpg"
+                            alt="Мягкая мебель в наличии"/>
+					</span>
+                                        <span class="title">Мягкая мебель в наличии</span>
+
+                                    </a></li>
+                                    <li id="bx_1847241719_51"><a href="https://dantonehome.ru/catalog/discount/">
+					<span class="photo">
+					   <img src="https://dantonehome.ru/upload/iblock/d83/d8388036a05af1cb3f19c7fecf24c8ef.jpg"
+                            alt="Sale"/>
+					</span>
+                                        <span class="title">Sale</span>
+
+                                    </a></li>
+                                </ul>
+                            </div>
+
+
+                        </li>
+
+                        <li class="">
+                            <a href="/about/">О компании</a>
+                        </li>
+
+                        <li class="active  haspopup full-width  ">
+                            <a href="https://dantonehome.ru/news/">Новости</a>
+                            <div class="dropdown">
+                                <div id="comp_eb487d2a1dec70bff40b31e6a7a98bc8">
+                                    <ul class="news-list">
+
+                                        <li>
+                                            <a href="https://dantonehome.ru/news/the_continuation_of_the_exhibition_i_saloni_worldwide_moscow_2017/">
+                                                <div class="photo">
+                                                    <img src="https://dantonehome.ru/upload/resize_cache/iblock/2f8/257_150_2/2f8edf560adf4ad906aa590e300c3e24.jpg"
+                                                         alt="Продолжение выставки I Saloni WorldWide Moscow 2017">
+                                                </div>
+                                                <div class="title">Продолжение выставки I Saloni WorldWide Moscow 2017
+                                                </div>
+                                            </a>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="https://dantonehome.ru/news/functional_kitchen_with_dantone_home/">
+                                                <div class="photo">
+                                                    <img src="https://dantonehome.ru/upload/iblock/e87/e8762f507e6f17f356fa32c2a0e555d7.jpg"
+                                                         alt="Функциональная кухня с Dantone Home">
+                                                </div>
+                                                <div class="title">Функциональная кухня с Dantone Home</div>
+                                            </a>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="https://dantonehome.ru/news/atmosphere_with_a_collection_of_oxford/">
+                                                <div class="photo">
+                                                    <img src="https://dantonehome.ru/upload/iblock/6ff/6ff6ee15de345003b2d1598f8b90d0b0.jpg"
+                                                         alt="Атмосфера уюта с коллекцией Оксфорд">
+                                                </div>
+                                                <div class="title">Атмосфера уюта с коллекцией Оксфорд</div>
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+
+                                </div>
+                            </div>
+
+
+                        </li>
+
+                        <li class=" haspopup full-width  ">
+                            <a href="/projects/">Проекты</a>
+                            <div class="dropdown">
+                                <div id="comp_f07e6c1655c334cf414692990322313e">
+                                    <ul class="news-list">
+
+                                        <li>
+                                            <a href="/projects/interer-biblioteki-v-klubnom-dome/">
+                                                <div class="photo">
+                                                    <img src="https://dantonehome.ru/upload/resize_cache/iblock/185/257_150_2/185a073d07a0615b09c61df48aede176.jpg"
+                                                         alt="Интерьер библиотеки в клубном доме">
+                                                </div>
+                                                <div class="date"></div>
+                                                <div class="title">Интерьер библиотеки в клубном доме</div>
+                                            </a>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="/projects/kvartira-na-m-bronnoi/">
+                                                <div class="photo">
+                                                    <img src="https://dantonehome.ru/upload/resize_cache/iblock/97e/257_150_2/97e4d96d4bd253278f1b2366c680368a.jpg"
+                                                         alt="Квартира на М. Бронной">
+                                                </div>
+                                                <div class="date"></div>
+                                                <div class="title">Квартира на М. Бронной</div>
+                                            </a>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="/projects/kvartira-na-savvinskoy/">
+                                                <div class="photo">
+                                                    <img src="https://dantonehome.ru/upload/resize_cache/iblock/634/257_150_2/63486351b05e3faaefe18050ae57e08c.jpg"
+                                                         alt="Квартира на Саввинской набережной">
+                                                </div>
+                                                <div class="date"></div>
+                                                <div class="title">Квартира на Саввинской набережной</div>
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+
+                                </div>
+                            </div>
+
+
+                        </li>
+
+                        <li class="">
+                            <a href="/press/">Пресса</a>
+                        </li>
+
+                        <li class="red-item">
+                            <a href="https://dantonehome.ru/catalog/discount/">Sale</a>
+                        </li>
+
+                        <li class=" haspopup full-width  ">
+                            <a href="https://dantonehome.ru/contacts/">Контакты</a>
+                            <div class="dropdown">
+                                <div class="half">
+                                    <div class="" id="map">
+                                        <script type="text/javascript" charset="utf-8"
+                                                src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=5bQ2sKRP7BRIY4L57MbZEu_HAx4KR0Qw&width=450&height=150"></script>
+                                    </div>
+                                </div>
+                                <div class="half">
+                                    <div class="contact-item">
+                                        <h5>г.Москва</h5>
+                                        <div class="big" style="font-size: 14px;">
+                                            <span class="kupislova">8 (495) 727-02-17</span>
+                                        </div>
+                                        <div class="big" style="font-size: 14px;">
+                                            Пн-Сб с 11:00 до 20:00<br>
+                                            Вс с 11:00 до 18:00
+                                        </div>
+                                    </div>
+                                    <div class="contact-item">
+                                        <h5>Шоурум Dantone Home</h5>
+                                        г. Москва, Трехгорный вал, дом 5.<br>
+                                        <a href="mailto:info@dantonehome.ru">info@dantonehome.ru</a><br>
+                                        <a target="_blank"
+                                           href="https://www.google.com/maps/place/Dantone+Home/@55.758587,37.5596686,3a,75y,289.22h,83.83t/data=!3m6!1e1!3m4!1sqbao1hZnw4cAAAQ8sT4S_g!2e0!7i8000!8i4000!4m5!3m4!1s0x0:0x617c785c874d1a8f!8m2!3d55.7586405!4d37.5594895!6m1!1e1">Виртуальный
+                                            тур</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </li>
+
+
+                    </ul>
+                </nav>
+
+                <div class="search-container">
+                    <div class="">
+
+                        <form class="search-form hide" action="/search/" style="">
+
+                            <input name="q" type="text" required="required" value=""/>
+                            <input type="submit" value="" class="searhc-btn"/>
+
+                        </form>
+                        <a class="show-search a-show-search"></a>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="user-nav">
+                <!--<div class="callback-lnk"><a href="#callback">Заказать обратный звонок</a></div>-->
+                <!--<div class="reg-lnk"><a href="/personal/cart">Корзина</a></div>-->
+
+            </div>
+        </div>
+        <a class="a-show-menu show-menu">
+            <span></span><span></span><span></span>
+        </a>
+        <a class="a-show-menu hide-menu"></a>
+    </header>
+
+    <section id="content">
+        <div class="container">
+
+
+
+
+
+
+
+
+            <div class="clearfix">
+
+
+
+                <script>
+                    function basket(action, productID) {
+                        if(productID) {
+                            var url = "/include/basket.php";
+                            var data = {
+                                pID: productID,
+                                action: action
+                            }
+                            $.post(url, data, function(response) {
+                                $('#cartInHeaderWrapper').html(response)
+                                location.href = "#cart";
+
+                            })
+                            BX.onCustomEvent('OnBasketChange');
+                        }
+                    }
+                </script>
+
+
+                <h1 class="h2 text-left h2-profile mb10">Избранные товары</h1>
+
+                <div class="clearfix mb20">
+                    <ul class="breadcrumbs text-left fleft">
+                        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+
+                            <a href="/catalog/" title="Каталог" itemprop="url">Каталог
+                            </a>
+                        </li>
+                        <li>
+
+                            Диваны
+                        </li><div style="clear:both"></div></ul>
+
+                    <div class="fright sort-container">
+                        <select id="sort" style="position: absolute; left: -9999px;">
+                            <option value="">Сортировать</option>
+                            <option value="hit" >По популярности</option>
+                            <option value="price" >По цене</option>
+                            <option value="discount" >Со скидкой</option>
+                        </select>
+                    </div>
+
+                    <script>
+                        $(function() {
+                            $('#sort').on('change', function() {
+                                var val = $(this).val();
+
+                                location.href = "?sortField=" + val
+
+                            });
+                        });
+                    </script>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <!-- ********************** Код для вставки. Начало. **************************-->
+
+            <div class="catalog-main-container catalog-favorite-container" role="main" id="main">
+
+                <ul class="product-list-static product-favorite-list" id="productCatalogBlock">
+
+                    <li>
+
+                        <div class="photo">
+                            <a href="/catalog/dacha/kashpo-beloe/" title="Посмотреть детали" id="productLink-12558">
+                                <img src="https://dantonehome.ru/upload/iblock/673/673901f3c5c1c016c37e540f2d92906a.jpg" alt="">
+                            </a>
+                        </div>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/673/673901f3c5c1c016c37e540f2d92906a.jpg" rel="g2558" class="gallery-list fancybox-media">
+                        </a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/127/127f8e503e6cf079560c65760bff293d.jpg" rel="g2558" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/9b9/9b9361ede4ce735781a9d5d08a10c469.jpg" rel="g2558" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/905/9052b8e6ddfbdf58453ed56cf2f6278b.jpg" rel="g2558" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/b06/b06b1184445d6a14995dd44f1fe30598.jpg" rel="g2558" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/0cf/0cf8a2bd08ebb8269084be6e85472888.jpg" rel="g2558" class="fancybox-media"></a>
+                        <a class="favorite-icon tooltips" href="#"><span class="tooltips-text">Удалить из избранного</span></a>
+                        <div class="descr">
+                            <div class="title">
+                                <a href="/catalog/dacha/kashpo-beloe/" id="productLink-22558" title="Посмотреть детали">Кашпо белое</a>
+                            </div>
+                        </div>
+                        <a href="#" onclick="basket('add',2559); return false;" class="btn btn-blue btn-medium" id="">В корзину</a>
+                    </li>
+
+
+                    <li>
+
+                        <div class="photo">
+                            <a href="/catalog/dacha/kashpo-seroe-maloe/" title="Посмотреть детали" id="productLink-12560">
+                                <img src="https://dantonehome.ru/upload/iblock/403/4031f31df1ef19d0c0e559a44e89c09b.jpg" alt="">
+                            </a>
+                        </div>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/403/4031f31df1ef19d0c0e559a44e89c09b.jpg" rel="g2560" class="gallery-list fancybox-media">
+                        </a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/8a8/8a832904b5d963f4af349d44e57f8828.jpg" rel="g2560" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/b26/b261c8e41132ac94994516836ce6065a.jpg" rel="g2560" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/637/637a76ab454ec587f5b51a163dfa8d05.jpg" rel="g2560" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/e1d/e1d798895a5e346608914b9c878aef95.jpg" rel="g2560" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/1d5/1d52610173178cd2a9ec4a06c9abb429.jpg" rel="g2560" class="fancybox-media"></a>
+                        <a class="favorite-icon favorite-icon-active tooltips" href="#"><span class="tooltips-text">Удалить из избранного</span></a>
+
+                        <div class="descr">
+                            <div class="title">
+                                <a href="/catalog/dacha/kashpo-seroe-maloe/" id="productLink-22560" title="Посмотреть детали">Кашпо серое малое</a>
+                            </div>
+                        </div>
+                        <a href="#" onclick="basket('add',2561); return false;" class="btn btn-blue btn-medium" id="">В корзину</a>
+                    </li>
+
+
+                    <li>
+
+                        <div class="photo">
+                            <a href="/catalog/dacha/kashpo-seroe-bolshoe/" title="Посмотреть детали" id="productLink-12562">
+                                <img src="https://dantonehome.ru/upload/iblock/7be/7be473bc5adc4667a1b7e41071f91a11.jpg" alt="">
+                            </a>
+                        </div>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/7be/7be473bc5adc4667a1b7e41071f91a11.jpg" rel="g2562" class="gallery-list fancybox-media">
+                        </a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/45a/45ab6fc8af013068762e8bcf68ad343e.jpg" rel="g2562" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/b53/b536941562d2bcffeae08a3546cb2ba4.jpg" rel="g2562" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/a74/a7469eed09304830d30b120d58c09ecb.jpg" rel="g2562" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/eb2/eb2ab45acb736740c265cef751554f88.jpg" rel="g2562" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/23d/23d01239dc74d559b5fff6a539237602.jpg" rel="g2562" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/431/4313c85f0f256557ccfb42a62ed61508.jpg" rel="g2562" class="fancybox-media"></a>
+                        <a class="favorite-icon tooltips" href="#"><span class="tooltips-text">Удалить из избранного</span></a>
+                        <div class="descr">
+                            <div class="title">
+                                <a href="/catalog/dacha/kashpo-seroe-bolshoe/" id="productLink-22562" title="Посмотреть детали">Кашпо серое большое</a>
+                            </div>
+                        </div>
+                        <a href="#" onclick="basket('add',2563); return false;" class="btn btn-blue btn-medium" id="">В корзину</a>
+                    </li>
+
+
+                    <li>
+
+                        <div class="photo">
+                            <a href="/catalog/dacha/kreslo-RASF-1521S/" title="Посмотреть детали" id="productLink-11737">
+                                <img src="https://dantonehome.ru/upload/iblock/380/380792410f133ce6f0f24c6d7a317f5d.jpg" alt="">
+                            </a>
+                        </div>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/380/380792410f133ce6f0f24c6d7a317f5d.jpg" rel="g1737" class="gallery-list fancybox-media">
+                        </a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/4a0/4a0154300af7d6591f561c140bb1ecf7.jpg" rel="g1737" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/83d/83de616f44953d791e96b564fcabc3b1.jpg" rel="g1737" class="fancybox-media"></a>
+                        <a class="favorite-icon favorite-icon-active tooltips" href="#"><span class="tooltips-text">Удалить из избранного</span></a>
+                        <div class="descr">
+                            <div class="title">
+                                <a href="/catalog/dacha/kreslo-RASF-1521S/" id="productLink-21737" title="Посмотреть детали">Кресло Bora Bora</a>
+                            </div>
+                        </div>
+                        <a href="#" onclick="basket('add',1736); return false;" class="btn btn-blue btn-medium" id="">В корзину</a>
+                    </li>
+
+
+                    <li>
+
+                        <div class="photo">
+                            <a href="/catalog/dacha/stul-RADS-152chair/" title="Посмотреть детали" id="productLink-11733">
+                                <img src="https://dantonehome.ru/upload/iblock/177/177791352dd1bfed3015a7af422ff178.jpg" alt="">
+                            </a>
+                        </div>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/177/177791352dd1bfed3015a7af422ff178.jpg" rel="g1733" class="gallery-list fancybox-media">
+                        </a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/1ab/1ab8bbb7965f74a030a8a56ba293a092.jpg" rel="g1733" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/45a/45a52b718d5f05ee0536f4c73655ebf2.jpg" rel="g1733" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/8f9/8f9878c7aed1348e57ceee64b75ab042.jpg" rel="g1733" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/4a0/4a0a146355138e061d5a718411db01f4.jpg" rel="g1733" class="fancybox-media"></a>
+                        <a class="favorite-icon tooltips" href="#"><span class="tooltips-text">Удалить из избранного</span></a>
+                        <div class="descr">
+                            <div class="title">
+                                <a href="/catalog/dacha/stul-RADS-152chair/" id="productLink-21733" title="Посмотреть детали">Стул Aland</a>
+                            </div>
+                        </div>
+                        <a href="#" onclick="basket('add',1732); return false;" class="btn btn-blue btn-medium" id="">В корзину</a>
+                    </li>
+
+
+                    <li>
+
+                        <div class="photo">
+                            <a href="/catalog/dacha/ostrov-SM256/" title="Посмотреть детали" id="productLink-1631">
+                                <img src="https://dantonehome.ru/upload/iblock/b05/b051dbc4c4d4a2ae50bbe1430bf23a8b.JPG" alt="">
+                            </a>
+                        </div>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/b05/b051dbc4c4d4a2ae50bbe1430bf23a8b.JPG" rel="g631" class="gallery-list fancybox-media">
+                        </a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/f10/f103a079099ba396ad73af6cd8f5b16a.JPG" rel="g631" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/762/7629367ac36af4f202925b6fbf096fb9.JPG" rel="g631" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/fd0/fd02f12a1276b7022aeb085783599a6c.JPG" rel="g631" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/0bb/0bb066cf0698fe96fde67e070fb42af8.JPG" rel="g631" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/0b9/0b9523a307bb00e5f6a649fa445330f0.JPG" rel="g631" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/c6d/c6d7d1856b2740bdfa4d71b0ac010eba.JPG" rel="g631" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/9ae/9ae8cf8d7cb570d3bf78b675eca93a0a.JPG" rel="g631" class="fancybox-media"></a>
+                        <a data-fancybox-href="https://dantonehome.ru/upload/iblock/ca4/ca4c1e7e83a7832f38b07969ed8bff40.JPG" rel="g631" class="fancybox-media"></a>
+                        <a class="favorite-icon favorite-icon-active tooltips" href="#"><span class="tooltips-text">Удалить из избранного</span></a>
+                        <div class="descr">
+                            <div class="title">
+                                <a href="/catalog/dacha/ostrov-SM256/" id="productLink-2631" title="Посмотреть детали">Кухонный остров SM256</a>
+                            </div>
+                        </div>
+                        <a href="#" onclick="basket('add',632); return false;" class="btn btn-blue btn-medium" id="">В корзину</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+
+            <!-- ********************** Код для вставки. Конец. **************************-->
+
+
+
+
+
+
+
+
+
+        </section>
+
+    <div class="push"></div>
+
+
+
+
+
+        </div>
+
+    </section>
+
+
+</div>
+<!--footer-->
+<footer id="footer">
+    <script>
+        $(document).ready(function(){
+            $('.btn').each(function(){
+                var text = $(this).text();
+
+                if (text == 'Барнет классик') {
+
+                    $(this).css({'width':'200px'});
+                }
+            })
+        })
+    </script>
+    <div class="container">
+        <div class="footer-nav clearfix">
+            <div class="footer-nav-main clearfix">
+                <h4>Каталог товаров</h4>
+                <ul>
+
+                    <li id="bx_2148846299_53"><a href="/catalog/city//">
+                        City by James Patterson
+                    </a>
+                    </li><li id="bx_2148846299_16"><a href="/catalog/sofas//">
+                    Диваны
+                </a>
+                </li><li id="bx_2148846299_17"><a href="/catalog/bedroom//">
+                    Кровати и изголовья
+                </a>
+                </li><li id="bx_2148846299_54"><a href="/catalog/dantone-kitchen//">
+                    Кухня Dantone
+                </a>
+                </li><li id="bx_2148846299_18"><a href="/catalog/armchairs_and_chairs//">
+                    Кресла и стулья
+                </a>
+                </li><li id="bx_2148846299_19"><a href="/catalog/tables_and_consoles//">
+                    Столы и консоли
+                </a>
+                </li>
+                </ul><ul>
+
+                <li id="bx_2148846299_20"><a href="/catalog/bedside_tables_and_chests_of_drawers//">
+                    Тумбочки и комоды
+                </a>
+                </li><li id="bx_2148846299_21"><a href="/catalog/cabinets_and_cupboards//">
+                Шкафы и буфеты
+            </a>
+            </li><li id="bx_2148846299_22"><a href="/catalog/sistema-garderobnyh-schafov//">
+                Система гардеробных шкафов
+            </a>
+            </li><li id="bx_2148846299_23"><a href="/catalog/poufs_and_stools//">
+                Пуфы и банкетки
+            </a>
+            </li><li id="bx_2148846299_24"><a href="/catalog/light//">
+                Свет
+            </a>
+            </li><li id="bx_2148846299_46"><a href="/catalog/mirrors//">
+                Зеркала
+            </a>
+            </li>
+            </ul><ul>
+
+                <li id="bx_2148846299_25"><a href="/catalog/dacha//">
+                    Dantone Dacha
+                </a>
+                </li><li id="bx_2148846299_26"><a href="/catalog/home_accessories//">
+                Аксессуары для дома
+            </a>
+            </li><li id="bx_2148846299_52"><a href="/catalog/alfombras//">
+                Ковры
+            </a>
+            </li><li id="bx_2148846299_58"><a href="/catalog/soft-furniture-in-stock//">
+                Мягкая мебель в наличии
+            </a>
+            </li><li id="bx_2148846299_51"><a href="/catalog/discount//">
+                Sale
+            </a>
+            </li>          </ul>
+            </div>
+
+            <div class="footer-nav-aside clearfix">
+                <h4>О компании</h4>
+                <ul>
+                    <li><a href="/about/">О компании</a></li>
+                    <li><a href="/clients/">Клиенты</a></li>
+                    <li><a href="/delivery/">Доставка</a></li>
+                    <li><a href="/news/">Новости</a></li>
+                    <li><a href="/vakansii/">Вакансии</a></li>
+                    <li><a href="/sotrudnichestvo/">Сотрудничество</a></li>
+                    <li><a target="_blank" href="https://www.google.com/maps/place/Dantone+Home/@55.758587,37.5596686,3a,75y,289.22h,83.83t/data=!3m6!1e1!3m4!1sqbao1hZnw4cAAAQ8sT4S_g!2e0!7i8000!8i4000!4m5!3m4!1s0x0:0x617c785c874d1a8f!8m2!3d55.7586405!4d37.5594895!6m1!1e1">
+                        Виртуальный тур</a></li>
+                </ul>
+                <div class="footer-info">
+                    <div class="file">
+                        <a href="https://dantonehome.ru/bitrix/templates/dantone/DANTONE HOME CATALOGUE 2016-2017.pdf">
+                            <i class="icon-file-pdf"></i>
+                            <div class="file-name">Скачать каталог</div>
+                            <div class="file-detail">pdf, 330 мб.</div>
+                        </a>
+                    </div>
+                    <div class="file">
+                        <a href="#download3d">
+                            <i class="icon-file-zip" style="background-image: url('/bitrix/templates/dantone/images/dantone-icon.svg'); width: 30px;  height: 34px; background-size:cover; background-position: -3px 0"></i>
+                            <div class="file-name">Скачать модели 3DS Max 2016</div>
+                            <div class="file-detail">zip, 8.44 гб.</div>
+                        </a>
+                    </div>
+
+                    <ul class="social">
+                        <li><a target="_blank" href="https://www.facebook.com/dantonehome?skip_nax_wizard=true&ref_type=bookmark" title="Мы в Facebook"><i class="icon-fb"></i></a></li>
+                        <li><a target="_blank" href="https://instagram.com/Dantonehome/" title="Мы в  Instagram"><i class="icon-ins"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="copyright">&copy; 2015-2017 Dantone Home</div>
+
+        </div>
+    </div>
+</footer>
+<!--footer-->
+<noindex>
+    <div class="remodal" data-remodal-id="cart">
+        <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+        <h2>Товар добавлен в корзину</h2>
+        <form action="#">
+            <div class="control-btn text-center">
+                <input onclick="location.href = '#'; return false;" type="submit" value="Продолжить покупки" class="btn btn-blue" />
+            </div>
+            <div class="control-btn text-center">
+                <input onclick="location.href = '/personal/cart/'; return false;" type="submit" value="Оформить заказ" style="width:223px;" class="btn btn-blue" />
+            </div>
+        </form>
+    </div>
+
+    <div class="remodal" data-remodal-id="callback">
+        <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+        <div id="comp_304d027fce28a7d2ff5b18fbc0cb1bfc">
+
+            <h2>Заказать звонок</h2>
+
+
+            <form name="CALLBACK_FORM" action="/catalog/dacha/" method="POST" enctype="multipart/form-data"><input type="hidden" name="bxajaxid" id="bxajaxid_304d027fce28a7d2ff5b18fbc0cb1bfc_8BACKi" value="304d027fce28a7d2ff5b18fbc0cb1bfc" /><input type="hidden" name="AJAX_CALL" value="Y" /><script type="text/javascript">
+                function _processform_8BACKi(){
+                    var obForm = top.BX('bxajaxid_304d027fce28a7d2ff5b18fbc0cb1bfc_8BACKi').form;
+                    top.BX.bind(obForm, 'submit', function() {BX.ajax.submitComponentForm(this, 'comp_304d027fce28a7d2ff5b18fbc0cb1bfc', true)});
+                    top.BX.removeCustomEvent('onAjaxSuccess', _processform_8BACKi);
+                }
+                if (top.BX('bxajaxid_304d027fce28a7d2ff5b18fbc0cb1bfc_8BACKi'))
+                    _processform_8BACKi();
+                else
+                    top.BX.addCustomEvent('onAjaxSuccess', _processform_8BACKi);
+            </script><input type="hidden" name="sessid" id="sessid" value="b4323af6962fd38307a182f2d8d7cb63" /><input type="hidden" name="WEB_FORM_ID" value="1" />    <div class="control">
+                <input type="text" class="input-text input-full" name="form_text_1" required="required" placeholder="Как вас зовут" title="Как вас зовут">
+                <i class="icon-inside-input icon-user"></i>
+            </div>
+
+                <div class="control">
+                    <input type="text" class="input-text input-full phone-input" name="form_text_2" required="required" placeholder="Телефон" title="Телефон" />
+                    <i class="icon-inside-input icon-phone-small"></i>
+                </div>
+                <div class="checkboxes-rit control">
+                    <label class="privacy-checkbox">
+                        <input type="checkbox" required="required">
+        <span class="checkbox-title">Я соглашаюсь на использование  <a onclick="window.open('/bitrix/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf','_blank')" href="https://dantonehome.ru/bitrix/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf" target="_blank">
+            персональных данных</a></span>
+                    </label>
+                </div>
+                <div class="control-btn text-center">
+                    <input class="btn btn-blue"  type="submit" name="web_form_submit" value="Отправить" />
+                </div>
+
+
+            </form></div>
+
+    </div>
+
+    <div class="remodal" data-remodal-id="download3d">
+        <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+        <h3>Скачать 3D-модели</h3>
+        <p>Введите пароль. <br/>Запросите его у своего менеджера или по почте info@dantonehome.ru.</p>
+        <div class="pr_pwd">
+            <div class="error"></div>
+            <form method="POST">
+                <input type="password" name="PR_PWD" placeholder="Пароль">
+                <input type="hidden" name="ID" value="4130bb1e776765f5d5a1cca17bfa8036">
+                <input type="hidden" name="AJAX" value="Y">
+                <input type="submit" value="Скачать" class="btn btn-blue btn-small" style="padding: 3px 7px;font-size: 12px;  font-weight: 900;">
+            </form>
+        </div>
+    </div>
+
+    <div class="remodal" data-remodal-id="login">
+        <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+        <h2>Авторизация</h2>
+
+        <script type="text/javascript">if (window.location.hash != '' && window.location.hash != '#') top.BX.ajax.history.checkRedirectStart('bxajaxid', '0d3903064407205e3b62583fc4f71c00')</script><div id="comp_0d3903064407205e3b62583fc4f71c00"><form id="authForm" name="system_auth_form6zOYVN" method="post" target="_top" action="/catalog/dacha/">
+        <input type="hidden" name="backurl" value="/catalog/dacha/" />
+        <input type="hidden" name="AUTH_FORM" value="Y" />
+        <input type="hidden" name="TYPE" value="AUTH" />
+        <div class="control">
+            <input type="text" class="input-text input-full" placeholder="Логин" title="Логин"  required="required" name="USER_LOGIN" maxlength="50" value="admin" />
+            <i class="icon-inside-input icon-user"></i>
+        </div>
+        <div class="control">
+            <input class="input-text input-full" placeholder="Пароль" title="Пароль" type="password" name="USER_PASSWORD" maxlength="50" size="17" autocomplete="off" />
+            <i class="icon-inside-input icon-lock"></i>
+        </div>
+        <div id="errorBlock" style="color: rgba(255,0,0,0.65);">
+        </div>
+        <div><a href="/auth/?register=yes">Зарегистрироваться</a></div>
+        <div class="control-btn clearfix">
+            <div class="fleft help-inline"><a href="#pass" class="dark-link">Забыли пароль?</a></div>
+            <div class="fright"><input type="submit" value="Войти" class="btn btn-blue" /></div>
+        </div>
+
+
+
+
+
+    </form>
+
+
+
+    </div><script type="text/javascript">if (top.BX.ajax.history.bHashCollision) top.BX.ajax.history.checkRedirectFinish('bxajaxid', '0d3903064407205e3b62583fc4f71c00');</script><script type="text/javascript">top.BX.ready(BX.defer(function() {window.AJAX_PAGE_STATE = new top.BX.ajax.component('comp_0d3903064407205e3b62583fc4f71c00'); top.BX.ajax.history.init(window.AJAX_PAGE_STATE);}))</script>
+    </div>
+
+    <div class="remodal" data-remodal-id="pass">
+        <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+        <h2>Восстановить пароль</h2>
+        <form name="bform" id="restorePasswordForm" method="post" action="/catalog/dacha/#login">
+            <input type="hidden" name="backurl" value="/catalog/dacha/" />
+            <input type="hidden" name="AUTH_FORM" value="Y">
+            <input type="hidden" name="TYPE" value="SEND_PWD">
+
+
+
+
+
+            <div class="control">
+                <input placeholder="E-Mail:" class="input-text input-full" type="text" name="USER_EMAIL" maxlength="255" />
+            </div>
+
+
+
+            <div class="control-btn text-center">
+                <input type="submit" name="send_account_info" class="btn btn-blue" value="Выслать" />
+            </div>
+
+
+
+        </form>
+        <script type="text/javascript">
+            document.bform.USER_EMAIL.focus();
+        </script>
+    </div>
+
+</noindex>
+
+<script src="js/script.js"></script>
+
+
+<script type="text/javascript">(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=wh/rD790Qc/5uFUGsi7Dp1ozx3HYGpUXcnYO5APfhzYfXtn0XqKTK0sH9leUz2MdmCFAo24SZgD2*1Y4ZzQc0qEuE*ZtatrtK*/anNpjyaovU7hbmRng0JOeLy/T*roFmLaAs*lzdc1KPJurrJs66FSXRBrO3pvVrDAZKleEc5Y-';</script>
+
+</body>
+<script> window.dataLayer = window.dataLayer || [];</script>
+</html>

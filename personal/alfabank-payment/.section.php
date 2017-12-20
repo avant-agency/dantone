@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Альфабанк";
+$arDirProperties = Array(
+
+);
+?>

@@ -1,0 +1,1 @@
+I agree to the use of <a href="https://dantonehome.ru/bitrix/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf" target="_blank">personal data</a> in accordance with Federal Law No. 152-FZ "On Personal Data" of 27.07.2006.

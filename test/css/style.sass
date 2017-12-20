@@ -1,0 +1,256 @@
+@import "variables"
+
+.wardrobe-wrap
+  text-align: left
+.wardrobe-sliderOne
+  margin-bottom: 45px
+
+  .owl-dots
+    display: flex
+    justify-content: center
+    position: absolute
+    bottom: 20px
+    width: 100%
+  .owl-dot
+    width: 13px
+    height: 13px
+    background-color: rgba(255, 255, 255, 0.57)
+    border-radius: 50%
+    margin-right: 18px
+    &:last-of-type
+      margin-right: 0
+    &.active
+      background-color: #fff
+  .owl-nav
+    position: absolute
+    top: 50%
+    left: 50%
+    width: 97%
+    display: flex
+    justify-content: space-between
+    transform: translate(-50%, -50%)
+
+  .owl-prev
+    background-image: url(../img/left-arrow.svg)
+    width: 35px
+    height: 68px
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center center
+    transition: .5s ease-in-out
+    &:hover
+      opacity: .8
+      transform: translateX(5px)
+  .owl-next
+    background-image: url(../img/right-arrow.svg)
+    width: 35px
+    height: 68px
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center center
+    transition: .5s ease-in-out
+    &:hover
+      opacity: .8
+      transform: translateX(-5px)
+.wardrobe-sliderTwo
+  margin-top: 50px
+  margin-bottom: 75px
+  .owl-nav
+    position: absolute
+    top: 50%
+    left: 50%
+    width: 97%
+    display: flex
+    justify-content: space-between
+    transform: translate(-50%, -50%)
+
+  .owl-prev
+    background-image: url(../img/leftArrowGray.svg)
+    width: 50px
+    height: 68px
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center center
+    transition: .5s ease-in-out
+    &:hover
+      opacity: .8
+      transform: translateX(5px)
+  .owl-next
+    background-image: url(../img/rightArrowGray.svg)
+    width: 50px
+    height: 68px
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center center
+    transition: .5s ease-in-out
+    &:hover
+      opacity: .8
+      transform: translateX(-5px)
+
+.wardrobe-slideTwo
+  img
+    width: 80%
+    display: block
+    margin-left: auto
+    margin-right: auto
+
+.wardrobe-slideTwo-price
+  text-align: center
+  margin-left: auto
+  margin-right: auto
+  margin-top: 25px
+  font-size: 24px
+
+.wardrobe-img
+  margin-top: 50px
+  margin-bottom: 70px
+
+.wardrobe-calculate
+  padding-bottom: 100px
+  padding-top: 50px
+  background-color: #f5f5f5
+  margin-bottom: 90px
+  //display: none !important
+  position: relative
+  &:before
+    content: ''
+    display: block
+    position: absolute
+    top: 0
+    left: -100%
+    height: 100%
+    width: 100%
+    background-color: #f5f5f5
+    transform: scaleX(10)
+    z-index: -1
+.file_upload
+  display: block
+  position: relative
+  overflow: hidden
+  height: 40px
+  .button
+
+    display: flex
+    cursor: pointer
+    align-items: center
+    justify-content: center
+    cursor: pointer
+    float: right
+    box-sizing: border-box
+    width: 100%
+    height: 100%
+    transition: .3s linear
+    font-size: 18px
+    font-weight: 300
+    background-color: #fff
+  > mark
+    display: none
+    cursor: pointer
+  input[type=file]
+    position: absolute
+    top: 0
+    opacity: 0
+  .button
+    border: 1px solid #1c2438
+    color: #1c2438
+    overflow: hidden
+    white-space: nowrap
+
+  &:hover
+    .button
+      color: #ffffff
+      background-color: #1c2438
+.file_upload
+  > mark
+    display: none
+  .button
+    width: 100%
+
+.lcc-download
+  display: block
+  background-image: url(../img/download.png)
+  width: 25px
+  height: 31px
+  background-size: contain
+  background-repeat: no-repeat
+  background-position: center
+  margin-right: 15px
+
+.download-descr
+  font-size: 13px
+  color: #999999
+  margin-top: 10px
+  display: flex
+  align-items: center
+
+.lci-right .control-btn
+  margin-bottom: 10px
+
+
+
+.wardrobe-form
+  display: flex
+  position: relative
+  z-index: 10
+  justify-content: space-between
+  width: 615px
+  max-width: 100%
+  margin-left: auto
+  margin-right: auto
+  textarea.input-text
+    height: 90px
+
+.wardrobe-form-left
+  width: 48%
+
+.wardrobe-form-right
+  width: 48%
+
+.wardrode-calculate-title
+  font-size: 48px
+  font-weight: 400
+  line-height: 56px
+  text-align: center
+  margin-bottom: 70px
+
+.dowl-descr-img
+  margin-right: 15px
+  filter: grayscale(100%)
+.checkboxes-rit label .jq-checkbox
+  transform: translateY(-2px)
+@media all and (max-width: 1100px)
+  .wardrode-calculate-title
+    font-size: 30px
+    line-height: 38px
+    width: 70%
+    margin-left: auto
+    margin-right: auto
+@media all and (max-width: 767px)
+  .wardrode-calculate-title
+    font-size: 20px
+    width: 100%
+    line-height: 28px
+    margin-bottom: 40px
+  .wardrobe-form
+    flex-direction: column
+  .wardrobe-form-left
+    width: 100%
+  .wardrobe-form-right
+    width: 100%
+  .dowl-descr-text br
+    display: none
+  .wardrobe-form .checkboxes-rit.control
+    position: absolute
+    bottom: -50px
+  .wardrobe-sliderOne .owl-dot
+    width: 7px
+    height: 7px
+    margin-right: 5px
+  .wardrobe-sliderOne .owl-next, .wardrobe-sliderOne .owl-prev, .wardrobe-sliderTwo .owl-next, .wardrobe-sliderTwo .owl-prev
+    width: 20px
+    height: 50px
+  .wardrobe-sliderTwo
+    margin-bottom: 40px
+  .wardrobe-img
+    margin-top: 20px
+    margin-bottom: 40px
