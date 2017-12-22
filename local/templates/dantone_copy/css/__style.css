@@ -562,7 +562,7 @@ h5 {
 }
 
 .checkboxes-rit input[type="checkbox"]:checked+span::before {
-    background: #eceff1 url(/local/templates/dantone/img/checked.png) no-repeat center;
+    background: #eceff1 url(/bitrix/templates/dantone/img/checked.png) no-repeat center;
     background-size: 80%;
 }
 

@@ -15264,3 +15264,850 @@ Array
     [DATE_UPDATE_FORMAT] => 18.12.2017 13:24:38
     [DATE_STATUS_FORMAT] => 18.12.2017 13:24:38
 )
+Array
+(
+    [oid] => 928_20171218140101
+    [orderId] => a6b0fe63-2770-7659-a6b0-fe63003243ce
+    [_ym_uid] => 1493809896489657168
+    [BX_USER_ID] => 5df043b928c71ca717058c6a1c2e43f5
+    [showCounter] => 3
+    [BITRIX_SM_SALE_UID] => 4cdc7006865a1523ca29bf31a4eb2742
+    [BITRIX_CONVERSION_CONTEXT_s1] => {"ID":23,"EXPIRE":1513198740,"UNIQUE":["conversion_visit_day"]}
+    [jv_visits_count_g3V82X3iQq] => 4
+    [allokaid] => 2ee552f1-3e58-49d2-8de7-5cc3803234e0
+    [_ga] => GA1.2.445167001.1493809896
+    [_gid] => GA1.2.911097092.1513594415
+    [_ym_isad] => 2
+)
+https://engine.paymentgate.ru/payment/rest/getOrderStatus.do?userName=dantonehome-api&password=Password%2A11&orderId=a6b0fe63-2770-7659-a6b0-fe63003243ceArray
+(
+    [expiration] => 201910
+    [cardholderName] => dolinskaya   natalia
+    [depositAmount] => 5190000
+    [currency] => 810
+    [approvalCode] => 834201
+    [authCode] => 2
+    [ErrorCode] => 0
+    [ErrorMessage] => Успешно
+    [OrderStatus] => 2
+    [OrderNumber] => 928_20171218140101
+    [Pan] => 539726**9003
+    [Amount] => 5190000
+    [Ip] => 77.41.170.230
+    [OrderBundle] => Array
+        (
+            [orderCreationDate] => 1513605660000
+            [customerDetails] => Array
+                (
+                    [email] => prodol@mail.ru
+                    [phone] => +79163133528
+                )
+
+            [cartItems] => Array
+                (
+                    [items] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [positionId] => 1
+                                    [name] => Столик кофейный YM120
+                                    [quantity] => Array
+                                        (
+                                            [value] => 1
+                                            [measure] => шт
+                                        )
+
+                                    [itemAmount] => 4990000
+                                    [depositedItemAmount] => 4990000
+                                    [itemCurrency] => 810
+                                    [itemCode] => 1199
+                                )
+
+                            [1] => Array
+                                (
+                                    [positionId] => 2
+                                    [name] => Доставка от Dantone Home (Москва и область)
+                                    [quantity] => Array
+                                        (
+                                            [value] => 1
+                                            [measure] => шт
+                                        )
+
+                                    [itemAmount] => 200000
+                                    [depositedItemAmount] => 200000
+                                    [itemCurrency] => 810
+                                    [itemCode] => delivery_2
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+Array
+(
+    [PAY_SYSTEM_ID] => 3
+    [PAYED] => N
+    [DATE_PAYED] => 
+    [EMP_PAYED_ID] => 
+    [PS_STATUS] => 
+    [PS_STATUS_CODE] => 
+    [PS_STATUS_DESCRIPTION] => 
+    [PS_STATUS_MESSAGE] => 
+    [PS_SUM] => 0
+    [PS_CURRENCY] => 
+    [PS_RESPONSE_DATE] => 
+    [DELIVERY_ID] => 2
+    [PRICE_DELIVERY] => 2000
+    [ALLOW_DELIVERY] => N
+    [DATE_ALLOW_DELIVERY] => 
+    [EMP_ALLOW_DELIVERY_ID] => 
+    [DATE_DEDUCTED] => 
+    [EMP_DEDUCTED_ID] => 
+    [REASON_UNDO_DEDUCTED] => 
+    [TRACKING_NUMBER] => 
+    [DELIVERY_DOC_NUM] => 
+    [DELIVERY_DOC_DATE] => 
+    [ID] => 928
+    [LID] => s1
+    [ACCOUNT_NUMBER] => 928
+    [DATE_INSERT] => 2017-12-18 14:01:00
+    [DATE_UPDATE] => 2017-12-18 14:01:01
+    [PERSON_TYPE_ID] => 1
+    [USER_ID] => 985
+    [DEDUCTED] => N
+    [STATUS_ID] => N
+    [DATE_STATUS] => 2017-12-18 14:01:01
+    [EMP_STATUS_ID] => 985
+    [MARKED] => N
+    [DATE_MARKED] => 
+    [EMP_MARKED_ID] => 
+    [REASON_MARKED] => 
+    [RESERVED] => N
+    [PRICE] => 51900
+    [CURRENCY] => RUB
+    [DISCOUNT_VALUE] => 0
+    [TAX_VALUE] => 0.00
+    [SUM_PAID] => 0.00
+    [USER_DESCRIPTION] => 
+    [PAY_VOUCHER_NUM] => 
+    [PAY_VOUCHER_DATE] => 
+    [ADDITIONAL_INFO] => 
+    [COMMENTS] => 
+    [CREATED_BY] => 985
+    [RESPONSIBLE_ID] => 
+    [STAT_GID] => 
+    [DATE_PAY_BEFORE] => 
+    [DATE_BILL] => 
+    [RECURRING_ID] => 
+    [LOCKED_BY] => 
+    [DATE_LOCK] => 
+    [RECOUNT_FLAG] => Y
+    [AFFILIATE_ID] => 
+    [UPDATED_1C] => N
+    [ORDER_TOPIC] => 
+    [XML_ID] => 
+    [ID_1C] => 
+    [VERSION_1C] => 
+    [VERSION] => 2
+    [EXTERNAL_ORDER] => N
+    [STORE_ID] => 
+    [CANCELED] => N
+    [EMP_CANCELED_ID] => 
+    [DATE_CANCELED] => 
+    [REASON_CANCELED] => 
+    [BX_USER_ID] => 5df043b928c71ca717058c6a1c2e43f5
+    [DATE_INSERT_FORMAT] => 18.12.2017
+    [DATE_UPDATE_SHORT] => 2017-12-18 00:00:00
+    [DATE_STATUS_SHORT] => 2017-12-18 00:00:00
+    [DATE_CANCELED_SHORT] => 
+    [BY_RECOMMENDATION] => N
+    [LOCK_STATUS] => green
+    [LOCK_USER_NAME] => 
+    [RESPONSIBLE_LOGIN] => 
+    [RESPONSIBLE_NAME] => 
+    [RESPONSIBLE_LAST_NAME] => 
+    [RESPONSIBLE_SECOND_NAME] => 
+    [RESPONSIBLE_EMAIL] => 
+    [RESPONSIBLE_WORK_POSITION] => 
+    [RESPONSIBLE_PERSONAL_PHOTO] => 
+    [USER_LOGIN] => prodol
+    [USER_NAME] => 
+    [USER_LAST_NAME] => 
+    [USER_EMAIL] => prodol@mail.ru
+    [DATE_UPDATE_FORMAT] => 18.12.2017 14:01:01
+    [DATE_STATUS_FORMAT] => 18.12.2017 14:01:01
+)
+Array
+(
+    [oid] => 931_20171218143740
+    [orderId] => caae9b8b-ab8d-7a7f-caae-9b8b003243ce
+    [_ga] => GA1.2.1755537366.1513596709
+    [_gac_UA-42624320-8] => 1.1513596709.Cj0KCQiA38jRBRCQARIsACEqIetZ-f2pQ5Y0PRQbftT1lE_aMPlaiZzUfYckB_F5W4N6XbMSZxNayeEaAvZkEALw_wcB
+    [_gac_UA-72905544-1] => 1.1513596709.Cj0KCQiA38jRBRCQARIsACEqIetZ-f2pQ5Y0PRQbftT1lE_aMPlaiZzUfYckB_F5W4N6XbMSZxNayeEaAvZkEALw_wcB
+    [_gid] => GA1.2.874670540.1513596709
+    [__gads] => ID=42dc9d3f564dd23d:T=1513596722:S=ALNI_Ma0aUzqV6l7b8hq1FFKVcM-p7MiTA
+    [_ym_isad] => 2
+    [_ym_uid] => 1513596708110428031
+)
+https://engine.paymentgate.ru/payment/rest/getOrderStatus.do?userName=dantonehome-api&password=Password%2A11&orderId=caae9b8b-ab8d-7a7f-caae-9b8b003243ceArray
+(
+    [expiration] => 202009
+    [cardholderName] => OLGA VERETELNIK
+    [depositAmount] => 5080000
+    [currency] => 810
+    [approvalCode] => 594066
+    [authCode] => 2
+    [ErrorCode] => 0
+    [ErrorMessage] => Успешно
+    [OrderStatus] => 2
+    [OrderNumber] => 931_20171218143740
+    [Pan] => 427638**2089
+    [Amount] => 5080000
+    [Ip] => 31.173.85.97
+    [OrderBundle] => Array
+        (
+            [orderCreationDate] => 1513607859000
+            [customerDetails] => Array
+                (
+                    [email] => olyavyeretelnik@ya.ru
+                    [phone] => 79653530033
+                )
+
+            [cartItems] => Array
+                (
+                    [items] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [positionId] => 1
+                                    [name] => Кресло Оксфорд
+                                    [quantity] => Array
+                                        (
+                                            [value] => 1
+                                            [measure] => шт
+                                        )
+
+                                    [itemAmount] => 5080000
+                                    [depositedItemAmount] => 5080000
+                                    [itemCurrency] => 810
+                                    [itemCode] => 1267
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+Array
+(
+    [PAY_SYSTEM_ID] => 3
+    [PAYED] => N
+    [DATE_PAYED] => 
+    [EMP_PAYED_ID] => 
+    [PS_STATUS] => 
+    [PS_STATUS_CODE] => 
+    [PS_STATUS_DESCRIPTION] => 
+    [PS_STATUS_MESSAGE] => 
+    [PS_SUM] => 0
+    [PS_CURRENCY] => 
+    [PS_RESPONSE_DATE] => 
+    [DELIVERY_ID] => 16
+    [PRICE_DELIVERY] => 0
+    [ALLOW_DELIVERY] => N
+    [DATE_ALLOW_DELIVERY] => 
+    [EMP_ALLOW_DELIVERY_ID] => 
+    [DATE_DEDUCTED] => 
+    [EMP_DEDUCTED_ID] => 
+    [REASON_UNDO_DEDUCTED] => 
+    [TRACKING_NUMBER] => 
+    [DELIVERY_DOC_NUM] => 
+    [DELIVERY_DOC_DATE] => 
+    [ID] => 931
+    [LID] => s1
+    [ACCOUNT_NUMBER] => 931
+    [DATE_INSERT] => 2017-12-18 14:37:39
+    [DATE_UPDATE] => 2017-12-18 14:37:40
+    [PERSON_TYPE_ID] => 1
+    [USER_ID] => 988
+    [DEDUCTED] => N
+    [STATUS_ID] => N
+    [DATE_STATUS] => 2017-12-18 14:37:40
+    [EMP_STATUS_ID] => 988
+    [MARKED] => N
+    [DATE_MARKED] => 
+    [EMP_MARKED_ID] => 
+    [REASON_MARKED] => 
+    [RESERVED] => N
+    [PRICE] => 50800
+    [CURRENCY] => RUB
+    [DISCOUNT_VALUE] => 0
+    [TAX_VALUE] => 0.00
+    [SUM_PAID] => 0.00
+    [USER_DESCRIPTION] => 
+    [PAY_VOUCHER_NUM] => 
+    [PAY_VOUCHER_DATE] => 
+    [ADDITIONAL_INFO] => 
+    [COMMENTS] => 
+    [CREATED_BY] => 988
+    [RESPONSIBLE_ID] => 
+    [STAT_GID] => 
+    [DATE_PAY_BEFORE] => 
+    [DATE_BILL] => 
+    [RECURRING_ID] => 
+    [LOCKED_BY] => 
+    [DATE_LOCK] => 
+    [RECOUNT_FLAG] => Y
+    [AFFILIATE_ID] => 
+    [UPDATED_1C] => N
+    [ORDER_TOPIC] => 
+    [XML_ID] => 
+    [ID_1C] => 
+    [VERSION_1C] => 
+    [VERSION] => 2
+    [EXTERNAL_ORDER] => N
+    [STORE_ID] => 
+    [CANCELED] => N
+    [EMP_CANCELED_ID] => 
+    [DATE_CANCELED] => 
+    [REASON_CANCELED] => 
+    [BX_USER_ID] => ee6b1dc71cdc3ebf030c542ecb7d6edb
+    [DATE_INSERT_FORMAT] => 18.12.2017
+    [DATE_UPDATE_SHORT] => 2017-12-18 00:00:00
+    [DATE_STATUS_SHORT] => 2017-12-18 00:00:00
+    [DATE_CANCELED_SHORT] => 
+    [BY_RECOMMENDATION] => N
+    [LOCK_STATUS] => green
+    [LOCK_USER_NAME] => 
+    [RESPONSIBLE_LOGIN] => 
+    [RESPONSIBLE_NAME] => 
+    [RESPONSIBLE_LAST_NAME] => 
+    [RESPONSIBLE_SECOND_NAME] => 
+    [RESPONSIBLE_EMAIL] => 
+    [RESPONSIBLE_WORK_POSITION] => 
+    [RESPONSIBLE_PERSONAL_PHOTO] => 
+    [USER_LOGIN] => olyavyeretelnik
+    [USER_NAME] => 
+    [USER_LAST_NAME] => 
+    [USER_EMAIL] => olyavyeretelnik@ya.ru
+    [DATE_UPDATE_FORMAT] => 18.12.2017 14:37:40
+    [DATE_STATUS_FORMAT] => 18.12.2017 14:37:40
+)
+Array
+(
+    [oid] => 933_20171219125652
+    [orderId] => 9e095941-9ab8-7377-9e09-5941003243ce
+    [_ga] => GA1.2.1092182016.1513676754
+    [_gid] => GA1.2.1087057392.1513676754
+    [_ym_isad] => 2
+    [_ym_uid] => 1513676753881090485
+    [BITRIX_SM_TIME_ON_SITE] => 50
+    [jv_close_time_g3V82X3iQq] => 1513676797963
+    [jv_invitation_time_g3V82X3iQq] => 1513676777379
+    [jv_startsec_g3V82X3iQq] => 1513676756
+    [tmr_detect] => 0|1513676756257
+    [jv_enter_ts_g3V82X3iQq] => 1513676755904
+    [jv_pages_count_g3V82X3iQq] => 1
+    [jv_utm_g3V82X3iQq] => 
+    [jv_visits_count_g3V82X3iQq] => 1
+    [aa_v4_number_7c85a93b735db05c] => 4951083186
+    [BITRIX_CONVERSION_CONTEXT_s1] => {"ID":7,"EXPIRE":1513717140,"UNIQUE":["conversion_visit_day"]}
+    [BX_USER_ID] => 543fdfbee2b7b569a39d47541c56ca92
+    [aa_v4_7c85a93b735db05c] => WyI4YzY2M2M1OTMyYzg5NWNkM2Y0MTQ0MGVlNGQ3NGNlOSJd
+    [alloka_session] => eyJvaWQiOiI3Yzg1YTkzYjczNWRiMDVjIiwic2Vzc2lvbl9pZCI6IjhjNjYzYzU5MzJjODk1Y2QzZjQxNDQwZWU0ZDc0Y2U5IiwiYWxsb2thX2lkIjoiIiwibG9jYXRpb24iOiJodHRwczovL2RhbnRvbmVob21lLnJ1L2RlbGl2ZXJ5LyJ9
+    [allokaid] => 04e3a2e1-35d6-4768-bcc0-04e42f30a567
+    [BITRIX_SM_PAGE_COUNTER] => 1
+    [BITRIX_SM_SALE_UID] => ad32224261a900044e8135a2bd9c9ab1
+    [PHPSESSID] => 24c38de7c25576c5b24208910bd208d8
+)
+https://engine.paymentgate.ru/payment/rest/getOrderStatus.do?userName=dantonehome-api&password=Password%2A11&orderId=9e095941-9ab8-7377-9e09-5941003243ceArray
+(
+    [expiration] => 202001
+    [cardholderName] => natalya eremeeva
+    [depositAmount] => 2254000
+    [currency] => 810
+    [approvalCode] => 582944
+    [authCode] => 2
+    [ErrorCode] => 0
+    [ErrorMessage] => Успешно
+    [OrderStatus] => 2
+    [OrderNumber] => 933_20171219125652
+    [Pan] => 427631**0153
+    [Amount] => 2254000
+    [Ip] => 109.167.226.69
+    [OrderBundle] => Array
+        (
+            [orderCreationDate] => 1513688211000
+            [customerDetails] => Array
+                (
+                    [email] => ena7000@gmail.com
+                    [phone] => 89313120418
+                )
+
+            [cartItems] => Array
+                (
+                    [items] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [positionId] => 1
+                                    [name] => Зеркало прямоугольное
+                                    [quantity] => Array
+                                        (
+                                            [value] => 1
+                                            [measure] => шт
+                                        )
+
+                                    [itemAmount] => 2254000
+                                    [depositedItemAmount] => 2254000
+                                    [itemCurrency] => 810
+                                    [itemCode] => 1783
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+Array
+(
+    [PAY_SYSTEM_ID] => 3
+    [PAYED] => N
+    [DATE_PAYED] => 
+    [EMP_PAYED_ID] => 
+    [PS_STATUS] => 
+    [PS_STATUS_CODE] => 
+    [PS_STATUS_DESCRIPTION] => 
+    [PS_STATUS_MESSAGE] => 
+    [PS_SUM] => 0
+    [PS_CURRENCY] => 
+    [PS_RESPONSE_DATE] => 
+    [DELIVERY_ID] => 16
+    [PRICE_DELIVERY] => 0
+    [ALLOW_DELIVERY] => N
+    [DATE_ALLOW_DELIVERY] => 
+    [EMP_ALLOW_DELIVERY_ID] => 
+    [DATE_DEDUCTED] => 
+    [EMP_DEDUCTED_ID] => 
+    [REASON_UNDO_DEDUCTED] => 
+    [TRACKING_NUMBER] => 
+    [DELIVERY_DOC_NUM] => 
+    [DELIVERY_DOC_DATE] => 
+    [ID] => 933
+    [LID] => s1
+    [ACCOUNT_NUMBER] => 933
+    [DATE_INSERT] => 2017-12-19 12:56:51
+    [DATE_UPDATE] => 2017-12-19 12:56:52
+    [PERSON_TYPE_ID] => 1
+    [USER_ID] => 995
+    [DEDUCTED] => N
+    [STATUS_ID] => N
+    [DATE_STATUS] => 2017-12-19 12:56:52
+    [EMP_STATUS_ID] => 995
+    [MARKED] => N
+    [DATE_MARKED] => 
+    [EMP_MARKED_ID] => 
+    [REASON_MARKED] => 
+    [RESERVED] => N
+    [PRICE] => 22540
+    [CURRENCY] => RUB
+    [DISCOUNT_VALUE] => 0
+    [TAX_VALUE] => 0.00
+    [SUM_PAID] => 0.00
+    [USER_DESCRIPTION] => 
+    [PAY_VOUCHER_NUM] => 
+    [PAY_VOUCHER_DATE] => 
+    [ADDITIONAL_INFO] => 
+    [COMMENTS] => 
+    [CREATED_BY] => 995
+    [RESPONSIBLE_ID] => 
+    [STAT_GID] => 
+    [DATE_PAY_BEFORE] => 
+    [DATE_BILL] => 
+    [RECURRING_ID] => 
+    [LOCKED_BY] => 
+    [DATE_LOCK] => 
+    [RECOUNT_FLAG] => Y
+    [AFFILIATE_ID] => 
+    [UPDATED_1C] => N
+    [ORDER_TOPIC] => 
+    [XML_ID] => 
+    [ID_1C] => 
+    [VERSION_1C] => 
+    [VERSION] => 2
+    [EXTERNAL_ORDER] => N
+    [STORE_ID] => 
+    [CANCELED] => N
+    [EMP_CANCELED_ID] => 
+    [DATE_CANCELED] => 
+    [REASON_CANCELED] => 
+    [BX_USER_ID] => 8a5b644926e6f3d6dff72259c3a30b39
+    [DATE_INSERT_FORMAT] => 19.12.2017
+    [DATE_UPDATE_SHORT] => 2017-12-19 00:00:00
+    [DATE_STATUS_SHORT] => 2017-12-19 00:00:00
+    [DATE_CANCELED_SHORT] => 
+    [BY_RECOMMENDATION] => N
+    [LOCK_STATUS] => green
+    [LOCK_USER_NAME] => 
+    [RESPONSIBLE_LOGIN] => 
+    [RESPONSIBLE_NAME] => 
+    [RESPONSIBLE_LAST_NAME] => 
+    [RESPONSIBLE_SECOND_NAME] => 
+    [RESPONSIBLE_EMAIL] => 
+    [RESPONSIBLE_WORK_POSITION] => 
+    [RESPONSIBLE_PERSONAL_PHOTO] => 
+    [USER_LOGIN] => ena70001
+    [USER_NAME] => 
+    [USER_LAST_NAME] => 
+    [USER_EMAIL] => ena7000@gmail.com
+    [DATE_UPDATE_FORMAT] => 19.12.2017 12:56:52
+    [DATE_STATUS_FORMAT] => 19.12.2017 12:56:52
+)
+Array
+(
+    [oid] => 939_20171220095000
+    [orderId] => a4647353-954b-7f62-a464-7353003243ce
+    [_ym_uid] => 1513752495209869978
+    [_ym_isad] => 2
+    [_ga] => GA1.2.1282267617.1513752496
+    [_gid] => GA1.2.1266206255.1513752496
+)
+https://engine.paymentgate.ru/payment/rest/getOrderStatus.do?userName=dantonehome-api&password=Password%2A11&orderId=a4647353-954b-7f62-a464-7353003243ceArray
+(
+    [expiration] => 201809
+    [cardholderName] => yulia bryushkova
+    [depositAmount] => 4330000
+    [currency] => 810
+    [approvalCode] => 743951
+    [authCode] => 2
+    [ErrorCode] => 0
+    [ErrorMessage] => Успешно
+    [OrderStatus] => 2
+    [OrderNumber] => 939_20171220095000
+    [Pan] => 419349**6000
+    [Amount] => 4330000
+    [Ip] => 165.225.66.51
+    [OrderBundle] => Array
+        (
+            [orderCreationDate] => 1513763399000
+            [customerDetails] => Array
+                (
+                    [email] => jbroushkova@celgene.com
+                    [phone] => 89162240096
+                )
+
+            [cartItems] => Array
+                (
+                    [items] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [positionId] => 1
+                                    [name] => Консоль беж. 100х45х86
+                                    [quantity] => Array
+                                        (
+                                            [value] => 1
+                                            [measure] => шт
+                                        )
+
+                                    [itemAmount] => 4130000
+                                    [depositedItemAmount] => 4130000
+                                    [itemCurrency] => 810
+                                    [itemCode] => 2423
+                                )
+
+                            [1] => Array
+                                (
+                                    [positionId] => 2
+                                    [name] => Доставка от Dantone Home (Москва и область)
+                                    [quantity] => Array
+                                        (
+                                            [value] => 1
+                                            [measure] => шт
+                                        )
+
+                                    [itemAmount] => 200000
+                                    [depositedItemAmount] => 200000
+                                    [itemCurrency] => 810
+                                    [itemCode] => delivery_2
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+Array
+(
+    [PAY_SYSTEM_ID] => 3
+    [PAYED] => N
+    [DATE_PAYED] => 
+    [EMP_PAYED_ID] => 
+    [PS_STATUS] => 
+    [PS_STATUS_CODE] => 
+    [PS_STATUS_DESCRIPTION] => 
+    [PS_STATUS_MESSAGE] => 
+    [PS_SUM] => 0
+    [PS_CURRENCY] => 
+    [PS_RESPONSE_DATE] => 
+    [DELIVERY_ID] => 2
+    [PRICE_DELIVERY] => 2000
+    [ALLOW_DELIVERY] => N
+    [DATE_ALLOW_DELIVERY] => 
+    [EMP_ALLOW_DELIVERY_ID] => 
+    [DATE_DEDUCTED] => 
+    [EMP_DEDUCTED_ID] => 
+    [REASON_UNDO_DEDUCTED] => 
+    [TRACKING_NUMBER] => 
+    [DELIVERY_DOC_NUM] => 
+    [DELIVERY_DOC_DATE] => 
+    [ID] => 939
+    [LID] => s1
+    [ACCOUNT_NUMBER] => 939
+    [DATE_INSERT] => 2017-12-20 09:49:59
+    [DATE_UPDATE] => 2017-12-20 09:50:00
+    [PERSON_TYPE_ID] => 1
+    [USER_ID] => 1002
+    [DEDUCTED] => N
+    [STATUS_ID] => N
+    [DATE_STATUS] => 2017-12-20 09:50:00
+    [EMP_STATUS_ID] => 1002
+    [MARKED] => N
+    [DATE_MARKED] => 
+    [EMP_MARKED_ID] => 
+    [REASON_MARKED] => 
+    [RESERVED] => N
+    [PRICE] => 43300
+    [CURRENCY] => RUB
+    [DISCOUNT_VALUE] => 0
+    [TAX_VALUE] => 0.00
+    [SUM_PAID] => 0.00
+    [USER_DESCRIPTION] => 
+    [PAY_VOUCHER_NUM] => 
+    [PAY_VOUCHER_DATE] => 
+    [ADDITIONAL_INFO] => 
+    [COMMENTS] => 
+    [CREATED_BY] => 1002
+    [RESPONSIBLE_ID] => 
+    [STAT_GID] => 
+    [DATE_PAY_BEFORE] => 
+    [DATE_BILL] => 
+    [RECURRING_ID] => 
+    [LOCKED_BY] => 
+    [DATE_LOCK] => 
+    [RECOUNT_FLAG] => Y
+    [AFFILIATE_ID] => 
+    [UPDATED_1C] => N
+    [ORDER_TOPIC] => 
+    [XML_ID] => 
+    [ID_1C] => 
+    [VERSION_1C] => 
+    [VERSION] => 2
+    [EXTERNAL_ORDER] => N
+    [STORE_ID] => 
+    [CANCELED] => N
+    [EMP_CANCELED_ID] => 
+    [DATE_CANCELED] => 
+    [REASON_CANCELED] => 
+    [BX_USER_ID] => 011be5b8ddffe5378fcb2115f681e4cb
+    [DATE_INSERT_FORMAT] => 20.12.2017
+    [DATE_UPDATE_SHORT] => 2017-12-20 00:00:00
+    [DATE_STATUS_SHORT] => 2017-12-20 00:00:00
+    [DATE_CANCELED_SHORT] => 
+    [BY_RECOMMENDATION] => N
+    [LOCK_STATUS] => green
+    [LOCK_USER_NAME] => 
+    [RESPONSIBLE_LOGIN] => 
+    [RESPONSIBLE_NAME] => 
+    [RESPONSIBLE_LAST_NAME] => 
+    [RESPONSIBLE_SECOND_NAME] => 
+    [RESPONSIBLE_EMAIL] => 
+    [RESPONSIBLE_WORK_POSITION] => 
+    [RESPONSIBLE_PERSONAL_PHOTO] => 
+    [USER_LOGIN] => jbroushkova
+    [USER_NAME] => 
+    [USER_LAST_NAME] => 
+    [USER_EMAIL] => jbroushkova@celgene.com
+    [DATE_UPDATE_FORMAT] => 20.12.2017 09:50:00
+    [DATE_STATUS_FORMAT] => 20.12.2017 09:50:00
+)
+Array
+(
+    [oid] => 941_20171220105405
+    [orderId] => f284af7a-28c9-7b5f-f284-af7a003243ce
+    [_ym_uid] => 15136685611061155619
+    [_ga] => GA1.2.986647159.1513668561
+    [_gac_UA-42624320-8] => 1.1513668561.CjwKCAiA693RBRAwEiwALCc3u1SnyIMUdD5dMW0deedZBmn-uShCCDJX00vGQLDJ9IS7eV1A2m35GBoCnGAQAvD_BwE
+    [_gac_UA-72905544-1] => 1.1513668561.CjwKCAiA693RBRAwEiwALCc3u1SnyIMUdD5dMW0deedZBmn-uShCCDJX00vGQLDJ9IS7eV1A2m35GBoCnGAQAvD_BwE
+    [_ym_isad] => 1
+    [_gid] => GA1.2.1300181299.1513756230
+)
+https://engine.paymentgate.ru/payment/rest/getOrderStatus.do?userName=dantonehome-api&password=Password%2A11&orderId=f284af7a-28c9-7b5f-f284-af7a003243ceArray
+(
+    [expiration] => 202005
+    [cardholderName] => Filipp Antonov
+    [depositAmount] => 4010000
+    [currency] => 810
+    [approvalCode] => 600059
+    [authCode] => 2
+    [ErrorCode] => 0
+    [ErrorMessage] => Успешно
+    [OrderStatus] => 2
+    [OrderNumber] => 941_20171220105405
+    [Pan] => 427638**8891
+    [Amount] => 4010000
+    [Ip] => 94.243.137.170
+    [OrderBundle] => Array
+        (
+            [orderCreationDate] => 1513767245000
+            [customerDetails] => Array
+                (
+                    [email] => twice.adlin@gmail.com
+                    [phone] => 89853036146
+                )
+
+            [cartItems] => Array
+                (
+                    [items] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [positionId] => 1
+                                    [name] => Кресло Альфа Дантон
+                                    [quantity] => Array
+                                        (
+                                            [value] => 1
+                                            [measure] => шт
+                                        )
+
+                                    [itemAmount] => 3810000
+                                    [depositedItemAmount] => 3810000
+                                    [itemCurrency] => 810
+                                    [itemCode] => 430
+                                )
+
+                            [1] => Array
+                                (
+                                    [positionId] => 2
+                                    [name] => Доставка от Dantone Home (Москва и область)
+                                    [quantity] => Array
+                                        (
+                                            [value] => 1
+                                            [measure] => шт
+                                        )
+
+                                    [itemAmount] => 200000
+                                    [depositedItemAmount] => 200000
+                                    [itemCurrency] => 810
+                                    [itemCode] => delivery_2
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+Array
+(
+    [PAY_SYSTEM_ID] => 3
+    [PAYED] => N
+    [DATE_PAYED] => 
+    [EMP_PAYED_ID] => 
+    [PS_STATUS] => 
+    [PS_STATUS_CODE] => 
+    [PS_STATUS_DESCRIPTION] => 
+    [PS_STATUS_MESSAGE] => 
+    [PS_SUM] => 0
+    [PS_CURRENCY] => 
+    [PS_RESPONSE_DATE] => 
+    [DELIVERY_ID] => 2
+    [PRICE_DELIVERY] => 2000
+    [ALLOW_DELIVERY] => N
+    [DATE_ALLOW_DELIVERY] => 
+    [EMP_ALLOW_DELIVERY_ID] => 
+    [DATE_DEDUCTED] => 
+    [EMP_DEDUCTED_ID] => 
+    [REASON_UNDO_DEDUCTED] => 
+    [TRACKING_NUMBER] => 
+    [DELIVERY_DOC_NUM] => 
+    [DELIVERY_DOC_DATE] => 
+    [ID] => 941
+    [LID] => s1
+    [ACCOUNT_NUMBER] => 941
+    [DATE_INSERT] => 2017-12-20 10:54:05
+    [DATE_UPDATE] => 2017-12-20 10:54:06
+    [PERSON_TYPE_ID] => 1
+    [USER_ID] => 1004
+    [DEDUCTED] => N
+    [STATUS_ID] => N
+    [DATE_STATUS] => 2017-12-20 10:54:06
+    [EMP_STATUS_ID] => 1004
+    [MARKED] => N
+    [DATE_MARKED] => 
+    [EMP_MARKED_ID] => 
+    [REASON_MARKED] => 
+    [RESERVED] => N
+    [PRICE] => 40100
+    [CURRENCY] => RUB
+    [DISCOUNT_VALUE] => 0
+    [TAX_VALUE] => 0.00
+    [SUM_PAID] => 0.00
+    [USER_DESCRIPTION] => 
+    [PAY_VOUCHER_NUM] => 
+    [PAY_VOUCHER_DATE] => 
+    [ADDITIONAL_INFO] => 
+    [COMMENTS] => 
+    [CREATED_BY] => 1004
+    [RESPONSIBLE_ID] => 
+    [STAT_GID] => 
+    [DATE_PAY_BEFORE] => 
+    [DATE_BILL] => 
+    [RECURRING_ID] => 
+    [LOCKED_BY] => 
+    [DATE_LOCK] => 
+    [RECOUNT_FLAG] => Y
+    [AFFILIATE_ID] => 
+    [UPDATED_1C] => N
+    [ORDER_TOPIC] => 
+    [XML_ID] => 
+    [ID_1C] => 
+    [VERSION_1C] => 
+    [VERSION] => 2
+    [EXTERNAL_ORDER] => N
+    [STORE_ID] => 
+    [CANCELED] => N
+    [EMP_CANCELED_ID] => 
+    [DATE_CANCELED] => 
+    [REASON_CANCELED] => 
+    [BX_USER_ID] => 000c37d9a2c8ee0847f1cc29aa3d03c0
+    [DATE_INSERT_FORMAT] => 20.12.2017
+    [DATE_UPDATE_SHORT] => 2017-12-20 00:00:00
+    [DATE_STATUS_SHORT] => 2017-12-20 00:00:00
+    [DATE_CANCELED_SHORT] => 
+    [BY_RECOMMENDATION] => N
+    [LOCK_STATUS] => green
+    [LOCK_USER_NAME] => 
+    [RESPONSIBLE_LOGIN] => 
+    [RESPONSIBLE_NAME] => 
+    [RESPONSIBLE_LAST_NAME] => 
+    [RESPONSIBLE_SECOND_NAME] => 
+    [RESPONSIBLE_EMAIL] => 
+    [RESPONSIBLE_WORK_POSITION] => 
+    [RESPONSIBLE_PERSONAL_PHOTO] => 
+    [USER_LOGIN] => twice.adlin
+    [USER_NAME] => 
+    [USER_LAST_NAME] => 
+    [USER_EMAIL] => twice.adlin@gmail.com
+    [DATE_UPDATE_FORMAT] => 20.12.2017 10:54:06
+    [DATE_STATUS_FORMAT] => 20.12.2017 10:54:06
+)

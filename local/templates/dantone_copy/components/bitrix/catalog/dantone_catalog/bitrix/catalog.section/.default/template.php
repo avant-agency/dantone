@@ -32,6 +32,23 @@ if ($arP = $arDB->Fetch())
 
             })
             BX.onCustomEvent('OnBasketChange'); 
+
+			var price = $("#productLink-" + productID);//.parents("li").find(".price");
+			/*console.log(price);
+			price = price.find(".value");
+			console.log(price);
+			price = price.replace( /^\D+/g, '');
+			console.log(price);
+			alert(price);*/
+
+			dataLayer.push({
+				'event': 'addToCart',
+				'google_tag_params': {
+					'ecomm_prodid': [productID],
+					'ecomm_pagetype': 'cart',
+					'ecomm_totalvalue': price
+				}
+			});
         }           
     }
 </script>

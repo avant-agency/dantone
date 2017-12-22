@@ -22,7 +22,15 @@ if($arProps['WANT_SUBSCRIBE']['VALUE']=='Y'){
  * @var array $arResult
  * @var $APPLICATION CMain
  */
+global $USER;
+if($USER->IsAdmin())
+{
+	/*$res = CSaleBasket::GetList(array(), array("ORDER_ID" => $arResult['ID']));
 
+	while ($arItem = $res->Fetch()) {
+		$arResult["BASKET_ITEMS"][] = $arItem;
+	}*/
+}
 
 if ($arParams["SET_TITLE"] == "Y")
     $APPLICATION->SetTitle(Loc::getMessage("SOA_ORDER_COMPLETE"));

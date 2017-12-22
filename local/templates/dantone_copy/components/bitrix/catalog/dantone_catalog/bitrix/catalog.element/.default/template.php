@@ -450,6 +450,16 @@ $(function () {
         }
         $(this).html('В корзине ' + count + ' шт.' + '<br>'+ 'перейти')
         $(this).data("go-to-cart", "go");
+
+		dataLayer.push({
+			'event': 'addToCart',
+			'google_tag_params': {
+				'ecomm_prodid': ["<? echo $arResult['ID']; ?>"],
+				'ecomm_pagetype': 'cart',
+				'ecomm_totalvalue': '<?=$arResult["MIN_PRICE"]["VALUE"]?>'
+			}
+		});
+
     });
     $('.kharacterictic-good-descr .tab').click(function () {
         $('.kharacterictic-good-descr .tab').removeClass('active');
@@ -496,4 +506,14 @@ window.criteo_q.push(
     { event: "setSiteType", type: deviceType },
     { event: "viewItem", ecpplugin: "1cbitrix", item: "<? echo $arResult['ID']; ?>" }
 );
+
+dataLayer.push({
+    'event': 'productDetail',
+    'google_tag_params': {
+        'ecomm_prodid': "<? echo $arResult['ID']; ?>",
+        'ecomm_pagetype': 'product',
+        'ecomm_totalvalue': '<?=$arResult["MIN_PRICE"]["VALUE"]?>'
+    }
+});
+
 </script>

@@ -80,7 +80,7 @@
                 </div>                  
                 <div class="file">
                     <a href="#download3d"><!-- https://yadi.sk/d/Tqcdj97J3QWspt -->
-                        <i class="icon-file-zip" style="background-image: url('/local/templates/dantone/images/dantone-icon.svg'); width: 30px;  height: 34px; background-size:cover; background-position: -3px 0"></i>
+                        <i class="icon-file-zip" style="background-image: url('/bitrix/templates/dantone/images/dantone-icon.svg'); width: 30px;  height: 34px; background-size:cover; background-position: -3px 0"></i>
                         <div class="file-name"><?=GetMessage('FOOTER_DOWN3DS')?></div>
                         <div class="file-detail">zip, 8.44 <?=GetMessage('FOOTER_GB')?>.</div>
                     </a>
@@ -114,11 +114,11 @@
             </svg>
 
         </div>
-        <img src="/local/templates/dantone_copy/img/header-logo-blue.svg" alt="" class="newPopup-logo">
+        <img src="https://dantonehome.ru/bitrix/templates/dantone_copy/img/header-logo-blue.svg" alt="" class="newPopup-logo">
         <div class="newPopup-title">
-      Подпишитесь, чтобы стать участником закрытого клуба Dantone Home. Получайте новости, информацию о пополнении ассортимента и специальных предложениях.
+			Подпишитесь, чтобы стать участником закрытого клуба Dantone Home. Получайте новости, информацию о пополнении ассортимента и специальных предложениях.
         </div>
-    <img src="/upload/photoPopup.jpg" alt="" class="newPopup-photo">
+		<img src="/upload/photoPopup.jpg" alt="" class="newPopup-photo">
 
         <form action="#" class="newPopup-form">
             <div class="newPopup-inner">
@@ -132,10 +132,10 @@
                     <label class="privacy-checkbox">
                         <input name="#" value="14" type="checkbox" style="position: absolute; left: -9999px;">
                         <span class="checkbox-title">Я соглашаюсь на использование  <a
-                                onclick="window.open('/local/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf','_blank')"
-                                href="/local/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf"
+                                onclick="window.open('https://dantonehome.ru/bitrix/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf','_blank')"
+                                href="https://dantonehome.ru/bitrix/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf"
                                 target="_blank">персональных данных</a>
-                </span>
+        				</span>
                     </label>
                 </div>
             </div>
@@ -285,16 +285,16 @@
                 <?=GetMessage('FOOTER_DISCOUNTTEXT')?>
             </div>
             <div class="form-gallery_imgs">
-                <img class="gallery-img" src="/local/templates/dantone/img/small-1.jpg"  alt=""/>
-                <img class="gallery-img" src="/local/templates/dantone/img//small-2.jpg" alt=""/>
-                <img class="gallery-img" src="/local/templates/dantone/img//small-3.jpg" alt=""/>
+                <img class="gallery-img" src="/bitrix/templates/dantone/img/small-1.jpg"  alt=""/>
+                <img class="gallery-img" src="/bitrix/templates/dantone/img//small-2.jpg" alt=""/>
+                <img class="gallery-img" src="/bitrix/templates/dantone/img//small-3.jpg" alt=""/>
             </div>
             <div class="form-gallery-wrap">
                <a class="form-galley-btn" href="<?=SITE_DIR?>catalog/" style=""><?=GetMessage('FOOTER_SEECOLLECTION')?></a>
            </div>             
        </div>
    </div>
-   <img class="form-back" src="/local/templates/dantone/img//form-back.jpg" alt="" style="right: -2px"/>
+   <img class="form-back" src="/bitrix/templates/dantone/img//form-back.jpg" alt="" style="right: -2px"/>
 </div>
 
 <script type="text/javascript">
@@ -447,59 +447,59 @@
     <!-- //Rating@Mail.ru counter -->
 <script>
 setInterval(function(){
-  $.ajax({
-    method: "POST",
-    url: "/ajax/timecounter.php",
-  }).done(function(data){
-    data = JSON.parse(data);
-    if(data.PAGE_QUANTUTY > 7 || data.TIME_ON_SITE > 120)
-    {
-      // show popup
-      $("#submit_popup_trigger").click();
-      $.ajax({
-        method: "POST",
-        url: "/ajax/timecounter.php",
-        data: { "ENDLOGIC" : "Y" }
-      });
-    }
-  });
+	$.ajax({
+		method: "POST",
+		url: "/ajax/timecounter.php",
+	}).done(function(data){
+		data = JSON.parse(data);
+		if(data.PAGE_QUANTUTY > 7 || data.TIME_ON_SITE > 120)
+		{
+			// show popup
+			$("#submit_popup_trigger").click();
+			$.ajax({
+				method: "POST",
+				url: "/ajax/timecounter.php",
+				data: { "ENDLOGIC" : "Y" }
+			});
+		}
+	});
 }, 5000);
 
 $(function () {
-  $("#contact_form_submitter").on("click", function(){
-    var btn = $(this);
+	$("#contact_form_submitter").on("click", function(){
+		var btn = $(this);
 
-    var email = $(this).parents(".newPopup-form").find("input[name='form_email_4']").val();
+		var email = $(this).parents(".newPopup-form").find("input[name='form_email_4']").val();
 
-    if(email.length == 0)
-    {
-      $(this).parents(".newPopup-form").find("input[name='form_email_4']").css("border", "1px solid red");
-      return false;
-    }
+		if(email.length == 0)
+		{
+			$(this).parents(".newPopup-form").find("input[name='form_email_4']").css("border", "1px solid red");
+			return false;
+		}
 
-    if($(this).parents(".newPopup-form").find(".jq-checkbox.checked").length == 0) 
-    {
-      $(this).parents(".newPopup-form").find(".checkbox-title").css('color', 'red');
-      return false;
-    }
+		if($(this).parents(".newPopup-form").find(".jq-checkbox.checked").length == 0) 
+		{
+			$(this).parents(".newPopup-form").find(".checkbox-title").css('color', 'red');
+			return false;
+		}
 
-    $.ajax({
-      method: "POST",
-      url: "/ajax/mailchump_integrate.php",
-      data: { fname : "fname", lname : "lname", email : email }
-    }).done(function(){
+		$.ajax({
+			method: "POST",
+			url: "/ajax/mailchump_integrate.php",
+			data: { fname : "fname", lname : "lname", email : email }
+		}).done(function(){
 
-      $.ajax({ method: "POST", url: "/ajax/add_subscribers.php", data: { fname : "fname", lname : "lname", email : email } });
+			$.ajax({ method: "POST", url: "/ajax/add_subscribers.php", data: { fname : "fname", lname : "lname", email : email } });
 
-      $(btn).parents(".newPopup-wrap").find(".newPopup-title").html("Спасибо!<br/>Ваш email успешно отправлен.");
-      $(btn).parents(".newPopup-wrap").find(".newPopup-photo").css('display', 'none');
-      $(btn).parents(".newPopup-wrap").find(".newPopup-form").css('display', 'none');
+			$(btn).parents(".newPopup-wrap").find(".newPopup-title").html("Спасибо!<br/>Ваш email успешно отправлен.");
+			$(btn).parents(".newPopup-wrap").find(".newPopup-photo").css('display', 'none');
+			$(btn).parents(".newPopup-wrap").find(".newPopup-form").css('display', 'none');
 
-      setTimeout(function(){ $('.close-newPopup, .newPopup-overlay').click(); }, 2000);
-    });
+			setTimeout(function(){ $('.close-newPopup, .newPopup-overlay').click(); }, 2000);
+		});
 
-    return false;
-  });
+		return false;
+	});
 
     $('.test').click(function () {
         $('.newPopup-wrap').fadeIn(300)

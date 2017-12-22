@@ -417,7 +417,7 @@ $APPLICATION->SetTitle("Dantone Home");
 
 <style>
 #header{
-	background: url(/local/templates/dantone/images/bg-header.png) 0 40px repeat-x;
+	background: url(/bitrix/templates/dantone/images/bg-header.png) 0 40px repeat-x;
 	position: absolute !important;
 }
 #ddmenu li.haspopup:hover > a{
@@ -439,12 +439,12 @@ if(preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|c
 else
 {?>
 #logo {
-	background: url(/local/templates/dantone/images/sprites.png?2) -330px -205px no-repeat;
+	background: url(/bitrix/templates/dantone/images/sprites.png?2) -330px -205px no-repeat;
 }
 <?}?>
 
 .header-main-contant .icon-phone{
-	background-image: url(/local/templates/dantone/img/phone.png) !important;
+	background-image: url(/bitrix/templates/dantone/img/phone.png) !important;
 }
 
 .header-main-contant .phone{
@@ -460,7 +460,7 @@ else
 }
 
 .show-search{
-	background: url(/local/templates/dantone/img/search.png) !important;
+	background: url(/bitrix/templates/dantone/img/search.png) !important;
 }
 
 .nav-container{

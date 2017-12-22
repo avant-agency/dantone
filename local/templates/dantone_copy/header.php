@@ -28,10 +28,10 @@ CJSCore::Init(array('translit'));
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/jquery.fancybox.css" />
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/animate.css" />
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/style.css" />
-  <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/subscribe-popup.css" />
+	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/subscribe-popup.css" />
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-  <?/*<script src="//api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU" type="text/javascript"></script>*/?>
+	<?/*<script src="//api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU" type="text/javascript"></script>*/?>
     <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery-1.11.1.min.js"></script>
     <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.cookie.js"></script>
     <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.maskedInput.js"></script>
@@ -75,6 +75,13 @@ CJSCore::Init(array('translit'));
 </script>
 
 <script src="https://analytics.alloka.ru/v4/alloka.js" type="text/javascript"></script>
+<!-- FACEBOOK -->
+  <meta property="og:url"           content="http://dantonehome.ru" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Мебель и аксессуары Dantone" />
+  <meta property="og:description"   content="Компания Dantone Home предлагает Вам мебель и аксессуары в американском и бельгийском стилях" />
+  <meta property="og:image"         content="http://dantonehome.ru/upload/iblock/1a0/1a05c93d75065eec4b2f68941a78a2e9.jpg" />
+
 </head>
 
 <body class="<?=LANGUAGE_ID?>-version <?=defined('INDEX')?'index-page':'';?>">
@@ -96,29 +103,29 @@ window.criteo_q.push(
 
 <?endif?>
 <script> 
-  window.dataLayer = window.dataLayer || [];
+	window.dataLayer = window.dataLayer || [];
 </script>
 <!-- Facebook Pixel Code -->
 <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window,document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1074463552690535');
-  fbq('track', 'PageView');
+	!function(f,b,e,v,n,t,s)
+	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];
+	s.parentNode.insertBefore(t,s)}(window,document,'script',
+	'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '1074463552690535');
+	fbq('track', 'PageView');
 </script>
 <noscript>
-  <img height="1" width="1"
-  src="https://www.facebook.com/tr?id=1074463552690535&ev=PageView
-  &noscript=1"/>
+	<img height="1" width="1"
+	src="https://www.facebook.com/tr?id=1074463552690535&ev=PageView
+	&noscript=1"/>
 </noscript>
 <!-- End Facebook Pixel Code -->
     <?=$APPLICATION->ShowPanel()?>
-  <?$APPLICATION->ShowViewContent('google_aim_sale_order_ajax_ready');?>
+	<?$APPLICATION->ShowViewContent('google_aim_sale_order_ajax_ready');?>
     <!-- Google Tag Manager -->
     <noscript>
         <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5PZJHN"

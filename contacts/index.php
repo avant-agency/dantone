@@ -1,7 +1,16 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Контакты | Dantone");
-?><section id="content">
+?><div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.11&appId=1993975797487849';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<section id="content">
 <div class="container">
  <article class="about full-size" style="margin-bottom: 0;">
 	<h1 class="h2">Контакты</h1>
@@ -79,7 +88,13 @@ $APPLICATION->SetTitle("Контакты | Dantone");
 		"WEB_FORM_ID" => "2"
 	)
 );?> <!--Форма-->
-		</div>
+<br />
+<div align="center">
+<div class="fb-page" data-href="https://www.facebook.com/dantonehome/" data-tabs="timeline" data-width="270" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/dantonehome/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/dantonehome/">Dantone HOME</a></blockquote></div></div>
+<div align="center">
+<iframe src="//widget.instagramm.ru/?imageW=4&imageH=2&thumbnail_size=56&type=0&typetext=dantonehome&head_show=1&profile_show=1&shadow_show=0&bg=255,255,255,1&opacity=true&head_bg=46729b&subscribe_bg=ad4141&border_color=c3c3c3&head_title=" allowtransparency="true" frameborder="0" scrolling="no" style="border:none;overflow:hidden;width:270px;height:273px;"></iframe>		
+</div>
+</div>
 	</div>
  </article>
 </div>

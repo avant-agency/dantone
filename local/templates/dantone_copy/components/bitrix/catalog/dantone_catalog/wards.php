@@ -3,6 +3,9 @@
    font-weight: 300;
    text-align: left;
 }
+#content {
+	overflow-x: hidden;
+}
 </style>
 <section id="content">
 	<div class="container">
@@ -910,6 +913,11 @@ $(function(){
 				{
 					$("#calculate_my_project").html("Произошла ошибка при отправке данных. Пожалуйста, перезагрузите страницу и повторите.");
 				}
+				dataLayer.push({
+					"event": "submitForm",
+					"formName": "Гардеробы. Запрос на просчет стоимости гардероба"
+				});
+
 			}
 		});
 

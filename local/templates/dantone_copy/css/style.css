@@ -563,7 +563,7 @@ h5 {
 }
 
 .checkboxes-rit input[type="checkbox"]:checked+span::before {
-    background: #eceff1 url(/local/templates/dantone/img/checked.png) no-repeat center;
+    background: #eceff1 url(/bitrix/templates/dantone/img/checked.png) no-repeat center;
     background-size: 80%;
 }
 
@@ -1645,7 +1645,7 @@ ____________________________________________*/
     color: #ffffff;
     font-weight: normal;
     white-space: nowrap;
-  line-height: 12px;
+	line-height: 12px;
 }
 
 .header-light .header-main-contant .phone {
@@ -1667,9 +1667,9 @@ ____________________________________________*/
     /* margin-left: -29px; */
     /* margin-top: 1px; */
     background: url(../img/bag.svg) no-repeat; /*url(../img/cart.png) no-repeat;*/
-  background-size: contain;
+	background-size: contain;
     height: 22px; /*20px;*/
-  width: 22px;
+	width: 22px;
 }
 
 .product-cart a {
@@ -1784,7 +1784,7 @@ ____________________________________________*/
 }
 
 .main-menu .red-item{
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .main-menu>ul>li ul li {
@@ -1923,9 +1923,9 @@ ____________________________________________*/
 
 @media (min-width: 768px){
 #header #ddmenu>ul>li:first-of-type:hover .dropdown{
-  max-height: -webkit-calc(99.9vh - 60px);
-  max-height: calc(99.9vh - 60px);
-  overflow-y: scroll;
+	max-height: -webkit-calc(99.9vh - 60px);
+	max-height: calc(99.9vh - 60px);
+	overflow-y: scroll;
 }
 }
 
@@ -1971,7 +1971,7 @@ ____________________________________________*/
     background: url("../images/sprites.png?2") -365px -25px no-repeat;
     /* opacity: 0.25; */
     background: url(../img/search.svg); /*url(../img/search.png);*/
-  background-size: contain;
+	background-size: contain;
 }
 
 .show-search:hover {
@@ -2035,7 +2035,7 @@ ____________________________________________*/
     margin-top: 2px;
     margin-right: 4px;
     background: url(../img/search.svg); /*(url(../img/search.png);*/
-  background-size: contain;
+	background-size: contain;
     position: absolute;
     left: -38px;
 }
@@ -2228,7 +2228,7 @@ ____________________________________________*/
     }
     .body-menu-opened body {
         overflow: hidden;
-    height: 100vh;
+		height: 100vh;
     }
     .nav-container {
         position: fixed;
@@ -5963,16 +5963,16 @@ position: absolute;
     width: auto;
 }
 
-  #header.fixed-header .phone{
-    position: absolute;
-    top: 5px;
-    left: -10px;
-    color: white;
-  }
+	#header.fixed-header .phone{
+		position: absolute;
+		top: 5px;
+		left: -10px;
+		color: white;
+	}
 
-  #header.fixed-header .phone span:not(.kupislova){
-    display: none;
-  }
+	#header.fixed-header .phone span:not(.kupislova){
+		display: none;
+	}
 
 .fixed-header .callback-lnk,
 .fixed-header .login-lnk,
@@ -6011,9 +6011,9 @@ position: absolute;
     #header.fixed-header .container{
         width: 1040px;
     }
-  #header.fixed-header .main-menu>ul{
-    margin-right: 136px !important;
-  }
+	#header.fixed-header .main-menu>ul{
+		margin-right: 136px !important;
+	}
 }
 
 
@@ -6052,7 +6052,7 @@ li.haspopup:hover > a {
       color: #111e35; }
   .header-main-contant .icon-phone {
     background-image: url(../img/icon-phone.png);
-  transform: none !important; }
+	transform: none !important; }
   .header-main-contant p {
     color: #111e35; }
   #logo {
@@ -6675,10 +6675,10 @@ baclground-size: contain; }
         }
 
       @media (max-width: 500px){
-  #ddmenu li{
+	#ddmenu li{
 width: 100%;
 }
-  .sub-menu-catalog .photo{
+	.sub-menu-catalog .photo{
 height: auto;
 }
       .product-list-static li:nth-of-type(1n) .tooltips .tooltips-text{
@@ -6715,7 +6715,7 @@ height: auto;
       }
 
 /*.globalClass_ET.__jfakecls .wrap_mW._show_1e._orinationRight_25.__jfakecls .button_1O.__jfakecls{
-  margin-bottom:50px !important;
+	margin-bottom:50px !important;
 }*/
 .wrap_mW._show_1e._orinationRight_25{
     height: 75px;
@@ -6723,5 +6723,5 @@ height: auto;
 }
 
 .fixed-header > .additional-phone {
-  display: inline-block !important;
+	display: inline-block !important;
 }

@@ -74,7 +74,9 @@
                         {
                             $res = CIBlockElement::GetByID($mxResult['ID']);
                             if($ar_res = $res->GetNext())
-                                $basket[$arFields["ID"]] = CFile::GetPath($ar_res['PREVIEW_PICTURE']['ID']);
+							{
+                                $basket[$arFields["ID"]] = CFile::GetPath($ar_res['PREVIEW_PICTURE']);
+							}
                         }
                     }
                     ?>
@@ -105,7 +107,6 @@
     <?endif?>
 
 <?endif?>
-
 <style>
 .table-item > div, .table-header > div {
   width: 150px; }
@@ -321,7 +322,6 @@
     font-size: 11px; }
   .dd-header-item:first-of-type, .dd-list-item:first-of-type {
     width: 42%; } }
-
 </style>
 <script>
 $(function () {

@@ -96,6 +96,12 @@ $arUrlRewrite = array(
 		"ID" => "bitrix:news",
 		"PATH" => "/news/index.php",
 	),
+array(
+        "CONDITION" => "#^/catalog/([A-Za-z0-9_-]+)/filter/[A-Za-z0-9_-]+/\\??.*\$#",
+        "RULE" =>  "SECTION_CODE=\$1",
+        "ID" => "",
+        "PATH" => "/catalog/section.php",
+    ),
 );
 
 ?>

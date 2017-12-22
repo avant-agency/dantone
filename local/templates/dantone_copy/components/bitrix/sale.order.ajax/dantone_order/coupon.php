@@ -1,11 +1,25 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
 global $USER;
-if($USER->isAdmin())
-{
+//if($USER->isAdmin())
+//{
 global $numWindow;
  ?>
-
+<?
+$arCoupons = Bitrix\Sale\DiscountCouponsManager::get(true, array(), true, true);
+foreach ($arCoupons as &$oneCoupon)
+{
+	if($oneCoupon['STATUS_TEXT'] == 'применен'){
+		$dId = $oneCoupon["DISCOUNT_ID"];
+		$arrDiscount = CCatalogDiscount::GetByID($dId);
+		echo "<div>Ваша скидка ";
+		echo intVal($arrDiscount["VALUE"]);
+		if($arrDiscount["VALUE_TYPE"] == "P") echo " %"; else echo " руб.";
+		echo "</div>";
+		//	$dName = $oneCoupon["DISCOUNT_NAME"];
+	}
+}
+?>
 
 <div><small><a href="javascript:void(0)" onclick="javascript:$('#promo<?=$numWindow?>').toggle()">Введите промокод или номер подарочного сертификата</a></small></div>
 
@@ -17,11 +31,14 @@ global $numWindow;
 		$arResult['COUPON_LIST'] = array();
         $arResult['COUPON'] = '';
 
-            $arCoupons = Bitrix\Sale\DiscountCouponsManager::get(true, array(), true, true);
+
+	//$arCoupons = Bitrix\Sale\DiscountCouponsManager::get(true, array(), true, true);
             if (!empty($arCoupons))
             {
                 foreach ($arCoupons as &$oneCoupon)
                 {
+
+
                     if ($arResult['COUPON'] == '')
                         $arResult['COUPON'] = $oneCoupon['COUPON'];
                     if ($oneCoupon['STATUS'] == Bitrix\Sale\DiscountCouponsManager::STATUS_NOT_FOUND || $oneCoupon['STATUS'] == Bitrix\Sale\DiscountCouponsManager::STATUS_FREEZE)
@@ -69,4 +86,4 @@ global $numWindow;
                 }
 ?>
   </div>
-<?}?>
+<?//}?>

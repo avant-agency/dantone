@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "/www/dantonebitrix.avantmedia.ru/webstat"
+AuthUserFile /var/www/avantmedia/data/etc/70296240.passwd
+DirectoryIndex index.html
+<Limit GET POST>
+	require valid-user
+</Limit>

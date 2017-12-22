@@ -20,6 +20,7 @@ if($USER->isAuthorized()) {
 	$arResult["USER"] = $arUser;
 }
 
+
 $arResult["PICKUP_AVAILABLE"] = true;
 $total_cart_price = 0;
 

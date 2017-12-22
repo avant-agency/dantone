@@ -122,6 +122,8 @@ elseif ($arParams["DISABLE_BASKET_REDIRECT"] == 'Y' && $arResult["SHOW_EMPTY_BAS
     include($context->getServer()->getDocumentRoot().$templateFolder."/empty.php");
 else:
     $hideDelivery = empty($arResult["DELIVERY"]);
+
+
 ?>
 
 <h1 class="h2 mb10"><?=GetMessage('ORDER_NAME')?></h1>
@@ -193,11 +195,11 @@ else:
                     <div class="form-container">
                         <div class="control-group">
                             <div class="control">
-                                <input type="text" name="ORDER_PROP_8" id="ORDER_PROP_8" required="required" class="input-text required" placeholder="<?=GetMessage('ORDER_FULL_NAME_SHORT')?>" data-name="<?=GetMessage('ORDER_FULL_NAME_SHORT')?>" value="<?=isset($arResult["USER"]) ? $arResult["USER"]["NAME"] : "";?>">                                    
+                                <input type="text" name="ORDER_PROP_8" id="ORDER_PROP_8" required="required" class="input-text required" placeholder="<?=isset($arResult["USER"]) ? $arResult["USER"]["NAME"] :GetMessage('ORDER_FULL_NAME_SHORT')?>" data-name="<?=GetMessage('ORDER_FULL_NAME_SHORT')?>" value="<?=isset($arResult["USER"]) ? $arResult["USER"]["NAME"] : "";?>">                                    
                                 <div class="help-inline help-small"><?=GetMessage('ORDER_FULL_NAME')?></div>
                             </div>
                             <div class="control">
-                                <input type="text" name="ORDER_PROP_9" required="required" class="input-text required" placeholder="<?=GetMessage('ORDER_LAST_NAME_SHORT')?>"  data-name="<?=GetMessage('ORDER_LAST_NAME_SHORT')?>"  value="<?=isset($arResult["USER"]) ? $arResult["USER"]["LAST_NAME"] : "";?>">                                    
+                                <input type="text" name="ORDER_PROP_9" required="required" class="input-text required" placeholder="<?=isset($arResult["USER"]) ? $arResult["USER"]["LAST_NAME"] : GetMessage('ORDER_LAST_NAME_SHORT')?>"  data-name="<?=GetMessage('ORDER_LAST_NAME_SHORT')?>"  value="<?=isset($arResult["USER"]) ? $arResult["USER"]["LAST_NAME"] : "";?>">                                    
                                 <div class="help-inline help-small"><?=GetMessage('ORDER_LAST_NAME')?></div>
                             </div>
                             <div class="control">
@@ -205,7 +207,7 @@ else:
                                 <div class="help-inline help-small"><?=GetMessage('ORDER_EMAIL')?></div>
                             </div>
                             <div class="control">
-                                <input type="text" name="ORDER_PROP_3" required="required" class="input-text required phone-input" placeholder="<?=GetMessage('ORDER_PHONE_SHORT')?>" data-name="<?=GetMessage('ORDER_PHONE_SHORT')?>" value="<?=isset($arResult["USER"]) ? $arResult["USER"]["PERSONAL_PHONE"] : "";?>">                                   
+                                <input type="text" name="ORDER_PROP_3" required="required" class="input-text required phone-input" placeholder="<?=isset($arResult["USER"]) ? $arResult["USER"]["PERSONAL_PHONE"] : GetMessage('ORDER_PHONE_SHORT')?>" data-name="<?=GetMessage('ORDER_PHONE_SHORT')?>" value="<?=isset($arResult["USER"]["PERSONAL_PHONE"]) ? $arResult["USER"]["PERSONAL_PHONE"] : "";?>">                                   
                                 <div class="help-inline help-small"><?=GetMessage('ORDER_PHONE')?></div>
                             </div>
                             <div class="control">
@@ -268,6 +270,7 @@ else:
                           <div class="form-container">
                             <div class="control-group control-group-radio clearfix" id="deliveryTypesBlock">
                               <div class="help-inline help-small"><?=GetMessage('ORDER_DELIVERY_TITLE')?></div>
+								<div><a href="/delivery/">Условия доставки</a></div>
                               <div class="control">
                                 <label class="radio a-radio">
                                     <input checked type="radio" name="DELIVERY_ID" value="2" data-ourdelivery="1" data-selfdelivery="0" data-customdelivery="0" style="position: absolute; left: -9999px;">
