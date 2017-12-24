@@ -4316,7 +4316,7 @@ aside.catalog-nav-container {}
 
 .cart-table {
     border: #e6e6e6 1px solid;
-    margin-bottom: 70px;
+    margin-bottom: 12px; /*70px;*/
     text-align: left;
     font-weight: 300;
 }

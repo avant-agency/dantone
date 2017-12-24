@@ -270,7 +270,7 @@ else:
                           <div class="form-container">
                             <div class="control-group control-group-radio clearfix" id="deliveryTypesBlock">
                               <div class="help-inline help-small"><?=GetMessage('ORDER_DELIVERY_TITLE')?></div>
-								<div><a href="/delivery/">Условия доставки</a></div>
+								<div><a target="_blank" href="/delivery/">Условия доставки</a></div>
                               <div class="control">
                                 <label class="radio a-radio">
                                     <input checked type="radio" name="DELIVERY_ID" value="2" data-ourdelivery="1" data-selfdelivery="0" data-customdelivery="0" style="position: absolute; left: -9999px;">
@@ -313,10 +313,11 @@ else:
                                       <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2" value="">
                                       <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2" value="">
                                     </div>
-                                    <div class="control" style="margin-right: 0px;padding-right: 90px;">
+								<?/*<div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <input type="text" name="ORDER_PROP_4" placeholder="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" data-name="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_ZIP"]?>">
                                       <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_KNOWINDEX')?> <a href="http://indexp.ru/" class="nounderline" target="_blank"><?=GetMessage('ORDER_ADDRESS_FINDINDEX')?></a></div>
                                     </div>
+									*/?>
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6">
                                       </textarea>
@@ -360,10 +361,12 @@ else:
                                   <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2" value="" disabled="">
                                   <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2" value="" disabled="">
                                 </div>
+								<?/*
                                 <div class="control">
                                   <input type="text" name="ORDER_PROP_4" placeholder="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" data-name="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_ZIP"]?>" disabled="">
                                   <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_KNOWINDEX')?> <a href="http://indexp.ru/" class="nounderline" target="_blank"><?=GetMessage('ORDER_ADDRESS_FINDINDEX')?></a></div>
                                 </div>
+								*/?>
                                 <div class="control">
                                   <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6" disabled=""></textarea>
                                   <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>

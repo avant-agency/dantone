@@ -27,41 +27,35 @@ $this->setFrameMode(true);
                         </div>
                         <div class="title"><?= $arItem["NAME"] ?></div>
 
-                        <?$minPrice = false;
-                        if (isset($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE']))
-                            $minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);?>
                         <div class="price">
-
-                            <?if (!empty($minPrice)) {
-
-
-                                ?><span class='value'><? if ($arItem["PROPERTIES"]["PRICE_FROM"]["VALUE"] == "Y"): ?>
-                                    От
-                                <? endif; ?><?= $minPrice['PRINT_DISCOUNT_VALUE'] ?></span><?
-
-                                if ('Y' == $arParams['SHOW_OLD_PRICE'] && $minPrice['DISCOUNT_VALUE'] < $minPrice['VALUE']) {
-                                    ?>
-                                    <span class="price-old">
-								 <span class='value'><?= $minPrice['PRINT_VALUE'] ?></span>
-								</span>
-                                <?
-                                }
-                            }
-                            unset($minPrice);
-                            ?>
-
+                               <span class='value'><?=$arItem["PROPERTIES"]["MINIMUM_PRICE"]["VALUE"]?></span>
+								<? if ('Y' == $arParams['SHOW_OLD_PRICE'] && $minPrice['DISCOUNT_VALUE'] < $minPrice['VALUE']) :?>
+                               		<span class="price-old">
+								 		<span class='value'><?= $minPrice['PRINT_VALUE'] ?></span>
+									</span>
+                                <?endif;?>
                         </div> 
                     </a>
-					
+
                     <a data-fancybox-href="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" rel="g<?=$arItem['ID']?>" class="gallery-list  fancybox-media">
                     </a>
                     <?if($arItem['PROPERTIES']['MORE_PHOTO']['VALUE']):?>
-     <?foreach($arItem['PROPERTIES']['MORE_PHOTO']['VALUE'] as $k=>$pid): if($k==0)continue;?>
-     <a style="display: none;" data-fancybox-href="<?=CFile::GetPath($pid)?>" rel="g<?=$arItem['ID']?>" class="fancybox-media"></a>
-     <?endforeach?>
-     <?endif?>
+						 <?foreach($arItem['PROPERTIES']['MORE_PHOTO']['VALUE'] as $k=>$pid): if($k==0)continue;?>
+						 <a style="display: none;" data-fancybox-href="<?=CFile::GetPath($pid)?>" rel="g<?=$arItem['ID']?>" class="fancybox-media"></a>
+						 <?endforeach?>
+					 <?endif?>
                 </li>
             <? endif; ?>
         <? endforeach; ?>
     </ul>
 <? } ?>
+
+<?
+global $USER;
+if($USER->IsAdmin())
+{
+	echo "<pre>";
+	print_r($arResult["ITEMS"][0]["PROPERTIES"]["MINIMUM_PRICE"]["VALUE"]);
+	echo "</pre>";
+}
+?>

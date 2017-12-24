@@ -29,7 +29,9 @@ if($USER->IsAdmin())
 
 	while ($arItem = $res->Fetch()) {
 		$arResult["BASKET_ITEMS"][] = $arItem;
-	}*/
+	}
+
+*/
 }
 
 if ($arParams["SET_TITLE"] == "Y")
@@ -392,11 +394,12 @@ if (!empty($arResult["ORDER"]) && !empty($arResult["PAYMENT"])) {
 $transactionId = $arResult["ORDER"]["ID"];
 CModule::IncludeModule('sale');
 $res = CSaleBasket::GetList(array(), array("ORDER_ID" => $arResult["ORDER"]["ID"])); // ID заказа
+
 while ($arItem = $res->Fetch()) {
     $arBasketItems[] = $arItem["PRODUCT_ID"];
 }
 $js_array = json_encode($arBasketItems);  ?>
- 
+
 <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
 <script type="text/javascript">
 window.criteo_q = window.criteo_q || [];
@@ -407,6 +410,15 @@ window.criteo_q.push(
     { event: "setSiteType", type: deviceType },
     { event: "trackTransaction", ecpplugin: "1cbitrix", id: <? echo $transactionId; ?>, item: <? echo $js_array; ?> }
 );
+
+dataLayer.push({
+	'event': 'productsPurchase',
+	'google_tag_params': {
+		'ecomm_prodid': [<? echo $js_array; ?>],
+		'ecomm_pagetype': 'purchase',
+		'ecomm_totalvalue': '<?=$arResult["ORDER"]["PRICE"]?>';
+	}
+});
 </script> 
 
 <? }; ?>
