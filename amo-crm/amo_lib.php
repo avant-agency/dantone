@@ -9,6 +9,52 @@
  */
 
 
+function getUtmDefs($this_lead = true) {
+    return [
+        'utm_source'=>$this_lead ? 604811 : 604821,
+        'utm_medium'=>$this_lead ? 604813 : 604823,
+        'utm_campaign'=>$this_lead ? 604815 : 604825,
+        'utm_term'=>$this_lead ? 604817 : 604827,
+        'utm_content'=>$this_lead ? 604819 : 604829,
+    ];
+}
+
+function utmCustomField($this_lead = true) {
+    global $_AMO_UTM;
+    $UTM_DEF = getUtmDefs($this_lead);
+    $result = [];
+    foreach ($UTM_DEF as $name=>$key) {
+        $value = false;
+        if(isset($_COOKIE[$name])) $value = $_COOKIE[$name];
+        if(isset($_SESSION[$name])) $value = $_SESSION[$name];
+        if(isset($_GET[$name])) $value = $_GET[$name];
+        if(isset($_AMO_UTM[$name])) $value = $_AMO_UTM[$name];
+        if($value!==false) $result[$key]=$value;
+    }
+    return $result;
+}
+
+
+
+
+global $AMO_RESPONSIBLE_USER_ID;
+$AMO_RESPONSIBLE_USER_ID = false;
+function getNextResponse() {
+    global  $AMO_RESPONSIBLE_USERS;
+    global $AMO_RESPONSIBLE_USER_ID;
+    if($AMO_RESPONSIBLE_USER_ID===false) {
+        $fn = __DIR__."/amo_users.txt";
+        $value = 0;
+        if (is_file($fn)) {
+            $value = 0 + file_get_contents($fn);
+            $value++;
+            if ($value == count($AMO_RESPONSIBLE_USERS)) $value = 0;
+        }
+        file_put_contents($fn, $value);
+        $AMO_RESPONSIBLE_USER_ID = $AMO_RESPONSIBLE_USERS[$value];
+    }
+    return $AMO_RESPONSIBLE_USER_ID;
+}
 
 
 
@@ -274,30 +320,29 @@ class AmoCrmApi
         return $contact;
     }
 
-    public function checkDouble( $fieldId, $value, $id_only = true ){
+
+    public function checkDouble($fieldId, $value, $is_contact = true, $id_only = true ){
         if(!$value) return false;
-
-        $gotContacts = $this->api('private/api/v2/json/contacts/list', array(
-            'query' => $value
-        ));
-
+        $gotContacts = $this->api('private/api/v2/json/'.($is_contact ? 'contacts' : 'company').'/list', ['query' => $value]);
         if($gotContacts) foreach($gotContacts['contacts'] as $c){
             foreach($c['custom_fields'] as $f){
-                if( $f['id'] == $fieldId && $f['values'][0]['value'] == $value ){
-                    return $id_only ?  $c['id'] : $c;
+                if( $f['id'] == $fieldId && $f['values'][0]['value'] == $value ) {
+                    $result = $id_only ?  $c['id'] : $c;
+                    return $result;
                 }
             }
         }
         return false;
     }
 
-    public function createTask( $leadId, $userId, $text = null, $completeMinutes = 1 ){
+
+    public function createTask( $leadId, $user_id, $text = null, $completeMinutes = 1 ){
         $tasks['request']['tasks']['add'][] = array(
             'element_id'=> $leadId,
             'element_type'=> 2,
             'task_type'=> 1,
             'text' => $text ?: 'Прозвонить новую заявку - выявить интерес.',
-            'responsible_user_id' => $userId,
+            'responsible_user_id' => $user_id,
             'complete_till' => time() + $completeMinutes * 60
         );
         $task = $this->api('private/api/v2/json/tasks/set', array(), $tasks );
@@ -311,7 +356,7 @@ class AmoCrmApi
 
     public function addLead($data) {
         $lead_id = false;
-        $request = ['request'=>['leads'=>['add'=>[$this->packValuesBody($data)]]]];
+        $request = ['request'=>['leads'=>['add'=>[$this->packValuesBody($this->replaceAssocId('leads', $data), true)]]]];
         $response = $this->api('private/api/v2/json/leads/set', [], $request);
         if($response && isset($response['leads']) && isset($response['leads']['add'])) $lead_id = $response['leads']['add'][0]['id'];
         return $lead_id;
@@ -340,7 +385,7 @@ class AmoCrmApi
 
 
 
-    public function packValuesBody($values) {
+    public function packValuesBody_old($values) {
         $result = [];
         $custom_fields = [];
         foreach ($values as $key=>$value) {
@@ -355,6 +400,32 @@ class AmoCrmApi
         return $result;
     }
 
+
+    public function packValuesBody($values, $this_lead = true) {
+        $result = [];
+        $custom_fields = [];
+        $utms = utmCustomField($this_lead);
+        foreach ($utms as $k=>$utm) $values[$k] = $utm;
+        foreach ($values as $key=>$value) {
+            if(is_numeric($key)) {
+                if(is_array($value)) {
+                    if (is_array($value[1])) {
+                        $vls = [];
+                        foreach ($value as $value_item) $vls[] = ['value' => $value_item[0], 'enum' => $value_item[1]];
+                        $custom_fields[] = ['id' => $key, 'values' => $vls];
+                    } else {
+                        $custom_fields[] = ['id' => $key, 'values' => [['value' => $value[0], 'enum' => $value[1]]]];
+                    }
+                }
+                else $custom_fields[] = ['id'=>$key, 'values'=>[['value'=>$value]]];
+            } else {
+                $result[$key] = $value;
+            }
+        }
+        $result['responsible_user_id'] = getNextResponse();
+        $result['custom_fields'] = $custom_fields;
+        return $result;
+    }
 
 
     public function addContact( $data ){
@@ -373,7 +444,7 @@ class AmoCrmApi
                     'element_type'=>2, // 2 - сделка
                     'note_type'=>4,     // Обычное примечание,
                     'text'=>$text,
-                    'responsible_user_id'=>AMO_USER_ID_RESPONSIBLE
+                    'responsible_user_id'=>getNextResponse()
                 ]]]
             ]]);
         $note_id = reset( $note['notes']['add'] );
@@ -437,9 +508,72 @@ class AmoCrmApi
 
 
 
+    function addContactAndLead($name, $contact_info = [], $lead_info=[])
+    {
 
 
-    function addContactAndLead($name, $phone, $email = false, $message = false)
+        $contact = false;
+        $message = false;
+
+
+        if(!isset($lead_info['status_id'])) $lead_info['status_id'] = AMO_STATUS_PRIMARY_CONTACT;
+        if(!isset($lead_info['name'])) $lead_info['name'] = 'Сделка от ' . $name;
+        if(isset($lead_info['message'])) {
+            $message = $lead_info['message'];
+            unset($lead_info['message']);
+        }
+        $contact_info['name'] = $name;
+
+        if(isset($contact_info[AMO_CONTACTS_FIELD_EMAIL])) $contact = $this->checkDouble(AMO_CONTACTS_FIELD_EMAIL, $contact_info[AMO_CONTACTS_FIELD_EMAIL][0], true, false);
+
+        amoLog("double.E: ".(is_array($contact) ? "YES : ".$contact['id'] : "NO"));
+
+        if( (!is_array($contact)) && isset($contact_info[AMO_CONTACTS_FIELD_PHONE])) {
+            $contact = $this->checkDouble(AMO_CONTACTS_FIELD_PHONE, $contact_info[AMO_CONTACTS_FIELD_PHONE][0], true, false);
+        }
+
+        amoLog("double.P: ".(is_array($contact) ? "YES : ".$contact['id'] : "NO"));
+        if (!is_array($contact)) {
+
+            $lead_id = $this->addLead($lead_info);
+            if (!$lead_id) return false;
+            if($message!==false) $this->addLeadNote($lead_id, $message);
+
+            $contact_info['linked_leads_id'] = $lead_id;
+            $this->addContact($contact_info);
+            return $lead_id;
+        } else {
+            $leads = $this->getLeadsByIds($contact['linked_leads_id']);
+            $lead_id = false;
+            $lead = false;
+            foreach ($leads as $L) if(!$this->leadIsComplite($L)) {
+                $lead = $L;
+                $lead_id = $L['id'];
+                break;
+            }
+            if (!$lead_id) {
+                $lead_id = $this->addLead($lead_info);
+                $this->api('private/api/v2/json/links/set', [], ['request' => ['links' => ['link' => [
+                    [
+                        'from_id' => $lead_id,
+                        'to_id' => $contact['id'],
+                        'from' => 'leads',
+                        'to' => 'contacts'
+                    ]
+                ]]]]);
+            } else {
+                $this->createTask($lead_id, $lead_id['responsible_user_id'], "Связаться с клиентом");
+            }
+        }
+        return $lead_id;
+    }
+
+
+
+
+
+
+    function addContactAndLead_old($name, $phone, $email = false, $message = false)
     {
 
 
@@ -483,9 +617,82 @@ class AmoCrmApi
         return $lead_id;
     }
 
+    public function getDefines($entity=false) {
+        $file_path = __DIR__."/defines.json";
+        if((!is_file($file_path)) || (filemtime($file_path)<time()-60*60*24*7)) {
+            $def = $this->api('private/api/v2/json/accounts/current');
+            if (!isset($def['account'])) return false;
+            if (!isset($def['account']['custom_fields'])) return false;
+            file_put_contents($file_path, json_encode($def));
+        } else {
+            $def = json_decode(file_get_contents($file_path), true);
+        }
+        if(!$entity) return $def['account']['custom_fields'];
+        if(!isset($def['account']['custom_fields'][$entity])) return false;
+        return $def['account']['custom_fields'][$entity];
+
+    }
+
+
+    function simpleFieldValue($entity, $title, $value) {
+        $defines = $this->getDefines($entity);
+        if(!$defines) return [];
+        foreach ($defines as $define) {
+            if($define['name']==$title) {
+                if(isset($define['enums'])) {
+                    $no_array = false;
+                    if(!is_array($value)) {
+                        $value = [$value];
+                        $no_array = true;
+                    }
+                    $val_res = [];
+                    foreach ($value as $value_item) {
+                        $enum = array_search($value_item, $define['enums']);
+                        if ($enum > 0)  $val_res[] =[$value_item, $enum];
+                    }
+                    if($no_array) $val_res = reset($val_res);
+                    $result[$define['id']] = $val_res;
+                } else {
+                    $result[$define['id']] = $value;
+                }
+                return $result;
+            }
+        }
+        return false;
+    }
+
+    public function simpleFields($entity, $values) {
+        $result = [];
+        foreach ($values as $title=>$value) {
+            $val = $this->simpleFieldValue($entity, $title, $value);
+            if($val!==false) foreach ($val as $id=>$v) $result[$id] = $v;
+        }
+        return $result;
+    }
+
+    function replaceAssocId( $entity, $values) {
+        $result = [];
+        $assoc = [];
+        foreach ($values as $id=>$value) {
+            if(is_numeric($id) || (!preg_match("/[а-яё]/iu",$id,$matches, PREG_OFFSET_CAPTURE)) ) $result[$id] = $value;
+            else $assoc[$id] = $value;
+        }
+        $assoc = $this->simpleFields($entity, $assoc);
+        foreach ($assoc as $id=>$value) $result[$id] = $value;
+        return $result;
+    }
 
 
 
 }
+
+
+
+
+
+
+
+
+
 
 
