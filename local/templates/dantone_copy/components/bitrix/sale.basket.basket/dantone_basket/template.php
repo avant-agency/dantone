@@ -122,6 +122,7 @@ if (strlen($arResult["ERROR_MESSAGE"]) <= 0)
 					?>
 				
 			</div>
+<div class="attent"><strong>Внимание!</strong> Цвет товара на фотографиях может отличаться от фактического ввиду особенностей цветопередачи, настроек монитора или дисплея.</div>
 			<input type="hidden" name="BasketOrder" value="BasketOrder" />
 			<!-- <input type="hidden" name="ajax_post" id="ajax_post" value="Y"> -->
 		</form>
