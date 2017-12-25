@@ -33,6 +33,7 @@ $arBasketJSParams = array(
 	'DELAY_URL' => $arUrls["delay"],
 	'ADD_URL' => $arUrls["add"]
 );
+$_SESSION["nWindow"] =1;
 ?>
 <script type="text/javascript">
 	var basketJSParams = <?=CUtil::PhpToJSObject($arBasketJSParams);?>
