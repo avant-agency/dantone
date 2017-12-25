@@ -273,15 +273,16 @@ $nWindow = 1;
                               <?=GetMessage('ORDER_PERSONAL_TEXT')?>
                             </div>
                           <div class="form-container">
+
                             <div class="control-group control-group-radio clearfix" id="deliveryTypesBlock">
                               <div class="help-inline help-small"><?=GetMessage('ORDER_DELIVERY_TITLE')?></div>
-								<div><a href="/delivery/">Условия доставки</a></div>
-                              <div class="control">
+
+                              <div class="control"><div><br /></div>
                                 <label class="radio a-radio">
                                     <input checked type="radio" name="DELIVERY_ID" value="2" data-ourdelivery="1" data-selfdelivery="0" data-customdelivery="0" style="position: absolute; left: -9999px;">
                                     <?=GetMessage('ORDER_DELIVERY_TRANSPORT')?> 
                                 </label>
-                  
+                  <div class="dantonedelivery"><a target="_blank" href="/delivery/">Условия доставки</a></div>
                                 <div class="calculate-div control-group" style="display: block;" style="margin-bottom:34px;text-align:left;font-weight: 400;margin-top: 10px;padding-top: 17px;padding-bottom: 20px;border-top: 1px solid #efeeef;border-bottom: 1px solid #efeeef;" id="our_delivery_description">
                                   <div class="calc-div-title">
                                     Стоимость доставки:
