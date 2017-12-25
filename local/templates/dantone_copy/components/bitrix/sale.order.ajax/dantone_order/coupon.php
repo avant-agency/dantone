@@ -24,7 +24,7 @@ foreach ($arCoupons as &$oneCoupon)
 <div><small><a href="javascript:void(0)" onclick="javascript:$('#promo<?=$numWindow?>').toggle()">Введите промокод или номер подарочного сертификата</a></small></div>
 
 	<div style="display:none" id="promo<?=$numWindow?>"><input onchange="enterThisCoupon('promo<?=$numWindow?>')" type="text" name="promo" value="" />
-		<a href="javascript:void(0)" onclick="enterThisCoupon('promo<?=$numWindow?>')">Отправить</a><br />
+		<a href="javascript:void(0)" onclick="enterThisCoupon('<?=$numWindow?>')">Отправить</a><br />
 <?
 
 	/*Добавляем список использованых промокодов*/

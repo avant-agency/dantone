@@ -158,19 +158,24 @@ else:
         <?
     }
 
+global $numWindow;
+$nWindow = $_SESSION["nWindow"];
+if($nWindow == '')
+$nWindow = 1;
+
     ?>
 
     <div class="tabs-container">
 
         <ul class="tabs paneble">
-            <li class="active"><span><span class="number">1</span><?=GetMessage('ORDER_PERSONAL')?></span></li>
-            <li><span><span class="number">2</span><?=GetMessage('ORDER_DELIVERY')?></span></li>
-            <li><span><span class="number">3</span><?=GetMessage('ORDER_PAYMENT')?></span></li>
+            <li <?if($nWindow == 1) echo 'class="active"';?> onclick="SetTab(1)"><span><span class="number">1</span><?=GetMessage('ORDER_PERSONAL')?></span></li>
+            <li <?if($nWindow == 2) echo 'class="active"';?> onclick="SetTab(2)"><span><span class="number">2</span><?=GetMessage('ORDER_DELIVERY')?></span></li>
+            <li <?if($nWindow == 3) echo 'class="active"';?> onclick="SetTab(3)"><span><span class="number">3</span><?=GetMessage('ORDER_PAYMENT')?></span></li>
         </ul>
 
         <div class="panes ">
 
-          <div class="pane active">
+          <div class="pane <?if($nWindow == 1) echo 'active';?>">
             <div class="confirm-form">
               <div class="help-form">
                 <div class="help-form-calculate" id="delivery_description">
@@ -180,7 +185,7 @@ else:
                       <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
                     </span> руб.</span>
 					<?
-						global $numWindow;
+
 						$numWindow = 1;
 						include('coupon.php')?>
 					</div>
@@ -246,7 +251,7 @@ else:
                         </div>
                     </div>
 
-                    <div class="pane">
+                    <div class="pane <?if($nWindow == 2) echo 'active';?>">
 
                         <div class="confirm-form" method="post">
                           <div class="help-form">
@@ -270,7 +275,7 @@ else:
                           <div class="form-container">
                             <div class="control-group control-group-radio clearfix" id="deliveryTypesBlock">
                               <div class="help-inline help-small"><?=GetMessage('ORDER_DELIVERY_TITLE')?></div>
-								<div><a target="_blank" href="/delivery/">Условия доставки</a></div>
+								<div><a href="/delivery/">Условия доставки</a></div>
                               <div class="control">
                                 <label class="radio a-radio">
                                     <input checked type="radio" name="DELIVERY_ID" value="2" data-ourdelivery="1" data-selfdelivery="0" data-customdelivery="0" style="position: absolute; left: -9999px;">
@@ -313,11 +318,10 @@ else:
                                       <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2" value="">
                                       <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2" value="">
                                     </div>
-								<?/*<div class="control" style="margin-right: 0px;padding-right: 90px;">
+                                    <div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <input type="text" name="ORDER_PROP_4" placeholder="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" data-name="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_ZIP"]?>">
                                       <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_KNOWINDEX')?> <a href="http://indexp.ru/" class="nounderline" target="_blank"><?=GetMessage('ORDER_ADDRESS_FINDINDEX')?></a></div>
                                     </div>
-									*/?>
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6">
                                       </textarea>
@@ -361,12 +365,10 @@ else:
                                   <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2" value="" disabled="">
                                   <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2" value="" disabled="">
                                 </div>
-								<?/*
                                 <div class="control">
                                   <input type="text" name="ORDER_PROP_4" placeholder="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" data-name="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_ZIP"]?>" disabled="">
                                   <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_KNOWINDEX')?> <a href="http://indexp.ru/" class="nounderline" target="_blank"><?=GetMessage('ORDER_ADDRESS_FINDINDEX')?></a></div>
                                 </div>
-								*/?>
                                 <div class="control">
                                   <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6" disabled=""></textarea>
                                   <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>
@@ -380,7 +382,7 @@ else:
   </div>
 </div>
 
-<div class="pane last">
+<div class="pane last <?if($nWindow == 3) echo 'active';?>">
 
     <div class="confirm-form" >
         <div class="help-form">
@@ -445,13 +447,13 @@ else:
 </form>
 <script>
 		/*Enter Cupon*/
-	function enterThisCoupon(coupon) //Добавление купона на скидку
+	function enterThisCoupon(numw) //Добавление купона на скидку
 		{
-			var newCoupon = $('#'+coupon).find("input");
+			var newCoupon = $('#promo'+numw).find("input");
 			var zn = newCoupon.val();
 			$.ajax({
 				url: '/ajax/setCoupon.php',
-				data: {'coupon' : zn},
+				data: {'coupon' : zn,'numWindow':numw},
 				type: "post",
 				success: function(response) {
 				console.log(response);
@@ -459,6 +461,18 @@ else:
 				}
 			})
 		}
+
+		function SetTab(numw) //Добавление купона на скидку
+		{
+			$.ajax({
+				url: '/ajax/setTabNum.php',
+				data: {'numWindow':numw},
+				type: "post",
+				success: function(response) {
+				}
+			})
+		}
+
     	$(function() { 
 			$('.good').click(function(){ //Деактивация действующего купона на скидку
 			var coupon = $(this).attr('data-coupon');
