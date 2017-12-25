@@ -12,13 +12,21 @@ html {
 .phone-mobile {
     display: none;
 }
+body .wardrobe-sliderOne .owl-dots {
+bottom: 40px;
+}
 
 @media screen and (max-width:500px) {
+body .wardrobe-sliderOne .owl-dots {
+bottom: 20px;
+}
     .zoomContainer {
         display: none;
     }
 }
-
+.wardrobe-sliderOne img{
+min-height: 1px !important;
+}
 body {
     margin: 0;
     position: relative;
@@ -2314,6 +2322,7 @@ ____________________________________________*/
 
 #content {
     text-align: center;
+padding-top: 10px;
 }
 
 .promo {
