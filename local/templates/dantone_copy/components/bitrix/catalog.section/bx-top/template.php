@@ -28,7 +28,7 @@ $this->setFrameMode(true);
                         <div class="title"><?= $arItem["NAME"] ?></div>
 
                         <div class="price">
-                               <span class='value'><?=$arItem["PROPERTIES"]["MINIMUM_PRICE"]["VALUE"]?></span>
+                               <span class='value'><?=round($arItem["PROPERTIES"]["MINIMUM_PRICE"]["VALUE"])?> руб.</span>
 								<? if ('Y' == $arParams['SHOW_OLD_PRICE'] && $minPrice['DISCOUNT_VALUE'] < $minPrice['VALUE']) :?>
                                		<span class="price-old">
 								 		<span class='value'><?= $minPrice['PRINT_VALUE'] ?></span>
@@ -49,13 +49,3 @@ $this->setFrameMode(true);
         <? endforeach; ?>
     </ul>
 <? } ?>
-
-<?
-global $USER;
-if($USER->IsAdmin())
-{
-	echo "<pre>";
-	print_r($arResult["ITEMS"][0]["PROPERTIES"]["MINIMUM_PRICE"]["VALUE"]);
-	echo "</pre>";
-}
-?>
