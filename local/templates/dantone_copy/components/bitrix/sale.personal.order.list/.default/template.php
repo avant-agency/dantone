@@ -33,6 +33,7 @@
             </div>
 
         <?foreach($arResult["ORDERS"] as $key => $arOrder):?>
+
             <div class="table-item">
                 <div class="drodown-icon">
                     <div class="dd-icon"></div>
@@ -44,8 +45,11 @@
                     <?if($arResult["INFO"]["STATUS"][$arOrder["ORDER"]["STATUS_ID"]]['NAME'] == "Placed"):?>
                         Placed
                     <?else:?>
+					<?if($arOrder['PAYMENT'][0]['PAY_SYSTEM_ID'] == 3){?>
                         <a href="<?=$arOrder['PAYMENT'][0]['PSA_ACTION_FILE']?>" class="solve-btn">Оплатить</a>
+					<?}else echo $arOrder['PAYMENT'][0]['PAY_SYSTEM_NAME']; ?>
                     <?endif?>
+
                 </div>
 
                 <div class="dd-list">
