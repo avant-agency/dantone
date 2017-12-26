@@ -7,19 +7,19 @@
             <div class="checkboxes-dantone height_70_100">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["height_70_100"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">70 - 100</span>
+                    <span class="checkbox-title">70 - 100см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone height_100_150">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["height_100_150"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">100 - 150</span>
+                    <span class="checkbox-title">100 - 150см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone height_150_170">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["height_150_170"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">150 - 170</span>
+                    <span class="checkbox-title">150 - 170см</span>
                 </label>
             </div>
         </div>

@@ -7,19 +7,19 @@
             <div class="checkboxes-dantone diameter_10_40">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["diameter_10_40"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">10 - 40</span>
+                    <span class="checkbox-title">10 - 40см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone diameter_40_80">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["diameter_40_80"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">40 - 80</span>
+                    <span class="checkbox-title">40 - 80см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone diameter_80_90">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["diameter_80_90"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">80 - 90</span>
+                    <span class="checkbox-title">80 - 90см</span>
                 </label>
             </div>
         </div>
@@ -30,19 +30,19 @@
             <div class="checkboxes-dantone height_20_80">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["height_20_80"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">20 - 80</span>
+                    <span class="checkbox-title">20 - 80см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone height_80_120">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["height_80_120"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">80 - 120</span>
+                    <span class="checkbox-title">80 - 120см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone height_120_150">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["height_120_150"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">120 - 150</span>
+                    <span class="checkbox-title">120 - 150см</span>
                 </label>
             </div>
         </div>

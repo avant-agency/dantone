@@ -7,19 +7,19 @@
             <div class="checkboxes-dantone size_40_60">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_40_60"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">40 - 60</span>
+                    <span class="checkbox-title">40 - 60см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone size_60_80">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_60_80"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">60 - 80</span>
+                    <span class="checkbox-title">60 - 80см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone size_80_110">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_80_110"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">80 - 110</span>
+                    <span class="checkbox-title">80 - 110см</span>
                 </label>
             </div>
         </div>
