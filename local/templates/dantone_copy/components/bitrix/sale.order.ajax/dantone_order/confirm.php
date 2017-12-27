@@ -22,17 +22,34 @@ if($arProps['WANT_SUBSCRIBE']['VALUE']=='Y'){
  * @var array $arResult
  * @var $APPLICATION CMain
  */
-global $USER;
-if($USER->IsAdmin())
-{
-	/*$res = CSaleBasket::GetList(array(), array("ORDER_ID" => $arResult['ID']));
+    global $USER;
+    $res = CSaleBasket::GetList(array(), array("ORDER_ID" => $arResult["ORDER"]["ID"]));
 
-	while ($arItem = $res->Fetch()) {
-		$arResult["BASKET_ITEMS"][] = $arItem;
-	}
+    $basket = "";
 
-*/
-}
+    while ($arItem = $res->Fetch())
+        $arResult["BASKET_ITEMS"][] = $arItem;
+
+    include $_SERVER["DOCUMENT_ROOT"] . "/amo-crm/amo.php";
+
+    $rand = rand(100,999);
+
+    $basket = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/amo-crm/arOrder.txt"), true);
+
+    $resamo = Amo_DoOrder(
+        $arProps["NAME"]["VALUE"], 
+        $arProps["LAST_NAME"]["VALUE"], 
+        $arProps["EMAIL"]["VALUE"].$rand,
+        $arProps["PHONE"]["VALUE"].$rand, 
+        $arProps["CITY"]["VALUE"], 
+        $arProps["STREET"]["VALUE"], 
+        $arProps["HOUSE"]["VALUE"],
+        'section',
+        $arProps["APARTMENT"]["VALUE"], 
+        "index_empty", 
+        $arResult, 
+        $arProps["ADDRESS_COMMENT"]["VALUE"]
+    );
 
 if ($arParams["SET_TITLE"] == "Y")
     $APPLICATION->SetTitle(Loc::getMessage("SOA_ORDER_COMPLETE"));
@@ -412,12 +429,12 @@ window.criteo_q.push(
 );
 
 dataLayer.push({
-	'event': 'productsPurchase',
-	'google_tag_params': {
-		'ecomm_prodid': [<? echo $js_array; ?>],
-		'ecomm_pagetype': 'purchase',
-		'ecomm_totalvalue': '<?=$arResult["ORDER"]["PRICE"]?>';
-	}
+    'event': 'productsPurchase',
+    'google_tag_params': {
+        'ecomm_prodid': [<? echo $js_array; ?>],
+        'ecomm_pagetype': 'purchase',
+        'ecomm_totalvalue': '<?=$arResult["ORDER"]["PRICE"]?>';
+    }
 });
 </script> 
 
