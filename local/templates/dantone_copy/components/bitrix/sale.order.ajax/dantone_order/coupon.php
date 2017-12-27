@@ -5,17 +5,21 @@ global $USER;
 //{
 global $numWindow;
  ?>
+
 <?
+if($arResult["DISCOUNT_PRICE_FORMATED"] != '')
+	echo "<div>Ваша скидка ".$arResult["DISCOUNT_PRICE_FORMATED"]."</div>";
+
 $arCoupons = Bitrix\Sale\DiscountCouponsManager::get(true, array(), true, true);
 foreach ($arCoupons as &$oneCoupon)
 {
 	if($oneCoupon['STATUS_TEXT'] == 'применен'){
 		$dId = $oneCoupon["DISCOUNT_ID"];
 		$arrDiscount = CCatalogDiscount::GetByID($dId);
-		echo "<div>Ваша скидка ";
-		echo intVal($arrDiscount["VALUE"]);
-		if($arrDiscount["VALUE_TYPE"] == "P") echo " %"; else echo " руб.";
-		echo "</div>";
+		//echo "<div>Ваша скидка ";
+		//echo intVal($arrDiscount["VALUE"]);
+		//if($arrDiscount["VALUE_TYPE"] == "P") echo " %"; else echo " руб.";
+		//echo "</div>";
 		//	$dName = $oneCoupon["DISCOUNT_NAME"];
 	}
 }
