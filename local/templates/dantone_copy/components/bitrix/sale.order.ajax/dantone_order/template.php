@@ -113,9 +113,8 @@ switch (LANGUAGE_ID)
 
 
 ?>
-<?
-$totalPrice = str_replace($arResult["ORDER_TOTAL_PRICE_FORMATED"]," руб.","");
 
+<?
 $context = Bitrix\Main\Application::getInstance()->getContext();
 if (strlen($context->getRequest()->get('ORDER_ID')) > 0):
     include($context->getServer()->getDocumentRoot().$templateFolder."/confirm.php");
@@ -178,7 +177,7 @@ else:
                   <div class="hfc-info" style="color: #111e35;font-size: 14px;margin-bottom: 16px;">
                     К оплате: <span class="hfc-price" style="font-size: 16px;font-weight: 700;">  
                     <span class="hfc-price-value" style="font-size:36px;">
-                      <?=substr_replace(substr_replace($totalPrice, " ", -3, 0), " ", -7,0)?> 
+                      <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
                     </span> руб.</span>
 					<?
 						global $numWindow;
@@ -255,7 +254,7 @@ else:
                                 <div class="hfc-info" style="color: #111e35;font-size: 14px;margin-bottom: 16px;">
                                 К оплате: <span class="hfc-price" style="font-size: 16px;font-weight: 700;">  
                                     <span class="hfc-price-value" style="font-size:36px;">
-                                        <?=substr_replace(substr_replace($totalPrice, " ", -3, 0), " ", -7,0)?> 
+                                        <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
                                     </span> руб.</span>
 								<?
 									$numWindow = 2;
@@ -389,7 +388,7 @@ else:
                   <div class="hfc-info" style="color: #111e35;font-size: 14px;margin-bottom: 16px;">
                     К оплате: <span class="hfc-price" style="font-size: 16px;font-weight: 700;">  
                     <span class="hfc-price-value" style="font-size:36px;">
-                      <?=substr_replace(substr_replace($totalPrice, " ", -3, 0), " ", -7,0)?> 
+                      <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
                     </span> руб.</span>
 					<?
 					$numWindow = 3;
@@ -446,6 +445,18 @@ else:
 </form>
 <script>
 		/*Enter Cupon*/
+function addSpaces(nStr){
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+	}
+	return x1 + x2;
+}
+
 	function enterThisCoupon(coupon) //Добавление купона на скидку
 		{
 			var newCoupon = $('#'+coupon).find("input");
@@ -539,7 +550,8 @@ else:
 
         $("#bx-soa-order-form .pane.last .control:first label").click();
 
-			var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" руб.","").replace(" ","");
+			// var order_price = "<?=$arResult['ORDER_TOTAL_PRICE']?>";
+var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" руб.","");
 
         setInterval(function(){
             $("#ORDER_PROP_5").val($("#LOCATION_val").val());
@@ -563,19 +575,22 @@ else:
             }
             else
             {
+				var summop = parseFloat(order_price.replace(/\s/g, '')) + parseFloat($("#our_delivery_description .cdc-itog").text().trim());
+
                 switch($("#deliveryTypesBlock .control input[name='DELIVERY_ID']:checked").val())
                 {
                     case "2": // Доставка Дантона
                         // get delivery price
-                        $(".hfc-price-value").text((parseFloat(order_price) + parseFloat($("#our_delivery_description .cdc-itog").text().trim())) + " ");
-                        $(".hfc-warning").text("Цена доставки: " + $("#our_delivery_description .cdc-itog").text().trim() + "р.");
+						// $(".hfc-price-value").text((parseFloat(op) + parseFloat($("#our_delivery_description .cdc-itog").text().trim())) + " ");
+ 						$(".hfc-price-value").text(addSpaces(summop) + " ");
+                      $(".hfc-warning").text("Цена доставки: " + $("#our_delivery_description .cdc-itog").text().trim() + "р.");
                     break;
                     case "3": // Самовывоз
-                        $(".hfc-price-value").text(order_price + " ");
+                        $(".hfc-price-value").text(addSpaces(order_price) + " ");
                         $(".hfc-warning").text("Сумма указана без учета доставки");
                     break; 
                     case "16": // Доставка ТК
-                        $(".hfc-price-value").text(order_price + " ");
+                        $(".hfc-price-value").text(addSpaces(order_price) + " ");
                         $(".hfc-warning").text("Сумма указана без учета доставки");
                     break;
 
