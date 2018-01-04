@@ -1,5 +1,25 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
+global $APPLICATION;
+$dir = $APPLICATION->GetCurDir();
+$exp = explode("/",$dir);
+
+foreach($exp as $k => $v)
+{
+	$_REQUEST["filter"][$v] = "Y";
+
+	if(strpos($v,"price_under_") ===0 ){
+		$priceFrom = intVal(str_replace("price_under_","",$v));
+	}else if(strpos($v,"price_over_") ===0 ){
+		$priceTo = intVal(str_replace("price_over_","",$v));
+	}else  if(strpos($v,"price_") ===0 ){
+		$priceExp = explode("_",str_replace("price_","",$v));
+		$priceFrom = $priceExp[0];
+		$priceTo = $priceExp[1];
+	}
+
+}
+
 $scode = $arResult["VARIABLES"]["SECTION_CODE"];
 $ids = Array();
 $arSelect = Array("ID", "NAME", "IBLOCK_ID", "IBLOCK_SECTION_ID", "CATALOG_AVAILABLE");
@@ -191,30 +211,24 @@ while($ob = $res->GetNextElement())
 		}
 	}
 
-	/*?>
-<pre><?print_r($filter)?></pre>
-<?*/
+
 	$result_flag = false;
-    $inpoisk = false;
+	$inpoisk = false; //ФЛАГ НАЛИЧИЯ НЕСКОЛЬКИХ ПАРАМЕТРОВ ПОИСКА
 	//если в предыдущих условиях было хоть 1 совпадение ставим 1
 
-foreach($filter as $k => $v)
-{
-	if(!in_array($k, array("app_writing","app_dinner","app_console","app_magazine","available_30_days", "available","sofa_folding_mechanism_yes","sofa_folding_mechanism_no","table_folding_mechanism")))
-   {
-	  $inpoisk=true;
-   }
-}
-
-
-
+		foreach($filter as $k => $v)
+		{
+			if(!in_array($k, array("app_writing","app_dinner","app_console","app_magazine","available_30_days", "available","sofa_folding_mechanism_yes","sofa_folding_mechanism_no","table_folding_mechanism")))
+		   {
+			  $inpoisk=true;
+		   }
+		}
 
 
 		foreach($filter as $k => $v)
 		{
 			if($v && !in_array($k, array("app_writing","app_dinner","app_console","app_magazine","table_folding_mechanism","sofa_folding_mechanism_yes","sofa_folding_mechanism_no","available_30_days", "available","price_under_20", "price_under_30", "price_under_75", "price_under_100", "price_20_40", "price_30_50", "price_75_125", "price_100_150", "price_over_40", "price_over_50", "price_over_125", "price_over_150")))
 			{
-				//echo $v."[".$k."] = true <br />";
 				$result_flag = true; 
 				break;
 			}
@@ -222,9 +236,6 @@ foreach($filter as $k => $v)
 				$result_flag = false;
 			}
 		}
-
-
-	//echo "2result_flag = ".$result_flag."<br />";
 
 
 	if($result_flag || !$inpoisk)
@@ -235,39 +246,16 @@ foreach($filter as $k => $v)
 		}else if($_REQUEST["filter"]["app_console"] == "Y" || $_REQUEST["filter"]["app_dinner"] == "Y" || $_REQUEST["filter"]["app_writing"] == "Y" || $_REQUEST["filter"]["app_magazine"] == "Y")
 		{ $result_flag = false; $inpoisk= true;}
 	}
-	//echo "typtable = ".$result_flag."<br />";
 
-	// проверка на наличие
-	if(($result_flag || !$inpoisk) && $_REQUEST["filter"]["available"] == "Y")
+
+	if($result_flag || !$inpoisk)
 	{
-		if($filter["available"] == true)
+		if(($_REQUEST["filter"]["available"] == "Y" && $filter["available"]) || ($_REQUEST["filter"]["available_30_days"] == "Y" && $filter["available_30_days"]))
 		{
-			$result_flag = true;
-		}
-		else
-			$result_flag = false;
-
-		$inpoisk= true;
-
+			$result_flag = true;  $inpoisk= true;
+		}else if($_REQUEST["filter"]["available"] == "Y" || $_REQUEST["filter"]["available_30_days"] == "Y")
+		{ $result_flag = false; $inpoisk= true;}
 	}
-
-
-
-	// проверка на наличие в 30 дней
-	if(($result_flag || !$inpoisk) && $_REQUEST["filter"]["available_30_days"] == "Y")
-	{
-		if($filter["available_30_days"] == true)
-		{
-			$result_flag = true;
-		}
-		else
-			$result_flag = false;
-		$inpoisk=true;
-	}
-
-
-
-
 
 
 	// проверка на раскладной механизм столов
@@ -283,39 +271,14 @@ foreach($filter as $k => $v)
 		unset($filter["table_folding_mechanism"]);
 	}
 
-	// проверка на раскладной механизм
-	if(($result_flag || !$inpoisk) && $_REQUEST["filter"]["sofa_folding_mechanism_yes"] == "Y")
+	if($result_flag || !$inpoisk)
 	{
-		if($folding_mechanism == "YES")
+		if(($_REQUEST["filter"]["sofa_folding_mechanism_yes"] == "Y" && $folding_mechanism == "YES") || ($_REQUEST["filter"]["sofa_folding_mechanism_no"] == "Y" && $folding_mechanism == "NO"))
 		{
-			$result_flag = true; 
-		}
-		else
-			$result_flag = false;
-
-		$inpoisk = true;
-
-		unset($filter["sofa_folding_mechanism_yes"]);
+			$result_flag = true;  $inpoisk= true;
+		}else if($_REQUEST["filter"]["sofa_folding_mechanism_yes"] == "Y" || $_REQUEST["filter"]["sofa_folding_mechanism_no"] == "Y")
+		{ $result_flag = false; $inpoisk= true;}
 	}
-
-
-
-	// проверка на раскладной механизм
-	if(($result_flag || !$inpoisk) && $_REQUEST["filter"]["sofa_folding_mechanism_no"] == "Y")
-	{
-		if($folding_mechanism == "NO")
-		{
-			$result_flag = true; 
-		}
-		else
-			$result_flag = false;
-
-		$inpoisk = true;
-
-		unset($filter["sofa_folding_mechanism_no"]);
-	}
-
-
 
 
 //Дальше проверяем стоимость и наличие
@@ -350,14 +313,9 @@ foreach($filter as $k => $v)
 		$inpoisk = true;
 	}
 
-	//	echo "Price_resultflag = ".$result_flag." inpoisk = ".$inpoisk."<br />";
 
-
-
-
-	//if($result_flag)
+	//		if($result_flag)
 	//	echo $arFields["ID"]." ".$arFields["NAME"]." INSTOCK - (".$arProps["INSTOCK"]["VALUE"].") AVAILABLE - (".$arProps["available_30_days"]["VALUE"].") ".$width."x".$height." maxprice=".$max_price." (раскладной-".$arProps["FOLDING_MECHANISM"]["VALUE"].")<br />";
-
 
 	if($result_flag) $ids[] = $arFields["ID"];
 }

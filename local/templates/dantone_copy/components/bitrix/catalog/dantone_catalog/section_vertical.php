@@ -12,8 +12,32 @@ $intSectionID = 0;
 
 global $arrFilter;
 
-$priceFrom = (isset($_REQUEST["priceFrom"]) && !empty($_REQUEST["priceFrom"])) ? intVal(trim($_REQUEST["priceFrom"])) : 0;
-$priceTo = (isset($_REQUEST["priceTo"]) && !empty($_REQUEST["priceTo"])) ? intVal(trim($_REQUEST["priceTo"])) : 1000000000;
+global $APPLICATION;
+$dir = $APPLICATION->GetCurDir();
+
+$exp = explode("/",$dir);
+
+//G.K.
+
+/*
+foreach($exp as $k => $v)
+{
+$url.="filter[".$v."]=Y&";
+	if(strpos($v,"price_under_") ===0 ){
+		$priceFrom = intVal(str_replace("price_under_","",$v));
+	}else if(strpos($v,"price_over_") ===0 ){
+		$priceTo = intVal(str_replace("price_over_","",$v));
+	}else  if(strpos($v,"price_") ===0 ){
+		$priceExp = explode("_",str_replace("price_","",$v));
+		$priceFrom = $priceExp[0];
+		$priceTo = $priceExp[1];
+	}
+
+}
+
+
+//$priceFrom = (isset($_REQUEST["priceFrom"]) && !empty($_REQUEST["priceFrom"])) ? intVal(trim($_REQUEST["priceFrom"])) : 0;
+//$priceTo = (isset($_REQUEST["priceTo"]) && !empty($_REQUEST["priceTo"])) ? intVal(trim($_REQUEST["priceTo"])) : 1000000000;
 
 if(!is_null($priceFrom) || !is_null($priceTo)) {
     $arrFilter = Array(
@@ -43,16 +67,50 @@ if(isset($_REQUEST['filter']["sortField"])) {
         $arParams["ELEMENT_SORT_ORDER"] = "DESC";
         break;   
     }
-}
+}*/
+
+
+
+$arResult["VARIABLES"]["SECTION_CODE_PATH"] = '/';
+	//вытаскиваем раздел по урл
+	foreach($exp as $k => $v)
+	{
+		if($v == 'filter')
+			break;
+		else {
+			if($v != '')
+			{
+				$arResult["VARIABLES"]["SECTION_CODE"] = $v; 
+				$arResult["VARIABLES"]["SECTION_CODE_PATH"] .= $v."/";
+			}
+		}
+	}
+
+
+global $variables;
+$variables = $arResult["VARIABLES"];
+
 global $USER;
-if(isset($_REQUEST["filter"]) && $USER->IsAdmin()) {
-	include "dantone_filter.php";
+if(in_array("filter",$exp) && $USER->IsAdmin()) {  
+
+	include "dantone_filter.php"; 
 	//${$arParams["FILTER_NAME"]}["CATALOG_AVAILABLE"] = "N";
 	if(count($_SESSION["filter"]["ids"]) > 0)
 	{
 		${$arParams["FILTER_NAME"]}["ID"] = $_SESSION["filter"]["ids"];
-	}
+	}else $arrFilter["ID"]=0;
 }
+?>
+
+
+<?
+if(isset($_REQUEST["sortField"]))
+{
+	$_SESSION["sortField"] = $_REQUEST["sortField"];
+}
+
+if(isset($_SESSION["sortField"]))
+	$arParams["ELEMENT_SORT_FIELD"] = $_SESSION["sortField"];
 ?>
 <div class="clearfix">
     <?$intSectionID = $APPLICATION->IncludeComponent(
