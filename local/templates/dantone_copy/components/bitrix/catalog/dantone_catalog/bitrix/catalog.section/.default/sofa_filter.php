@@ -1,7 +1,7 @@
 <?
 global $USER;
-if($USER->isAdmin())
-{
+//if($USER->isAdmin())
+//{
 
 function smartFilterPath(){
 
@@ -122,7 +122,7 @@ $(function(){
 });
 </script>
 <?
-}
+	//}
 ?>
 <div class="catalog-filters-form" id="dantone_filter_box">
     <div class="catalog-filters-new">

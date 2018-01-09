@@ -1,4 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+$this->setFrameMode(true);?>
+
+<?
 
 use Bitrix\Main\Loader,
 Bitrix\Main\ModuleManager;
@@ -91,7 +94,7 @@ global $variables;
 $variables = $arResult["VARIABLES"];
 
 global $USER;
-if(in_array("filter",$exp) && $USER->IsAdmin()) {  
+if(in_array("filter",$exp)) {  // && $USER->IsAdmin()
 
 	include "dantone_filter.php"; 
 	//${$arParams["FILTER_NAME"]}["CATALOG_AVAILABLE"] = "N";
@@ -223,7 +226,7 @@ unset($basketAction);
 
 
 <aside role="complementary" class="catalog-nav-container">
-<!--<?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sidebar_menu", Array(
+	<?/*$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sidebar_menu", Array(
 "VIEW_MODE" => "TEXT",  // Вид списка подразделов
 "SHOW_PARENT_NAME" => "Y",  // Показывать название раздела
 "IBLOCK_TYPE" => "",    // Тип инфоблока
@@ -243,7 +246,7 @@ unset($basketAction);
 "CACHE_GROUPS" => "Y",  // Учитывать права доступа
 ),
 false
-);?>-->
+);*/?>
 
 
 <?$APPLICATION->IncludeComponent("bitrix:menu", "sections_menu", Array(
@@ -262,7 +265,10 @@ false
 );?>
 
 <div class="filter">
-
+<?
+$code=$arResult["VARIABLES"]["SECTION_CODE"];
+$url = "/catalog/".$code."/filter/price_"."10_50"."/apply/";
+?>
     <form method="get" id="priceForm">
         <h4><?=GetMessage('SECTION_PRICE')?></h4>
 
@@ -399,4 +405,3 @@ false
         ),
     false
     );?>
-

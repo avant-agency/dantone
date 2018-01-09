@@ -113,8 +113,8 @@ if ($arP = $arDB->Fetch())
 
 <?
 global $USER;  
-if($USER->IsAdmin())
-{
+//if($USER->IsAdmin())
+//{
 
 	if( $arParams["SECTION_CODE"] == 'sofas') 
 	{
@@ -149,7 +149,7 @@ if($USER->IsAdmin())
 				include "sort.php";
 		?></div><?
 	}
-}
+	//}
 ?>
 
 
