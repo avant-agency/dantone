@@ -270,14 +270,28 @@ else:
                           <div class="form-container">
                             <div class="control-group control-group-radio clearfix" id="deliveryTypesBlock">
                               <div class="help-inline help-small"><?=GetMessage('ORDER_DELIVERY_TITLE')?></div>
-								<div><a target="_blank" href="/delivery/">Условия доставки</a></div>
+								<br />
+
+
                               <div class="control">
                                 <label class="radio a-radio">
                                     <input checked type="radio" name="DELIVERY_ID" value="2" data-ourdelivery="1" data-selfdelivery="0" data-customdelivery="0" style="position: absolute; left: -9999px;">
                                     <?=GetMessage('ORDER_DELIVERY_TRANSPORT')?> 
                                 </label>
                   
-                                <div class="calculate-div control-group" style="display: block;" style="margin-bottom:34px;text-align:left;font-weight: 400;margin-top: 10px;padding-top: 17px;padding-bottom: 20px;border-top: 1px solid #efeeef;border-bottom: 1px solid #efeeef;" id="our_delivery_description">
+<div class="help-inline"><a class="conditions" target="_blank" href="/delivery/">Условия доставки</a></div>
+                              </div>
+
+ 								<div class="control">
+                                  <label class="radio a-radio">
+                                      <input type="radio" name="DELIVERY_ID" value="16" data-ourdelivery="0" data-selfdelivery="0" data-customdelivery="1" style="position: absolute; left: -9999px;">
+                                      <?=GetMessage('ORDER_DELIVERY_OTHER')?>
+                                  </label>
+
+                              </div>
+
+                            <div class="control-group" id="addressBlock2" style="display: none;">
+<div class="calculate-div control-group" style="display: block;" style="margin-bottom:34px;text-align:left;font-weight: 400;margin-top: 10px;padding-top: 17px;padding-bottom: 20px;border-top: 1px solid #efeeef;border-bottom: 1px solid #efeeef;" id="our_delivery_description">
                                   <div class="calc-div-title">
                                     Стоимость доставки:
                                   </div>
@@ -296,10 +310,7 @@ else:
                                       2000 руб + 50 руб * <input type="text" value="0" class="cdc-input" pattern="/[0-9]/"> км =  <span class="cdc-itog"> 2000</span> руб.
                                     </div>
                                   </div>
-                                </div>
-                                
-                              </div>
-                            <div class="control-group" id="addressBlock2" style="display: none;">
+                                </div>                       
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_CITY')?>" name="ORDER_PROP_13" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_CITY')?>*" class="city-input input-text" value="" value="<?=$arResult["USER"]["PERSONAL_CITY"]?>">
                                       <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_CITY_COMMENT')?></div>
@@ -332,12 +343,14 @@ else:
                                         </label>
                                     </div>
                                 <?endif;?>
+<!--
                               <div class="control">
                                   <label class="radio a-radio">
                                       <input type="radio" name="DELIVERY_ID" value="16" data-ourdelivery="0" data-selfdelivery="0" data-customdelivery="1" style="position: absolute; left: -9999px;">
                                       <?=GetMessage('ORDER_DELIVERY_OTHER')?>
                                   </label>
                               </div>
+-->
                               <div class="control" id="customDeliveryBlock" style="display: none;">
                                 <input type="text" name="ORDER_PROP_11" class="input-text" style="width: 280px;" value="" placeholder="<?=GetMessage('ORDER_DELIVERY_INPUT')?>" name="customDelivery">
                               </div>
