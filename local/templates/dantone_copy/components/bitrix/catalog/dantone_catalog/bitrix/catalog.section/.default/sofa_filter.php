@@ -133,19 +133,19 @@ $(function(){
             <div class="checkboxes-dantone size_160_220">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_160_220"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">160 - 220см</span>
+                    <span class="checkbox-title">160 - 220 см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone size_220_280">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_220_280"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">220 - 280см</span>
+                    <span class="checkbox-title">220 - 280 см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone size_280_320">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_280_320"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">280 - 320см</span>
+                    <span class="checkbox-title">280 - 320 см</span>
                 </label>
             </div>
         </div>

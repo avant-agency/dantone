@@ -13,19 +13,19 @@ global $variables;
             <div class="checkboxes-dantone height_70_100">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["height_70_100"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">70 - 100см</span>
+                    <span class="checkbox-title">70 - 100 см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone height_100_150">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["height_100_150"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">100 - 150см</span>
+                    <span class="checkbox-title">100 - 150 см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone height_150_170">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["height_150_170"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">150 - 170см</span>
+                    <span class="checkbox-title">150 - 170 см</span>
                 </label>
             </div>
         </div>
