@@ -113,9 +113,11 @@ if (!$bError)
 	// success
 	if (intval($arAnswer["errorCode"]) <= 0 && strlen($arAnswer["formUrl"]) > 0)
 	{
+
 		echo '<div>';
-		echo '<a href="'.$arAnswer["formUrl"].'">'.GetMessage("ALBK_BUTN_PAY").'</a>';
+		echo '<a id="oplatit" href="'.$arAnswer["formUrl"].'">'.GetMessage("ALBK_BUTN_PAY").'</a>';
 		echo '</div>';
+		echo '<script>$("#oplatit").click();</script>';
 	}
 	else
 	{
