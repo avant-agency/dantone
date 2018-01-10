@@ -92,7 +92,7 @@
                             </div>
 
                             <div class="price dd-list-item"><?=$v['QUANTITY']?> <?=$v['MEASURE_NAME']?>.</div>
-                            <div class="count dd-list-item"><?=$v['PRICE']?> руб.</div>
+                            <div class="count dd-list-item"><? echo number_format(round($v['PRICE']), 0, '', ' ');?> руб.</div>
                         </div>
                     <?endforeach;?>
                 </div>
