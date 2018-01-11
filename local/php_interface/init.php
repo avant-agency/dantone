@@ -405,6 +405,19 @@ function OnBeforeEventAddHandler(&$event, &$lid, &$arFields)
         }
 
         $arFields["TOTAL_PRICE"] = $arOrder["PRICE"];
+
+        $wd = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/local/mail_upgrade/mails_weekdays.txt");
+        $we = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/local/mail_upgrade/mails_weekends.txt");
+
+        if(date('w', strtotime(date("d.m.Y"))) % 6 == 0)
+        {
+            $arFields["TO"] = $we;
+        }
+        else
+        {
+            $arFields["TO"] = $wd;
+        }
+        
     }
 }
 
