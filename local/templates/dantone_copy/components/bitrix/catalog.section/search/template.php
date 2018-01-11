@@ -34,7 +34,7 @@ $this->setFrameMode(true);
 <div class="clearfix">
 	
 	<div class="catalog-main-container" >
-		
+
 
 		
 		
@@ -43,7 +43,8 @@ $this->setFrameMode(true);
 			<?foreach($arResult["ITEMS"] as $arItem):?> 
 			
 			<li>
-				
+
+
 				<div class="photo">
 					<a href="<?=$arItem["DETAIL_PAGE_URL"]?>" title="Посмотреть детали" id="productLink-1<?=$arItem["ID"]?>">
 						<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="">
@@ -64,30 +65,36 @@ $this->setFrameMode(true);
 						<a href="<?=$arItem["DETAIL_PAGE_URL"]?>" id="productLink-2<?=$arItem["ID"]?>" title="<?=GetMessage('CATALOG_SECTION_SEE')?>"><?=$arItem["NAME"]?></a>
 					</div>
 					
-					
+
 					<?$minPrice = false;
-					if (isset($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE']))
-						$minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);?>
+					if (is_array($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE']))
+						$minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);
+					else{
+					
+						$price = intVal($arItem["PRICE_MATRIX"]["MATRIX"][1]["ZERO-INF"]["PRICE"]);
+						$minPrice['PRINT_VALUE'] =  $minPrice['PRINT_DISCOUNT_VALUE'] = number_format($price, 0, '', ' ')." руб.";
+					}
+?>
+
 					<div class="price">
 						
-						<?if (!empty($minPrice))
-						{
-							
-							?><span class='value'><?if($arItem["PROPERTIES"]["PRICE_FROM"]["VALUE"] == "Y"):?>
-							<?=GetMessage('CATALOG_SECTION_FROM')?>   
-							<?endif;?><?=$minPrice['PRINT_DISCOUNT_VALUE']?></span><?
-							
-							if ('Y' == $arParams['SHOW_OLD_PRICE'] && $minPrice['DISCOUNT_VALUE'] < $minPrice['VALUE'])
-							{
-								?>
-								<span class="price-old"> 
-									<span class='value'><?=$minPrice['PRINT_VALUE']?></span>
-								</span> 
-								<?
-							}
+						<?if (!empty($minPrice)) {
+
+
+						?><span class='value'><? if ($arItem["PROPERTIES"]["PRICE_FROM"]["VALUE"] == "Y"): ?>
+							От
+						<? endif; ?><?= $minPrice['PRINT_DISCOUNT_VALUE'] ?></span><?
+	
+						if ('Y' == $arParams['SHOW_OLD_PRICE'] && $minPrice['DISCOUNT_VALUE'] < $minPrice['VALUE']) {
+							?>
+							<span class="price-old">
+						 <span class='value'><?= $minPrice['PRINT_VALUE'] ?></span>
+						</span>
+						<?
 						}
-						unset($minPrice);
-						?>
+					}
+					unset($minPrice);
+				?>
 						
 					</div>
 				</div>
