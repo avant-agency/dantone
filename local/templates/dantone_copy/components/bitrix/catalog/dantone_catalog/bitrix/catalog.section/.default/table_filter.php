@@ -1,4 +1,10 @@
-<form class="catalog-filters-form" id="dantone_filter_box">
+<?
+global $variables;
+
+	$SECTION_CODE_PATH = $variables["SECTION_CODE_PATH"];
+?>
+
+<div class="catalog-filters-form" id="dantone_filter_box">
     <div class="catalog-filters-new">
         <div class="cfn-block">
             <div class="cfn-title">
@@ -7,19 +13,19 @@
             <div class="checkboxes-dantone width_40_100">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["width_40_100"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">40 - 100</span>
+                    <span class="checkbox-title">40 - 100 см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone width_100_200">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["width_100_200"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">100 - 200</span>
+                    <span class="checkbox-title">100 - 200 см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone width_200_300">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["width_200_300"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">200 - 300</span>
+                    <span class="checkbox-title">200 - 300 см</span>
                 </label>
             </div>
         </div>
@@ -92,14 +98,15 @@
                     </div>
                 </div>
                 <div class="cfn-sort-container sofas">
-                    <div class="fright sort-container">
+					<?include "sort.php";?>
+                    <!--div class="fright sort-container">
                         <select id="sort" style="position: absolute; left: -9999px;">
                             <option value="">Сортировать по</option>
                             <option value="hit">По популярности</option>
                             <option value="price">По цене</option>
                             <option value="discount">Со скидкой</option>
                         </select>
-                    </div>
+                    </div-->
                     <button class="sfn-btn">Сбросить</button>
 
                 </div>
@@ -122,33 +129,23 @@
         </div>
     </div>
     <div class="cfn-sort-container mobile">
-        <div class="fright sort-container">
+		<?include "sort.php";?>
+        <!--div class="fright sort-container">
             <select id="sort" style="position: absolute; left: -9999px;">
                 <option value="">Сортировать по</option>
                 <option selected <?if($_REQUEST['filter']['sortField'] == "hit"):?>selected<?endif;?> value="hit">По популярности</option>
                 <option <?if($_REQUEST['filter']['sortField'] == "price"):?>selected<?endif;?> value="price">По цене</option>
                 <option <?if($_REQUEST['filter']['sortField'] == "discount"):?>selected<?endif;?> value="discount">Со скидкой</option>
             </select>
-        </div>
+        </div-->
         <button class="sfn-btn">Сбросить</button>
     </div>
-    <input type="hidden" name="filter[width_40_100]" />
-    <input type="hidden" name="filter[width_100_200]" />
-    <input type="hidden" name="filter[width_200_300]" />
-    <input type="hidden" name="filter[app_console]" />
-    <input type="hidden" name="filter[app_dinner]" />
-    <input type="hidden" name="filter[app_writing]" />
-    <input type="hidden" name="filter[app_magazine]" />
-    <input type="hidden" name="filter[price_under_80]" />
-    <input type="hidden" name="filter[price_80_100]" />
-    <input type="hidden" name="filter[price_over_100]" />
-    <input type="hidden" name="filter[available]" />
-    <input type="hidden" name="filter[table_folding_mechanism]" />
-    <input type="hidden" name="filter[sortField]" value="<?=$_REQUEST["filter"]["sortField"]?>"/>
-</form>
+
+</div>
 <script>
 function submit_handler()
 {
+	var url = ''; 
     <?//читаем значения фильтра для дальнейшего сабмита?>
     var width_40_100 = false;
     var width_100_200 = false;
@@ -168,56 +165,72 @@ function submit_handler()
 
     if($(".width_40_100 .jq-checkbox").hasClass("checked")) {
         width_40_100 = "Y";
+		url = url + '-width_40_100';
         $("#dantone_filter_box input[name='filter[width_40_100]']").val("Y");
     }
     if($(".width_100_200 .jq-checkbox").hasClass("checked")) {
         width_100_200 = "Y";
+		url = url + '-width_100_200';
         $("#dantone_filter_box input[name='filter[width_100_200]']").val("Y");
     }
     if($(".width_200_300 .jq-checkbox").hasClass("checked")) {
         width_200_300 = "Y";
+		url = url + '-width_200_300';
         $("#dantone_filter_box input[name='filter[width_200_300]']").val("Y");
     }
 
     if($(".app_console .jq-checkbox").hasClass("checked")) {
         app_console = "Y";
+		url = url + '-app_console';
         $("#dantone_filter_box input[name='filter[app_console]']").val("Y");
     }
     if($(".app_dinner .jq-checkbox").hasClass("checked")) {
         app_dinner = "Y";
+		url = url + '-app_dinner';
         $("#dantone_filter_box input[name='filter[app_dinner]']").val("Y");
     }
     if($(".app_writing .jq-checkbox").hasClass("checked")) {
         app_writing = "Y";
+		url = url + '-app_writing';
         $("#dantone_filter_box input[name='filter[app_writing]']").val("Y");
     }
     if($(".app_magazine .jq-checkbox").hasClass("checked")) {
         app_magazine = "Y";
+		url = url + '-app_magazine';
         $("#dantone_filter_box input[name='filter[app_magazine]']").val("Y");
     }
 
     if($(".price_under_80 .jq-checkbox").hasClass("checked")) {
         price_under_80 = "Y";
+		url = url + '-price_under_80';
         $("#dantone_filter_box input[name='filter[price_under_80]']").val("Y");
     }
     if($(".price_80_100 .jq-checkbox").hasClass("checked")) {
         price_80_100 = "Y";
+		url = url + '-price_80_100';
         $("#dantone_filter_box input[name='filter[price_80_100]']").val("Y");
     }
     if($(".price_over_100 .jq-checkbox").hasClass("checked")) {
         price_over_100 = "Y";
+		url = url + '-price_over_100';
         $("#dantone_filter_box input[name='filter[price_over_100]']").val("Y");
     }
     if($(".available .jq-checkbox").hasClass("checked")) {
         available = "Y";
+		url = url + '-available';
         $("#dantone_filter_box input[name='filter[available]']").val("Y");
     }
     if($(".table_folding_mechanism .jq-checkbox").hasClass("checked")) {
         table_folding_mechanism = "Y";
+		url = url + '-table_folding_mechanism';
         $("#dantone_filter_box input[name='filter[table_folding_mechanism]']").val("Y");
     }
+		  if(url != '')
+			url = '<?=$SECTION_CODE_PATH;?>filter' + url + '/';
+		else url = '<?=$SECTION_CODE_PATH;?>';
 
-    $("#dantone_filter_box").submit();
+	$(location).attr('href',url);
+	//$("#dantone_filter_box").submit();
 }
 $(function(){
     $("#sort").on("change", function(){

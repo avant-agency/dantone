@@ -112,36 +112,44 @@ if ($arP = $arDB->Fetch())
     </div>
 
 <?
-global $USER; 
-if($USER->IsAdmin() && $arParams["SECTION_ID"] == 16)
-{
-    include "sofa_filter.php";
-}
-if($USER->IsAdmin() && ($arParams["SECTION_ID"] == 19 || $arParams["SECTION_ID"] == 35 || $arParams["SECTION_ID"] == 36))
-{
-    include "table_filter.php";
-}
-if($USER->IsAdmin() && ($arParams["SECTION_ID"] == 17 || $arParams["SECTION_ID"] == 34 || $arParams["SECTION_ID"] == 31 ||
-$arParams["SECTION_ID"] == 33 || $arParams["SECTION_ID"] == 32))
-{
-    include "beds_filter.php";
-}
-if($USER->IsAdmin() && ($arParams["SECTION_ID"] == 27 || $arParams["SECTION_ID"] == 28 || $arParams["SECTION_ID"] == 18))
-{
-    include "chears_filter.php";
-}
-if($USER->IsAdmin() && $arParams["SECTION_ID"] == 37)
-{
-    include "chandelier_filter.php";
-}
-if($USER->IsAdmin() && $arParams["SECTION_ID"] == 39)
-{
-    include "table_lamp.php";
-}
-if($USER->IsAdmin() && $arParams["SECTION_ID"] == 40)
-{
-    include "torchere_filter.php";
-}
+global $USER;  
+//if($USER->IsAdmin())
+//{
+
+	if( $arParams["SECTION_CODE"] == 'sofas') 
+	{
+		include "sofa_filter.php";
+	}
+	else if($arParams["SECTION_CODE"] == 'tables_and_consoles' || $arParams["SECTION_CODE"] == 'consoles' || $arParams["SECTION_CODE"] == 'tables')
+	{
+		include "table_filter.php";
+	}
+	else if($arParams["SECTION_CODE"] == 'bedroom' || $arParams["SECTION_CODE"] == 'childrens_beds' || $arParams["SECTION_CODE"] == 'beds_izgolovia' || $arParams["SECTION_CODE"] == 'beds' || $arParams["SECTION_CODE"] == 'matrasy')  
+	{
+		include "beds_filter.php";
+	}
+	else if($arParams["SECTION_CODE"] == 'armchairs_and_chairs' || $arParams["SECTION_CODE"] == 'chairs' || $arParams["SECTION_CODE"] == 'armchairs')
+	{
+		include "chears_filter.php";
+	}
+	else if($arParams["SECTION_CODE"] == 'chandelier')
+	{
+		include "chandelier_filter.php";
+	}
+	else if($arParams["SECTION_CODE"] == 'table_lamp') 
+	{
+		include "table_lamp.php";
+	}
+	else if($arParams["SECTION_CODE"] == 'torchere') 
+	{
+		include "torchere_filter.php";
+	}
+	else {
+		?><div style="clear:both; height:60px; padding:20px 0; display:block;"><?
+				include "sort.php";
+		?></div><?
+	}
+	//}
 ?>
 
 

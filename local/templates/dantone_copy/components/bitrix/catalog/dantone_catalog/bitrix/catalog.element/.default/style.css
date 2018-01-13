@@ -1297,6 +1297,7 @@ body {
 	}
   	.favorite-icon {
 		background-image: url(https://dantonehome.ru/bitrix/templates/dantone_copy/img/favorite.svg);
+background-repeat:no-repeat;
 		background-size: contain;
 		display: inline-block !important;
 		width: 40px;
@@ -1574,3 +1575,4 @@ body {
         font-size: 24px !important;
     }
 }
+#addToBasket {height: 50px;min-width: 180px; padding:12px 10% 0 10%;  text-align:center;  display:block;}

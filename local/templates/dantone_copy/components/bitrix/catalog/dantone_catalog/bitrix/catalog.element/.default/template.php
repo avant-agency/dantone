@@ -322,15 +322,16 @@ $this->setFrameMode(true);
 
             <div class="price-block-container">
                 <?if($arResult["IN_BASKET"] != "Y"):?> 
-                    <a style="height: 50px;min-width: 180px;padding-left: 16%;padding-top: 12px;" href="#" onclick="if($(this).data('go-to-cart') == 'go') { document.location.href = '/personal/cart/'; return false;} basket('add', <?=$arResult["OFFERS"][0]["ID"]?>); return false;" data-count_in_cart="<?=($arResult['COUNT_IN_CART'] > 0) ? $arResult['COUNT_IN_CART'] : 0;?>" class="btn btn-blue basket-btn"><?=GetMessage('DETAIL_ADDTOCART')?></a>
+				<a href="#" onclick="if($(this).data('go-to-cart') == 'go') { document.location.href = '/personal/cart/'; return false;} basket('add', <?=$arResult["OFFERS"][0]["ID"]?>); $(this).css('padding-top','3px'); return false;" data-count_in_cart="<?=($arResult['COUNT_IN_CART'] > 0) ? $arResult['COUNT_IN_CART'] : 0;?>" class="btn btn-blue basket-btn" id="addToBasket"><?=GetMessage('DETAIL_ADDTOCART')?></a>
                 <?else:?>
-                    <a style="height: 50px;min-width: 180px;padding-left: 16%;padding-top: <?if($arResult["CART_TEXT"] == ""):?>12px;<?else:?>3px;<?endif;?>" href="<?=SITE_DIR?>personal/cart/" data-count_in_cart="<?=($arResult['COUNT_IN_CART'] > 0) ? $arResult['COUNT_IN_CART'] : 0;?>" class="btn btn-blue basket-btn"><?=$arResult["CART_TEXT"]?></a>
+				<a style="padding-top: <?if($arResult["CART_TEXT"] == ""):?>12px;<?else:?>3px;<?endif;?>" href="<?=SITE_DIR?>personal/cart/" data-count_in_cart="<?=($arResult['COUNT_IN_CART'] > 0) ? $arResult['COUNT_IN_CART'] : 0;?>" class="btn btn-blue basket-btn" id="addToBasket"><?=$arResult["CART_TEXT"]?></a>
                 <?endif?> 
                 
                 <a class="favorite-icon tooltips <?if($arResult["IN_FAVORITES"]):?>favorite-icon-active del-favorite<?else:?>add-favorite<?endif;?>" href="#" data-elid="<?=$arResult['ID']?>" style="max-height:39px;">
                     <?/*<span class="tooltips-text">Удалить из избранного</span>*/?>
                 </a>
                 <a href="#" class="grey-square plus" data-elid="<?=$arResult["OFFERS"][0]["ID"]?>" style="<?if($arResult['CART_TEXT'] != ''):?>display: flex;<?endif;?>margin-left:10px;">+1</a>
+
                 <?/*<a href="#" class="grey-square">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="512px" height="512px">
                         <g>

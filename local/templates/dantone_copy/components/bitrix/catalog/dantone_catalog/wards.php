@@ -887,7 +887,7 @@ $(function(){
 		{
 			$("#calculate_my_project .checkbox-title").css('color', '#929292');
 		}
-	
+
 		if(pr == false) return false;
 	
 		var formData = new FormData();

@@ -1,28 +1,23 @@
 <?
 global $USER;
-if($USER->isAdmin())
-{
+//if($USER->isAdmin())
+//{
 
-
-	/*
-/catalog/sofas/filter/clear/apply/
-?arrFilter_P1_MIN=&arrFilter_P1_MAX=63793&arrFilter_92_2367533627=Y&set_filter=Показать
-?filter%5Bprice_under_75%5D=Y&filter%5Bavailable%5D=Y
-*/
 function smartFilterPath(){
 
-   $array = explode('/',$_SERVER['REQUEST_URI']);
-   
+	$array1 = explode('/',$_SERVER['REQUEST_URI']);
+	$array = explode('-',$array1[(count($array1)-1)]);
+
    $filterKey = array_search('filter', $array);
    $applyKey = array_search('apply', $array);
 
    if($filterKey){
       $str = '';
       for($i=$filterKey+1; $i<$applyKey; $i++){
-         $str .= $array[$i].'/';
+         $str .= $array[$i].'-';
       }
       
-      $str = rtrim($str,'/');
+      $str = rtrim($str,'-');
       
       return $str;
    }
@@ -31,42 +26,16 @@ function smartFilterPath(){
    }
 }
 
-$arParams["FILTER_VIEW_MODE"] = "HORIZONTAL";
 
-	/*$APPLICATION->IncludeComponent(
-      "bitrix:catalog.smart.filter",
-      "visual_".($arParams["FILTER_VIEW_MODE"] == "HORIZONTAL" ? "horizontal" : "vertical"),
-      Array(
-		  // "INSTANT_RELOAD" => "Y",
-			"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-			"IBLOCK_ID" => $arParams["IBLOCK_ID"],
-			"SECTION_ID" => $arParams['SECTION_ID'],
-			"FILTER_NAME" => $arParams["FILTER_NAME"],
-			"PRICE_CODE" => $arParams["PRICE_CODE"],
-			"CACHE_TYPE" => "A",
-			"CACHE_TIME" => "36000000",
-			"CACHE_NOTES" => "",
-			"CACHE_GROUPS" => "Y",
-			"SAVE_IN_SESSION" => "N",
-			"XML_EXPORT" => "Y",
-			"SECTION_TITLE" => "NAME",
-			"SECTION_DESCRIPTION" => "DESCRIPTION",
-			"SEF_MODE" => "Y",
-			"SEF_RULE" => "/catalog/sofas/filter/#SMART_FILTER_PATH#/apply/",
-			"SECTION_CODE_PATH" => "/catalog/sofas/",
-			"SMART_FILTER_PATH" => smartFilterPath(),
-			"PAGER_PARAMS_NAME" => $arParams["PAGER_PARAMS_NAME"],
-      ),
-      $component,
-      array('HIDE_ICONS' => 'Y')
-   );
-*/
-$SEF_RULE = "/catalog/sofas/filter/#SMART_FILTER_PATH#/apply/";
-$SECTION_CODE_PATH = "/catalog/sofas/";
+global $variables;
+
+$SECTION_CODE_PATH = $variables["SECTION_CODE_PATH"];
 ?>
+
 <script>
 function admin_submit_handler()
 {
+	var url = ''; 
 	<?//читаем значения фильтра для дальнейшего сабмита?>
 	var size_160_220 = false;
 	var size_220_280 = false;
@@ -83,50 +52,64 @@ function admin_submit_handler()
 
 	if($(".size_160_220 .jq-checkbox").hasClass("checked")) {
 		size_160_220 = "Y";
+		url = url + '-size_160_220';
 		$("#dantone_filter_box input[name='filter[size_160_220]']").val("Y");
 	}
 	if($(".size_220_280 .jq-checkbox").hasClass("checked")) {
 		size_220_280 = "Y";
+		url = url + '-size_220_280';
 		$("#dantone_filter_box input[name='filter[size_220_280]']").val("Y");
 	}
 	if($(".size_280_320 .jq-checkbox").hasClass("checked")) {
 		size_280_320 = "Y";
+		url = url + '-size_280_320';
 		$("#dantone_filter_box input[name='filter[size_280_320]']").val("Y");
 	}
 	if($(".price_under_75 .jq-checkbox").hasClass("checked")) {
 		price_under_75 = "Y";
+		url = url + '-price_under_75';
 		$("#dantone_filter_box input[name='filter[price_under_75]']").val("Y");
 	}
 	if($(".price_75_125 .jq-checkbox").hasClass("checked")) {
 		price_75_125 = "Y";
+		url = url + '-price_75_125';
 		$("#dantone_filter_box input[name='filter[price_75_125]']").val("Y");
 	}
 	if($(".price_under_75 .jq-checkbox").hasClass("checked")) {
 		price_under_75 = "Y";
+		url = url + '-price_under_75';
 		$("#dantone_filter_box input[name='filter[price_under_75]']").val("Y");
 	}
 	if($(".price_over_125 .jq-checkbox").hasClass("checked")) {
 		price_over_125 = "Y";
+		url = url + '-price_over_125';
 		$("#dantone_filter_box input[name='filter[price_over_125]']").val("Y");
 	}
 	if($(".sofa_folding_mechanism_yes .jq-checkbox").hasClass("checked")) {
 		sofa_folding_mechanism_yes = "Y";
+		url = url + '-sofa_folding_mechanism_yes';
 		$("#dantone_filter_box input[name='filter[sofa_folding_mechanism_yes]']").val("Y");
 	}
 	if($(".sofa_folding_mechanism_no .jq-checkbox").hasClass("checked")) {
 		sofa_folding_mechanism_no = "Y";
+		url = url + '-sofa_folding_mechanism_no';
 		$("#dantone_filter_box input[name='filter[sofa_folding_mechanism_no]']").val("Y");
 	}
 	if($(".available .jq-checkbox").hasClass("checked")) {
 		available = "Y";
+		url = url + '-available';
 		$("#dantone_filter_box input[name='filter[available]']").val("Y");
 	}
 	if($(".available_30_days .jq-checkbox").hasClass("checked")) {
 		available_30_days = "Y";
+		url = url + '-available_30_days';
 		$("#dantone_filter_box input[name='filter[available_30_days]']").val("Y");
 	}
-
-	$("#dantone_filter_box").submit();
+  if(url != '')
+			url = '<?=$SECTION_CODE_PATH;?>filter' + url + '/';
+		else url = '<?=$SECTION_CODE_PATH;?>';
+	
+	//$("#dantone_filter_box").submit();
 }
 $(function(){
 	$("#sort").on("change", function(){
@@ -134,14 +117,15 @@ $(function(){
 		submit_handler();
 	});
     $("#dantone_filter_box .jq-checkbox").on("click", function(){
+
 		submit_handler();
     });
 });
 </script>
 <?
-}
+	//}
 ?>
-<form class="catalog-filters-form" id="dantone_filter_box">
+<div class="catalog-filters-form" id="dantone_filter_box">
     <div class="catalog-filters-new">
         <div class="cfn-block">
             <div class="cfn-title">
@@ -150,19 +134,19 @@ $(function(){
             <div class="checkboxes-dantone size_160_220">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_160_220"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">160 - 220</span>
+                    <span class="checkbox-title">160 - 220 см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone size_220_280">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_220_280"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">220 - 280</span>
+                    <span class="checkbox-title">220 - 280 см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone size_280_320">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_280_320"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">280 - 320</span>
+                    <span class="checkbox-title">280 - 320 см</span>
                 </label>
             </div>
         </div>
@@ -212,15 +196,16 @@ $(function(){
                     </div>
                 </div>
                 <div class="cfn-sort-container sofas">
-                    <div class="fright sort-container">
+					<?include "sort.php";?>
+                    <!--div class="fright sort-container">
                         <select id="sort" style="position: absolute; left: -9999px;">
                             <option value="">Сортировать по</option>
                             <option value="hit">По популярности</option>
                             <option value="price">По цене</option>
                             <option value="discount">Со скидкой</option>
                         </select>
-                    </div>
-                    <button class="sfn-btn">Сбросить</button>
+                    </div-->
+                    <button onclick="javascript:clear_handler()" class="sfn-btn">Сбросить</button>
 
                 </div>
 
@@ -250,31 +235,25 @@ $(function(){
         </div>
     </div>
     <div class="cfn-sort-container mobile">
-        <div class="fright sort-container">
+		<?include "sort.php";?>
+        <!--div class="fright sort-container">
             <select id="sort" style="position: absolute; left: -9999px;">
                 <option value="">Сортировать по</option>
 				<option selected <?if($_REQUEST['filter']['sortField'] == "hit"):?>selected<?endif;?> value="hit">По популярности</option>
                 <option <?if($_REQUEST['filter']['sortField'] == "price"):?>selected<?endif;?> value="price">По цене</option>
                 <option <?if($_REQUEST['filter']['sortField'] == "discount"):?>selected<?endif;?> value="discount">Со скидкой</option>
             </select>
-        </div>
-        <button class="sfn-btn">Сбросить</button>
+        </div-->
+		<button onclick="javascript:clear_handler()" class="sfn-btn">Сбросить</button>
     </div>
-    <input type="hidden" name="filter[size_160_220]" />
-    <input type="hidden" name="filter[size_220_280]" />
-    <input type="hidden" name="filter[size_280_320]" />
-    <input type="hidden" name="filter[price_under_75]" />
-    <input type="hidden" name="filter[price_75_125]" />
-    <input type="hidden" name="filter[price_over_125]" />
-    <input type="hidden" name="filter[sofa_folding_mechanism_yes]" />
-    <input type="hidden" name="filter[sofa_folding_mechanism_no]" />
-    <input type="hidden" name="filter[available]" />
-    <input type="hidden" name="filter[available_30_days]" />
-	<input type="hidden" name="filter[sortField]" value="<?=$_REQUEST["filter"]["sortField"]?>"/>
-</form>
+
+</div>
+
 <script>
 function submit_handler()
 {
+	var url = ''; 
+
 	<?//читаем значения фильтра для дальнейшего сабмита?>
 	var size_160_220 = false;
 	var size_220_280 = false;
@@ -291,52 +270,76 @@ function submit_handler()
 
 	if($(".size_160_220 .jq-checkbox").hasClass("checked")) {
 		size_160_220 = "Y";
+		url = url + '-size_160_220';
 		$("#dantone_filter_box input[name='filter[size_160_220]']").val("Y");
 	}
 	if($(".size_220_280 .jq-checkbox").hasClass("checked")) {
 		size_220_280 = "Y";
+		url = url + '-size_220_280';
 		$("#dantone_filter_box input[name='filter[size_220_280]']").val("Y");
 	}
 	if($(".size_280_320 .jq-checkbox").hasClass("checked")) {
 		size_280_320 = "Y";
+		url = url + '-size_280_320';
 		$("#dantone_filter_box input[name='filter[size_280_320]']").val("Y");
 	}
 	if($(".price_under_75 .jq-checkbox").hasClass("checked")) {
 		price_under_75 = "Y";
+		url = url + '-price_under_75';
 		$("#dantone_filter_box input[name='filter[price_under_75]']").val("Y");
 	}
 	if($(".price_75_125 .jq-checkbox").hasClass("checked")) {
 		price_75_125 = "Y";
+		url = url + '-price_75_125';
 		$("#dantone_filter_box input[name='filter[price_75_125]']").val("Y");
 	}
-	if($(".price_under_75 .jq-checkbox").hasClass("checked")) {
-		price_under_75 = "Y";
-		$("#dantone_filter_box input[name='filter[price_under_75]']").val("Y");
-	}
+
 	if($(".price_over_125 .jq-checkbox").hasClass("checked")) {
 		price_over_125 = "Y";
+		url = url + '-price_over_125';
 		$("#dantone_filter_box input[name='filter[price_over_125]']").val("Y");
 	}
 	if($(".sofa_folding_mechanism_yes .jq-checkbox").hasClass("checked")) {
 		sofa_folding_mechanism_yes = "Y";
+		url = url + '-sofa_folding_mechanism_yes';
 		$("#dantone_filter_box input[name='filter[sofa_folding_mechanism_yes]']").val("Y");
 	}
 	if($(".sofa_folding_mechanism_no .jq-checkbox").hasClass("checked")) {
 		sofa_folding_mechanism_no = "Y";
+		url = url + '-sofa_folding_mechanism_no';
 		$("#dantone_filter_box input[name='filter[sofa_folding_mechanism_no]']").val("Y");
 	}
 	if($(".available .jq-checkbox").hasClass("checked")) {
+
 		available = "Y";
+		url = url + '-available';
 		$("#dantone_filter_box input[name='filter[available]']").val("Y");
 	}
 	if($(".available_30_days .jq-checkbox").hasClass("checked")) {
 		available_30_days = "Y";
+		url = url + '-available_30_days';
 		$("#dantone_filter_box input[name='filter[available_30_days]']").val("Y");
 	}
+	  if(url != '')
+		  url = '<?=$SECTION_CODE_PATH;?>filter' + url + '/';
+		else url = '<?=$SECTION_CODE_PATH;?>';
 
-	$("#dantone_filter_box").submit();
+
+
+	$(location).attr('href',url);
+	//$("#dantone_filter_box").submit();
 }
+
+function clear_handler()
+{
+		var url = '<?=$SECTION_CODE_PATH;?>'; 
+		window.location.href = url;
+	//$(location).attr('href',url);
+	return false;
+}
+
 $(function(){
+
 	$("#sort").on("change", function(){
 		$("#dantone_filter_box input[name='filter[sortField]']").val($(this).val());
 		submit_handler();

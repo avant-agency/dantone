@@ -1,4 +1,11 @@
-<form class="catalog-filters-form" id="dantone_filter_box">
+<?
+global $variables;
+
+$SECTION_CODE_PATH = $variables["SECTION_CODE_PATH"];
+
+?>
+
+<div class="catalog-filters-form" id="dantone_filter_box">
     <div class="catalog-filters-new">
         <div class="cfn-block">
             <div class="cfn-title">
@@ -7,13 +14,13 @@
             <div class="checkboxes-dantone size_90_120">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_90_120"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">90 - 120</span>
+                    <span class="checkbox-title">90 - 120 см</span>
                 </label>
             </div>
             <div class="checkboxes-dantone size_160_200">
                 <label>
                     <input type="checkbox" <?if($_REQUEST["filter"]["size_160_200"] == "Y"):?>checked<?endif?>>
-                    <span class="checkbox-title">160 - 200</span>
+                    <span class="checkbox-title">160 - 200 см</span>
                 </label>
             </div>
         </div>
@@ -42,15 +49,15 @@
         </div>
         <div class="cfn-last">
             <div class="cfn-last-container">
-                <div class="cfn-sort-container sofas">
-                    <div class="fright sort-container">
+                <div class="cfn-sort-container sofas"><?include "sort.php";?>
+                    <!--div class="fright sort-container">
                         <select id="sort" style="position: absolute; left: -9999px;">
                             <option value="">Сортировать по</option>
                             <option value="hit">По популярности</option>
                             <option value="price">По цене</option>
                             <option value="discount">Со скидкой</option>
                         </select>
-                    </div>
+                    </div-->
                     <button class="sfn-btn">Сбросить</button>
                 </div>
             </div>
@@ -78,29 +85,23 @@
 
         </div>
     </div>
-    <div class="cfn-sort-container mobile">
-        <div class="fright sort-container">
+    <div class="cfn-sort-container mobile"><?include "sort.php";?>
+        <!--div class="fright sort-container">
             <select id="sort" style="position: absolute; left: -9999px;">
                 <option value="">Сортировать по</option>
 				<option selected <?if($_REQUEST['filter']['sortField'] == "hit"):?>selected<?endif;?> value="hit">По популярности</option>
                 <option <?if($_REQUEST['filter']['sortField'] == "price"):?>selected<?endif;?> value="price">По цене</option>
                 <option <?if($_REQUEST['filter']['sortField'] == "discount"):?>selected<?endif;?> value="discount">Со скидкой</option>
             </select>
-        </div>
+        </div-->
         <button class="sfn-btn">Сбросить</button>
     </div>
-    <input type="hidden" name="filter[size_90_120]" />
-    <input type="hidden" name="filter[size_160_200]" />
-    <input type="hidden" name="filter[price_under_80]" />
-    <input type="hidden" name="filter[price_80_100]" />
-    <input type="hidden" name="filter[price_over_100]" />
-    <input type="hidden" name="filter[available]" />
-    <input type="hidden" name="filter[available_30_days]" />
-	<input type="hidden" name="filter[sortField]" value="<?=$_REQUEST["filter"]["sortField"]?>"/>
-</form>
+
+</div>
 <script>
 function submit_handler()
 {
+	var url = ''; 
 	<?//читаем значения фильтра для дальнейшего сабмита?>
 	var size_90_120 = false;
 	var size_160_200 = false;
@@ -114,34 +115,46 @@ function submit_handler()
 
 	if($(".size_90_120 .jq-checkbox").hasClass("checked")) {
 		size_90_120 = "Y";
+		url = url + '-size_90_120';
 		$("#dantone_filter_box input[name='filter[size_90_120]']").val("Y");
 	}
 	if($(".size_160_200 .jq-checkbox").hasClass("checked")) {
 		size_160_200 = "Y";
+		url = url + '-size_160_200';
 		$("#dantone_filter_box input[name='filter[size_160_200]']").val("Y");
 	}
 	if($(".price_under_80 .jq-checkbox").hasClass("checked")) {
 		price_under_80 = "Y";
+		url = url + '-price_under_80';
 		$("#dantone_filter_box input[name='filter[price_under_80]']").val("Y");
 	}
 	if($(".price_80_100 .jq-checkbox").hasClass("checked")) {
 		price_80_100 = "Y";
+		url = url + '-price_80_100';
 		$("#dantone_filter_box input[name='filter[price_80_100]']").val("Y");
 	}
 	if($(".price_over_100 .jq-checkbox").hasClass("checked")) {
 		price_over_100 = "Y";
+		url = url + '-price_over_100';
 		$("#dantone_filter_box input[name='filter[price_over_100]']").val("Y");
 	}
 	if($(".available .jq-checkbox").hasClass("checked")) {
 		available = "Y";
+		url = url + '-available';
 		$("#dantone_filter_box input[name='filter[available]']").val("Y");
 	}
 	if($(".available_30_days .jq-checkbox").hasClass("checked")) {
 		available_30_days = "Y";
+		url = url + '-available_30_days';
 		$("#dantone_filter_box input[name='filter[available_30_days]']").val("Y");
 	}
+	  if(url != '')
+			url = '<?=$SECTION_CODE_PATH;?>filter' + url + '/';
+		else url = '<?=$SECTION_CODE_PATH;?>';
 
-	$("#dantone_filter_box").submit();
+	$(location).attr('href',url);
+
+	///$("#dantone_filter_box").submit();
 }
 $(function(){
 	$("#sort").on("change", function(){

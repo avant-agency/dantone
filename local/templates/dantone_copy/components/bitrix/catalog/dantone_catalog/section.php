@@ -18,6 +18,8 @@ $this->setFrameMode(true);
 if($arResult["VARIABLES"]["SECTION_ID"] == 22)
 {
 	include_once "wards.php";
+	$APPLICATION->SetPageProperty("title", "Модульные гардеробы в американском стиле");
+	$APPLICATION->SetPageProperty("description", "Модульная система гардеробных шкафов, выполненная в классическом белом или стильном серо-зелёном цвете, гармонично впишется в любой интерьер, позволит рационально использовать каждый квадратный метр жилья и подчеркнёт прекрасный вкус своего владельца.");
 	die();
 }
 
@@ -75,6 +77,8 @@ if ($isFilter)
 		$arCurSection = array();
 }
 ?>
+
+
 <?
 if ($isVerticalFilter)
 	include($_SERVER["DOCUMENT_ROOT"]."/".$this->GetFolder()."/section_vertical.php");
