@@ -33,6 +33,7 @@ $arBasketJSParams = array(
 	'DELAY_URL' => $arUrls["delay"],
 	'ADD_URL' => $arUrls["add"]
 );
+$_SESSION["nWindow"] =1;
 ?>
 <script type="text/javascript">
 	var basketJSParams = <?=CUtil::PhpToJSObject($arBasketJSParams);?>
@@ -122,6 +123,7 @@ if (strlen($arResult["ERROR_MESSAGE"]) <= 0)
 					?>
 				
 			</div>
+			<div class="attent"><strong>Внимание!   Цвет товара на фотографиях может отличаться от фактического ввиду особенностей цветопередачи, настроек монитора или дисплея.</strong></div>
 			<input type="hidden" name="BasketOrder" value="BasketOrder" />
 			<!-- <input type="hidden" name="ajax_post" id="ajax_post" value="Y"> -->
 		</form>
