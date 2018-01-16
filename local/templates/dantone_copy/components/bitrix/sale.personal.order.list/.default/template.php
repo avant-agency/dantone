@@ -33,6 +33,7 @@
             </div>
 
         <?foreach($arResult["ORDERS"] as $key => $arOrder):?>
+
             <div class="table-item">
                 <div class="drodown-icon">
                     <div class="dd-icon"></div>
@@ -44,9 +45,11 @@
                     <?if($arResult["INFO"]["STATUS"][$arOrder["ORDER"]["STATUS_ID"]]['NAME'] == "Placed"):?>
                         Placed
                     <?else:?>
-                        <a href="<?=$arOrder['PAYMENT'][0]['PSA_ACTION_FILE']?>" class="solve-btn">Оплатить</a>
+                        <a target="_blank" href="<?=$arOrder['PAYMENT'][0]['PSA_ACTION_FILE']?>" class="solve-btn">Оплатить</a>
                     <?endif?>
                 </div>
+
+
 
                 <div class="dd-list">
                     <div class="dd-list-header">
@@ -88,7 +91,7 @@
                             </div>
 
                             <div class="price dd-list-item"><?=$v['QUANTITY']?> <?=$v['MEASURE_NAME']?>.</div>
-                            <div class="count dd-list-item"><?=$v['PRICE']?> руб.</div>
+                            <div class="count dd-list-item"><? echo number_format(round($v['PRICE']), 0, '', ' ');?> руб.</div>
                         </div>
                     <?endforeach;?>
                 </div>
