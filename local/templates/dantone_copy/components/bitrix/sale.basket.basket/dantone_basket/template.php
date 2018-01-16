@@ -190,7 +190,12 @@ if (!empty($arID))
     while ($arItems = $dbBasketItems->Fetch())
     {
 		$mxResult = CCatalogSku::GetProductInfo($arItems["PRODUCT_ID"]);
-		$newArItems["id"] = $arItems["PRODUCT_ID"];
+		$offer_id = $arItems["PRODUCT_ID"];
+
+		if($mxResult["ID"] != "")
+			$offer_id = $mxResult["ID"];
+
+		$newArItems["id"] = $mxResult["ID"];
         $newArItems["quantity"] = $arItems["QUANTITY"];
 		$newArItems["price"] = floatval($arItems["PRICE"]);
 		$arBasketItems[] = $newArItems;
