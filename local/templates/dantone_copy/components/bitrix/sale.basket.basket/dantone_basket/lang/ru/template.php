@@ -50,5 +50,6 @@ $MESS["CART_CANCEL"] = "Отменить";
 $MESS["CART_BACKTOCATALOG"] = "Продолжить покупки";
 $MESS["CART_ORDER_TOTAL"] = "Сумма заказа";
 $MESS["CART_PLACE_ORDER"] = "Оформить заказ";
-
+$MESS["SEND_TO_CLIENT"] = "Отправить клиенту";
+$MESS["PREDOPLATA"] = "Предоплата";
 ?>

@@ -283,13 +283,29 @@ if(!$_SESSION['HTTP_REFERER'])$_SESSION['HTTP_REFERER']=$link;
 				<?=GetMessage('CART_BACKTOCATALOG')?></a>
 			</div>
 		</div>
-		<div class="title"></div>
-		<div class="price"></div>
+		<? if(CSite::InGroup(array(9)))
+		{ ?>
+		<div class="">
+			<input type="checkbox" name="predoplata" value="1" /> <?=GetMessage('PREDOPLATA')?> 
+		</div>
+		<?}?>
+
+
+		<!--div class="title"></div>
+		<div class="price"></div-->
 		<div class="count text-right"><?=GetMessage('CART_ORDER_TOTAL')?>:</div>
 		<div class="result"><span id="allSum_FORMATED" class="value"><?=str_replace(" ", "&nbsp;", $arResult["allSum_FORMATED"])?></span></div>
 		<div class="remove">
 			<a class="checkout btn btn-blue btn-medium full-size" id="checkoutButton" href="<?=SITE_DIR?>personal/order/make"><?=GetMessage('CART_PLACE_ORDER')?></a>
 		</div>
+
+		<? if(CSite::InGroup(array(9)))
+		{ ?>
+		<div class="remove">
+			<a class="checkout btn btn-blue btn-medium full-size" id="checkoutButton" href="<?=SITE_DIR?>personal/order/make"><?=GetMessage('SEND_TO_CLIENT')?></a>
+		</div>
+		<?}?>
+
 	</div>
 	<?
 	else:
@@ -308,4 +324,3 @@ if(!$_SESSION['HTTP_REFERER'])$_SESSION['HTTP_REFERER']=$link;
 	<?
 	endif;
 	?>
-<small><strong>Внимание!</strong> Цвет товара на фотографиях может отличаться от фактического ввиду особенностей цветопередачи, настроек монитора или дисплея.</small>
