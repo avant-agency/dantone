@@ -1,4 +1,6 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
+$this->setFrameMode(true);
+
 $cartId = "bx_basket".$this->randString();
 $arParams['cartId'] = $cartId;
 
@@ -11,7 +13,7 @@ var <?=$cartId?> = new BitrixSmallCart;
 <?/*<div id="<?=$cartId?>" class="<?=$cartStyle?>"><?*/
 	/** @var \Bitrix\Main\Page\FrameBuffered $frame */
 		//$frame = $this->createFrame($cartId, false)->begin();
-		require(realpath(dirname(__FILE__)).'/ajax_template.php');
+require(realpath(dirname(__FILE__)).'/ajax_template.php');
 		//$frame->beginStub();
 		//$arResult['COMPOSITE_STUB'] = 'Y';
 		//require(realpath(dirname(__FILE__)).'/top_template.php');
