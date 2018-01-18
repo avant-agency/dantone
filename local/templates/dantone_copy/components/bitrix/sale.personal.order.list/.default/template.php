@@ -1,5 +1,16 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<?CModule::IncludeModule('sale');
+if(isset($_REQUEST["orderid"])){
+		$arFields["PAY_SYSTEM_ID"] = 3;
+  		CSaleOrder::Update(intVal($_REQUEST["orderid"]), $arFields);
+?>
+<div style="display:none"><a target="_blank" id="PaymentCange" href="/personal/order/payment/?ORDER_ID=<?=intVal($_REQUEST["orderid"])?>&PAYMENT_ID=<?=intVal($_REQUEST["orderid"])?>/1" class="solve-btn">Оплатить</a>
+</div>
+	<script type="text/javascript">
+		document.getElementById("PaymentCange").click();
+	</script>
 
+<?}?>
 <?if(!empty($arResult['ERRORS']['FATAL'])):?>
 
     <?foreach($arResult['ERRORS']['FATAL'] as $error):?>
@@ -45,11 +56,18 @@
                     <?if($arResult["INFO"]["STATUS"][$arOrder["ORDER"]["STATUS_ID"]]['NAME'] == "Placed"):?>
                         Placed
                     <?else:?>
+
+					<?if($arOrder['PAYMENT'][0]['PAY_SYSTEM_ID'] == 3){?>
                         <a target="_blank" href="<?=$arOrder['PAYMENT'][0]['PSA_ACTION_FILE']?>" class="solve-btn">Оплатить</a>
+					<?} else { //echo "<small>".$arOrder['PAYMENT'][0]['PAY_SYSTEM_NAME']."</small><br />";
+?>
+					<form method="POST" action="">
+						<input type="hidden" name="orderid" value="<?=$arOrder["ORDER"]["ID"]?>" /><input type="submit" class="solve-btn" value="Оплатить" />
+					</form>
+<?}?>
                     <?endif?>
+
                 </div>
-
-
 
                 <div class="dd-list">
                     <div class="dd-list-header">
@@ -60,30 +78,29 @@
                     <?
                     $basket_ids = array();
                     $basket = array();
- 					CModule::IncludeModule("iblock");
-                    CModule::IncludeModule("catalog");
-                    $arSelect = Array("ID", "NAME", "PREVIEW_PICTURE");
                     foreach($arOrder["BASKET_ITEMS"] as $k => $v)
                     {
                         $basket_ids[] = $v["PRODUCT_ID"];
-						$arFilter = Array("IBLOCK_ID"=>5, "ID"=>$v["PRODUCT_ID"] /*$basket_ids*/);
-						$res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
-						while($ob = $res->GetNextElement())
-						{
-							$arFields = $ob->GetFields();
-							$mxResult = CCatalogSku::GetProductInfo($arFields['ID']);
-							if (is_array($mxResult))
+                    }
+                    CModule::IncludeModule("iblock");
+                    CModule::IncludeModule("catalog");
+                    $arSelect = Array("ID", "NAME", "PREVIEW_PICTURE");
+                    $arFilter = Array("IBLOCK_ID"=>5, "ID"=>$basket_ids);
+                    $res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
+                    while($ob = $res->GetNextElement())
+                    {
+                        $arFields = $ob->GetFields();
+                        $mxResult = CCatalogSku::GetProductInfo($arFields['ID']);
+                        if (is_array($mxResult))
+                        {
+                            $res = CIBlockElement::GetByID($mxResult['ID']);
+                            if($ar_res = $res->GetNext())
 							{
-								$res = CIBlockElement::GetByID($mxResult['ID']);
-								if($ar_res = $res->GetNext())
-								{
-									$basket[$arFields["ID"]] = CFile::GetPath($ar_res['PREVIEW_PICTURE']);
-								}
+                                $basket[$arFields["ID"]] = CFile::GetPath($ar_res['PREVIEW_PICTURE']);
 							}
-						}
- 					}
+                        }
+                    }
                     ?>
-
                     <?foreach($arOrder["BASKET_ITEMS"] as $k => $v):?>
                         <div class="dd-list-goods">
                             <div class="photo dd-list-item">

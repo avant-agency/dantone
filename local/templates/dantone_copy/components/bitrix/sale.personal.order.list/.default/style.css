@@ -1,4 +1,4 @@
-<style>
+
 .table-item > div, .table-header > div {
   width: 150px; }
 
@@ -214,4 +214,4 @@
   .dd-header-item:first-of-type, .dd-list-item:first-of-type {
     width: 42%; } }
 
-</style>
+.count form input {border:none}
