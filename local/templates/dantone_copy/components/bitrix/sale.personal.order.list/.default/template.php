@@ -76,30 +76,32 @@ if(isset($_REQUEST["orderid"])){
                         <div class="dd-header-item">Цена</div>
                     </div>
                     <?
+ 					CModule::IncludeModule("iblock");
+                    CModule::IncludeModule("catalog");
                     $basket_ids = array();
                     $basket = array();
                     foreach($arOrder["BASKET_ITEMS"] as $k => $v)
                     {
                         $basket_ids[] = $v["PRODUCT_ID"];
-                    }
-                    CModule::IncludeModule("iblock");
-                    CModule::IncludeModule("catalog");
-                    $arSelect = Array("ID", "NAME", "PREVIEW_PICTURE");
-                    $arFilter = Array("IBLOCK_ID"=>5, "ID"=>$basket_ids);
-                    $res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
-                    while($ob = $res->GetNextElement())
-                    {
-                        $arFields = $ob->GetFields();
-                        $mxResult = CCatalogSku::GetProductInfo($arFields['ID']);
-                        if (is_array($mxResult))
-                        {
-                            $res = CIBlockElement::GetByID($mxResult['ID']);
-                            if($ar_res = $res->GetNext())
+
+
+						$arSelect = Array("ID", "NAME", "PREVIEW_PICTURE");
+						$arFilter = Array("IBLOCK_ID"=>5, "ID"=>$v["PRODUCT_ID"]);
+						$res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
+						while($ob = $res->GetNextElement())
+						{
+							$arFields = $ob->GetFields();
+							$mxResult = CCatalogSku::GetProductInfo($arFields['ID']);
+							if (is_array($mxResult))
 							{
-                                $basket[$arFields["ID"]] = CFile::GetPath($ar_res['PREVIEW_PICTURE']);
+								$res = CIBlockElement::GetByID($mxResult['ID']);
+								if($ar_res = $res->GetNext())
+								{
+									$basket[$arFields["ID"]] = CFile::GetPath($ar_res['PREVIEW_PICTURE']);
+								}
 							}
-                        }
-                    }
+						}
+ 					}
                     ?>
                     <?foreach($arOrder["BASKET_ITEMS"] as $k => $v):?>
                         <div class="dd-list-goods">
