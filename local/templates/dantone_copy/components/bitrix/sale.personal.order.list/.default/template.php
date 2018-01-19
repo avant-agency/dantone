@@ -1,5 +1,7 @@
 ﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?CModule::IncludeModule('sale');
+<?
+CModule::IncludeModule('sale');
+
 if(isset($_REQUEST["orderid"])){
 		$arFields["PAY_SYSTEM_ID"] = 3;
   		CSaleOrder::Update(intVal($_REQUEST["orderid"]), $arFields);
