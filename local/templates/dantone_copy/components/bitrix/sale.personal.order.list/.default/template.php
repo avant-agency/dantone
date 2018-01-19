@@ -2,12 +2,13 @@
 <?
 CModule::IncludeModule('sale');
 
-if(isset($_REQUEST["orderid"])){
+if(isset($_REQUEST["orderid"]))
+{
 		$arFields["PAY_SYSTEM_ID"] = 3;
   		CSaleOrder::Update(intVal($_REQUEST["orderid"]), $arFields);
-?>
-<div style="display:none"><a target="_blank" id="PaymentCange" href="/personal/order/payment/?ORDER_ID=<?=intVal($_REQUEST["orderid"])?>&PAYMENT_ID=<?=intVal($_REQUEST["orderid"])?>/1" class="solve-btn">Оплатить</a>
-</div>
+	?>
+	<div style="display:none"><a target="_blank" id="PaymentCange" href="/personal/order/payment/?ORDER_ID=<?=intVal($_REQUEST["orderid"])?>&PAYMENT_ID=<?=intVal($_REQUEST["orderid"])?>/1" class="solve-btn">Оплатить</a>
+	</div>
 	<script type="text/javascript">
 		document.getElementById("PaymentCange").click();
 	</script>
