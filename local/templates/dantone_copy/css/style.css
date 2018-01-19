@@ -12,13 +12,21 @@ html {
 .phone-mobile {
     display: none;
 }
+body .wardrobe-sliderOne .owl-dots {
+bottom: 40px;
+}
 
 @media screen and (max-width:500px) {
+body .wardrobe-sliderOne .owl-dots {
+bottom: 20px;
+}
     .zoomContainer {
         display: none;
     }
 }
-
+.wardrobe-sliderOne img{
+min-height: 1px !important;
+}
 body {
     margin: 0;
     position: relative;
@@ -362,7 +370,7 @@ a.action-with-icon {
 }
 
 a.action-with-icon i {
-    float: left;
+   float: left;
     margin-left: -40px;
 }
 
@@ -1792,8 +1800,7 @@ ____________________________________________*/
 }
 
 .main-menu .sub-menu-catalog {
-    margin: 0; /*-9px -20px -22px -7px;*/
-    font-size: 15px;
+    margin: 0;  font-size: 15px;
     line-height: 17px;
 }
 
@@ -2314,6 +2321,7 @@ ____________________________________________*/
 
 #content {
     text-align: center;
+padding-top: 10px;
 }
 
 .promo {
@@ -3191,7 +3199,7 @@ ____________________________________________*/
 }
 
 .product-list-static:after {
-    clear: both;
+    clear: both; padding-bottom: 62px;
 }
 
 .product-list-static>li {
@@ -3227,11 +3235,12 @@ ____________________________________________*/
 }
 
 .product-list-static .title {
-    margin-bottom: 6px;
+ height:35px;   margin-bottom: 6px;
     max-height: 52px;
     overflow: hidden;
     font-size: 13px;
     line-height: 18px;
+height:32px;
 }
 
 .product-list-static .title a {
@@ -4316,7 +4325,7 @@ aside.catalog-nav-container {}
 
 .cart-table {
     border: #e6e6e6 1px solid;
-    margin-bottom: 70px;
+    margin-bottom: 12px; /*70px;*/
     text-align: left;
     font-weight: 300;
 }
@@ -6294,14 +6303,15 @@ baclground-size: contain; }
         }
         
     .product-list-static li:first-of-type .tooltips .tooltips-text, .product-list-static li:nth-of-type(2) .tooltips .tooltips-text,.product-list-static li:nth-of-type(3) .tooltips .tooltips-text, .product-list-static li:nth-of-type(4) .tooltips .tooltips-text{
-          top: calc(100% + 15px);
+          /*top: calc(100% + 15px);*/
+		  top: calc(100% - 50px);
           bottom: auto;
         }
         
     .product-list-static  li:first-of-type .tooltips .tooltips-text:after, .product-list-static li:nth-of-type(2) .tooltips .tooltips-text:after, .product-list-static li:nth-of-type(3) .tooltips .tooltips-text:after, .product-list-static li:nth-of-type(4) .tooltips .tooltips-text:after{
-          top: auto;
-          bottom: 100%;
-          transform: rotate(180deg) translateX(50%);
+          top: 100%;
+          bottom:auto ;
+          /*transform: rotate(180deg) translateX(50%);*/
         }
      
 
@@ -6644,13 +6654,14 @@ baclground-size: contain; }
           left: 50%;
       }
       .product-list-static  li:first-of-type .tooltips .tooltips-text, .product-list-static li:nth-of-type(2) .tooltips .tooltips-text, .product-list-static li:nth-of-type(3) .tooltips .tooltips-text{
-          top: calc(100% + 15px);
+         /* top: calc(100% + 15px);*/
+		 top: calc(100% - 50px);
           bottom: auto;
         }
         .product-list-static  li:first-of-type .tooltips .tooltips-text:after, .product-list-static li:nth-of-type(2) .tooltips .tooltips-text:after, .product-list-static li:nth-of-type(3) .tooltips .tooltips-text:after{
-          top: auto;
-          bottom: 100%;
-          transform: rotate(180deg) translateX(50%);
+          top: 100%;
+          bottom: auto;
+          /*transform: rotate(180deg) translateX(50%);*/
         }
         .product-list-static li:nth-of-type(4n) .tooltips .tooltips-text,.tooltips .tooltips-text:after{
           left: 50%;
@@ -6696,13 +6707,14 @@ height: auto;
           transform: none;
         }
         .product-list-static li:first-of-type .tooltips .tooltips-text{
-          top: calc(100% + 15px);
+          /*top: calc(100% + 15px);*/
+		  top: calc(100% - 50px);
           bottom: auto;
         }
         .product-list-static li:first-of-type .tooltips .tooltips-text:after{
-          top: auto;
-          bottom: 100%;
-          transform: rotate(180deg) translateX(50%);
+          top: 100%;
+          bottom: auto;
+          /*transform: rotate(180deg) translateX(50%);*/
         }
           .product-list-static.product-favorite-list li{
           width: 100%;
