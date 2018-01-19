@@ -150,8 +150,9 @@ $MESS['ORDER_DELIVERY_OTHERCITY'] = "Доставка в другой город
 $MESS['ORDER_DELIVERY_INPUT'] = "Введите название ТК";
 $MESS['ORDER_DELIVERY_NO'] = "Нет";
 $MESS['ORDER_ADDRESS_REGION'] = "Область";
-$MESS['ORDER_ADDRESS_REGION_COMMENT'] = "Например: Санкт-Петербург";
+$MESS['ORDER_ADDRESS_REGION_COMMENT'] = "Например: Москва";
 $MESS['ORDER_ADDRESS_CITY'] = "Город";
+$MESS['ORDER_ADDRESS_CITY_COMMENT1'] = "Например: Москва";
 $MESS['ORDER_ADDRESS_CITY_COMMENT'] = "Например: Санкт-Петербург";
 $MESS['ORDER_ADDRESS_STREET'] = "Улица";
 $MESS['ORDER_ADDRESS_STREET_COMMENT'] = "Укажите адрес доставки";
@@ -168,7 +169,7 @@ $MESS['ORDER_PAYMENT_TITLE'] = "Выберите подходящий для В�
 
 $MESS['ORDER_PAYMENT_CASH'] = "Оплата в шоуруме наличными или банковской картой";
 $MESS['ORDER_PAYMENT_BANK'] = "Оплата банковской картой ";
-$MESS['ORDER_PAYMENT_NOCASH'] = "Оплата на р/счет в банке (юр.лица)";
+$MESS['ORDER_PAYMENT_NOCASH'] = "Оплата на р/счет в банке";
 $MESS['ORDER_PAYMENT_CASH_DELIVERY'] = "Оплата курьеру при доставке (наличные или банковская карта)";
 
 $MESS['ORDER_PAYMENT_KVIT'] = "Оплата квитанцией";

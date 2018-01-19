@@ -1,4 +1,4 @@
-<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+﻿<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Main\Localization\Loc;
 
@@ -320,7 +320,7 @@ else:
                                 </div>                       
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_CITY')?>" name="ORDER_PROP_13" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_CITY')?>*" class="city-input input-text" value="" value="<?=$arResult["USER"]["PERSONAL_CITY"]?>">
-                                      <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_CITY_COMMENT')?></div>
+                                      <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_CITY_COMMENT1')?></div>
                                     </div>
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_STREET')?>" name="ORDER_PROP_14" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_STREET')?>*" class=" input-text" value="" value="<?=$arResult["USER"]["PERSONAL_STREET"]?>">
@@ -662,9 +662,10 @@ var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" ру�
             type: "post",
             success: function(response) {
                 console.log(response);
-                if(response['order']["REDIRECT_URL"]) {
-                    location.href = response['order']["REDIRECT_URL"];
-                }
+				 if(response['order']["REDIRECT_URL"]) {
+				 location.href = response['order']["REDIRECT_URL"];
+				//location.href = "/personal/order/make/";
+				 }
 
                 var propertyErrors = response['order']["ERROR"]["PROPERTY"];
 
