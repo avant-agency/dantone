@@ -270,14 +270,35 @@ else:
                           <div class="form-container">
                             <div class="control-group control-group-radio clearfix" id="deliveryTypesBlock">
                               <div class="help-inline help-small"><?=GetMessage('ORDER_DELIVERY_TITLE')?></div>
-								<div><a href="/delivery/">Условия доставки</a></div>
+								<br />
+
+
                               <div class="control">
                                 <label class="radio a-radio">
                                     <input checked type="radio" name="DELIVERY_ID" value="2" data-ourdelivery="1" data-selfdelivery="0" data-customdelivery="0" style="position: absolute; left: -9999px;">
                                     <?=GetMessage('ORDER_DELIVERY_TRANSPORT')?> 
                                 </label>
                   
-                                <div class="calculate-div control-group" style="display: block;" style="margin-bottom:34px;text-align:left;font-weight: 400;margin-top: 10px;padding-top: 17px;padding-bottom: 20px;border-top: 1px solid #efeeef;border-bottom: 1px solid #efeeef;" id="our_delivery_description">
+<div class="help-inline"><a class="conditions" target="_blank" href="/delivery/">Условия доставки</a></div>
+                              </div>
+  <?if($arResult["PICKUP_AVAILABLE"]):?>
+                                <div class="control" style="display:none;" id="pickup_moskow_and_mo">
+                                        <label class="radio a-radio">
+                                            <input type="radio" name="DELIVERY_ID" value="3" data-ourdelivery="0" data-selfdelivery="1" data-customdelivery="0" style="position: absolute; left: -9999px;">
+                                            <?=GetMessage('ORDER_DELIVERY_SELF')?>                                 
+                                        </label>
+                                    </div>
+                                <?endif;?>
+ 								<div class="control">
+                                  <label class="radio a-radio">
+                                      <input type="radio" name="DELIVERY_ID" value="16" data-ourdelivery="0" data-selfdelivery="0" data-customdelivery="1" style="position: absolute; left: -9999px;">
+                                      <?=GetMessage('ORDER_DELIVERY_OTHER')?>
+                                  </label>
+
+                              </div>
+
+                            <div class="control-group" id="addressBlock2" style="display: none;">
+<div class="calculate-div control-group" style="display: block;" style="margin-bottom:34px;text-align:left;font-weight: 400;margin-top: 10px;padding-top: 17px;padding-bottom: 20px;border-top: 1px solid #efeeef;border-bottom: 1px solid #efeeef;" id="our_delivery_description">
                                   <div class="calc-div-title">
                                     Стоимость доставки:
                                   </div>
@@ -296,13 +317,10 @@ else:
                                       2000 руб + 50 руб * <input type="text" value="0" class="cdc-input" pattern="/[0-9]/"> км =  <span class="cdc-itog"> 2000</span> руб.
                                     </div>
                                   </div>
-                                </div>
-                                
-                              </div>
-                            <div class="control-group" id="addressBlock2" style="display: none;">
+                                </div>                       
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_CITY')?>" name="ORDER_PROP_13" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_CITY')?>*" class="city-input input-text" value="" value="<?=$arResult["USER"]["PERSONAL_CITY"]?>">
-                                      <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_CITY_COMMENT')?></div>
+                                      <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_CITY_COMMENT1')?></div>
                                     </div>
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_STREET')?>" name="ORDER_PROP_14" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_STREET')?>*" class=" input-text" value="" value="<?=$arResult["USER"]["PERSONAL_STREET"]?>">
@@ -313,30 +331,26 @@ else:
                                       <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2" value="">
                                       <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2" value="">
                                     </div>
-                                    <div class="control" style="margin-right: 0px;padding-right: 90px;">
+								<?/*<div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <input type="text" name="ORDER_PROP_4" placeholder="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" data-name="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_ZIP"]?>">
                                       <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_KNOWINDEX')?> <a href="http://indexp.ru/" class="nounderline" target="_blank"><?=GetMessage('ORDER_ADDRESS_FINDINDEX')?></a></div>
                                     </div>
+									*/?>
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6">
                                       </textarea>
                                       <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>
                                     </div>
                                 </div>
-                                <?if($arResult["PICKUP_AVAILABLE"]):?>
-                                <div class="control" style="display:none;" id="pickup_moskow_and_mo">
-                                        <label class="radio a-radio">
-                                            <input type="radio" name="DELIVERY_ID" value="3" data-ourdelivery="0" data-selfdelivery="1" data-customdelivery="0" style="position: absolute; left: -9999px;">
-                                            <?=GetMessage('ORDER_DELIVERY_SELF')?>                                 
-                                        </label>
-                                    </div>
-                                <?endif;?>
+
+<!--
                               <div class="control">
                                   <label class="radio a-radio">
                                       <input type="radio" name="DELIVERY_ID" value="16" data-ourdelivery="0" data-selfdelivery="0" data-customdelivery="1" style="position: absolute; left: -9999px;">
                                       <?=GetMessage('ORDER_DELIVERY_OTHER')?>
                                   </label>
                               </div>
+-->
                               <div class="control" id="customDeliveryBlock" style="display: none;">
                                 <input type="text" name="ORDER_PROP_11" class="input-text" style="width: 280px;" value="" placeholder="<?=GetMessage('ORDER_DELIVERY_INPUT')?>" name="customDelivery">
                               </div>
@@ -360,10 +374,12 @@ else:
                                   <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2" value="" disabled="">
                                   <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2" value="" disabled="">
                                 </div>
+								<?/*
                                 <div class="control">
                                   <input type="text" name="ORDER_PROP_4" placeholder="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" data-name="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_ZIP"]?>" disabled="">
                                   <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_KNOWINDEX')?> <a href="http://indexp.ru/" class="nounderline" target="_blank"><?=GetMessage('ORDER_ADDRESS_FINDINDEX')?></a></div>
                                 </div>
+								*/?>
                                 <div class="control">
                                   <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6" disabled=""></textarea>
                                   <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>
@@ -442,6 +458,18 @@ else:
 </form>
 <script>
 		/*Enter Cupon*/
+function addSpaces(nStr){
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+	}
+	return x1 + x2;
+}
+
 	function enterThisCoupon(coupon) //Добавление купона на скидку
 		{
 			var newCoupon = $('#'+coupon).find("input");
@@ -535,7 +563,8 @@ else:
 
         $("#bx-soa-order-form .pane.last .control:first label").click();
 
-        var order_price = "<?=$arResult['ORDER_TOTAL_PRICE']?>";
+			// var order_price = "<?=$arResult['ORDER_TOTAL_PRICE']?>";
+var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" руб.","");
 
         setInterval(function(){
             $("#ORDER_PROP_5").val($("#LOCATION_val").val());
@@ -559,19 +588,22 @@ else:
             }
             else
             {
+				var summop = parseFloat(order_price.replace(/\s/g, '')) + parseFloat($("#our_delivery_description .cdc-itog").text().trim());
+
                 switch($("#deliveryTypesBlock .control input[name='DELIVERY_ID']:checked").val())
                 {
                     case "2": // Доставка Дантона
                         // get delivery price
-                        $(".hfc-price-value").text((parseFloat(order_price) + parseFloat($("#our_delivery_description .cdc-itog").text().trim())) + " ");
-                        $(".hfc-warning").text("Цена доставки: " + $("#our_delivery_description .cdc-itog").text().trim() + "р.");
+						// $(".hfc-price-value").text((parseFloat(op) + parseFloat($("#our_delivery_description .cdc-itog").text().trim())) + " ");
+ 						$(".hfc-price-value").text(addSpaces(summop) + " ");
+                      $(".hfc-warning").text("Цена доставки: " + $("#our_delivery_description .cdc-itog").text().trim() + "р.");
                     break;
                     case "3": // Самовывоз
-                        $(".hfc-price-value").text(order_price + " ");
+                        $(".hfc-price-value").text(addSpaces(order_price) + " ");
                         $(".hfc-warning").text("Сумма указана без учета доставки");
                     break; 
                     case "16": // Доставка ТК
-                        $(".hfc-price-value").text(order_price + " ");
+                        $(".hfc-price-value").text(addSpaces(order_price) + " ");
                         $(".hfc-warning").text("Сумма указана без учета доставки");
                     break;
 
@@ -630,9 +662,10 @@ else:
             type: "post",
             success: function(response) {
                 console.log(response);
-                if(response['order']["REDIRECT_URL"]) {
-                    location.href = response['order']["REDIRECT_URL"];
-                }
+				 if(response['order']["REDIRECT_URL"]) {
+				 location.href = response['order']["REDIRECT_URL"];
+				//location.href = "/personal/order/make/";
+				 }
 
                 var propertyErrors = response['order']["ERROR"]["PROPERTY"];
 
