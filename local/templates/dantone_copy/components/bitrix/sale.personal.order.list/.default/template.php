@@ -1,4 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?CModule::IncludeModule('sale');
 if(isset($_REQUEST["orderid"])){
 		$arFields["PAY_SYSTEM_ID"] = 3;
@@ -346,6 +346,9 @@ if(isset($_REQUEST["orderid"])){
   .dd-header-item:first-of-type, .dd-list-item:first-of-type {
     width: 42%; } }
 </style>
+<link rel="stylesheet" href="/local/templates/danton_copy/css/main.css" />
+
+
 <script>
 $(function () {
    $('.drodown-icon').click(function () {
