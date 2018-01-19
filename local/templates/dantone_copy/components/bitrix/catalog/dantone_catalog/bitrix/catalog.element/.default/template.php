@@ -312,6 +312,14 @@ $this->setFrameMode(true);
                     <?if($arResult["PROPERTIES"]["PRICE_FROM"]["VALUE"] == "Y"):?>
                     <?=GetMessage('DETAIL_FROM')?>   
                     <?endif;?><?=$minPrice['PRINT_DISCOUNT_VALUE']?>
+<?if ('Y' == $arParams['SHOW_OLD_PRICE'] && $minPrice['DISCOUNT_VALUE'] < $minPrice['VALUE'])
+                        {
+                            ?>
+                            <span class="price-old"> 
+                                <span class='value'><?=$minPrice['PRINT_VALUE']?></span>
+                            </span> 
+                            <?
+                        }?>
                 </span>
                 <?/*global $USER; if($USER->IsAdmin()):?>
                 <span class="count-wrap">В наличии:
