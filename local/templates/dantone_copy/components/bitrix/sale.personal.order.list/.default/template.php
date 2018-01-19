@@ -346,7 +346,7 @@ if(isset($_REQUEST["orderid"])){
   .dd-header-item:first-of-type, .dd-list-item:first-of-type {
     width: 42%; } }
 </style>
-<link rel="stylesheet" href="/local/templates/danton_copy/css/main.css" />
+
 
 
 <script>
