@@ -98,9 +98,7 @@ if (!$bError)
 
 	// send query
 	$rCURL = curl_init();
-	/*curl_setopt($rCURL, CURLOPT_URL, $sRegisterURL);
-	curl_setopt($rCURL, CURLOPT_RETURNTRANSFER, 1);
-	*/
+
 	curl_setopt($rCURL, CURLOPT_URL, $sPaymentURL);
     curl_setopt($rCURL, CURLOPT_RETURNTRANSFER,true);
     curl_setopt($rCURL, CURLOPT_POST, true);
@@ -117,8 +115,7 @@ if (!$bError)
 		echo '<div>';
 		echo '<a id="oplatit" href="'.$arAnswer["formUrl"].'">'.GetMessage("ALBK_BUTN_PAY").'</a>';
 		echo '</div>';
-		echo '<script>$("#oplatit").click();</script>';
-	}
+		echo '<script>document.getElementById("oplatit").click();</script>';	}
 	else
 	{
 		$bError = true;

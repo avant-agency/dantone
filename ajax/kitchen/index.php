@@ -9,9 +9,9 @@ CModule::IncludeModule('iblock');
 
 switch(true)
 {
-	case $_REQUEST["method"] == "get_kitchen_catalog" && $_REQUEST["email"] != "": 
+	case $_REQUEST["method"] == "get_kitchen_catalog" && $_REQUEST["email"] != "" && $_REQUEST["phone"] != "": 
 		// выслать клиенту письмо с каталогом и выслать менеджерам сообщение "Получить запрос на каталог"
-		$arEventFields = array("EMAIL" => $_REQUEST["email"]);
+		$arEventFields = array("EMAIL" => $_REQUEST["email"], "PHONE" => $_REQUEST["phone"]);
 		$r = CEvent::Send("KITCHEN_LANDING_GET_CATALOG", 's1', $arEventFields);
 
 		// add to mailchimp 
