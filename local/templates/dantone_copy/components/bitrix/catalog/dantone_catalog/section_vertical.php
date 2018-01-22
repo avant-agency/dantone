@@ -72,14 +72,17 @@ if(isset($_REQUEST['filter']["sortField"])) {
     }
 }*/
 
-
+$isfilter = false;
 
 $arResult["VARIABLES"]["SECTION_CODE_PATH"] = '/';
 	//вытаскиваем раздел по урл
 	foreach($exp as $k => $v)
 	{
-		if($v == 'filter')
+		if(strpos($v,'filter') === 0){
+$isfilter = true;
+$arResult["VARIABLES"]["filterstr"] = $v;
 			break;
+		}
 		else {
 			if($v != '')
 			{
@@ -94,7 +97,7 @@ global $variables;
 $variables = $arResult["VARIABLES"];
 
 global $USER;
-if(in_array("filter",$exp)) {  // && $USER->IsAdmin()
+if($isfilter) {  // && $USER->IsAdmin()
 
 	include "dantone_filter.php"; 
 	//${$arParams["FILTER_NAME"]}["CATALOG_AVAILABLE"] = "N";
@@ -267,7 +270,7 @@ false
 <div class="filter">
 <?
 $code=$arResult["VARIABLES"]["SECTION_CODE"];
-$url = "/catalog/".$code."/filter/price_"."10_50"."/apply/";
+$url = "/catalog/".$code."/filter-price_"."10_50"."-apply/";
 ?>
     <form method="get" id="priceForm">
         <h4><?=GetMessage('SECTION_PRICE')?></h4>
