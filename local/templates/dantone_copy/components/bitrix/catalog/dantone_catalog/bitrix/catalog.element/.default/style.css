@@ -1297,6 +1297,7 @@ body {
 	}
   	.favorite-icon {
 		background-image: url(https://dantonehome.ru/bitrix/templates/dantone_copy/img/favorite.svg);
+background-repeat:no-repeat;
 		background-size: contain;
 		display: inline-block !important;
 		width: 40px;
