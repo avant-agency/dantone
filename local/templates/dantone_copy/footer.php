@@ -37,23 +37,23 @@
         <div class="footer-nav-main clearfix">
             <h4><?=GetMessage('FOOTER_CATALOG')?></h4>
             <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "footer_catalog", Array(
-        "VIEW_MODE" => "TEXT",  // Вид списка подразделов
-        "SHOW_PARENT_NAME" => "Y",  // Показывать название раздела
-        "IBLOCK_TYPE" => "",    // Тип инфоблока
-        "IBLOCK_ID" => "4", // Инфоблок
-        "SECTION_CODE" => "",   // Код раздела
-        "SECTION_URL" => "",    // URL, ведущий на страницу с содержимым раздела
-        "COUNT_ELEMENTS" => "N",    // Показывать количество элементов в разделе
-        "TOP_DEPTH" => "1", // Максимальная отображаемая глубина разделов
-        "SECTION_FIELDS" => "", // Поля разделов
-        "SECTION_USER_FIELDS" => array('UF_ENG_NAME'),  // Свойства разделов
-        "LANGUAGE_ID" => LANGUAGE_ID,   // Свойства разделов
-        "ADD_SECTIONS_CHAIN" => "Y",    // Включать раздел в цепочку навигации
-        "CACHE_TYPE" => "A",    // Тип кеширования
-        "CACHE_TIME" => "36000000", // Время кеширования (сек.)
-        "CACHE_NOTES" => "",
-        "CACHE_GROUPS" => "Y",  // Учитывать права доступа
-        ),
+                                    "VIEW_MODE" => "TEXT",  // Вид списка подразделов
+                                    "SHOW_PARENT_NAME" => "Y",  // Показывать название раздела
+                                    "IBLOCK_TYPE" => "",    // Тип инфоблока
+                                    "IBLOCK_ID" => "4", // Инфоблок
+                                    "SECTION_CODE" => "",   // Код раздела
+                                    "SECTION_URL" => "",    // URL, ведущий на страницу с содержимым раздела
+                                    "COUNT_ELEMENTS" => "N",    // Показывать количество элементов в разделе
+                                    "TOP_DEPTH" => "1", // Максимальная отображаемая глубина разделов
+                                    "SECTION_FIELDS" => "", // Поля разделов
+                                    "SECTION_USER_FIELDS" => array('UF_ENG_NAME'),  // Свойства разделов
+                                    "LANGUAGE_ID" => LANGUAGE_ID,   // Свойства разделов
+                                    "ADD_SECTIONS_CHAIN" => "Y",    // Включать раздел в цепочку навигации
+                                    "CACHE_TYPE" => "A",    // Тип кеширования
+                                    "CACHE_TIME" => "36000000", // Время кеширования (сек.)
+                                    "CACHE_NOTES" => "",
+                                    "CACHE_GROUPS" => "Y",  // Учитывать права доступа
+                                    ),
             false
             );?>
         </div>
@@ -116,9 +116,9 @@
         </div>
         <img src="https://dantonehome.ru/bitrix/templates/dantone_copy/img/header-logo-blue.svg" alt="" class="newPopup-logo">
         <div class="newPopup-title">
-      Подпишитесь, чтобы стать участником закрытого клуба Dantone Home. Получайте новости, информацию о пополнении ассортимента и специальных предложениях.
+			Подпишитесь, чтобы стать участником закрытого клуба Dantone Home. Получайте новости, информацию о пополнении ассортимента и специальных предложениях.
         </div>
-    <img src="/upload/photoPopup.jpg" alt="" class="newPopup-photo">
+		<img src="/upload/photoPopup.jpg" alt="" class="newPopup-photo">
 
         <form action="#" class="newPopup-form">
             <div class="newPopup-inner">
@@ -135,7 +135,7 @@
                                 onclick="window.open('https://dantonehome.ru/bitrix/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf','_blank')"
                                 href="https://dantonehome.ru/bitrix/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf"
                                 target="_blank">персональных данных</a>
-                </span>
+        				</span>
                     </label>
                 </div>
             </div>
@@ -315,12 +315,15 @@
                    dataType: 'json',
                    data: {'email' : discountForm.find('input[name="email"]').val()},
                    success: function (data) {
+                     console.log(data);                           
+
 
                      if (data["STATUS"] == 2) {
                         discountForm.find('input[type="submit"]').val('<?=GetMessage('FOOTER_APPLY')?>');
                         $('[data-remodal-id="discount-success"]').find('p').html('<?=GetMessage('FOOTER_DISCOUNTEXIST')?>');
                         $('[data-remodal-id="discount-success"]').remodal().open();
                     } 
+
 
                     if (data["STATUS"] == 0) {
 
@@ -444,60 +447,59 @@
     <!-- //Rating@Mail.ru counter -->
 <script>
 setInterval(function(){
-  $.ajax({
-    method: "POST",
-    url: "/ajax/timecounter.php",
-  }).done(function(data){
-    data = JSON.parse(data);
-  <?global $APPLICATION;?>
-    if( (data.PAGE_QUANTUTY > 7 || data.TIME_ON_SITE > 120) && '<?=$APPLICATION->get_cookie("subscribe_popup_showed")?>' == '' )
-    {
-      // show popup
-      $("#submit_popup_trigger").click();
-      $.ajax({
-        method: "POST",
-        url: "/ajax/timecounter.php",
-        data: { "ENDLOGIC" : "Y" }
-      });
-    }
-  });
+	$.ajax({
+		method: "POST",
+		url: "/ajax/timecounter.php",
+	}).done(function(data){
+		data = JSON.parse(data);
+		if(data.PAGE_QUANTUTY > 7 || data.TIME_ON_SITE > 120)
+		{
+			// show popup
+			$("#submit_popup_trigger").click();
+			$.ajax({
+				method: "POST",
+				url: "/ajax/timecounter.php",
+				data: { "ENDLOGIC" : "Y" }
+			});
+		}
+	});
 }, 5000);
 
 $(function () {
-  $("#contact_form_submitter").on("click", function(){
-    var btn = $(this);
+	$("#contact_form_submitter").on("click", function(){
+		var btn = $(this);
 
-    var email = $(this).parents(".newPopup-form").find("input[name='form_email_4']").val();
+		var email = $(this).parents(".newPopup-form").find("input[name='form_email_4']").val();
 
-    if(email.length == 0)
-    {
-      $(this).parents(".newPopup-form").find("input[name='form_email_4']").css("border", "1px solid red");
-      return false;
-    }
+		if(email.length == 0)
+		{
+			$(this).parents(".newPopup-form").find("input[name='form_email_4']").css("border", "1px solid red");
+			return false;
+		}
 
-    if($(this).parents(".newPopup-form").find(".jq-checkbox.checked").length == 0) 
-    {
-      $(this).parents(".newPopup-form").find(".checkbox-title").css('color', 'red');
-      return false;
-    }
+		if($(this).parents(".newPopup-form").find(".jq-checkbox.checked").length == 0) 
+		{
+			$(this).parents(".newPopup-form").find(".checkbox-title").css('color', 'red');
+			return false;
+		}
 
-    $.ajax({
-      method: "POST",
-      url: "/ajax/mailchump_integrate.php",
-      data: { fname : "fname", lname : "lname", email : email }
-    }).done(function(){
+		$.ajax({
+			method: "POST",
+			url: "/ajax/mailchump_integrate.php",
+			data: { fname : "fname", lname : "lname", email : email }
+		}).done(function(){
 
-      $.ajax({ method: "POST", url: "/ajax/add_subscribers.php", data: { fname : "fname", lname : "lname", email : email } });
+			$.ajax({ method: "POST", url: "/ajax/add_subscribers.php", data: { fname : "fname", lname : "lname", email : email } });
 
-      $(btn).parents(".newPopup-wrap").find(".newPopup-title").html("Спасибо!<br/>Ваш email успешно отправлен.");
-      $(btn).parents(".newPopup-wrap").find(".newPopup-photo").css('display', 'none');
-      $(btn).parents(".newPopup-wrap").find(".newPopup-form").css('display', 'none');
+			$(btn).parents(".newPopup-wrap").find(".newPopup-title").html("Спасибо!<br/>Ваш email успешно отправлен.");
+			$(btn).parents(".newPopup-wrap").find(".newPopup-photo").css('display', 'none');
+			$(btn).parents(".newPopup-wrap").find(".newPopup-form").css('display', 'none');
 
-      setTimeout(function(){ $('.close-newPopup, .newPopup-overlay').click(); }, 2000);
-    });
+			setTimeout(function(){ $('.close-newPopup, .newPopup-overlay').click(); }, 2000);
+		});
 
-    return false;
-  });
+		return false;
+	});
 
     $('.test').click(function () {
         $('.newPopup-wrap').fadeIn(300)
@@ -507,5 +509,9 @@ $(function () {
     })
 });
 </script>
+<?global $APPLICATION; $dir = $APPLICATION->GetCurDir(); 
+if(strpos($dir,'/personal/') === 0){?>
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/main.css" />
+	<?}?>
 </body>
 </html>
