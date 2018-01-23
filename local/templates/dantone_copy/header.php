@@ -1,4 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 IncludeModuleLangFile(__FILE__);
 include 'ajax.php';
 if(isset($_REQUEST["logout"]) && $_REQUEST["logout"] == "Y" ) {
@@ -28,6 +28,7 @@ CJSCore::Init(array('translit'));
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/jquery.fancybox.css" />
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/animate.css" />
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/style.css" />
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/main.css" />
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/subscribe-popup.css" />
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
