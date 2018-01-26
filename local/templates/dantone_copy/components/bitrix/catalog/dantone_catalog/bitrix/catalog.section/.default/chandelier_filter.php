@@ -135,56 +135,56 @@ function submit_handler()
 
 	if($(".height_20_80 .jq-checkbox").hasClass("checked")) {
 		height_20_80 = "Y";
-		url = url + 'height_20_80/';
+		url = url + '-height_20_80';
 		$("#dantone_filter_box input[name='filter[height_20_80]']").val("Y");
 	}
 	if($(".height_80_120 .jq-checkbox").hasClass("checked")) {
 		height_80_120 = "Y";
-		url = url + 'height_80_120/';
+		url = url + '-height_80_120';
 		$("#dantone_filter_box input[name='filter[height_80_120]']").val("Y");
 	}
 	if($(".height_120_150 .jq-checkbox").hasClass("checked")) {
 		diameter_120_150 = "Y";
-		url = url + 'diameter_120_150/';
+		url = url + '-diameter_120_150';
 		$("#dantone_filter_box input[name='filter[height_120_150]']").val("Y");
 	}
 	if($(".diameter_10_40 .jq-checkbox").hasClass("checked")) {
 		diameter_10_40 = "Y";
-		url = url + 'diameter_10_40/';
+		url = url + '-diameter_10_40';
 		$("#dantone_filter_box input[name='filter[diameter_10_40]']").val("Y");
 	}
 	if($(".diameter_40_80 .jq-checkbox").hasClass("checked")) {
 		diameter_40_80 = "Y";
-		url = url + 'diameter_40_80/';
+		url = url + '-diameter_40_80';
 		$("#dantone_filter_box input[name='filter[diameter_40_80]']").val("Y");
 	}
 	if($(".diameter_80_90 .jq-checkbox").hasClass("checked")) {
 		diameter_80_90 = "Y";
-		url = url + 'diameter_80_90/';
+		url = url + '-diameter_80_90';
 		$("#dantone_filter_box input[name='filter[diameter_80_90]']").val("Y");
 	}
 	if($(".price_under_30 .jq-checkbox").hasClass("checked")) {
 		price_under_30 = "Y";
-		url = url + 'price_under_30/';
+		url = url + '-price_under_30';
 		$("#dantone_filter_box input[name='filter[price_under_30]']").val("Y");
 	}
 	if($(".price_30_50 .jq-checkbox").hasClass("checked")) {
 		price_30_50 = "Y";
-		url = url + 'price_30_50/';
+		url = url + '-price_30_50';
 		$("#dantone_filter_box input[name='filter[price_30_50]']").val("Y");
 	}
 	if($(".price_over_50 .jq-checkbox").hasClass("checked")) {
 		price_over_50 = "Y";
-		url = url + 'price_over_50/';
+		url = url + '-price_over_50';
 		$("#dantone_filter_box input[name='filter[price_over_50]']").val("Y");
 	}
 	if($(".available .jq-checkbox").hasClass("checked")) {
 		available = "Y";
-		url = url + 'available/';
+		url = url + '-available';
 		$("#dantone_filter_box input[name='filter[available]']").val("Y");
 	}
 	  if(url != '')
-			url = '<?=$SECTION_CODE_PATH;?>filter/' + url + 'apply/';
+			url = '<?=$SECTION_CODE_PATH;?>filter' + url + '/';
 		else url = '<?=$SECTION_CODE_PATH;?>';
 
 	$(location).attr('href',url);

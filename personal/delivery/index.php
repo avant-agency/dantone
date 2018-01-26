@@ -4,7 +4,7 @@ $APPLICATION->SetTitle("Настройки пользователя");
 ?>
 
 <section id="content">
-<div class="container">
+<div class="lk-wrap container">
 	
 
 	

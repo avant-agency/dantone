@@ -5,18 +5,19 @@ global $USER;
 
 function smartFilterPath(){
 
-   $array = explode('/',$_SERVER['REQUEST_URI']);
-   
+	$array1 = explode('/',$_SERVER['REQUEST_URI']);
+	$array = explode('-',$array1[(count($array1)-1)]);
+
    $filterKey = array_search('filter', $array);
    $applyKey = array_search('apply', $array);
 
    if($filterKey){
       $str = '';
       for($i=$filterKey+1; $i<$applyKey; $i++){
-         $str .= $array[$i].'/';
+         $str .= $array[$i].'-';
       }
       
-      $str = rtrim($str,'/');
+      $str = rtrim($str,'-');
       
       return $str;
    }
@@ -51,63 +52,63 @@ function admin_submit_handler()
 
 	if($(".size_160_220 .jq-checkbox").hasClass("checked")) {
 		size_160_220 = "Y";
-		url = url + 'size_160_220/';
+		url = url + '-size_160_220';
 		$("#dantone_filter_box input[name='filter[size_160_220]']").val("Y");
 	}
 	if($(".size_220_280 .jq-checkbox").hasClass("checked")) {
 		size_220_280 = "Y";
-		url = url + 'size_220_280/';
+		url = url + '-size_220_280';
 		$("#dantone_filter_box input[name='filter[size_220_280]']").val("Y");
 	}
 	if($(".size_280_320 .jq-checkbox").hasClass("checked")) {
 		size_280_320 = "Y";
-		url = url + 'size_280_320/';
+		url = url + '-size_280_320';
 		$("#dantone_filter_box input[name='filter[size_280_320]']").val("Y");
 	}
 	if($(".price_under_75 .jq-checkbox").hasClass("checked")) {
 		price_under_75 = "Y";
-		url = url + 'price_under_75/';
+		url = url + '-price_under_75';
 		$("#dantone_filter_box input[name='filter[price_under_75]']").val("Y");
 	}
 	if($(".price_75_125 .jq-checkbox").hasClass("checked")) {
 		price_75_125 = "Y";
-		url = url + 'price_75_125/';
+		url = url + '-price_75_125';
 		$("#dantone_filter_box input[name='filter[price_75_125]']").val("Y");
 	}
 	if($(".price_under_75 .jq-checkbox").hasClass("checked")) {
 		price_under_75 = "Y";
-		url = url + 'price_under_75/';
+		url = url + '-price_under_75';
 		$("#dantone_filter_box input[name='filter[price_under_75]']").val("Y");
 	}
 	if($(".price_over_125 .jq-checkbox").hasClass("checked")) {
 		price_over_125 = "Y";
-		url = url + 'price_over_125/';
+		url = url + '-price_over_125';
 		$("#dantone_filter_box input[name='filter[price_over_125]']").val("Y");
 	}
 	if($(".sofa_folding_mechanism_yes .jq-checkbox").hasClass("checked")) {
 		sofa_folding_mechanism_yes = "Y";
-		url = url + 'sofa_folding_mechanism_yes/';
+		url = url + '-sofa_folding_mechanism_yes';
 		$("#dantone_filter_box input[name='filter[sofa_folding_mechanism_yes]']").val("Y");
 	}
 	if($(".sofa_folding_mechanism_no .jq-checkbox").hasClass("checked")) {
 		sofa_folding_mechanism_no = "Y";
-		url = url + 'sofa_folding_mechanism_no/';
+		url = url + '-sofa_folding_mechanism_no';
 		$("#dantone_filter_box input[name='filter[sofa_folding_mechanism_no]']").val("Y");
 	}
 	if($(".available .jq-checkbox").hasClass("checked")) {
 		available = "Y";
-		url = url + 'available/';
+		url = url + '-available';
 		$("#dantone_filter_box input[name='filter[available]']").val("Y");
 	}
 	if($(".available_30_days .jq-checkbox").hasClass("checked")) {
 		available_30_days = "Y";
-		url = url + 'available_30_days/';
+		url = url + '-available_30_days';
 		$("#dantone_filter_box input[name='filter[available_30_days]']").val("Y");
 	}
   if(url != '')
-			url = '<?=$SECTION_CODE_PATH;?>filter/' + url + 'apply/';
+			url = '<?=$SECTION_CODE_PATH;?>filter' + url + '/';
 		else url = '<?=$SECTION_CODE_PATH;?>';
-	$(location).href(url);
+	
 	//$("#dantone_filter_box").submit();
 }
 $(function(){
@@ -269,58 +270,58 @@ function submit_handler()
 
 	if($(".size_160_220 .jq-checkbox").hasClass("checked")) {
 		size_160_220 = "Y";
-		url = url + 'size_160_220/';
+		url = url + '-size_160_220';
 		$("#dantone_filter_box input[name='filter[size_160_220]']").val("Y");
 	}
 	if($(".size_220_280 .jq-checkbox").hasClass("checked")) {
 		size_220_280 = "Y";
-		url = url + 'size_220_280/';
+		url = url + '-size_220_280';
 		$("#dantone_filter_box input[name='filter[size_220_280]']").val("Y");
 	}
 	if($(".size_280_320 .jq-checkbox").hasClass("checked")) {
 		size_280_320 = "Y";
-		url = url + 'size_280_320/';
+		url = url + '-size_280_320';
 		$("#dantone_filter_box input[name='filter[size_280_320]']").val("Y");
 	}
 	if($(".price_under_75 .jq-checkbox").hasClass("checked")) {
 		price_under_75 = "Y";
-		url = url + 'price_under_75/';
+		url = url + '-price_under_75';
 		$("#dantone_filter_box input[name='filter[price_under_75]']").val("Y");
 	}
 	if($(".price_75_125 .jq-checkbox").hasClass("checked")) {
 		price_75_125 = "Y";
-		url = url + 'price_75_125/';
+		url = url + '-price_75_125';
 		$("#dantone_filter_box input[name='filter[price_75_125]']").val("Y");
 	}
 
 	if($(".price_over_125 .jq-checkbox").hasClass("checked")) {
 		price_over_125 = "Y";
-		url = url + 'price_over_125/';
+		url = url + '-price_over_125';
 		$("#dantone_filter_box input[name='filter[price_over_125]']").val("Y");
 	}
 	if($(".sofa_folding_mechanism_yes .jq-checkbox").hasClass("checked")) {
 		sofa_folding_mechanism_yes = "Y";
-		url = url + 'sofa_folding_mechanism_yes/';
+		url = url + '-sofa_folding_mechanism_yes';
 		$("#dantone_filter_box input[name='filter[sofa_folding_mechanism_yes]']").val("Y");
 	}
 	if($(".sofa_folding_mechanism_no .jq-checkbox").hasClass("checked")) {
 		sofa_folding_mechanism_no = "Y";
-		url = url + 'sofa_folding_mechanism_no/';
+		url = url + '-sofa_folding_mechanism_no';
 		$("#dantone_filter_box input[name='filter[sofa_folding_mechanism_no]']").val("Y");
 	}
 	if($(".available .jq-checkbox").hasClass("checked")) {
 
 		available = "Y";
-		url = url + 'available/';
+		url = url + '-available';
 		$("#dantone_filter_box input[name='filter[available]']").val("Y");
 	}
 	if($(".available_30_days .jq-checkbox").hasClass("checked")) {
 		available_30_days = "Y";
-		url = url + 'available_30_days/';
+		url = url + '-available_30_days';
 		$("#dantone_filter_box input[name='filter[available_30_days]']").val("Y");
 	}
 	  if(url != '')
-			url = '<?=$SECTION_CODE_PATH;?>filter/' + url + 'apply/';
+		  url = '<?=$SECTION_CODE_PATH;?>filter' + url + '/';
 		else url = '<?=$SECTION_CODE_PATH;?>';
 
 

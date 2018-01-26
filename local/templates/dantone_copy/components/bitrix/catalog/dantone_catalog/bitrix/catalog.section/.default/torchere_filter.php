@@ -111,35 +111,35 @@ function submit_handler()
 	var available = false;
 	var url = ''; 
 	if($(".height_70_100 .jq-checkbox").hasClass("checked")) {
-		height_70_100 = "Y"; url = url + 'height_70_100/';
+		height_70_100 = "Y"; url = url + '-height_70_100';
 		$("#dantone_filter_box input[name='filter[height_70_100]']").val("Y");
 	}
 	if($(".height_100_150 .jq-checkbox").hasClass("checked")) {
-		height_100_150 = "Y"; url = url + 'height_100_150/';
+		height_100_150 = "Y"; url = url + '-height_100_150';
 		$("#dantone_filter_box input[name='filter[height_100_150]']").val("Y");
 	}
 	if($(".height_150_170 .jq-checkbox").hasClass("checked")) {
-		height_150_170 = "Y";  url = url + 'height_150_170/';
+		height_150_170 = "Y";  url = url + '-height_150_170';
 		$("#dantone_filter_box input[name='filter[height_150_170]']").val("Y");
 	}
 	if($(".price_under_20 .jq-checkbox").hasClass("checked")) {
-		price_under_20 = "Y"; url = url + 'price_under_20/';
+		price_under_20 = "Y"; url = url + '-price_under_20';
 		$("#dantone_filter_box input[name='filter[price_under_20]']").val("Y");
 	}
 	if($(".price_20_40 .jq-checkbox").hasClass("checked")) {
-		price_20_40 = "Y"; url = url + 'price_20_40/';
+		price_20_40 = "Y"; url = url + '-price_20_40';
 		$("#dantone_filter_box input[name='filter[price_20_40]']").val("Y");
 	}
 	if($(".price_over_40 .jq-checkbox").hasClass("checked")) {
-		price_over_40 = "Y"; url = url + 'price_over_40/';
+		price_over_40 = "Y"; url = url + '-price_over_40';
 		$("#dantone_filter_box input[name='filter[price_over_40]']").val("Y");
 	}
 	if($(".available .jq-checkbox").hasClass("checked")) {
-		available = "Y"; url = url + 'available/';
+		available = "Y"; url = url + '-available';
 		$("#dantone_filter_box input[name='filter[available]']").val("Y");
 	}
  	if(url != '')
-			url = '<?=$SECTION_CODE_PATH;?>filter/' + url + 'apply/';
+			url = '<?=$SECTION_CODE_PATH;?>filter' + url + '/';
 		else url = '<?=$SECTION_CODE_PATH;?>';
 	//$("#dantone_filter_box").submit();
 }

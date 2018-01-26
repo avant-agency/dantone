@@ -3,6 +3,14 @@
 global $APPLICATION;
 $dir = $APPLICATION->GetCurDir();
 $exp = explode("/",$dir);
+global $variables;
+
+
+$rs = explode("-",$variables["filterstr"]);
+foreach($rs as $v)
+{
+	$_REQUEST["filter"][$v] = 'Y';
+}
 
 foreach($exp as $k => $v)
 {
@@ -117,7 +125,7 @@ while($ob = $res->GetNextElement())
 	$filter = array();
 	$price = false;
 
-	foreach($_REQUEST["filter"] as $k => $v)
+foreach($_REQUEST["filter"] as $k => $v)
 	{
 		if($v == "Y")
 		{

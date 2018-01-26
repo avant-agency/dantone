@@ -28,6 +28,7 @@ CJSCore::Init(array('translit'));
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/jquery.fancybox.css" />
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/animate.css" />
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/style.css" />
+    
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/subscribe-popup.css" />
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -84,7 +85,7 @@ CJSCore::Init(array('translit'));
 
 </head>
 
-<body class="<?=LANGUAGE_ID?>-version <?=defined('INDEX')?'index-page':'';?>">
+<body class="<?=LANGUAGE_ID?>-version <?=defined('INDEX')?'index-page':'';?> lk-body">
 <? 
     $criteoHomePageTags = array(SITE_DIR."index.php", SITE_DIR."about/index.php",SITE_DIR."projects/index.php", SITE_DIR."press/index.php",SITE_DIR."contacts/index.php");
 

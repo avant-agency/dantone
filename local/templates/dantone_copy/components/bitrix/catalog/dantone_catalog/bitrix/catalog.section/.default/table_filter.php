@@ -165,68 +165,68 @@ function submit_handler()
 
     if($(".width_40_100 .jq-checkbox").hasClass("checked")) {
         width_40_100 = "Y";
-		url = url + 'width_40_100/';
+		url = url + '-width_40_100';
         $("#dantone_filter_box input[name='filter[width_40_100]']").val("Y");
     }
     if($(".width_100_200 .jq-checkbox").hasClass("checked")) {
         width_100_200 = "Y";
-		url = url + 'width_100_200/';
+		url = url + '-width_100_200';
         $("#dantone_filter_box input[name='filter[width_100_200]']").val("Y");
     }
     if($(".width_200_300 .jq-checkbox").hasClass("checked")) {
         width_200_300 = "Y";
-		url = url + 'width_200_300/';
+		url = url + '-width_200_300';
         $("#dantone_filter_box input[name='filter[width_200_300]']").val("Y");
     }
 
     if($(".app_console .jq-checkbox").hasClass("checked")) {
         app_console = "Y";
-		url = url + 'app_console/';
+		url = url + '-app_console';
         $("#dantone_filter_box input[name='filter[app_console]']").val("Y");
     }
     if($(".app_dinner .jq-checkbox").hasClass("checked")) {
         app_dinner = "Y";
-		url = url + 'app_dinner/';
+		url = url + '-app_dinner';
         $("#dantone_filter_box input[name='filter[app_dinner]']").val("Y");
     }
     if($(".app_writing .jq-checkbox").hasClass("checked")) {
         app_writing = "Y";
-		url = url + 'app_writing/';
+		url = url + '-app_writing';
         $("#dantone_filter_box input[name='filter[app_writing]']").val("Y");
     }
     if($(".app_magazine .jq-checkbox").hasClass("checked")) {
         app_magazine = "Y";
-		url = url + 'app_magazine/';
+		url = url + '-app_magazine';
         $("#dantone_filter_box input[name='filter[app_magazine]']").val("Y");
     }
 
     if($(".price_under_80 .jq-checkbox").hasClass("checked")) {
         price_under_80 = "Y";
-		url = url + 'price_under_80/';
+		url = url + '-price_under_80';
         $("#dantone_filter_box input[name='filter[price_under_80]']").val("Y");
     }
     if($(".price_80_100 .jq-checkbox").hasClass("checked")) {
         price_80_100 = "Y";
-		url = url + 'price_80_100/';
+		url = url + '-price_80_100';
         $("#dantone_filter_box input[name='filter[price_80_100]']").val("Y");
     }
     if($(".price_over_100 .jq-checkbox").hasClass("checked")) {
         price_over_100 = "Y";
-		url = url + 'price_over_100/';
+		url = url + '-price_over_100';
         $("#dantone_filter_box input[name='filter[price_over_100]']").val("Y");
     }
     if($(".available .jq-checkbox").hasClass("checked")) {
         available = "Y";
-		url = url + 'available/';
+		url = url + '-available';
         $("#dantone_filter_box input[name='filter[available]']").val("Y");
     }
     if($(".table_folding_mechanism .jq-checkbox").hasClass("checked")) {
         table_folding_mechanism = "Y";
-		url = url + 'table_folding_mechanism/';
+		url = url + '-table_folding_mechanism';
         $("#dantone_filter_box input[name='filter[table_folding_mechanism]']").val("Y");
     }
 		  if(url != '')
-			url = '<?=$SECTION_CODE_PATH;?>filter/' + url + 'apply/';
+			url = '<?=$SECTION_CODE_PATH;?>filter' + url + '/';
 		else url = '<?=$SECTION_CODE_PATH;?>';
 
 	$(location).attr('href',url);
