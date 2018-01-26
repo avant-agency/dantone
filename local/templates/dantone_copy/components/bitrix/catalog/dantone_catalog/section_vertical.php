@@ -112,11 +112,21 @@ if($isfilter) {  // && $USER->IsAdmin()
 <?
 if(isset($_REQUEST["sortField"]))
 {
+	if($_SESSION["sortField"] == $_REQUEST["sortField"])
+	{
+		if($_SESSION["sortOrderField"] != "DESC") $_SESSION["sortOrderField"] = "DESC";
+			else $_SESSION["sortOrderField"] = "ASC";
+	} else $_SESSION["sortOrderField"] = "DESC";
 	$_SESSION["sortField"] = $_REQUEST["sortField"];
+
 }
 
 if(isset($_SESSION["sortField"]))
 	$arParams["ELEMENT_SORT_FIELD"] = $_SESSION["sortField"];
+
+if(isset($_SESSION["sortField"]))
+	$arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"];
+
 ?>
 <div class="clearfix">
     <?$intSectionID = $APPLICATION->IncludeComponent(
