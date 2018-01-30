@@ -275,7 +275,9 @@ false
 "MENU_CACHE_GET_VARS" => "",    // Значимые переменные запроса
 ),
 false
-);?>
+);
+if(!(CSite::InDir('/catalog/sofas/') || CSite::InDir('/catalog/bedroom/') || CSite::InDir('/catalog/armchairs_and_chairs/') ||  CSite::InDir('/catalog/tables_and_consoles/')
+||  CSite::InDir('/catalog/light/') ||  CSite::InDir('/catalog/mirrors/') ) ) {?>
 
 <div class="filter">
 <?
@@ -299,6 +301,7 @@ $url = "/catalog/".$code."/filter-price_"."10_50"."-apply/";
         </ul>
     </form>
 </div>
+	<?}?>
 </aside>
 
 
