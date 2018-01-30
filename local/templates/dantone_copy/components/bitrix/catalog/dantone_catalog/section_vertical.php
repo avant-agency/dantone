@@ -1,4 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $this->setFrameMode(true);?>
 
 <?
@@ -114,9 +114,9 @@ if(isset($_REQUEST["sortField"]))
 {
 	if($_SESSION["sortField"] == $_REQUEST["sortField"])
 	{
-		if($_SESSION["sortOrderField"] != "DESC") $_SESSION["sortOrderField"] = "DESC";
-			else $_SESSION["sortOrderField"] = "ASC";
-	} else $_SESSION["sortOrderField"] = "DESC";
+		if($_SESSION["sortOrderField"] != "ASC") $_SESSION["sortOrderField"] = "ASC";
+			else $_SESSION["sortOrderField"] = "DESC";
+	} else $_SESSION["sortOrderField"] = "ASC";
 	$_SESSION["sortField"] = $_REQUEST["sortField"];
 
 }
