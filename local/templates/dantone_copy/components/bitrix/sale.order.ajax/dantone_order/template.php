@@ -248,6 +248,10 @@ else:
 
                     <div class="pane">
 
+
+					
+
+
                         <div class="confirm-form" method="post">
                           <div class="help-form">
                               <div class="help-form-calculate">
@@ -281,14 +285,14 @@ else:
                   
 <div class="help-inline"><a class="conditions" target="_blank" href="/delivery/">Условия доставки</a></div>
                               </div>
-  <?if($arResult["PICKUP_AVAILABLE"]):?>
+								<?/*if($arResult["PICKUP_AVAILABLE"]):?>
                                 <div class="control" style="display:none;" id="pickup_moskow_and_mo">
                                         <label class="radio a-radio">
                                             <input type="radio" name="DELIVERY_ID" value="3" data-ourdelivery="0" data-selfdelivery="1" data-customdelivery="0" style="position: absolute; left: -9999px;">
                                             <?=GetMessage('ORDER_DELIVERY_SELF')?>                                 
                                         </label>
                                     </div>
-                                <?endif;?>
+<?endif;*/?>
  								<div class="control">
                                   <label class="radio a-radio">
                                       <input type="radio" name="DELIVERY_ID" value="16" data-ourdelivery="0" data-selfdelivery="0" data-customdelivery="1" style="position: absolute; left: -9999px;">
