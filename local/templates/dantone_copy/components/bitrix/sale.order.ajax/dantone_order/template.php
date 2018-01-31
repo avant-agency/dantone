@@ -1,4 +1,4 @@
-﻿<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+﻿﻿<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Main\Localization\Loc;
 
@@ -179,11 +179,11 @@ else:
                     <span class="hfc-price-value" style="font-size:36px;">
                       <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
                     </span> руб.</span>
-					<?
-						global $numWindow;
-						$numWindow = 1;
-						include('coupon.php')?>
-					</div>
+                    <?
+                        global $numWindow;
+                        $numWindow = 1;
+                        include('coupon.php')?>
+                    </div>
                   <div class="hfc-warning" style="color:#666666;font-weight:300;font-size:14px;">
                     Сумма указана без учета доставки
                   </div>
@@ -195,11 +195,11 @@ else:
                     <div class="form-container">
                         <div class="control-group">
                             <div class="control">
-                                <input type="text" name="ORDER_PROP_8" id="ORDER_PROP_8" required="required" class="input-text required" placeholder="<?=isset($arResult["USER"]) ? $arResult["USER"]["NAME"] :GetMessage('ORDER_FULL_NAME_SHORT')?>" data-name="<?=GetMessage('ORDER_FULL_NAME_SHORT')?>" value="<?=isset($arResult["USER"]) ? $arResult["USER"]["NAME"] : "";?>">                                    
+                                <input type="text" name="ORDER_PROP_8" id="ORDER_PROP_8" required="required" class="input-text required" placeholder="<?=GetMessage('ORDER_FULL_NAME_SHORT')?>" data-name="<?=GetMessage('ORDER_FULL_NAME_SHORT')?>" value="<?=isset($arResult["USER"]) ? $arResult["USER"]["NAME"] : "";?>">                                    
                                 <div class="help-inline help-small"><?=GetMessage('ORDER_FULL_NAME')?></div>
                             </div>
                             <div class="control">
-                                <input type="text" name="ORDER_PROP_9" required="required" class="input-text required" placeholder="<?=isset($arResult["USER"]) ? $arResult["USER"]["LAST_NAME"] : GetMessage('ORDER_LAST_NAME_SHORT')?>"  data-name="<?=GetMessage('ORDER_LAST_NAME_SHORT')?>"  value="<?=isset($arResult["USER"]) ? $arResult["USER"]["LAST_NAME"] : "";?>">                                    
+                                <input type="text" name="ORDER_PROP_9" required="required" class="input-text required" placeholder="<?=GetMessage('ORDER_LAST_NAME_SHORT')?>"  data-name="<?=GetMessage('ORDER_LAST_NAME_SHORT')?>"  value="<?=isset($arResult["USER"]) ? $arResult["USER"]["LAST_NAME"] : "";?>">                                    
                                 <div class="help-inline help-small"><?=GetMessage('ORDER_LAST_NAME')?></div>
                             </div>
                             <div class="control">
@@ -207,7 +207,7 @@ else:
                                 <div class="help-inline help-small"><?=GetMessage('ORDER_EMAIL')?></div>
                             </div>
                             <div class="control">
-                                <input type="text" name="ORDER_PROP_3" required="required" class="input-text required phone-input" placeholder="<?=isset($arResult["USER"]) ? $arResult["USER"]["PERSONAL_PHONE"] : GetMessage('ORDER_PHONE_SHORT')?>" data-name="<?=GetMessage('ORDER_PHONE_SHORT')?>" value="<?=isset($arResult["USER"]["PERSONAL_PHONE"]) ? $arResult["USER"]["PERSONAL_PHONE"] : "";?>">                                   
+                                <input type="text" name="ORDER_PROP_3" required="required" class="input-text required phone-input" placeholder="<?=GetMessage('ORDER_PHONE_SHORT')?>" data-name="<?=GetMessage('ORDER_PHONE_SHORT')?>" value="<?=isset($arResult["USER"]["PERSONAL_PHONE"]) ? $arResult["USER"]["PERSONAL_PHONE"] : "";?>">                                   
                                 <div class="help-inline help-small"><?=GetMessage('ORDER_PHONE')?></div>
                             </div>
                             <div class="control">
@@ -249,7 +249,7 @@ else:
                     <div class="pane">
 
 
-					
+                    
 
 
                         <div class="confirm-form" method="post">
@@ -260,9 +260,9 @@ else:
                                     <span class="hfc-price-value" style="font-size:36px;">
                                         <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
                                     </span> руб.</span>
-								<?
-									$numWindow = 2;
-									include('coupon.php')?>
+                                <?
+                                    $numWindow = 2;
+                                    include('coupon.php')?>
                                 </div>
                                 <div class="hfc-warning" style="color:#666666;font-weight:300;font-size:14px;">
                                     Сумма указана без учета доставки
@@ -274,7 +274,7 @@ else:
                           <div class="form-container">
                             <div class="control-group control-group-radio clearfix" id="deliveryTypesBlock">
                               <div class="help-inline help-small"><?=GetMessage('ORDER_DELIVERY_TITLE')?></div>
-								<br />
+                                <br />
 
 
                               <div class="control">
@@ -285,7 +285,7 @@ else:
                   
 <div class="help-inline"><a class="conditions" target="_blank" href="/delivery/">Условия доставки</a></div>
                               </div>
-								<?/*if($arResult["PICKUP_AVAILABLE"]):?>
+                                <?/*if($arResult["PICKUP_AVAILABLE"]):?>
                                 <div class="control" style="display:none;" id="pickup_moskow_and_mo">
                                         <label class="radio a-radio">
                                             <input type="radio" name="DELIVERY_ID" value="3" data-ourdelivery="0" data-selfdelivery="1" data-customdelivery="0" style="position: absolute; left: -9999px;">
@@ -293,7 +293,7 @@ else:
                                         </label>
                                     </div>
 <?endif;*/?>
- 								<div class="control">
+                                <div class="control">
                                   <label class="radio a-radio">
                                       <input type="radio" name="DELIVERY_ID" value="16" data-ourdelivery="0" data-selfdelivery="0" data-customdelivery="1" style="position: absolute; left: -9999px;">
                                       <?=GetMessage('ORDER_DELIVERY_OTHER')?>
@@ -323,23 +323,23 @@ else:
                                   </div>
                                 </div>                       
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
-                                      <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_CITY')?>" name="ORDER_PROP_13" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_CITY')?>*" class="city-input input-text" value="" value="<?=$arResult["USER"]["PERSONAL_CITY"]?>">
+                                      <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_CITY')?>" name="ORDER_PROP_13" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_CITY')?>*" class="city-input input-text" value="<?=$arResult["USER"]["PERSONAL_CITY"]?>">
                                       <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_CITY_COMMENT1')?></div>
                                     </div>
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
-                                      <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_STREET')?>" name="ORDER_PROP_14" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_STREET')?>*" class=" input-text" value="" value="<?=$arResult["USER"]["PERSONAL_STREET"]?>">
+                                      <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_STREET')?>" name="ORDER_PROP_14" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_STREET')?>*" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_STREET"]?>">
                                       <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_STREET_COMMENT')?></div>
                                     </div>
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
-                                      <input type="text" data-name="Дом" name="ORDER_PROP_15" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_HOUSE')?>*" class=" input-text input-small2" value="">
-                                      <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2" value="">
-                                      <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2" value="">
+                                      <input type="text" data-name="Дом" name="ORDER_PROP_15" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_HOUSE')?>*" class=" input-text input-small2" value="<?=$arResult["USER"]["PERSONAL_PROFESSION"]?>">
+                                      <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2">
+                                      <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2">
                                     </div>
-								<?/*<div class="control" style="margin-right: 0px;padding-right: 90px;">
+                                <?/*<div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <input type="text" name="ORDER_PROP_4" placeholder="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" data-name="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_ZIP"]?>">
                                       <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_KNOWINDEX')?> <a href="http://indexp.ru/" class="nounderline" target="_blank"><?=GetMessage('ORDER_ADDRESS_FINDINDEX')?></a></div>
                                     </div>
-									*/?>
+                                    */?>
                                     <div class="control" style="margin-right: 0px;padding-right: 90px;">
                                       <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6">
                                       </textarea>
@@ -378,12 +378,12 @@ else:
                                   <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2" value="" disabled="">
                                   <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2" value="" disabled="">
                                 </div>
-								<?/*
+                                <?/*
                                 <div class="control">
                                   <input type="text" name="ORDER_PROP_4" placeholder="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" data-name="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_ZIP"]?>" disabled="">
                                   <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_KNOWINDEX')?> <a href="http://indexp.ru/" class="nounderline" target="_blank"><?=GetMessage('ORDER_ADDRESS_FINDINDEX')?></a></div>
                                 </div>
-								*/?>
+                                */?>
                                 <div class="control">
                                   <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6" disabled=""></textarea>
                                   <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>
@@ -407,9 +407,9 @@ else:
                     <span class="hfc-price-value" style="font-size:36px;">
                       <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
                     </span> руб.</span>
-					<?
-					$numWindow = 3;
-					include('coupon.php')?>
+                    <?
+                    $numWindow = 3;
+                    include('coupon.php')?>
                   </div>
                   <div class="hfc-warning" style="color:#666666;font-weight:300;font-size:14px;">
                     Сумма указана без учета доставки
@@ -461,46 +461,46 @@ else:
 </div>
 </form>
 <script>
-		/*Enter Cupon*/
+        /*Enter Cupon*/
 function addSpaces(nStr){
-	nStr += '';
-	x = nStr.split('.');
-	x1 = x[0];
-	x2 = x.length > 1 ? '.' + x[1] : '';
-	var rgx = /(\d+)(\d{3})/;
-	while (rgx.test(x1)) {
-		x1 = x1.replace(rgx, '$1' + ' ' + '$2');
-	}
-	return x1 + x2;
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+    }
+    return x1 + x2;
 }
 
-	function enterThisCoupon(coupon) //Добавление купона на скидку
-		{
-			var newCoupon = $('#'+coupon).find("input");
-			var zn = newCoupon.val();
-			$.ajax({
-				url: '/ajax/setCoupon.php',
-				data: {'coupon' : zn},
-				type: "post",
-				success: function(response) {
-				console.log(response);
-				location.reload();
-				}
-			})
-		}
-    	$(function() { 
-			$('.good').click(function(){ //Деактивация действующего купона на скидку
-			var coupon = $(this).attr('data-coupon');
-				$.ajax({
-						url: '/ajax/eraseCoupon.php',
-						data: {'coupon' : coupon},
-						type: "post",
-						success: function(response) {
-						console.log(response);
-						location.reload();
-						}
-					})
-		});
+    function enterThisCoupon(coupon) //Добавление купона на скидку
+        {
+            var newCoupon = $('#'+coupon).find("input");
+            var zn = newCoupon.val();
+            $.ajax({
+                url: '/ajax/setCoupon.php',
+                data: {'coupon' : zn},
+                type: "post",
+                success: function(response) {
+                console.log(response);
+                location.reload();
+                }
+            })
+        }
+        $(function() { 
+            $('.good').click(function(){ //Деактивация действующего купона на скидку
+            var coupon = $(this).attr('data-coupon');
+                $.ajax({
+                        url: '/ajax/eraseCoupon.php',
+                        data: {'coupon' : coupon},
+                        type: "post",
+                        success: function(response) {
+                        console.log(response);
+                        location.reload();
+                        }
+                    })
+        });
 
         $('.pane').not('.active').hide();
 
@@ -567,7 +567,7 @@ function addSpaces(nStr){
 
         $("#bx-soa-order-form .pane.last .control:first label").click();
 
-			// var order_price = "<?=$arResult['ORDER_TOTAL_PRICE']?>";
+            // var order_price = "<?=$arResult['ORDER_TOTAL_PRICE']?>";
 var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" руб.","");
 
         setInterval(function(){
@@ -592,14 +592,14 @@ var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" ру�
             }
             else
             {
-				var summop = parseFloat(order_price.replace(/\s/g, '')) + parseFloat($("#our_delivery_description .cdc-itog").text().trim());
+                var summop = parseFloat(order_price.replace(/\s/g, '')) + parseFloat($("#our_delivery_description .cdc-itog").text().trim());
 
                 switch($("#deliveryTypesBlock .control input[name='DELIVERY_ID']:checked").val())
                 {
                     case "2": // Доставка Дантона
                         // get delivery price
-						// $(".hfc-price-value").text((parseFloat(op) + parseFloat($("#our_delivery_description .cdc-itog").text().trim())) + " ");
- 						$(".hfc-price-value").text(addSpaces(summop) + " ");
+                        // $(".hfc-price-value").text((parseFloat(op) + parseFloat($("#our_delivery_description .cdc-itog").text().trim())) + " ");
+                        $(".hfc-price-value").text(addSpaces(summop) + " ");
                       $(".hfc-warning").text("Цена доставки: " + $("#our_delivery_description .cdc-itog").text().trim() + "р.");
                     break;
                     case "3": // Самовывоз
@@ -666,10 +666,10 @@ var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" ру�
             type: "post",
             success: function(response) {
                 console.log(response);
-				 if(response['order']["REDIRECT_URL"]) {
-				 location.href = response['order']["REDIRECT_URL"];
-				//location.href = "/personal/order/make/";
-				 }
+                 if(response['order']["REDIRECT_URL"]) {
+                 location.href = response['order']["REDIRECT_URL"];
+                //location.href = "/personal/order/make/";
+                 }
 
                 var propertyErrors = response['order']["ERROR"]["PROPERTY"];
 
@@ -834,7 +834,7 @@ var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" ру�
     max-width: 100%;
   }
 
-	/***COUPON STYLES**/
+    /***COUPON STYLES**/
 .bx_ordercart_coupon span.good {
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAANCAYAAABPeYUaAAAAoklEQVQ4y2NgIBOUb7JkY6AEAA0wBuJHQGxHrgFWQPwBiP8D8WcgliTVAHuoRpAB/4A4E10BDwED3ID4K9SAP0CciK7ACYhfg2gcBvgA8Q8kA6LQFQgB8Seogq/oBgH5QUD8EyoPooNwOTUMagOKQSAbkcRBLvEhFGjoBvWi8V2JDX1kg2AY5FV7UqMR2SBQerAkN0GBDHoJSpmUJm1uYtUCAMzalTMY8Lf6AAAAAElFTkSuQmCC) no-repeat center;
     display: inline-block;
@@ -844,8 +844,8 @@ var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" ру�
     margin: 0 0 0 5px;
     cursor: pointer;
 }
-	.bx_ordercart_coupon span.good:hover{
-		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjA2QzFEQUU3QTJEMTFFNEJFMTJEMjJGMUE4MkZDRkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjA2QzFEQUY3QTJEMTFFNEJFMTJEMjJGMUE4MkZDRkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2MDZDMURBQzdBMkQxMUU0QkUxMkQyMkYxQTgyRkNGRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2MDZDMURBRDdBMkQxMUU0QkUxMkQyMkYxQTgyRkNGRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuRKTjMAAAC1SURBVHjaXJAhEsIwEEWTDiCoAa6CBtUKEAxHwAfHGSpxySWqUFQUh+YG3AEMOvxlfmf+kJmXnXRftr/1McaDc+4M9iGEu5OVUlqhXMCpwNaABejYUKljrxlh24EbmFHeomZKJXiZ43POdnsp8odDB6lGpMdP5KtUdirZoZDsNmEs5wmYDoeC09YoV8pvUuoHevyef6nikB7MmXljE1sJXlkm5qr5zHqtiQE8Nbgtka13/AowAFzKRSz6AcYPAAAAAElFTkSuQmCC") no-repeat center;
+    .bx_ordercart_coupon span.good:hover{
+        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjA2QzFEQUU3QTJEMTFFNEJFMTJEMjJGMUE4MkZDRkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjA2QzFEQUY3QTJEMTFFNEJFMTJEMjJGMUE4MkZDRkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2MDZDMURBQzdBMkQxMUU0QkUxMkQyMkYxQTgyRkNGRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2MDZDMURBRDdBMkQxMUU0QkUxMkQyMkYxQTgyRkNGRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuRKTjMAAAC1SURBVHjaXJAhEsIwEEWTDiCoAa6CBtUKEAxHwAfHGSpxySWqUFQUh+YG3AEMOvxlfmf+kJmXnXRftr/1McaDc+4M9iGEu5OVUlqhXMCpwNaABejYUKljrxlh24EbmFHeomZKJXiZ43POdnsp8odDB6lGpMdP5KtUdirZoZDsNmEs5wmYDoeC09YoV8pvUuoHevyef6nikB7MmXljE1sJXlkm5qr5zHqtiQE8Nbgtka13/AowAFzKRSz6AcYPAAAAAElFTkSuQmCC") no-repeat center;
 }
 
 .bx_ordercart .bx_ordercart_coupon span.good, .bx_ordercart .bx_ordercart_coupon span.bad, .bx_ordercart .bx_ordercart_coupon span.disabled {
