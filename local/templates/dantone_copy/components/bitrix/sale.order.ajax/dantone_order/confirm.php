@@ -439,3 +439,15 @@ dataLayer.push({
 </script> 
 
 <? }; ?>
+<?
+$user = new CUser;
+$fields = Array(
+    "NAME"                  => $arProps["NAME"]["VALUE"],
+    "LAST_NAME"             => $arProps["LAST_NAME"]["VALUE"],
+    "PERSONAL_PHONE"        => $arProps["PHONE"]["VALUE"],
+    "PERSONAL_CITY"         => $arProps["CITY"]["VALUE"],
+    "PERSONAL_STREET"       => $arProps["STREET"]["VALUE"],
+    "PERSONAL_PROFESSION"   => $arProps["HOUSE"]["VALUE"],
+);
+$user->Update($USER->GetID(), $fields);
+?>
