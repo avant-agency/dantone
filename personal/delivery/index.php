@@ -2,101 +2,67 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Настройки пользователя");
 \Bitrix\Main\Loader::includeModule('sale');
+\Bitrix\Main\Loader::includeModule('iblock');
 
 if(isset($_REQUEST["saveID"]))
 {
 
 $curID = intVal($_REQUEST["saveID"]);
+$el = new CIBlockElement;
 
-$db_propVals = CSaleOrderUserPropsValue::GetList(array("ID" => "ASC"), Array("USER_PROPS_ID" => $curID));
-while ($arPropVals = $db_propVals->Fetch())
-{
-	if($_REQUEST["ORDER_PROPS_".$arPropVals["ORDER_PROPS_ID"]] != '')
-	{
-			$arFields = array(
-				// "ID"=> $arPropVals["ID"],
-			 "USER_PROPS_ID" => $arPropVals["USER_PROPS_ID"],
-			 "ORDER_PROPS_ID" => $arPropVals["ORDER_PROPS_ID"],
-			 "NAME" => $arPropVals["NAME"],
-			 "VALUE" => $_REQUEST["ORDER_PROPS_".$arPropVals["ORDER_PROPS_ID"]],
-		  	);
+$PROP = array();
+$PROP[255] = $usid;  
+$PROP[256] = $_REQUEST["ORDER_PROPS_12"];        
+$PROP[257] = $_REQUEST["ORDER_PROPS_13"];        
+$PROP[258] = $_REQUEST["ORDER_PROPS_14"];        
+$PROP[259] = $_REQUEST["ORDER_PROPS_15"];        
+$PROP[260] = $_REQUEST["ORDER_PROPS_17"];        
+$PROP[261] = $_REQUEST["ORDER_PROPS_18"];        
+$PROP[262] = $_REQUEST["ORDER_PROPS_4"];        
 
-			$res = CSaleOrderUserPropsValue::Update($arPropVals["ID"], $arFields);
-			if(!$res)
-				CSaleOrderPropsValue::Add($arFields);
-	}
-}
+$arLoadProductArray = Array(
+  "MODIFIED_BY"    => $USER->GetID(), // элемент изменен текущим пользователем
+  "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
+  "IBLOCK_ID"      => 17,
+  "PROPERTY_VALUES"=> $PROP,
+	"NAME"           => $_REQUEST["NAME"],
+  "ACTIVE"         => "Y",            // активен
+
+  );
+
+if(!($PRODUCT_ID = $el->Update($curID, $arLoadProductArray)))
+  echo "Error: ".$el->LAST_ERROR;
+
 }
 
 if($_REQUEST["action"] == "add"){
 
 global $USER;
 $usid = $USER->GetID();
-     //создаём профиль
-      //PERSON_TYPE_ID - идентификатор типа плательщика, для которого создаётся профиль
-      $arProfileFields = array(
-         "NAME" => "Профиль покупателя (".$usid.')',
-         "USER_ID" => $usid,
-         "PERSON_TYPE_ID" => 1
-      );
-      $PROFILE_ID = CSaleOrderUserProps::Add($arProfileFields);
-      
+$el = new CIBlockElement;
 
+$PROP = array();
+$PROP[255] = $usid;  
+$PROP[256] = $_REQUEST["ORDER_PROPS_12"];        
+$PROP[257] = $_REQUEST["ORDER_PROPS_13"];        
+$PROP[258] = $_REQUEST["ORDER_PROPS_14"];        
+$PROP[259] = $_REQUEST["ORDER_PROPS_15"];        
+$PROP[260] = $_REQUEST["ORDER_PROPS_17"];        
+$PROP[261] = $_REQUEST["ORDER_PROPS_18"];        
+$PROP[262] = $_REQUEST["ORDER_PROPS_4"];        
 
-		$arFields = array
-		(
-			"USER_PROPS_ID" => $PROFILE_ID,
-			"ORDER_PROPS_ID" => 4,
-			"NAME" => "Индекс",
-			"VALUE" => $_REQUEST["ORDER_PROPS_4"],
-		);
-		CSaleOrderPropsValue::Add($arFields);
-		
-		$arFields = array
-		(
-			 "USER_PROPS_ID" => $PROFILE_ID,
-			"ORDER_PROPS_ID" => 13,
-			"NAME" => "Город",
-			"VALUE" => $_REQUEST["ORDER_PROPS_13"]
-		);
-		CSaleOrderPropsValue::Add($arFields);
-		
-		$arFields = array
-		(
-			 "USER_PROPS_ID" => $PROFILE_ID,
-			"ORDER_PROPS_ID" => 14,
-			"NAME" => "Улица",
-			"VALUE" => $_REQUEST["ORDER_PROPS_14"]
-		);
-		CSaleOrderPropsValue::Add($arFields);
-		
-		$arFields = array
-		(
-			"USER_PROPS_ID" => $PROFILE_ID,
-			"ORDER_PROPS_ID" => 15,
-			"NAME" => "Дом",
-			"VALUE" => $_REQUEST["ORDER_PROPS_15"]
-		);
-		CSaleOrderPropsValue::Add($arFields);
-		
-		$arFields = array
-		(
-			"USER_PROPS_ID" => $PROFILE_ID,
-			"ORDER_PROPS_ID" => 17,
-			"NAME" => "Корпус",
-			"VALUE" => $_REQUEST["ORDER_PROPS_17"]
-		);
-		CSaleOrderPropsValue::Add($arFields);
-		
-		$arFields = array
-		(
-			 "USER_PROPS_ID" => $PROFILE_ID,
-			"ORDER_PROPS_ID" => 18,
-			"NAME" => "Квартира",
-			"VALUE" => $_REQUEST["ORDER_PROPS_18"]
-		);
-		CSaleOrderPropsValue::Add($arFields);
+$arLoadProductArray = Array(
+  "MODIFIED_BY"    => $USER->GetID(), // элемент изменен текущим пользователем
+  "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
+  "IBLOCK_ID"      => 17,
+  "PROPERTY_VALUES"=> $PROP,
+	"NAME"           => $_REQUEST["NAME"],
+  "ACTIVE"         => "Y",            // активен
 
+  );
+
+if(!($PRODUCT_ID = $el->Add($arLoadProductArray)))
+  echo "Error: ".$el->LAST_ERROR;
 
 }
 ?>
@@ -173,25 +139,13 @@ if(isset($_REQUEST["edit_id"]))
 ?><?
 	$curID = intVal($_REQUEST["edit_id"]);
 	
-	$db_propVals = CSaleOrderUserPropsValue::GetList(array("ID" => "ASC"), Array("USER_PROPS_ID" => $curID));
-		while ($arPropVals = $db_propVals->Fetch())
-		{
-
-			if($arPropVals["ORDER_PROPS_ID"] == 4)
-				$index = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 12)
-				$oblast = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 13)
-				$city = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 14)
-				$street = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 15)
-				$house = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 17)
-				$korpus = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 18)
-				$flat = $arPropVals["VALUE"]; 
-		}
+	$arSelect = Array();
+	$arFilter = Array("IBLOCK_ID"=>17, "ID"=>$curID);
+	$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>1), $arSelect);
+	while($ob = $res->GetNextElement()){ 
+		 $arFields = $ob->GetFields();  
+		 $arProps = $ob->GetProperties();
+	}
 ?>
  <div role="main" id="main" class="profile-container"   >         
 
@@ -205,22 +159,25 @@ if(isset($_REQUEST["edit_id"]))
 		   <input type="hidden" name="saveID" value="<?=$curID?>" />
           <div class="control-group-with-help mt20">
             <div class="control-with-help">
-                <div class="control">
-					<input type="text" name="ORDER_PROPS_12" placeholder="Область" class="input-text input-middle" value="<?=$oblast;?>">
+				 <div class="control">
+					<input type="text" name="NAME" required="required" placeholder="Название адреса" class="input-text input-middle" value="<?=$arFields["NAME"]?>">
                 </div>
                 <div class="control">
-					<input type="text" name="ORDER_PROPS_13" required="required" placeholder="Город*" class="input-text input-middle" value="<?=$city;?>">
+					<input type="text" name="ORDER_PROPS_12" placeholder="Область" class="input-text input-middle" value="<?=$arProps["STATE"]["VALUE"];?>">
                 </div>
                 <div class="control">
-					<input type="text" name="ORDER_PROPS_14" required="required" placeholder="Улица*" class="input-text input-middle" value="<?=$street;?>">
+					<input type="text" name="ORDER_PROPS_13" required="required" placeholder="Город*" class="input-text input-middle" value="<?=$arProps["CITY"]["VALUE"];?>">
                 </div>
                 <div class="control">
-					<input type="text" name="ORDER_PROPS_15" required="required" placeholder="Дом*" class="input-text input-small3" value="<?=$house;?>">
-					<input type="text" name="ORDER_PROPS_17" placeholder="Строение" class="input-text input-small3" value="<?=$korpus;?>">
-					<input type="text" name="ORDER_PROPS_18" placeholder="Квартира" class="input-text input-small3" value="<?=$flat;?>">
+					<input type="text" name="ORDER_PROPS_14" required="required" placeholder="Улица*" class="input-text input-middle" value="<?=$arProps["STREET"]["VALUE"];?>">
                 </div>
                 <div class="control">
-					<input type="text" name="ORDER_PROPS_4" placeholder="Индекс" class="input-text input-middle" value="<?=$index; //$arResult["arUser"]["PERSONAL_ZIP"]?>">
+					<input type="text" name="ORDER_PROPS_15" required="required" placeholder="Дом*" class="input-text input-small3" value="<?=$arProps["HOUSE"]["VALUE"];?>">
+					<input type="text" name="ORDER_PROPS_17" placeholder="Строение" class="input-text input-small3" value="<?=$arProps["BLOCK"]["VALUE"];?>">
+					<input type="text" name="ORDER_PROPS_18" placeholder="Квартира" class="input-text input-small3" value="<?=$arProps["FLAT"]["VALUE"];?>">
+                </div>
+                <div class="control">
+					<input type="text" name="ORDER_PROPS_4" placeholder="Индекс" class="input-text input-middle" value="<?=$arProps["INDEX"]["VALUE"]?>">
                 </div>
             </div>
             <div class="help-inline help-large">
@@ -261,16 +218,19 @@ else if($_REQUEST["addAdress"] == "Y")
           <div class="control-group-with-help mt20">
             <div class="control-with-help">
                 <div class="control">
-					<input type="text" name="ORDER_PROPS_12" placeholder="Область" class="input-text input-middle" value="">
+					<input type="text" name="NAME" required="required" placeholder="Название адреса" class="input-text input-middle" value="">
                 </div>
                 <div class="control">
-					<input type="text" name="ORDER_PROPS_13" required="required" placeholder="Город*" class="input-text input-middle" value="">
+					<input type="text" required="required" name="ORDER_PROPS_12" placeholder="Область" class="input-text input-middle" value="">
                 </div>
                 <div class="control">
-					<input type="text" name="ORDER_PROPS_14" required="required" placeholder="Улица*" class="input-text input-middle" value="">
+					<input type="text" required="required" name="ORDER_PROPS_13" required="required" placeholder="Город*" class="input-text input-middle" value="">
                 </div>
                 <div class="control">
-					<input type="text" name="ORDER_PROPS_15" required="required" placeholder="Дом*" class="input-text input-small3" value="">
+					<input type="text" required="required" name="ORDER_PROPS_14" required="required" placeholder="Улица*" class="input-text input-middle" value="">
+                </div>
+                <div class="control">
+					<input type="text" required="required" name="ORDER_PROPS_15" required="required" placeholder="Дом*" class="input-text input-small3" value="">
 					<input type="text" name="ORDER_PROPS_17" placeholder="Строение" class="input-text input-small3" value="">
 					<input type="text" name="ORDER_PROPS_18" placeholder="Квартира" class="input-text input-small3" value="">
                 </div>
@@ -311,56 +271,26 @@ else
 
 <div class="lk-addresses-wrap">
 <?
+global $USER;
+$usid = $USER->GetID();
+
+$arSelect = Array();
+	$arFilter = Array("IBLOCK_ID"=>17, "USER_ID"=>$usid);
+	$res = CIBlockElement::GetList(Array("ID" => "DESC"), $arFilter, false, false, $arSelect);
+	while($ob = $res->GetNextElement()){ 
+		 $arFields = $ob->GetFields();  
+		 $arProps = $ob->GetProperties();
 
 
-
-
-$db_sales = CSaleOrderUserProps::GetList(
-        array("DATE_UPDATE" => "DESC"),
-        array("USER_ID" => $USER->GetID())
-    );
-$curID = Array();
-while ($ar_sales = $db_sales->Fetch())
-{
-
-		$curID = $ar_sales["ID"];
-
-		$db_propVals = CSaleOrderUserPropsValue::GetList(array("ID" => "ASC"), Array("USER_PROPS_ID" => $curID));
-
-$index = '';
-$oblast ='';
-$city ='';
-$street ='';
-$house = '';
-$korpus ='';
-$flat ='';
-		while ($arPropVals = $db_propVals->Fetch())
-		{
-			$ID = $arPropVals["USER_PROPS_ID"];
-			if($arPropVals["ORDER_PROPS_ID"] == 4)
-				$index = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 12)
-				$oblast = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 13)
-				$city = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 14)
-				$street = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 15)
-				$house = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 17)
-				$korpus = $arPropVals["VALUE"]; 
-			if($arPropVals["ORDER_PROPS_ID"] == 18)
-				$flat = $arPropVals["VALUE"]; 
-		}
 
 		?>
                     <div class="lk-address-block">
                         <div class="lk-address-title-wrap">
                             <div class="lk-address-title">
-                                <?=$ar_sales["NAME"]." - ".$curID?>
+                                <?=$arFields["NAME"]?>
                             </div>
                             <div class="lk-address-edit">
-							<a href="/personal/delivery/?edit_id=<?=$curID?>">
+							<a href="/personal/delivery/?edit_id=<?=$arFields["ID"]?>">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve">
 									<g id="XMLID_520_">
 										<path fill="#989898" id="XMLID_521_" d="M7.105,221.52l30,51.961c3.576,6.192,11.025,9,17.797,6.709l44.144-14.934
@@ -381,23 +311,23 @@ $flat ='';
                         <div class="lk-address-content">
                             <div class="lk-address-line">
                                 <div class="lk-address-line-title">Город:</div>
-                                <div class="lk-address-line-name"><?=$city?></div>
+                                <div class="lk-address-line-name"><?=$arProps["CITY"]["VALUE"]?></div>
                             </div>
                             <div class="lk-address-line">
                                 <div class="lk-address-line-title">Улица:</div>
-                                <div class="lk-address-line-name"><?=$street?></div>
+                                <div class="lk-address-line-name"><?=$arProps["STREET"]["VALUE"]?></div>
                             </div>
                             <div class="lk-address-line">
                                 <div class="lk-address-line-title">Дом:</div>
-                                <div class="lk-address-line-name"><?=$house?></div>
+                                <div class="lk-address-line-name"><?=$arProps["HOUSE"]["VALUE"]?></div>
                             </div>
                             <div class="lk-address-line">
                                 <div class="lk-address-line-title">Корпус:</div>
-                                <div class="lk-address-line-name"><?=$korpus?></div>
+                                <div class="lk-address-line-name"><?=$arProps["BLOCK"]["VALUE"]?></div>
                             </div>
                             <div class="lk-address-line">
                                 <div class="lk-address-line-title">Квартира:</div>
-                                <div class="lk-address-line-name"><?=$flat?></div>
+                                <div class="lk-address-line-name"><?=$arProps["FLAT"]["VALUE"]?></div>
                             </div>
                         </div>
                     </div>

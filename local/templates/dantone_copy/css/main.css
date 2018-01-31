@@ -42,7 +42,7 @@
   background-color: #fff;
   padding: 0 30px;
   margin-bottom: 80px;
-  float: left;
+  /*float: left;*/
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -88,7 +88,8 @@
   margin-bottom: 18px; }
 
 .lk-address-block {
-  padding-top: 17px;
+ width: 240px;
+    margin-bottom: 20px; padding-top: 17px;
   padding-bottom: 26px;
   border: 1px solid #c7c7c7;
   margin-right: 40px;
