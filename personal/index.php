@@ -53,7 +53,7 @@ $APPLICATION->SetTitle("Персональный раздел");
                         </span>
                         <span class="lk-arrow"></span>
                     </a>
-					<a href="/personal/order/" class="lk-link">
+					<a href="/personal/cart/" class="lk-link">
                         <span class="svg-span">
                             <svg version="1.1" id="Capa_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 489.4 489.4" style="enable-background:new 0 0 489.4 489.4;" xml:space="preserve">
@@ -69,7 +69,7 @@ $APPLICATION->SetTitle("Персональный раздел");
                         </span>
                         <span class="lk-arrow"></span>
                     </a>
-					<a href="/personal/cart/" class="lk-link">
+					<a href="/personal/order/" class="lk-link">
                         <span class="svg-span">
                             <svg version="1.1" id="Capa_3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
