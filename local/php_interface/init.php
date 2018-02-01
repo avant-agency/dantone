@@ -417,7 +417,8 @@ function OnBeforeEventAddHandler(&$event, &$lid, &$arFields)
         {
             $arFields["TO"] = $wd;
         }
-        
+
+        $arFields["P20_KOMMENTARIY"] = $arFields["P20_KOMMENTARIY"] . '<br/>Комментарий к оплате<br/>' . $arFields["P20__"] . "</br>Комментарий к доставке<br/>" . $arFields["P16_KOMMENTARIY_K_ADRESU"];
     }
 }
 
