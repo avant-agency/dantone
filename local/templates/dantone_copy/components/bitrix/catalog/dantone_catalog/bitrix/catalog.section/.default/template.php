@@ -63,30 +63,7 @@ if ($arP = $arDB->Fetch())
         "SITE_ID" => "s1" 
         )
         );?> 
-<?/*
-        <div class="fright sort-container">
-            <?if(isset($_REQUEST["sortField"])) {
-                $sort = $_REQUEST["sortField"];
-            }?>
-            <select id="sort" style="position: absolute; left: -9999px;">
-                <option value=""><?=GetMessage('CATALOG_SORT')?></option>
-                <option value="hit" <?= ($sort == "hit") ? 'selected="selected"' : ''?>><?=GetMessage('CATALOG_SORT_POPULAR')?></option>
-                <option value="price" <?= ($sort == "price") ? 'selected="selected"' : ''?>><?=GetMessage('CATALOG_SORT_PRICE')?></option>
-                <option value="discount" <?= ($sort == "discount") ? 'selected="selected"' : ''?>><?=GetMessage('CATALOG_SORT_DISCOUNT')?></option>
-            </select>               
-        </div>
 
-        <script>
-            $(function() {
-                $('#sort').on('change', function() {
-                    var val = $(this).val();
-
-                    location.href = "?sortField=" + val
-
-                });
-            });
-        </script>
-*/?>
 </div>
 
 
@@ -113,8 +90,7 @@ if ($arP = $arDB->Fetch())
 
 <?
 global $USER;  
-//if($USER->IsAdmin())
-//{
+
 
 	if( $arParams["SECTION_CODE"] == 'sofas') 
 	{
@@ -149,7 +125,7 @@ global $USER;
 				include "sort.php";
 		?></div><?
 	}
-	//}
+
 ?>
 
 
@@ -164,24 +140,25 @@ global $USER;
                     <img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="">
                 </a>
                 
+
                 <div class="product-label-container">
-                    <?if($arItem["PROPERTIES"]["NEWPRODUCT"]["VALUE"] == "Y"):?>    
-                    <div class="product-label-green">new</div>
-                    <?endif;?>  
-                </div>
-                <div class="product-label-container">
-                    <?if($arItem["PROPERTIES"]["DISCOUNT"]["VALUE"] == "Y"):?>  
+                    <?if($arItem["PROPERTIES"]["DISCOUNT"]["VALUE"] == "Y" && $arItem["PROPERTIES"]["NEWPRODUCT"]["VALUE"] != "Y"):?>  
                     <div class="product-label-red">sale</div>
                     <?endif;?>  
                 </div>
                 <div class="product-label-container">
-                    <?if($arItem["PROPERTIES"]["WOW"]["VALUE"] == "Y"):?>   
+                    <?if($arItem["PROPERTIES"]["WOW"]["VALUE"] == "Y" && $arItem["PROPERTIES"]["NEWPRODUCT"]["VALUE"] != "Y"):?>   
                     <div class="product-label-yellow">wow</div>
                     <?endif;?>  
                 </div>
                 <div class="product-label-container">
-                    <?if($arItem["PROPERTIES"]["INSTOCK"]["VALUE"] == "Y"):?>   
+                    <?if($arItem["PROPERTIES"]["INSTOCK"]["VALUE"] == "Y" && $arItem["PROPERTIES"]["NEWPRODUCT"]["VALUE"] != "Y"):?>   
                     <div class="product-label-blue">in stock</div>
+                    <?endif;?>  
+                </div>
+				<div class="product-label-container">
+                    <?if($arItem["PROPERTIES"]["NEWPRODUCT"]["VALUE"] == "Y"):?>    
+                    <div class="product-label-green">new</div>
                     <?endif;?>  
                 </div>
             </div>
