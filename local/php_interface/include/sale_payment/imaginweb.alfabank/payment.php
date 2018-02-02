@@ -24,6 +24,83 @@ $bError = false;
 		echo GetMessage("ALBK_ERROR_NO_ORDER");
 	}
 }
+	
+// pay
+if (!$bError)
+{
+	// payment url
+	$sPaymentURL = $arPayParams["PAYMENT_WAY"].($arPayParams["PAY_TYPE"] == "Y" ? "/rest/register.do" : "/rest/registerPreAuth.do");
+	
+	// order number for payment gateway
+	$sPgOrderNumber = $arPayParams["ORDER_ID"]."_".date("YmdHis"); 
+	
+	// query params
+	$arQueryParams = array(
+			"userName"		=> $arPayParams["USER_NAME"],
+			"password"		=> $arPayParams["USER_PASS"],
+			"orderNumber"	=> $sPgOrderNumber,
+			"amount"		=> $arPayParams["SHOULD_PAY"],
+			"currency"		=> $arPayParams["CURRENCY"],
+			"returnUrl"		=> $arPayParams["RETURN_URL"]."?oid=".$sPgOrderNumber,
+		);
+	
+	// full reg url
+	$sRegisterURL = $sPaymentURL."?".
+		"userName=".urlencode($arQueryParams["userName"])."&".
+		"password=".urlencode($arQueryParams["password"])."&".
+		"orderNumber=".urlencode($arQueryParams["orderNumber"])."&".
+		"amount=".urlencode($arQueryParams["amount"])."&".
+		"currency=".urlencode($arQueryParams["currency"])."&".
+		"returnUrl=".urlencode($arQueryParams["returnUrl"]);
+	
+	// send query
+	$rCURL = curl_init();
+	curl_setopt($rCURL, CURLOPT_URL, $sRegisterURL);
+	curl_setopt($rCURL, CURLOPT_RETURNTRANSFER, 1);
+	$r = curl_exec($rCURL);
+	curl_close($rCURL);
+	$arAnswer = json_decode($r, true);
+
+	// success
+	if (intval($arAnswer["errorCode"]) <= 0 && strlen($arAnswer["formUrl"]) > 0)
+	{
+		echo '<div>';
+		echo '<a id="oplatit" href="'.$arAnswer["formUrl"].'">'.GetMessage("ALBK_BUTN_PAY").'</a>';
+		echo '</div>';
+		echo '<script type="text/javascript">document.getElementById("oplatit").click();</script>';
+	}
+	else
+	{
+		$bError = true;
+		echo GetMessage("ALBK_IS_ERROR").": [".$arAnswer["errorCode"]."] ".$arAnswer["errorMessage"].".";
+	}
+}
+?><?/*if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();?><?
+include(GetLangFileName(dirname(__FILE__)."/", "/payment.php"));
+
+// payment params
+$arPayParams["PAYMENT_WAY"]		= trim(CSalePaySystemAction::GetParamValue("PAYMENT_WAY"));
+$arPayParams["USER_NAME"]		= trim(CSalePaySystemAction::GetParamValue("USER_NAME")); 
+$arPayParams["USER_PASS"]		= trim(CSalePaySystemAction::GetParamValue("USER_PASS"));
+$arPayParams["ORDER_ID"]		= intval(CSalePaySystemAction::GetParamValue("ORDER_ID"));
+$arPayParams["SHOULD_PAY"]		= intval(floatval(CSalePaySystemAction::GetParamValue("SHOULD_PAY")) * 100);
+$arPayParams["CURRENCY"]		= trim(CSalePaySystemAction::GetParamValue("CURRENCY"));
+$arPayParams["RETURN_URL"]		= trim(CSalePaySystemAction::GetParamValue("RETURN_URL"));
+$arPayParams["PAY_TYPE"]		= trim(CSalePaySystemAction::GetParamValue("PAY_TYPE"));
+
+// error flag
+$bError = false;
+
+// order
+{
+	$arOrder = CSaleOrder::GetByID($arPayParams["ORDER_ID"]);
+
+	if ($arOrder["ID"] != $arPayParams["ORDER_ID"])
+	{
+		$bError = true;
+		echo GetMessage("ALBK_ERROR_NO_ORDER");
+	}
+}
 
 // pay
 if (!$bError)
@@ -95,10 +172,12 @@ if (!$bError)
 
 	//file_put_contents($_SERVER['DOCUMENT_ROOT'].'/111.txt', $sRegisterURL, FILE_APPEND);
 
-
+	
 	// send query
 	$rCURL = curl_init();
-
+//curl_setopt($rCURL, CURLOPT_URL, $sRegisterURL);
+//curl_setopt($rCURL, CURLOPT_RETURNTRANSFER, 1);
+//
 	curl_setopt($rCURL, CURLOPT_URL, $sPaymentURL);
     curl_setopt($rCURL, CURLOPT_RETURNTRANSFER,true);
     curl_setopt($rCURL, CURLOPT_POST, true);
@@ -111,15 +190,16 @@ if (!$bError)
 	// success
 	if (intval($arAnswer["errorCode"]) <= 0 && strlen($arAnswer["formUrl"]) > 0)
 	{
-
 		echo '<div>';
-		echo '<a id="oplatit" href="'.$arAnswer["formUrl"].'">'.GetMessage("ALBK_BUTN_PAY").'</a>';
+		echo '<a target="_blank" id="oplatit" href="'.$arAnswer["formUrl"].'">'.GetMessage("ALBK_BUTN_PAY").'</a>';
 		echo '</div>';
-		echo '<script>document.getElementById("oplatit").click();</script>';	}
+echo '<script type="text/javascript">document.getElementById("oplatit").click();</script>';
+
+	}
 	else
 	{
 		$bError = true;
 		echo GetMessage("ALBK_IS_ERROR").": [".$arAnswer["errorCode"]."] ".$arAnswer["errorMessage"].".";
 	}
-}
+}*/
 ?>
