@@ -96,6 +96,7 @@ $APPLICATION->SetTitle("Контакты | Dantone");
 	<?/*<iframe src="//widget.instagramm.ru/?imageW=4&imageH=2&thumbnail_size=56&type=0&typetext=dantonehome&head_show=1&profile_show=1&shadow_show=0&bg=255,255,255,1&opacity=true&head_bg=46729b&subscribe_bg=ad4141&border_color=c3c3c3&head_title=" allowtransparency="true" frameborder="0" scrolling="no" style="border:none;overflow:hidden;width:270px;height:273px;"></iframe>*/?>
 	<?$APPLICATION->IncludeComponent(
 		"tmbit:instagram.posts", 
+		"main", 
 		array(
 			"USERNAME" => "dantonehome",
 			"COMPONENT_TEMPLATE" => ".default",
