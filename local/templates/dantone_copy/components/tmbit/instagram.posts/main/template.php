@@ -28,3 +28,5 @@
 	<a class="instagram-more"><?=GetMessage("TMBIT_INSTAGRAMPOSTS_POKAZATQ_ESE")?></a>
 </div>
 <? endif; ?>
+
+<script src="loadingoverlay.js"></script>
