@@ -67,51 +67,51 @@ $this->setFrameMode(true);
 					
 
 					<?$minPrice = false;
-					if (is_array($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE']))
-						$minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);
-					else{
-					
-						$price = intVal($arItem["PRICE_MATRIX"]["MATRIX"][1]["ZERO-INF"]["PRICE"]);
-						$minPrice['PRINT_VALUE'] =  $minPrice['PRINT_DISCOUNT_VALUE'] = number_format($price, 0, '', ' ')." руб.";
-					}
-?>
-
+					if (isset($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE']))
+						$minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);?>
 					<div class="price">
-						
-						<?if (!empty($minPrice)) {
+						<?	$minPrice = false;
+							if (is_array($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE']))
+								$minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);
+							else{
+							
+								$price = intVal($arItem["PRICE_MATRIX"]["MATRIX"][1][0]["PRICE"]);
+								$minPrice['PRINT_VALUE'] =  $minPrice['PRINT_DISCOUNT_VALUE'] = number_format($price, 0, '', ' ')." руб.";
+							}
+						?>
+						<?if (!empty($minPrice))
+						{
+							?><span class='value'><?if($arItem["PROPERTIES"]["PRICE_FROM"]["VALUE"] == "Y"):?>
+							<?=GetMessage('CATALOG_SECTION_FROM')?>   
+							<?endif;?><?=$minPrice['PRINT_DISCOUNT_VALUE']?></span><?
+							preg_match_all('!\d+!', str_replace(' ', '', $minPrice['PRINT_DISCOUNT_VALUE']), $matches);
 
-
-						?><span class='value'><? if ($arItem["PROPERTIES"]["PRICE_FROM"]["VALUE"] == "Y"): ?>
-							От
-						<? endif; ?><?= $minPrice['PRINT_DISCOUNT_VALUE'] ?></span><?
-	
-						if ('Y' == $arParams['SHOW_OLD_PRICE'] && $minPrice['DISCOUNT_VALUE'] < $minPrice['VALUE']) {
-							?>
-							<span class="price-old">
-						 <span class='value'><?= $minPrice['PRINT_VALUE'] ?></span>
-						</span>
-						<?
+							if ($arItem["PROPERTIES"]["MAXIMUM_PRICE"]["VALUE"] != $matches[0][0])
+							{?>
+								<span class="price-old"> 
+									<span class='value'><?=$arItem["PROPERTIES"]["MAXIMUM_PRICE"]["VALUE"]?> руб.</span>
+								</span> 
+					 	  <?}
 						}
-					}
-					unset($minPrice);
-				?>
-						
+						unset($minPrice);
+						?>
+
 					</div>
+
+
 				</div>
 				<a href="#" onclick="basket('add',<?=$arItem["OFFERS"][0]["ID"]?>); return false;" class="btn btn-blue btn-medium" id=""><?=GetMessage('CATALOG_TOCART')?></a>
 			<a data-fancybox-href="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" rel="g<?=$arItem['ID']?>" class="gallery-list fancybox-media">
                     </a>
-                    <?if($arItem['PROPERTIES']['MORE_PHOTO']['VALUE']):?>
-     <?foreach($arItem['PROPERTIES']['MORE_PHOTO']['VALUE'] as $k=>$pid): if($k==0)continue;?>
-     <a style="display: none;" data-fancybox-href="<?=CFile::GetPath($pid)?>" rel="g<?=$arItem['ID']?>" class="fancybox-media"></a>
-     <?endforeach?>
-     <?endif?>
+			 <?if($arItem['PROPERTIES']['MORE_PHOTO']['VALUE']):?>
+				 <?foreach($arItem['PROPERTIES']['MORE_PHOTO']['VALUE'] as $k=>$pid): if($k==0)continue;?>
+				 <a style="display: none;" data-fancybox-href="<?=CFile::GetPath($pid)?>" rel="g<?=$arItem['ID']?>" class="fancybox-media"></a>
+				 <?endforeach?>
+			 <?endif?>
 			</li>
 			<?endforeach;?>
 		</ul>
 		
 		<?endif;?>
-		
-		
 	</div>
 </div>

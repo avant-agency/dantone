@@ -1,4 +1,4 @@
-﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+﻿﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $this->setFrameMode(true);?>
 
 <?
@@ -23,71 +23,62 @@ $exp = explode("/",$dir);
 $isfilter = false;
 
 $arResult["VARIABLES"]["SECTION_CODE_PATH"] = '/';
-	//вытаскиваем раздел по урл
-	foreach($exp as $k => $v)
-	{
-		if(strpos($v,'filter') === 0){
-			$isfilter = true;
-			$arResult["VARIABLES"]["filterstr"] = $v;
-			break;
-		}
-		else {
-			if($v != '')
-			{
-				$arResult["VARIABLES"]["SECTION_CODE"] = $v; 
-				$arResult["VARIABLES"]["SECTION_CODE_PATH"] .= $v."/";
-			}
-		}
-	}
+    //вытаскиваем раздел по урл
+    foreach($exp as $k => $v)
+    {
+        if(strpos($v,'filter') === 0){
+            $isfilter = true;
+            $arResult["VARIABLES"]["filterstr"] = $v;
+            break;
+        }
+        else {
+            if($v != '')
+            {
+                $arResult["VARIABLES"]["SECTION_CODE"] = $v; 
+                $arResult["VARIABLES"]["SECTION_CODE_PATH"] .= $v."/";
+            }
+        }
+    }
 
 
 global $variables;
 $variables = $arResult["VARIABLES"];
 
 global $USER;
-if($isfilter) {  
+if($isfilter) {  // && $USER->IsAdmin()
 
-	include "dantone_filter.php"; 
-	//${$arParams["FILTER_NAME"]}["CATALOG_AVAILABLE"] = "N";
-	if(count($_SESSION["filter"]["ids"]) > 0)
-	{
-		${$arParams["FILTER_NAME"]}["ID"] = $_SESSION["filter"]["ids"];
-	}else $arrFilter["ID"]=0;
+    include "dantone_filter.php"; 
+    //${$arParams["FILTER_NAME"]}["CATALOG_AVAILABLE"] = "N";
+    if(count($_SESSION["filter"]["ids"]) > 0)
+    {
+        ${$arParams["FILTER_NAME"]}["ID"] = $_SESSION["filter"]["ids"];
+    }else $arrFilter["ID"]=0;
 }
-?>
 
-
-<?
 if(isset($_REQUEST["sortField"]))
 {
-	if($_SESSION["sortField"] == $_REQUEST["sortField"])
-	{
+    if($_SESSION["sortField"] == $_REQUEST["sortField"])
+    {
+        if($_SESSION["sortOrderField"] != "ASC") 
+            $_SESSION["sortOrderField"] = "ASC";
+        else 
+            $_SESSION["sortOrderField"] = "DESC";
+    } 
+    else 
+        $_SESSION["sortOrderField"] = "ASC";
 
-				if($_SESSION["sortOrderField"] != "ASC") $_SESSION["sortOrderField"] = "ASC";
-					else $_SESSION["sortOrderField"] = "DESC";
-
-	} else $_SESSION["sortOrderField"] = "ASC";
-
-	$_SESSION["sortField"] = $_REQUEST["sortField"];
-    if($_REQUEST["sortField"] == 'sort')
-	{  $_SESSION["sortField"] = "PROPERTY_NEWPRODUCT"; $arParams["ELEMENT_SORT_ORDER"] = "DESC"; }
+    $_SESSION["sortField"] = $_REQUEST["sortField"];
+    if($_SESSION["sortField"] == "PROPERTY_DISCOUNT")
+    {
+        $_SESSION["sortOrderField"] = "DESC";
+    }
 }
 
 if(isset($_SESSION["sortField"]))
-	$arParams["ELEMENT_SORT_FIELD"] = $_SESSION["sortField"];
-else
-{ $_SESSION["sortField"] = "PROPERTY_NEWPRODUCT"; $arParams["ELEMENT_SORT_ORDER"] = "DESC"; }
-
-		if($_SESSION["sortField"] == "PROPERTY_NEWPRODUCT")
-			$_SESSION["sortOrderField"] = "DESC";
+    $arParams["ELEMENT_SORT_FIELD"] = $_SESSION["sortField"];
 
 if(isset($_SESSION["sortField"]))
-	$arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"];
-
-if($arParams["ELEMENT_SORT_ORDER"] == "")
-$arParams["ELEMENT_SORT_ORDER"] = "DESC";
-
-
+    $arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"];
 
 ?>
 <div class="clearfix">
@@ -201,7 +192,7 @@ unset($basketAction);
 
 
 <aside role="complementary" class="catalog-nav-container">
-	<?/*$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sidebar_menu", Array(
+    <?/*$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sidebar_menu", Array(
 "VIEW_MODE" => "TEXT",  // Вид списка подразделов
 "SHOW_PARENT_NAME" => "Y",  // Показывать название раздела
 "IBLOCK_TYPE" => "",    // Тип инфоблока
@@ -263,7 +254,7 @@ $url = "/catalog/".$code."/filter-price_"."10_50"."-apply/";
         </ul>
     </form>
 </div>
-	<?}?>
+    <?}?>
 </aside>
 
 
