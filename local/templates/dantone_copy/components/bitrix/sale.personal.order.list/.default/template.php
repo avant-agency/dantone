@@ -153,6 +153,30 @@ if(isset($_REQUEST["orderid"]))
 
                         </div></div>
                     <?endforeach;?>
+						<?
+						if($arOrder["ORDER"]["PRICE_DELIVERY"] > 0)
+						{
+						?>
+						<div class="dd-list-goods">
+							<div class="dd-list-img">
+								<div class="photo dd-list-item">
+									<div class="title"> </div>
+								</div>
+							</div>
+							<div class="dd-list-descr">
+								<div class="price dd-list-item"><b>Стоимость доставки:</b></div>
+                            <div class="count dd-list-item"><?=number_format($arOrder["ORDER"]["PRICE_DELIVERY"],0,""," ")." руб."?></div>
+
+
+								<div class="dd-list-descr-mobile">
+
+                                                <div class="lk-address-line">
+                                                    <div class="lk-address-line-title">Стоимость доставки: :</div>
+                                                    <div class="lk-address-line-name lk-good-name"><?=number_format($arOrder["ORDER"]["PRICE_DELIVERY"],0,""," ")." руб."?></div>
+                                                </div>
+                                        </div>
+                   			</div></div>
+					<?}?>    
                 </div>
 			</div>
         <?endforeach;?>
