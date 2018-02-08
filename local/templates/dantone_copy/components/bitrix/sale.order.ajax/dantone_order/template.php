@@ -600,7 +600,7 @@ var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" ру�
                         // get delivery price
                         // $(".hfc-price-value").text((parseFloat(op) + parseFloat($("#our_delivery_description .cdc-itog").text().trim())) + " ");
                         $(".hfc-price-value").text(addSpaces(summop) + " ");
-                      $(".hfc-warning").text("Цена доставки: " + $("#our_delivery_description .cdc-itog").text().trim() + "р.");
+                      $(".hfc-warning").text("Цена доставки: " + $("#our_delivery_description .cdc-itog").text().trim() + " руб.");
                     break;
                     case "3": // Самовывоз
                         $(".hfc-price-value").text(addSpaces(order_price) + " ");
