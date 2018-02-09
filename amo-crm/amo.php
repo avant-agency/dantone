@@ -141,3 +141,53 @@ function bitrixBasketList($basket) {
     return $result;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+function Amo_DoOrderCatalogKitchen($phone, $email) {
+    global $AMO_RESPONSIBLE_USER_ID;
+    $AMO_RESPONSIBLE_USER_ID = 2156509;
+    $amo = new AmoCrmApi(AMO_SUBDOMAIN, AMO_LOGIN, AMO_HASH);
+    $tags = "Получить каталог";
+    $lead_id =  $amo->addContactAndLead($email,[
+        AMO_CONTACTS_FIELD_PHONE=>[$phone,AMO_CONTACTS_FIELD_PHONE_TYPE],
+        AMO_CONTACTS_FIELD_EMAIL=>[$email,AMO_CONTACTS_FIELD_EMAIL_TYPE],
+        'tags'=>$tags
+    ],[
+            'tags'=>$tags,
+            'status_id'=>18252883
+        ]
+    );
+    return $lead_id;
+}
+
+
+function Amo_DoGetCalculationKitchen($name, $phone, $email, $message = false, $file_link = false) {
+    global $AMO_RESPONSIBLE_USER_ID;
+    $AMO_RESPONSIBLE_USER_ID = 2156509;
+    $amo = new AmoCrmApi(AMO_SUBDOMAIN, AMO_LOGIN, AMO_HASH);
+    $tags = "Получить расчет стоимости кухни";
+    $lead_info =['tags'=>$tags,
+        'status_id'=>18252883];
+    $text = "";
+    if($message!==false && strlen($message)>1) $text.= "Пожелание: ".$message."\r\n";
+    if($file_link!==false) $text.="Планировка: ".$file_link."\r\n";
+    if($text!="") $lead_info['message'] = $text;
+    $lead_id =  $amo->addContactAndLead($name,[
+        AMO_CONTACTS_FIELD_PHONE=>[$phone,AMO_CONTACTS_FIELD_PHONE_TYPE],
+        AMO_CONTACTS_FIELD_EMAIL=>[$email,AMO_CONTACTS_FIELD_EMAIL_TYPE],
+        'tags'=>$tags
+    ], $lead_info );
+    return $lead_id;
+}
+
+

@@ -1,4 +1,5 @@
 <? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+include $_SERVER["DOCUMENT_ROOT"]."/amo-crm/amo_kitchen.php";
 
 header('Access-Control-Allow-Origin: '.$_SERVER['HTTP_ORIGIN']);
 header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
@@ -29,11 +30,13 @@ switch(true)
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, urlencode($payload));
-		
+
 		$result = curl_exec($ch);
 		curl_close ($ch);
 		$data = json_decode($result);
 		if (isset($data->error) and $data->error){
+			// сообщение AMO-CRM
+			Amo_DoOrderCatalogKitchen($_REQUEST["phone"], $_REQUEST["email"])
 			echo json_encode(array("res" => true, "data" => $data->error));
 		} else {
 			echo json_encode(array("res" => true, "data" => "Действие выполненно успешно"));
@@ -69,8 +72,11 @@ switch(true)
 				"WISHES" => $_REQUEST["wishes"],
 				"FILE_LINK" => "https://www.dantonehome.ru".$file_getPath,
 			);
-			
+
 			$r = CEvent::Send("KITCHEN_LANDING", 's1', $arEventFields);
+
+			Amo_DoGetCalculationKitchen($_REQUEST["name"], $_REQUEST["phone"], $_REQUEST["email"], $_REQUEST["wishes"], $file_getPath)
+
 			echo 1;
 		}
 		else
