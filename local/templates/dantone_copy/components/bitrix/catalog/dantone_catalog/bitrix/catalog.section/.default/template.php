@@ -257,3 +257,4 @@ window.criteo_q.push(
     { event: "viewList", ecpplugin: "1cbitrix", item: <? echo $js_array; ?> }
 );
 </script>
+<link rel="stylesheet" href="/local/templates/dantone_copy/css/dantone_catalog_style.css" />
