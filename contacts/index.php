@@ -1,4 +1,4 @@
-<?
+﻿<?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Контакты | Dantone");
 ?><div id="fb-root"></div>
@@ -31,8 +31,8 @@ $APPLICATION->SetTitle("Контакты | Dantone");
 			<div class="clearfix">
 				<div class="contact-item">
 					<h5>г.Москва</h5>
-					<div class="big" style="font-size: 14px;">
- <span class="kupislova">8 (495) 727-02-17</span>
+					<div class="big call_phone_2" style="font-size: 14px;">
+						<a href="tel:+74951083245" class="kupislova">+7 (495) 108 32 45</a>
 					</div>
 					<div class="big" style="font-size: 14px;">
 						 Пн-Сб с 11:00 до 20:00<br>
