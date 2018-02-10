@@ -1,4 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 IncludeModuleLangFile(__FILE__);
 include 'ajax.php';
 if(isset($_REQUEST["logout"]) && $_REQUEST["logout"] == "Y" ) {
@@ -38,7 +38,7 @@ CJSCore::Init(array('translit'));
     <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.maskedInput.js"></script>
     <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/owl.js"></script>
     <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/plugins.js"></script>
-    <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/script.js"></script>
+  <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/callTouch.js"></script>   <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/script.js"></script>
     <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/jquery.elevateZoom-3.0.8.min.js"></script>
 
     <!--[if lt IE 9]>
@@ -216,7 +216,7 @@ window.criteo_q.push(
                 <div class='phone-desctop'>
                     <div class="phone">
                         <i class="icon-phone" style='position: relative; top: 12px; transform: scale(1.2)'></i>
-                        <span class="kupislova" style='font-size: 18px'>+7 (495) 727 02 17</span> <br>
+                        <span class="kupislova" data-phone='+74957270217' style='font-size: 18px'>+7 (495) 727 02 17</span> <br>
                         <span style='font-size: 16px; display: inline-block; float: right;'> <a target="_blank" style='font-size:13px;' href='https://yandex.ru/maps/213/moscow/?source=wizbiz_new_map_single&z=14&ll=37.559634%2C55.758517&mode=search&text=dantone&sll=37.559634%2C55.758517&sspn=0.070896%2C0.024441&sctx=CAAAAAEAa9WuCWnPQkD%2FPuPCgeBLQJP8iF%2BxhuQ%2Faw2l9iLa3T8CAAAAAQIBAAAAAAAAAAFZNXutBeFby9UAAAABAACAPwAAAAAAAAAA&ol=biz&oid=1736135840'>
                         <?=GetMessage('HEADER_SHOWROOM')?></a></span> <br>
                         <a href="#callback" class="btn smart-visible"><?=GetMessage('HEADER_CALLBACK')?></a>
