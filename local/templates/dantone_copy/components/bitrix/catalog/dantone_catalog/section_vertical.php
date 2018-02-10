@@ -1,4 +1,4 @@
-﻿﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $this->setFrameMode(true);?>
 
 <?
@@ -76,11 +76,19 @@ if(isset($_REQUEST["sortField"]))
 
 if(isset($_SESSION["sortField"]))
     $arParams["ELEMENT_SORT_FIELD"] = $_SESSION["sortField"];
+else {
+	$_SESSION["sortField"] = "PROPERTY_NEWPRODUCT";
+}
 
 if(isset($_SESSION["sortField"]))
     $arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"];
 
+if($arParams["ELEMENT_SORT_ORDER"] = "PROPERTY_NEWPRODUCT")
+$arParams["ELEMENT_SORT_ORDER"] = "DESC";
 ?>
+
+<?=$arParams["ELEMENT_SORT_FIELD"]?> - <?=$arParams["ELEMENT_SORT_ORDER"]?><br />
+
 <div class="clearfix">
     <?$intSectionID = $APPLICATION->IncludeComponent(
         "bitrix:catalog.section",
