@@ -160,7 +160,7 @@ window.criteo_q.push(
                     trackHash:true,
                     accurateTrackBounce:true,
                     webvisor:false,
-                    ecommerce:"dataLayer"
+   triggerEvent:true,                 ecommerce:"dataLayer"
                 });
             } catch(e) { }
         });
