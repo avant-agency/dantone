@@ -422,4 +422,13 @@ function OnBeforeEventAddHandler(&$event, &$lid, &$arFields)
     }
 }
 
+AddEventHandler("main", "OnAfterUserLogin", Array("ClassRedirect", "OnAfterUserLoginHandler" )) ;
+class ClassRedirect
+{
+   function OnAfterUserLoginHandler(&$fields)
+   {
+       if(!empty($fields['USER_ID']) ) LocalRedirect("/personal/profile/") ;
+   }
+}
+
 ?>
