@@ -521,7 +521,7 @@ dataLayer.push({
     'google_tag_params': {
         'ecomm_prodid': "<? echo $arResult['ID']; ?>",
         'ecomm_pagetype': 'product',
-        'ecomm_totalvalue': '<?=$arResult["MIN_PRICE"]["VALUE"]?>'
+        'ecomm_totalvalue': '<?=$minPrice["DISCOUNT_VALUE"]?>'
     }
 });
 

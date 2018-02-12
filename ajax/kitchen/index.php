@@ -23,7 +23,7 @@ switch(true)
 		$data = array('email_address'=>$email, 'apikey'=>$apikey, 'id' => $listId, 
 			'double_optin' => false, 'update_existing' => true, 'replace_interests' => false, 'send_welcome' => false, 'email_type' => 'html');
 		$submit_url = "http://us12.api.mailchimp.com/1.3/?method=listSubscribe";
-	
+
 		$payload = json_encode($data); 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $submit_url);
@@ -36,7 +36,7 @@ switch(true)
 		$data = json_decode($result);
 		if (isset($data->error) and $data->error){
 			// сообщение AMO-CRM
-			Amo_DoOrderCatalogKitchen($_REQUEST["phone"], $_REQUEST["email"])
+			Amo_DoOrderCatalogKitchen($_REQUEST["phone"], $_REQUEST["email"]);
 			echo json_encode(array("res" => true, "data" => $data->error));
 		} else {
 			echo json_encode(array("res" => true, "data" => "Действие выполненно успешно"));
@@ -75,7 +75,7 @@ switch(true)
 
 			$r = CEvent::Send("KITCHEN_LANDING", 's1', $arEventFields);
 
-			Amo_DoGetCalculationKitchen($_REQUEST["name"], $_REQUEST["phone"], $_REQUEST["email"], $_REQUEST["wishes"], $file_getPath)
+			Amo_DoGetCalculationKitchen($_REQUEST["name"], $_REQUEST["phone"], $_REQUEST["email"], $_REQUEST["wishes"], $file_getPath);
 
 			echo 1;
 		}
