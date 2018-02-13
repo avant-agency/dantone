@@ -39,13 +39,21 @@ $arResult["VARIABLES"]["SECTION_CODE_PATH"] = '/';
             }
         }
     }
+	
+//если новая категория	
+if($_SESSION["SECTION_CODE"] != $arResult["VARIABLES"]["SECTION_CODE"])
+{
+	$_SESSION["sortField"] = "PROPERTY_NEWPRODUCT";
+	$_SESSION["sortOrderField"] = "DESC";
+}
 
+$_SESSION["SECTION_CODE"] = $arResult["VARIABLES"]["SECTION_CODE"];
 
 global $variables;
 $variables = $arResult["VARIABLES"];
 
 global $USER;
-if($isfilter) {  // && $USER->IsAdmin()
+if($isfilter) {  
 
     include "dantone_filter.php"; 
     //${$arParams["FILTER_NAME"]}["CATALOG_AVAILABLE"] = "N";
@@ -55,23 +63,26 @@ if($isfilter) {  // && $USER->IsAdmin()
     }else $arrFilter["ID"]=0;
 }
 
+
 if(isset($_REQUEST["sortField"]))
 {
-    if($_SESSION["sortField"] == $_REQUEST["sortField"])
+    if($_SESSION["sortField"] == $_REQUEST["sortField"]) //если второй раз выбираем то же свойство, то направление меняется
     {
         if($_SESSION["sortOrderField"] != "ASC") 
             $_SESSION["sortOrderField"] = "ASC";
         else 
             $_SESSION["sortOrderField"] = "DESC";
-    } 
-    else 
-        $_SESSION["sortOrderField"] = "ASC";
+    } else 
+            $_SESSION["sortOrderField"] = "ASC";
+
 
     $_SESSION["sortField"] = $_REQUEST["sortField"];
+	
     if($_SESSION["sortField"] == "PROPERTY_DISCOUNT")
     {
         $_SESSION["sortOrderField"] = "DESC";
     }
+	
 }
 
 if(isset($_SESSION["sortField"]))
@@ -80,14 +91,14 @@ else {
 	$_SESSION["sortField"] = "PROPERTY_NEWPRODUCT";
 }
 
-if(isset($_SESSION["sortField"]))
+if(isset($_SESSION["sortOrderField"]))
     $arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"];
+else {$arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"] = "ASC";}
 
-if($arParams["ELEMENT_SORT_ORDER"] = "PROPERTY_NEWPRODUCT")
+if($arParams["ELEMENT_SORT_FIELD"] == "PROPERTY_NEWPRODUCT")
 $arParams["ELEMENT_SORT_ORDER"] = "DESC";
 ?>
 
-<?=$arParams["ELEMENT_SORT_FIELD"]?> - <?=$arParams["ELEMENT_SORT_ORDER"]?><br />
 
 <div class="clearfix">
     <?$intSectionID = $APPLICATION->IncludeComponent(
