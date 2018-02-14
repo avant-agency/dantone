@@ -134,6 +134,11 @@ CModule::IncludeModule('sale');
                     <?=GetMessage('PROFILE_PROFILE')?>
                 </h2>
 <?
+
+global $USER;
+if($USER->IsAuthorized())
+{
+
 if(isset($_REQUEST["edit_id"]))
 {
 ?><?
@@ -275,7 +280,7 @@ global $USER;
 $usid = $USER->GetID();
 
 $arSelect = Array();
-	$arFilter = Array("IBLOCK_ID"=>17, "USER_ID"=>$usid);
+	$arFilter = Array("IBLOCK_ID"=>17, "PROPERTY_USER_ID"=>$usid);
 	$res = CIBlockElement::GetList(Array("ID" => "DESC"), $arFilter, false, false, $arSelect);
 	while($ob = $res->GetNextElement()){ 
 		 $arFields = $ob->GetFields();  
@@ -337,6 +342,22 @@ $arSelect = Array();
 <?
 
 }
+}
+}else{
+
+ $APPLICATION->IncludeComponent(
+                    "bitrix:system.auth.form",
+                    "modal",
+                    Array(
+                        "REGISTER_URL" => SITE_DIR."auth/?register=yes",
+                        "FORGOT_PASSWORD_URL" => "",
+                        "PROFILE_URL" => SITE_DIR."personal/profile/",
+                        "SHOW_ERRORS" => "Y",
+                        "BACKURL" => $APPLICATION->GetCurDir()."/#login",
+                        'AJAX_MODE'=>'Y',
+                        )
+                        );
+
 }
 ?>
 
