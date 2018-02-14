@@ -11,7 +11,7 @@ $MESS ['LEGEND_PROFILE'] = "Личные данные";
 
 $MESS['PROFILE_PROFILE'] = "Личный кабинет";
 $MESS['PROFILE_INFO'] = "Личные данные";
-$MESS['PROFILE_ADDRESS'] = "Адрес доставки";
+$MESS['PROFILE_ADDRESS'] = "Адреса доставки";
 $MESS['PROFILE_ORDERS'] = "История заказов";
 
 $MESS['PROFILE_FTYPE'] = "Физическое лицо";
