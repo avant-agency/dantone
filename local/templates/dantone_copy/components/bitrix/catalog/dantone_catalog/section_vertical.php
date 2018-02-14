@@ -66,6 +66,7 @@ if($isfilter) {
 
 if(isset($_REQUEST["sortField"]))
 {
+/*	
     if($_SESSION["sortField"] == $_REQUEST["sortField"]) //если второй раз выбираем то же свойство, то направление меняется
     {
         if($_SESSION["sortOrderField"] != "ASC") 
@@ -74,10 +75,20 @@ if(isset($_REQUEST["sortField"]))
             $_SESSION["sortOrderField"] = "DESC";
     } else 
             $_SESSION["sortOrderField"] = "ASC";
-
-
-    $_SESSION["sortField"] = $_REQUEST["sortField"];
+*/
 	
+
+	if($_REQUEST["sortField"] == "PROPERTY_MINIMUM_PRICE_UP")
+	{
+		$_SESSION["sortOrderField"] = "ASC";
+	}else
+	if($_REQUEST["sortField"] == "PROPERTY_MINIMUM_PRICE_DOWN")
+	{
+		$_SESSION["sortOrderField"] = "DESC";
+	}
+	
+	$_SESSION["sortField"] = $_REQUEST["sortField"];
+		
     if($_SESSION["sortField"] == "PROPERTY_DISCOUNT")
     {
         $_SESSION["sortOrderField"] = "DESC";
@@ -88,8 +99,11 @@ if(isset($_REQUEST["sortField"]))
 if(isset($_SESSION["sortField"]))
     $arParams["ELEMENT_SORT_FIELD"] = $_SESSION["sortField"];
 else {
-	$_SESSION["sortField"] = "PROPERTY_NEWPRODUCT";
+	$_SESSION["sortField"] = "PROPERTY_NEWPRODUCT"; 
 }
+
+if($_SESSION["sortField"] == "PROPERTY_MINIMUM_PRICE_UP" || $_SESSION["sortField"] == "PROPERTY_MINIMUM_PRICE_DOWN")
+	$arParams["ELEMENT_SORT_FIELD"] = "PROPERTY_MINIMUM_PRICE";
 
 if(isset($_SESSION["sortOrderField"]))
     $arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"];
