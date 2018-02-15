@@ -62,19 +62,16 @@ if(isset($_REQUEST["orderid"]))
                                 Оплачен
                             </div>
                     <?else:?>
-							<?if($arOrder['PAYMENT'][0]['PAY_SYSTEM_ID'] == 3){?>
-					<div class="count mobileVisible_"><a target="_blank" href="<?=$arOrder['PAYMENT'][0]['PSA_ACTION_FILE']?>" class="solve-btn">Оплатить</a></div>
-							<?} else { //echo "<small>".$arOrder['PAYMENT'][0]['PAY_SYSTEM_NAME']."</small><br />";
-								?>
-						<div class="count mobileVisible_">
-							<form method="POST" action="">
-								<input type="hidden" name="orderid" value="<?=$arOrder["ORDER"]["ID"]?>" /><input type="submit" class="solve-btn" value="Оплатить" />
-							</form>
-						</div>
-							<?}?>
-                    <?endif?>
-
-
+					<?if($arOrder['PAYMENT'][0]['PAY_SYSTEM_ID'] == 3){?>
+            <div class="count mobileVisible_"><a target="_blank" href="<?=$arOrder['PAYMENT'][0]['PSA_ACTION_FILE']?>" class="solve-btn">Оплатить</a></div>
+          <?} else {?>
+            <div class="count mobileVisible_">
+              <form method="POST" action="">
+                <input type="hidden" name="orderid" value="<?=$arOrder["ORDER"]["ID"]?>" /><input type="submit" class="solve-btn" value="Оплатить" />
+              </form>
+            </div>
+          <?}?>
+          <?endif?>
                 <div class="dd-list">
                     <div class="dd-list-header">
                         <div class="dd-header-item">Наименование</div>
@@ -82,7 +79,7 @@ if(isset($_REQUEST["orderid"]))
                         <div class="dd-header-item">Цена</div>
                     </div>
                     <?
- 					CModule::IncludeModule("iblock");
+ 					          CModule::IncludeModule("iblock");
                     CModule::IncludeModule("catalog");
                     $basket_ids = array();
                     $basket = array();
@@ -90,26 +87,27 @@ if(isset($_REQUEST["orderid"]))
                     {
                         $basket_ids[] = $v["PRODUCT_ID"];
 
+            						$arSelect = Array("ID", "NAME", "PREVIEW_PICTURE","PROPERTY_ARTIKUL");
 
-						$arSelect = Array("ID", "NAME", "PREVIEW_PICTURE","PROPERTY_ARTIKUL");
-						$arFilter = Array("IBLOCK_ID"=>5, "ID"=>$v["PRODUCT_ID"]);
-						$res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
-						while($ob = $res->GetNextElement())
-						{
-							$arFields = $ob->GetFields();
+            						$arFilter = Array("IBLOCK_ID"=>5, "ID"=>$v["PRODUCT_ID"]);
+            						$res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
+            						while($ob = $res->GetNextElement())
+            						{
+            							$arFields = $ob->GetFields();
 
-							$art = $arFields["PROPERTY_ARTIKUL_VALUE"];
-							$mxResult = CCatalogSku::GetProductInfo($arFields['ID']);
-							if (is_array($mxResult))
-							{
-								$res = CIBlockElement::GetByID($mxResult['ID']);
-								if($ar_res = $res->GetNext())
-								{
-									$basket[$arFields["ID"]] = CFile::GetPath($ar_res['PREVIEW_PICTURE']);
-								}
-							}
-						}
- 					}
+            							$art = $arFields["PROPERTY_ARTIKUL_VALUE"];
+
+            							$mxResult = CCatalogSku::GetProductInfo($arFields['ID']);
+            							if (is_array($mxResult))
+            							{
+            								$res = CIBlockElement::GetByID($mxResult['ID']);
+            								if($ar_res = $res->GetNext())
+            								{
+            									$basket[$arFields["ID"]] = CFile::GetPath($ar_res['PREVIEW_PICTURE']);
+            								}
+            							}
+            						}
+             					}
                     ?>
                     <?foreach($arOrder["BASKET_ITEMS"] as $k => $v):?>
 
@@ -121,38 +119,35 @@ if(isset($_REQUEST["orderid"]))
 								</div>
 							</div>
 							<div class="dd-list-descr">
-                            <div class="price dd-list-item"><?=$v['QUANTITY']?> <?=$v['MEASURE_NAME']?>.</div>
-                            <div class="count dd-list-item"><? echo number_format(round($v['PRICE']), 0, '', ' ');?> руб.</div>
-
+                <div class="price dd-list-item"><?=$v['QUANTITY']?> <?=$v['MEASURE_NAME']?>.</div>
+                <div class="count dd-list-item"><? echo number_format(round($v['PRICE']), 0, '', ' ');?> руб.</div>
 
 								<div class="dd-list-descr-mobile">
 
-                                                <div class="lk-address-line">
-                                                    <div class="lk-address-line-title">Товар:</div>
-                                                    <div class="lk-address-line-name lk-good-name"><?=$v['NAME']?></div>
-                                                </div>
-									<?if($art != ''){?>
-                                                <div class="lk-address-line">
-                                                    <div class="lk-address-line-title">Артикул:</div>
-                                                    <div class="lk-address-line-name"><?=$art?></div>
-                                                </div>
-									<?}?>
-                                                <div class="lk-address-line">
-                                                    <div class="lk-address-line-title">Количество:</div>
-                                                    <div class="lk-address-line-name"><?=$v['QUANTITY']?> <?=$v['MEASURE_NAME']?>.</div>
-                                                </div>
-                                                <div class="lk-address-line">
-                                                    <div class="lk-address-line-title">Цена:</div>
-                                                    <div class="lk-address-line-name"><? echo number_format(round($v['PRICE']), 0, '', ' ');?> руб.</div>
-                                                </div>
-                                        </div>
+                  <div class="lk-address-line">
+                      <div class="lk-address-line-title">Товар:</div>
+                      <div class="lk-address-line-name lk-good-name"><?=$v['NAME']?></div>
+                  </div>
 
+                  <?if($art != ''){?>
+                  <div class="lk-address-line">
+                      <div class="lk-address-line-title">Артикул:</div>
+                      <div class="lk-address-line-name"><?=$art?></div>
+                  </div>
+                  <?}?>
 
-
-
-
-                        </div></div>
-                    <?endforeach;?>
+                  <div class="lk-address-line">
+                      <div class="lk-address-line-title">Количество:</div>
+                      <div class="lk-address-line-name"><?=$v['QUANTITY']?> <?=$v['MEASURE_NAME']?>.</div>
+                  </div>
+                  <div class="lk-address-line">
+                      <div class="lk-address-line-title">Цена:</div>
+                      <div class="lk-address-line-name"><? echo number_format(round($v['PRICE']), 0, '', ' ');?> руб.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?endforeach;?>
 						<?
 						if($arOrder["ORDER"]["PRICE_DELIVERY"] > 0)
 						{
@@ -165,28 +160,24 @@ if(isset($_REQUEST["orderid"]))
 							</div>
 							<div class="dd-list-descr">
 								<div class="price dd-list-item"><b>Стоимость доставки:</b></div>
-                            <div class="count dd-list-item"><?=number_format($arOrder["ORDER"]["PRICE_DELIVERY"],0,""," ")." руб."?></div>
-
-
-								<div class="dd-list-descr-mobile">
-
-                                                <div class="lk-address-line">
-                                                    <div class="lk-address-line-title">Стоимость доставки: :</div>
-                                                    <div class="lk-address-line-name lk-good-name"><?=number_format($arOrder["ORDER"]["PRICE_DELIVERY"],0,""," ")." руб."?></div>
-                                                </div>
-                                        </div>
-                   			</div></div>
+                <div class="count dd-list-item"><?=number_format($arOrder["ORDER"]["PRICE_DELIVERY"],0,""," ")." руб."?></div>
+						    <div class="dd-list-descr-mobile">
+                  <div class="lk-address-line">
+                      <div class="lk-address-line-title">Стоимость доставки: :</div>
+                      <div class="lk-address-line-name lk-good-name"><?=number_format($arOrder["ORDER"]["PRICE_DELIVERY"],0,""," ")." руб."?></div>
+                  </div>
+                </div>
+              </div>
+            </div>
 					<?}?>    
                 </div>
 			</div>
         <?endforeach;?>
 
-</div>
-
-        
-        <?if(strlen($arResult['NAV_STRING'])):?>
-            <?=$arResult['NAV_STRING']?>
-        <?endif?>
+  </div>
+    <?if(strlen($arResult['NAV_STRING'])):?>
+        <?=$arResult['NAV_STRING']?>
+    <?endif?>
 
     <?else:?>
         <?=GetMessage('SPOL_NO_ORDERS')?>
@@ -418,9 +409,6 @@ if(isset($_REQUEST["orderid"]))
 }
 	}
 </style>
-
-
-
 <script>
 $(function () {
    $('.drodown-icon').click(function () {

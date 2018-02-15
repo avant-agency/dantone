@@ -1,11 +1,8 @@
-<?php
-
+<?
 	require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-
 	
 	CModule::IncludeModule("sale");
-	
-	
+		
 	if( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 		
 		if( isset($_POST["email"]) && !empty($_POST["email"]) ) {
@@ -33,22 +30,8 @@
 				$response["STATUS"] = 1;
 			    $response["MESSAGE"] = "На почту, которую Вы указали, выслан купон";
 			    $response["COUPON"] = $COUPON;
-			     
-			     
 		     }
-		     
-		   		     
-		     
 		     echo json_encode($response);	
-			
-		}
-		
+		}		
 	}
-	
-	
-	
-	
-	
-	
-	
 ?>	

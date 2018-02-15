@@ -62,15 +62,7 @@ CJSCore::Init(array('translit'));
     <!-- {/literal} END JIVOSITE CODE -->
 
 <script type="text/javascript">
-   /*var _alloka = {
-       objects: {
-           '7c85a93b735db05c': {
-               block_class: 'kupislova'
-           }
-       },
-       trackable_source_types: ['typein', 'referrer', 'utm']
-   };
- */  $(function() {
+    $(function() {
        $('.phone-input').mask("+7(999)999-99-99");
     });
 </script>
