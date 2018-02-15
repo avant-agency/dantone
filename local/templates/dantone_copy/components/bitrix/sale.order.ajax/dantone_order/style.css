@@ -1482,3 +1482,9 @@ hr.bxe-light{
 	height: 18px;
 }
 
+.dantonedelivery {float:right; margin:10px -140px 0 0}
+@media (max-width: 991px) {
+.dantonedelivery {float:none; margin:0}
+
+}
+.conditions {min-height:22px; line-height:42px}

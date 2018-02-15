@@ -1,4 +1,4 @@
-﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?
 CModule::IncludeModule('sale');
 
@@ -14,6 +14,7 @@ if(isset($_REQUEST["orderid"]))
 	</script>
 
 <?}?>
+
 <?if(!empty($arResult['ERRORS']['FATAL'])):?>
 
     <?foreach($arResult['ERRORS']['FATAL'] as $error):?>
@@ -52,26 +53,25 @@ if(isset($_REQUEST["orderid"]))
                 <div class="drodown-icon">
                     <div class="dd-icon"></div>
                 </div>
-                <div class="photo"><?=$arOrder["ORDER"]["DATE_STATUS_FORMATED"]?></div>
-                <div class="title">№ <?=$arOrder["ORDER"]["ID"]?></div>
-                <div class="price"><span class="value"><?=$arOrder["ORDER"]["FORMATED_PRICE"]?></span></div>
-                <div class="count">
+				<div class="photo"><span class="lk-good-title">Дата:</span> <span class="ln-good-name"><?=$arOrder["ORDER"]["DATE_STATUS_FORMATED"]?></span></div>
+				<div class="title"><span class="lk-good-title">Номер:</span> <span class="lk-number">№</span> <span class="ln-good-name"> <?=$arOrder["ORDER"]["ID"]?></span></div>
+                <div class="price"><span class="value"><span class="lk-good-title">Сумма:</span> <span class="ln-good-name"><?=$arOrder["ORDER"]["FORMATED_PRICE"]?></span></span></div>
+
                     <?if($arResult["INFO"]["STATUS"][$arOrder["ORDER"]["STATUS_ID"]]['NAME'] == "Placed"):?>
-                        Placed
+                       <div class="count descVisible_">
+                                Оплачен
+                            </div>
                     <?else:?>
-
 					<?if($arOrder['PAYMENT'][0]['PAY_SYSTEM_ID'] == 3){?>
-                        <a target="_blank" href="<?=$arOrder['PAYMENT'][0]['PSA_ACTION_FILE']?>" class="solve-btn">Оплатить</a>
-					<?} else { //echo "<small>".$arOrder['PAYMENT'][0]['PAY_SYSTEM_NAME']."</small><br />";
-?>
-					<form method="POST" action="">
-						<input type="hidden" name="orderid" value="<?=$arOrder["ORDER"]["ID"]?>" /><input type="submit" class="solve-btn" value="Оплатить" />
-					</form>
-<?}?>
-                    <?endif?>
-
-                </div>
-
+            <div class="count mobileVisible_"><a target="_blank" href="<?=$arOrder['PAYMENT'][0]['PSA_ACTION_FILE']?>" class="solve-btn">Оплатить</a></div>
+          <?} else {?>
+            <div class="count mobileVisible_">
+              <form method="POST" action="">
+                <input type="hidden" name="orderid" value="<?=$arOrder["ORDER"]["ID"]?>" /><input type="submit" class="solve-btn" value="Оплатить" />
+              </form>
+            </div>
+          <?}?>
+          <?endif?>
                 <div class="dd-list">
                     <div class="dd-list-header">
                         <div class="dd-header-item">Наименование</div>
@@ -79,7 +79,7 @@ if(isset($_REQUEST["orderid"]))
                         <div class="dd-header-item">Цена</div>
                     </div>
                     <?
- 					CModule::IncludeModule("iblock");
+ 					          CModule::IncludeModule("iblock");
                     CModule::IncludeModule("catalog");
                     $basket_ids = array();
                     $basket = array();
@@ -87,46 +87,97 @@ if(isset($_REQUEST["orderid"]))
                     {
                         $basket_ids[] = $v["PRODUCT_ID"];
 
+            						$arSelect = Array("ID", "NAME", "PREVIEW_PICTURE","PROPERTY_ARTIKUL");
 
-						$arSelect = Array("ID", "NAME", "PREVIEW_PICTURE");
-						$arFilter = Array("IBLOCK_ID"=>5, "ID"=>$v["PRODUCT_ID"]);
-						$res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
-						while($ob = $res->GetNextElement())
-						{
-							$arFields = $ob->GetFields();
-							$mxResult = CCatalogSku::GetProductInfo($arFields['ID']);
-							if (is_array($mxResult))
-							{
-								$res = CIBlockElement::GetByID($mxResult['ID']);
-								if($ar_res = $res->GetNext())
-								{
-									$basket[$arFields["ID"]] = CFile::GetPath($ar_res['PREVIEW_PICTURE']);
-								}
-							}
-						}
- 					}
+            						$arFilter = Array("IBLOCK_ID"=>5, "ID"=>$v["PRODUCT_ID"]);
+            						$res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
+            						while($ob = $res->GetNextElement())
+            						{
+            							$arFields = $ob->GetFields();
+
+            							$art = $arFields["PROPERTY_ARTIKUL_VALUE"];
+
+            							$mxResult = CCatalogSku::GetProductInfo($arFields['ID']);
+            							if (is_array($mxResult))
+            							{
+            								$res = CIBlockElement::GetByID($mxResult['ID']);
+            								if($ar_res = $res->GetNext())
+            								{
+            									$basket[$arFields["ID"]] = CFile::GetPath($ar_res['PREVIEW_PICTURE']);
+            								}
+            							}
+            						}
+             					}
                     ?>
                     <?foreach($arOrder["BASKET_ITEMS"] as $k => $v):?>
+
                         <div class="dd-list-goods">
-                            <div class="photo dd-list-item">
-                                <img src="<?=$basket[$v['PRODUCT_ID']]?>" alt="<?=$v['NAME']?>">
-                                <div class="title"><a href="<?=$v['DETAIL_PAGE_URL']?>"><?=$v['NAME']?></a></div>
-                            </div>
+							<div class="dd-list-img">
+								<div class="photo dd-list-item">
+									<img src="<?=$basket[$v['PRODUCT_ID']]?>" alt="<?=$v['NAME']?>">
+									<div class="title"><a href="<?=$v['DETAIL_PAGE_URL']?>"><?=$v['NAME']?></a></div>
+								</div>
+							</div>
+							<div class="dd-list-descr">
+                <div class="price dd-list-item"><?=$v['QUANTITY']?> <?=$v['MEASURE_NAME']?>.</div>
+                <div class="count dd-list-item"><? echo number_format(round($v['PRICE']), 0, '', ' ');?> руб.</div>
 
-                            <div class="price dd-list-item"><?=$v['QUANTITY']?> <?=$v['MEASURE_NAME']?>.</div>
-                            <div class="count dd-list-item"><? echo number_format(round($v['PRICE']), 0, '', ' ');?> руб.</div>
-                        </div>
-                    <?endforeach;?>
+								<div class="dd-list-descr-mobile">
+
+                  <div class="lk-address-line">
+                      <div class="lk-address-line-title">Товар:</div>
+                      <div class="lk-address-line-name lk-good-name"><?=$v['NAME']?></div>
+                  </div>
+
+                  <?if($art != ''){?>
+                  <div class="lk-address-line">
+                      <div class="lk-address-line-title">Артикул:</div>
+                      <div class="lk-address-line-name"><?=$art?></div>
+                  </div>
+                  <?}?>
+
+                  <div class="lk-address-line">
+                      <div class="lk-address-line-title">Количество:</div>
+                      <div class="lk-address-line-name"><?=$v['QUANTITY']?> <?=$v['MEASURE_NAME']?>.</div>
+                  </div>
+                  <div class="lk-address-line">
+                      <div class="lk-address-line-title">Цена:</div>
+                      <div class="lk-address-line-name"><? echo number_format(round($v['PRICE']), 0, '', ' ');?> руб.</div>
+                  </div>
                 </div>
+              </div>
             </div>
+            <?endforeach;?>
+						<?
+						if($arOrder["ORDER"]["PRICE_DELIVERY"] > 0)
+						{
+						?>
+						<div class="dd-list-goods">
+							<div class="dd-list-img">
+								<div class="photo dd-list-item">
+									<div class="title"> </div>
+								</div>
+							</div>
+							<div class="dd-list-descr">
+								<div class="price dd-list-item"><b>Стоимость доставки:</b></div>
+                <div class="count dd-list-item"><?=number_format($arOrder["ORDER"]["PRICE_DELIVERY"],0,""," ")." руб."?></div>
+						    <div class="dd-list-descr-mobile">
+                  <div class="lk-address-line">
+                      <div class="lk-address-line-title">Стоимость доставки: :</div>
+                      <div class="lk-address-line-name lk-good-name"><?=number_format($arOrder["ORDER"]["PRICE_DELIVERY"],0,""," ")." руб."?></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+					<?}?>    
+                </div>
+			</div>
         <?endforeach;?>
-        </div>
-         
 
-        
-        <?if(strlen($arResult['NAV_STRING'])):?>
-            <?=$arResult['NAV_STRING']?>
-        <?endif?>
+  </div>
+    <?if(strlen($arResult['NAV_STRING'])):?>
+        <?=$arResult['NAV_STRING']?>
+    <?endif?>
 
     <?else:?>
         <?=GetMessage('SPOL_NO_ORDERS')?>
@@ -134,6 +185,7 @@ if(isset($_REQUEST["orderid"]))
 
 <?endif?>
 <style>
+	.mobileVisible_ form {width:100%}
 .table-item > div, .table-header > div {
   width: 150px; }
 
@@ -304,7 +356,7 @@ if(isset($_REQUEST["orderid"]))
     display: -webkit-flex !important;
     display: -moz-box !important;
     display: -ms-flexbox !important;
-    display: flex !important; }
+    display: flex; }
   .table-item .price .value {
     font-size: 12px; }
   .table-item > div:first-of-type, .table-header > div:first-of-type {
@@ -322,8 +374,10 @@ if(isset($_REQUEST["orderid"]))
     transform: translateX(-10px); }
   .dd-header-item:first-of-type, .dd-list-item:first-of-type {
     width: 54%; }
-  .dd-header-item img, .dd-list-item img {
-    display: none; }
+
+		/* .dd-header-item img, .dd-list-item img {
+			 display: none; }
+		*/
   .dd-list-goods {
     margin-bottom: 25px; }
   .dd-icon {
@@ -348,10 +402,13 @@ if(isset($_REQUEST["orderid"]))
     font-size: 11px; }
   .dd-header-item:first-of-type, .dd-list-item:first-of-type {
     width: 42%; } }
+@media (max-width: 767px)
+		{
+.cart-table-history-short .table-header {
+    display: none !important;
+}
+	}
 </style>
-
-
-
 <script>
 $(function () {
    $('.drodown-icon').click(function () {

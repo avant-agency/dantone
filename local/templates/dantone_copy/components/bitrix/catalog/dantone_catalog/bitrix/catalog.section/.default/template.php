@@ -33,22 +33,16 @@ if ($arP = $arDB->Fetch())
             })
             BX.onCustomEvent('OnBasketChange'); 
 
-			var price = $("#productLink-" + productID);//.parents("li").find(".price");
-			/*console.log(price);
-			price = price.find(".value");
-			console.log(price);
-			price = price.replace( /^\D+/g, '');
-			console.log(price);
-			alert(price);*/
+            var price = $("#productLink-" + productID);
 
-			dataLayer.push({
-				'event': 'addToCart',
-				'google_tag_params': {
-					'ecomm_prodid': [productID],
-					'ecomm_pagetype': 'cart',
-					'ecomm_totalvalue': price
-				}
-			});
+            dataLayer.push({
+                'event': 'addToCart',
+                'google_tag_params': {
+                    'ecomm_prodid': [productID],
+                    'ecomm_pagetype': 'cart',
+                    'ecomm_totalvalue': price
+                }
+            });
         }           
     }
 </script>
@@ -63,30 +57,6 @@ if ($arP = $arDB->Fetch())
         "SITE_ID" => "s1" 
         )
         );?> 
-<?/*
-        <div class="fright sort-container">
-            <?if(isset($_REQUEST["sortField"])) {
-                $sort = $_REQUEST["sortField"];
-            }?>
-            <select id="sort" style="position: absolute; left: -9999px;">
-                <option value=""><?=GetMessage('CATALOG_SORT')?></option>
-                <option value="hit" <?= ($sort == "hit") ? 'selected="selected"' : ''?>><?=GetMessage('CATALOG_SORT_POPULAR')?></option>
-                <option value="price" <?= ($sort == "price") ? 'selected="selected"' : ''?>><?=GetMessage('CATALOG_SORT_PRICE')?></option>
-                <option value="discount" <?= ($sort == "discount") ? 'selected="selected"' : ''?>><?=GetMessage('CATALOG_SORT_DISCOUNT')?></option>
-            </select>               
-        </div>
-
-        <script>
-            $(function() {
-                $('#sort').on('change', function() {
-                    var val = $(this).val();
-
-                    location.href = "?sortField=" + val
-
-                });
-            });
-        </script>
-*/?>
 </div>
 
 
@@ -112,75 +82,74 @@ if ($arP = $arDB->Fetch())
     </div>
 
 <?
-global $USER;  
-//if($USER->IsAdmin())
-//{
+    global $USER;  
 
-	if( $arParams["SECTION_CODE"] == 'sofas') 
-	{
-		include "sofa_filter.php";
-	}
-	else if($arParams["SECTION_CODE"] == 'tables_and_consoles' || $arParams["SECTION_CODE"] == 'consoles' || $arParams["SECTION_CODE"] == 'tables')
-	{
-		include "table_filter.php";
-	}
-	else if($arParams["SECTION_CODE"] == 'bedroom' || $arParams["SECTION_CODE"] == 'childrens_beds' || $arParams["SECTION_CODE"] == 'beds_izgolovia' || $arParams["SECTION_CODE"] == 'beds' || $arParams["SECTION_CODE"] == 'matrasy')  
-	{
-		include "beds_filter.php";
-	}
-	else if($arParams["SECTION_CODE"] == 'armchairs_and_chairs' || $arParams["SECTION_CODE"] == 'chairs' || $arParams["SECTION_CODE"] == 'armchairs')
-	{
-		include "chears_filter.php";
-	}
-	else if($arParams["SECTION_CODE"] == 'chandelier')
-	{
-		include "chandelier_filter.php";
-	}
-	else if($arParams["SECTION_CODE"] == 'table_lamp') 
-	{
-		include "table_lamp.php";
-	}
-	else if($arParams["SECTION_CODE"] == 'torchere') 
-	{
-		include "torchere_filter.php";
-	}
-	else {
-		?><div style="clear:both; height:60px; padding:20px 0; display:block;"><?
-				include "sort.php";
-		?></div><?
-	}
-	//}
+    if( $arParams["SECTION_CODE"] == 'sofas') 
+    {
+        include "sofa_filter.php";
+    }
+    else if($arParams["SECTION_CODE"] == 'tables_and_consoles' || $arParams["SECTION_CODE"] == 'consoles' || $arParams["SECTION_CODE"] == 'tables')
+    {
+        include "table_filter.php";
+    }
+    else if($arParams["SECTION_CODE"] == 'bedroom' || $arParams["SECTION_CODE"] == 'childrens_beds' || $arParams["SECTION_CODE"] == 'beds_izgolovia' || $arParams["SECTION_CODE"] == 'beds' || $arParams["SECTION_CODE"] == 'matrasy')  
+    {
+        include "beds_filter.php";
+    }
+    else if($arParams["SECTION_CODE"] == 'armchairs_and_chairs' || $arParams["SECTION_CODE"] == 'chairs' || $arParams["SECTION_CODE"] == 'armchairs')
+    {
+        include "chears_filter.php";
+    }
+    else if($arParams["SECTION_CODE"] == 'chandelier')
+    {
+        include "chandelier_filter.php";
+    }
+    else if($arParams["SECTION_CODE"] == 'table_lamp') 
+    {
+        include "table_lamp.php";
+    }
+    else if($arParams["SECTION_CODE"] == 'dantone-kitchen') 
+    {
+        header("HTTP/1.1 301 Moved Permanently"); 
+        header("Location: https://kitchen.dantonehome.ru"); 
+        exit();
+    }
+    else if($arParams["SECTION_CODE"] == 'torchere') 
+    {
+        include "torchere_filter.php";
+    }
+    else {
+        ?><div style="clear:both; height:60px; padding:20px 0; display:block;"><?
+                include "sort.php";
+        ?></div><?
+    }
 ?>
-
 
     <?if (!empty($arResult['ITEMS'])):?> 
     <ul class="product-list-static" id="productCatalogBlock" style="padding-bottom:1px;">
         <?foreach($arResult["ITEMS"] as $arItem):?> 
-
         <li>
-
             <div class="photo">
                 <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" title="Посмотреть детали" id="productLink-1<?=$arItem["ID"]?>">
                     <img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="">
                 </a>
-                
                 <div class="product-label-container">
                     <?if($arItem["PROPERTIES"]["NEWPRODUCT"]["VALUE"] == "Y"):?>    
                     <div class="product-label-green">new</div>
                     <?endif;?>  
                 </div>
                 <div class="product-label-container">
-                    <?if($arItem["PROPERTIES"]["DISCOUNT"]["VALUE"] == "Y"):?>  
+                    <?if($arItem["PROPERTIES"]["DISCOUNT"]["VALUE"] == "Y" && $arItem["PROPERTIES"]["NEWPRODUCT"]["VALUE"] != "Y"):?>  
                     <div class="product-label-red">sale</div>
                     <?endif;?>  
                 </div>
                 <div class="product-label-container">
-                    <?if($arItem["PROPERTIES"]["WOW"]["VALUE"] == "Y"):?>   
+                    <?if($arItem["PROPERTIES"]["WOW"]["VALUE"] == "Y" && $arItem["PROPERTIES"]["NEWPRODUCT"]["VALUE"] != "Y"):?>   
                     <div class="product-label-yellow">wow</div>
                     <?endif;?>  
                 </div>
                 <div class="product-label-container">
-                    <?if($arItem["PROPERTIES"]["INSTOCK"]["VALUE"] == "Y"):?>   
+                    <?if($arItem["PROPERTIES"]["INSTOCK"]["VALUE"] == "Y" && $arItem["PROPERTIES"]["NEWPRODUCT"]["VALUE"] != "Y"):?>   
                     <div class="product-label-blue">in stock</div>
                     <?endif;?>  
                 </div>
@@ -199,13 +168,10 @@ global $USER;
                 <div class="title">
                     <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" id="productLink-2<?=$arItem["ID"]?>" title="<?=GetMessage('CATALOG_SECTION_SEE')?>"><?=$arItem["NAME"]?></a>
                 </div>
-
-
                 <?$minPrice = false;
                 if (isset($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE']))
                     $minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);?>
                 <div class="price">
-
                     <?if (!empty($minPrice))
                     {
                         if ('N' == $arParams['PRODUCT_DISPLAY_MODE'] && isset($arItem['OFFERS']) && !empty($arItem['OFFERS'])) {
@@ -240,24 +206,18 @@ global $USER;
                     }
                     unset($minPrice);
                     ?>
-
                 </div>
             </div>
             <a href="#" onclick="basket('add',<?=$arItem["OFFERS"][0]["ID"]?>); return false;" class="btn btn-blue btn-medium" id=""><?=GetMessage('CATALOG_TOCART')?></a>
         </li>
         <?endforeach;?>
     </ul>
-
     <?endif;?>
-
     <article class="about text-left">
-
         <?if($arResult["DESCRIPTION"]):?>
         <?=$arResult["DESCRIPTION"]?>
         <?endif;?>
-
         <h3></h3>
-
         <p></p>
         <?=GetMessage('CATALOG_SECTION_DESCRIPTION')?><p></p>
     </article>
@@ -265,10 +225,9 @@ global $USER;
 <?
 foreach ($arResult['ITEMS'] as $key => $arItem)
 {
-	$productIds[] = $arItem['ID'];
-	/*$productOffers = CCatalogSKU::getOffersList($id);$producIdArray = reset($productOffers[$id]);$productIds[] = $producIdArray["ID"];*/
+    $productIds[] = $arItem['ID'];
+    /*$productOffers = CCatalogSKU::getOffersList($id);$producIdArray = reset($productOffers[$id]);$productIds[] = $producIdArray["ID"];*/
 }
-
 $js_array = json_encode(array_slice($productIds, 0, 3)); 
 ?>
 
@@ -277,9 +236,10 @@ $js_array = json_encode(array_slice($productIds, 0, 3));
 window.criteo_q = window.criteo_q || [];
 var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
 window.criteo_q.push(
-	{ event: "setAccount", account: 45351 },
-	{ event: "setEmail", email: "<? echo $USER->GetEmail(); ?>"},
-	{ event: "setSiteType", type: deviceType },
-	{ event: "viewList", ecpplugin: "1cbitrix", item: <? echo $js_array; ?> }
+    { event: "setAccount", account: 45351 },
+    { event: "setEmail", email: "<? echo $USER->GetEmail(); ?>"},
+    { event: "setSiteType", type: deviceType },
+    { event: "viewList", ecpplugin: "1cbitrix", item: <? echo $js_array; ?> }
 );
 </script>
+<link rel="stylesheet" href="/local/templates/dantone_copy/css/dantone_catalog_style.css" />

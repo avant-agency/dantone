@@ -20,104 +20,86 @@ $dir = $APPLICATION->GetCurDir();
 
 $exp = explode("/",$dir);
 
-//G.K.
-
-/*
-foreach($exp as $k => $v)
-{
-$url.="filter[".$v."]=Y&";
-	if(strpos($v,"price_under_") ===0 ){
-		$priceFrom = intVal(str_replace("price_under_","",$v));
-	}else if(strpos($v,"price_over_") ===0 ){
-		$priceTo = intVal(str_replace("price_over_","",$v));
-	}else  if(strpos($v,"price_") ===0 ){
-		$priceExp = explode("_",str_replace("price_","",$v));
-		$priceFrom = $priceExp[0];
-		$priceTo = $priceExp[1];
-	}
-
-}
-
-
-//$priceFrom = (isset($_REQUEST["priceFrom"]) && !empty($_REQUEST["priceFrom"])) ? intVal(trim($_REQUEST["priceFrom"])) : 0;
-//$priceTo = (isset($_REQUEST["priceTo"]) && !empty($_REQUEST["priceTo"])) ? intVal(trim($_REQUEST["priceTo"])) : 1000000000;
-
-if(!is_null($priceFrom) || !is_null($priceTo)) {
-    $arrFilter = Array(
-        "><CATALOG_PRICE_1" => Array(
-            0 => $priceFrom,
-            1 => $priceTo
-            )
-        ); 
-}
-
-if(isset($_REQUEST['filter']["sortField"])) {
-
-    switch($_REQUEST['filter']["sortField"]) {
-
-        case "price":
-        $arParams["ELEMENT_SORT_FIELD"] = "property_MINIMUM_PRICE";
-        $arParams["ELEMENT_SORT_ORDER"] = "ASC";
-        break;
-
-        case "discount":
-        $arParams["ELEMENT_SORT_FIELD"] = "PROPERTY_DISCOUNT";
-        $arParams["ELEMENT_SORT_ORDER"] = "DESC";
-        break; 
-
-        case "hit":
-        $arParams["ELEMENT_SORT_FIELD"] = "PROPERTY_BESTSELLER";
-        $arParams["ELEMENT_SORT_ORDER"] = "DESC";
-        break;   
-    }
-}*/
-
 $isfilter = false;
 
 $arResult["VARIABLES"]["SECTION_CODE_PATH"] = '/';
-	//вытаскиваем раздел по урл
-	foreach($exp as $k => $v)
-	{
-		if(strpos($v,'filter') === 0){
-$isfilter = true;
-$arResult["VARIABLES"]["filterstr"] = $v;
-			break;
-		}
-		else {
-			if($v != '')
-			{
-				$arResult["VARIABLES"]["SECTION_CODE"] = $v; 
-				$arResult["VARIABLES"]["SECTION_CODE_PATH"] .= $v."/";
-			}
-		}
-	}
+    //вытаскиваем раздел по урл
+    foreach($exp as $k => $v)
+    {
+        if(strpos($v,'filter') === 0){
+            $isfilter = true;
+            $arResult["VARIABLES"]["filterstr"] = $v;
+            break;
+        }
+        else {
+            if($v != '')
+            {
+                $arResult["VARIABLES"]["SECTION_CODE"] = $v; 
+                $arResult["VARIABLES"]["SECTION_CODE_PATH"] .= $v."/";
+            }
+        }
+    }
+    
+//если новая категория  
+if($_SESSION["SECTION_CODE"] != $arResult["VARIABLES"]["SECTION_CODE"])
+{
+    $_SESSION["sortField"] = "PROPERTY_NEWPRODUCT";
+    $_SESSION["sortOrderField"] = "DESC";
+}
 
+$_SESSION["SECTION_CODE"] = $arResult["VARIABLES"]["SECTION_CODE"];
 
 global $variables;
 $variables = $arResult["VARIABLES"];
 
 global $USER;
-if($isfilter) {  // && $USER->IsAdmin()
+if($isfilter) {  
 
-	include "dantone_filter.php"; 
-	//${$arParams["FILTER_NAME"]}["CATALOG_AVAILABLE"] = "N";
-	if(count($_SESSION["filter"]["ids"]) > 0)
-	{
-		${$arParams["FILTER_NAME"]}["ID"] = $_SESSION["filter"]["ids"];
-	}else $arrFilter["ID"]=0;
+    include "dantone_filter.php"; 
+    //${$arParams["FILTER_NAME"]}["CATALOG_AVAILABLE"] = "N";
+    if(count($_SESSION["filter"]["ids"]) > 0)
+    {
+        ${$arParams["FILTER_NAME"]}["ID"] = $_SESSION["filter"]["ids"];
+    }else $arrFilter["ID"]=0;
 }
-?>
 
 
-<?
 if(isset($_REQUEST["sortField"]))
 {
-	$_SESSION["sortField"] = $_REQUEST["sortField"];
+    if($_REQUEST["sortField"] == "PROPERTY_MINIMUM_PRICE_UP")
+    {
+        $_SESSION["sortOrderField"] = "ASC";
+    }else
+    if($_REQUEST["sortField"] == "PROPERTY_MINIMUM_PRICE_DOWN")
+    {
+        $_SESSION["sortOrderField"] = "DESC";
+    }
+    
+    $_SESSION["sortField"] = $_REQUEST["sortField"];
+        
+    if($_SESSION["sortField"] == "PROPERTY_DISCOUNT")
+    {
+        $_SESSION["sortOrderField"] = "DESC";
+    }
+    
 }
 
 if(isset($_SESSION["sortField"]))
-	$arParams["ELEMENT_SORT_FIELD"] = $_SESSION["sortField"];
+    $arParams["ELEMENT_SORT_FIELD"] = $_SESSION["sortField"];
+else 
+    $_SESSION["sortField"] = "PROPERTY_NEWPRODUCT"; 
+
+if($_SESSION["sortField"] == "PROPERTY_MINIMUM_PRICE_UP" || $_SESSION["sortField"] == "PROPERTY_MINIMUM_PRICE_DOWN")
+    $arParams["ELEMENT_SORT_FIELD"] = "PROPERTY_MINIMUM_PRICE";
+
+if(isset($_SESSION["sortOrderField"]))
+    $arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"];
+else {$arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"] = "ASC";}
+
+if($arParams["ELEMENT_SORT_FIELD"] == "PROPERTY_NEWPRODUCT")
+$arParams["ELEMENT_SORT_ORDER"] = "DESC";
 ?>
+
 <div class="clearfix">
     <?$intSectionID = $APPLICATION->IncludeComponent(
         "bitrix:catalog.section",
@@ -224,73 +206,51 @@ $component
 <?
 $GLOBALS['CATALOG_CURRENT_SECTION_ID'] = $intSectionID;
 unset($basketAction);
-
 ?>
+    <aside role="complementary" class="catalog-nav-container">
 
+    <?$APPLICATION->IncludeComponent("bitrix:menu", "sections_menu", Array(
+            "ROOT_MENU_TYPE" => "left", // Тип меню для первого уровня
+            "MAX_LEVEL" => "2", // Уровень вложенности меню
+            "CHILD_MENU_TYPE" => "left",    // Тип меню для остальных уровней
+            "USE_EXT" => "Y",   // Подключать файлы с именами вида .тип_меню.menu_ext.php
+            "DELAY" => "N", // Откладывать выполнение шаблона меню
+            "ALLOW_MULTI_SELECT" => "Y",    // Разрешить несколько активных пунктов одновременно
+            "MENU_CACHE_TYPE" => "N",   // Тип кеширования
+            "MENU_CACHE_TIME" => "3600",    // Время кеширования (сек.)
+            "MENU_CACHE_USE_GROUPS" => "Y", // Учитывать права доступа
+            "MENU_CACHE_GET_VARS" => "",    // Значимые переменные запроса
+        ),
+        false
+    );
+    if(!(CSite::InDir('/catalog/sofas/') || CSite::InDir('/catalog/bedroom/') || 
+        CSite::InDir('/catalog/armchairs_and_chairs/') ||  CSite::InDir('/catalog/tables_and_consoles/') || 
+        CSite::InDir('/catalog/light/') ||  CSite::InDir('/catalog/mirrors/') ) ) {?>
 
-<aside role="complementary" class="catalog-nav-container">
-	<?/*$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sidebar_menu", Array(
-"VIEW_MODE" => "TEXT",  // Вид списка подразделов
-"SHOW_PARENT_NAME" => "Y",  // Показывать название раздела
-"IBLOCK_TYPE" => "",    // Тип инфоблока
-"IBLOCK_ID" => "4", // Инфоблок
-"SECTION_CODE" => "",   // Код раздела
-"SECTION_URL" => "",    // URL, ведущий на страницу с содержимым раздела
-"COUNT_ELEMENTS" => "N",    // Показывать количество элементов в разделе
-"TOP_DEPTH" => "1", // Максимальная отображаемая глубина разделов
-"SECTION_FIELDS" => "", // Поля разделов
-"SECTION_USER_FIELDS" => "",    // Свойства разделов
-"ADD_SECTIONS_CHAIN" => "Y",    // Включать раздел в цепочку навигации
-"LANGUAGE_ID" => LANGUAGE_ID,
+        <div class="filter">
+        <?
+            $code=$arResult["VARIABLES"]["SECTION_CODE"];
+            $url = "/catalog/".$code."/filter-price_"."10_50"."-apply/";
+        ?>
+            <form method="get" id="priceForm">
+                <h4><?=GetMessage('SECTION_PRICE')?></h4>
 
-"CACHE_TYPE" => "A",    // Тип кеширования
-"CACHE_TIME" => "36000000", // Время кеширования (сек.)
-"CACHE_NOTES" => "",
-"CACHE_GROUPS" => "Y",  // Учитывать права доступа
-),
-false
-);*/?>
+                <div class="control-group">
 
+                    <input class="input-text input-small" placeholder="<?=GetMessage('SECTION_FROM')?>" title="<?=GetMessage('SECTION_FROM')?>" type="text" name="priceFrom" value="<?= (isset($_REQUEST["priceFrom"])) ? $_REQUEST["priceFrom"] : ""?>">
+                    <input class="input-text input-small" placeholder="<?=GetMessage('SECTION_TO')?>" title="<?=GetMessage('SECTION_TO')?>" type="text" name="priceTo" value="<?=(isset($_REQUEST["priceTo"])) ? $_REQUEST["priceTo"] : ""?>">
+                    <input class="btn btn-blue btn-small" value="ОК" type="submit">
 
-<?$APPLICATION->IncludeComponent("bitrix:menu", "sections_menu", Array(
-"ROOT_MENU_TYPE" => "left", // Тип меню для первого уровня
-"MAX_LEVEL" => "2", // Уровень вложенности меню
-"CHILD_MENU_TYPE" => "left",    // Тип меню для остальных уровней
-"USE_EXT" => "Y",   // Подключать файлы с именами вида .тип_меню.menu_ext.php
-"DELAY" => "N", // Откладывать выполнение шаблона меню
-"ALLOW_MULTI_SELECT" => "Y",    // Разрешить несколько активных пунктов одновременно
-"MENU_CACHE_TYPE" => "N",   // Тип кеширования
-"MENU_CACHE_TIME" => "3600",    // Время кеширования (сек.)
-"MENU_CACHE_USE_GROUPS" => "Y", // Учитывать права доступа
-"MENU_CACHE_GET_VARS" => "",    // Значимые переменные запроса
-),
-false
-);?>
-
-<div class="filter">
-<?
-$code=$arResult["VARIABLES"]["SECTION_CODE"];
-$url = "/catalog/".$code."/filter-price_"."10_50"."-apply/";
-?>
-    <form method="get" id="priceForm">
-        <h4><?=GetMessage('SECTION_PRICE')?></h4>
-
-        <div class="control-group">
-
-            <input class="input-text input-small" placeholder="<?=GetMessage('SECTION_FROM')?>" title="<?=GetMessage('SECTION_FROM')?>" type="text" name="priceFrom" value="<?= (isset($_REQUEST["priceFrom"])) ? $_REQUEST["priceFrom"] : ""?>">
-            <input class="input-text input-small" placeholder="<?=GetMessage('SECTION_TO')?>" title="<?=GetMessage('SECTION_TO')?>" type="text" name="priceTo" value="<?=(isset($_REQUEST["priceTo"])) ? $_REQUEST["priceTo"] : ""?>">
-            <input class="btn btn-blue btn-small" value="ОК" type="submit">
-
+                </div>
+                <ul class="base-nav" id="fixedPriceList">
+                    <li><a href="?priceTo=10000" data-priceto="10000"><?=GetMessage('SECTION_TO')?> 10 000</a></li>
+                    <li><a href="?priceFrom=10000&priceTo=50000" data-pricefrom="10000" data-priceto="50000"><?=GetMessage('SECTION_FROM')?> 10 000 <?=GetMessage('SECTION_TO')?> 50 000</a></li>
+                    <li><a href="?priceFrom=50000" data-pricefrom="50000"><?=GetMessage('SECTION_FROM')?> 50 000 <?=GetMessage('SECTION_MORE')?></a></li>
+                </ul>
+            </form>
         </div>
-        <ul class="base-nav" id="fixedPriceList">
-            <li><a href="?priceTo=10000" data-priceto="10000"><?=GetMessage('SECTION_TO')?> 10 000</a></li>
-            <li><a href="?priceFrom=10000&priceTo=50000" data-pricefrom="10000" data-priceto="50000"><?=GetMessage('SECTION_FROM')?> 10 000 <?=GetMessage('SECTION_TO')?> 50 000</a></li>
-            <li><a href="?priceFrom=50000" data-pricefrom="50000"><?=GetMessage('SECTION_FROM')?> 50 000 <?=GetMessage('SECTION_MORE')?></a></li>
-        </ul>
-    </form>
-</div>
-</aside>
-
+    <?}?>
+    </aside>
 
 </div>
 <?if(defined('RECOMMEND_FILTER'))include 'hit.php';?>

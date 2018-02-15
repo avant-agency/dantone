@@ -1,4 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
     IncludeModuleLangFile(__FILE__);?>
     <div class="push"></div>
 </div>
@@ -6,8 +6,8 @@
 <div class="mobile-footer">
     <div class="mf-content">
         <a href="/personal/cart/" class="mf-bagLink"></a>
-        <a href="tel:+74951914218" class="mf-tel">+7 (495) 191-42-18</a>
-        <div class="mf-search-icon"></div>
+        <span class="call_phone_1"><a href="tel:+74951914218" class="mf-tel">+7 (495) 191-42-18</a>
+</span>        <div class="mf-search-icon"></div>
     </div>
     <form action="/search/" class="mobile-search-form">
         <div class="modbile-search-form-inner">
@@ -509,5 +509,9 @@ $(function () {
     })
 });
 </script>
+<?global $APPLICATION; $dir = $APPLICATION->GetCurDir(); 
+if(strpos($dir,'/personal/') === 0){?>
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/main.css" />
+	<?}?>
 </body>
 </html>

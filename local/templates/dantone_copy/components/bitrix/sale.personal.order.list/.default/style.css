@@ -1,4 +1,3 @@
-
 .table-item > div, .table-header > div {
   width: 150px; }
 
@@ -187,8 +186,9 @@
     transform: translateX(-10px); }
   .dd-header-item:first-of-type, .dd-list-item:first-of-type {
     width: 54%; }
-  .dd-header-item img, .dd-list-item img {
-    display: none; }
+ /* .dd-header-item img, .dd-list-item img {
+    display: none; }*/
+
   .dd-list-goods {
     margin-bottom: 25px; }
   .dd-icon {

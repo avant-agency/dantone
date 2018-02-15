@@ -1,4 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 IncludeModuleLangFile(__FILE__);
 include 'ajax.php';
 if(isset($_REQUEST["logout"]) && $_REQUEST["logout"] == "Y" ) {
@@ -28,6 +28,7 @@ CJSCore::Init(array('translit'));
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/jquery.fancybox.css" />
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/animate.css" />
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/style.css" />
+    
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/subscribe-popup.css" />
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -37,7 +38,7 @@ CJSCore::Init(array('translit'));
     <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.maskedInput.js"></script>
     <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/owl.js"></script>
     <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/plugins.js"></script>
-    <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/script.js"></script>
+     <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/script.js"></script>
     <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/jquery.elevateZoom-3.0.8.min.js"></script>
 
     <!--[if lt IE 9]>
@@ -61,15 +62,7 @@ CJSCore::Init(array('translit'));
     <!-- {/literal} END JIVOSITE CODE -->
 
 <script type="text/javascript">
-   var _alloka = {
-       objects: {
-           '7c85a93b735db05c': {
-               block_class: 'kupislova'
-           }
-       },
-       trackable_source_types: ['typein', 'referrer', 'utm']
-   };
-   $(function() {
+    $(function() {
        $('.phone-input').mask("+7(999)999-99-99");
     });
 </script>
@@ -80,11 +73,25 @@ CJSCore::Init(array('translit'));
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="Мебель и аксессуары Dantone" />
   <meta property="og:description"   content="Компания Dantone Home предлагает Вам мебель и аксессуары в американском и бельгийском стилях" />
-  <meta property="og:image"         content="http://dantonehome.ru/upload/iblock/1a0/1a05c93d75065eec4b2f68941a78a2e9.jpg" />
+  <meta property="og:image"         content="http://dantonehome.ru/upload/iblock/1a0/1a05c93d75065eec4b2f68941a78a2e9.jpg" /><!-- calltouch code -->
+<script type="text/javascript">
+(function (w, d, nv, ls, yac){
+    var lwait = function (w, on, trf, dly, ma, orf, osf) { var pfx = "ct_await_", sfx = "_completed";  if(!w[pfx + on + sfx]) { var ci = clearInterval, si = setInterval, st = setTimeout , cmld = function () { if (!w[pfx + on + sfx]) {  w[pfx + on + sfx] = true; if ((w[pfx + on] && (w[pfx + on].timer))) { ci(w[pfx + on].timer);  w[pfx + on] = null;   }  orf(w[on]);  } };if (!w[on] || !osf) { if (trf(w[on])) { cmld();  } else { if (!w[pfx + on]) { w[pfx + on] = {  timer: si(function () { if (trf(w[on]) || ma < ++w[pfx + on].attempt) { cmld(); } }, dly), attempt: 0 }; } } }   else { if (trf(w[on])) { cmld();  } else { osf(cmld); st(function () { lwait(w, on, trf, dly, ma, orf); }, 0); } }}};
+    var ct = function (w, d, e, c, n){ var a = 'all', b = 'tou', src = b + 'c' + 'h';  src = 'm' + 'o' + 'd.c' + a + src; var jsHost = "https://" + src, s = [{"sp":"1","sc":d.createElement(e)}, {"sp":"2","sc":d.createElement(e)}, {"sp":"3","sc":d.createElement(e)}]; var jsf = function (w, d, s, h, c, n, yc) { if (yc !== null) { lwait(w, 'yaCounter'+yc, function(obj) { return (obj && obj.getClientID ? true : false); }, 50, 100, function(yaCounter) { s.forEach(function(el) { el.sc.async = 1; el.sc.src = jsHost + "." + "r" + "u/d_client.js?param;specific_id"+el.sp+";" + (yaCounter  && yaCounter.getClientID ? "ya_client_id" + yaCounter.getClientID() + ";" : "") + (c ? "client_id" + c + ";" : "") + "ref" + escape(d.referrer) + ";url" + escape(d.URL) + ";cook" + escape(d.cookie) + ";attrs" + escape("{\"attrh\":" + n + ",\"ver\":171110}") + ";"; p = d.getElementsByTagName(e)[0]; p.parentNode.insertBefore(el.sc, p); }); }, function (f) { if(w.jQuery) { w.jQuery(d).on('yacounter' + yc + 'inited', f ); }}); } else { s.forEach(function(el) { el.sc.async = 1; el.sc.src = jsHost + "." + "r" + "u/d_client.js?param;specific_id"+el.sp+";" + (c ? "client_id" + c + ";" : "") + "ref" + escape(d.referrer) + ";url" + escape(d.URL) + ";cook" + escape(d.cookie) + ";attrs" + escape("{\"attrh\":" + n + ",\"ver\":171110}") + ";"; p = d.getElementsByTagName(e)[0]; p.parentNode.insertBefore(el.sc, p); }); } };if (!w.jQuery) { var jq = d.createElement(e); jq.src = jsHost + "." + "r" + 'u/js/jquery-1.7.min.js'; jq.onload = function () { lwait(w, 'jQuery', function(obj) { return (obj ? true : false); }, 30, 100, function () { jsf(w, d, s, jsHost, c, n, yac);  }); }; p = d.getElementsByTagName(e)[0]; p.parentNode.insertBefore(jq, p); } else { jsf(w, d, s, jsHost, c, n, yac); } };
+    var gaid = function (w, d, o, ct, n) { if (!!o) { lwait(w, o, function (obj) {  return (obj && obj.getAll ? true : false); }, 200, (nv.userAgent.match(/Opera|OPR\//) ? 10 : 20), function (gaCounter) { var clId = null; try {  var cnt = gaCounter && gaCounter.getAll ? gaCounter.getAll() : null; clId = cnt && cnt.length > 0 && !!cnt[0] && cnt[0].get ? cnt[0].get('clientId') : null; } catch (e) { console.warn("Unable to get clientId, Error: " + e.message); } ct(w, d, 'script', clId, n); }, function (f) { w[o](function () {  f(w[o]); })});} else{ ct(w, d, 'script', null, n); }};
+    var cid  = function () { try { var m1 = d.cookie.match('(?:^|;)\\s*_ga=([^;]*)');if (!(m1 && m1.length > 1)) return null; var m2 = decodeURIComponent(m1[1]).match(/(\d+\.\d+)$/); if (!(m2 && m2.length > 1)) return null; return m2[1]} catch (err) {}}();
+    if (cid === null && !!w.GoogleAnalyticsObject){
+        if (w.GoogleAnalyticsObject=='ga_ckpr') w.ct_ga='ga'; else w.ct_ga = w.GoogleAnalyticsObject;
+        if (typeof Promise !== "undefined" && Promise.toString().indexOf("[native code]") !== -1){new Promise(function (resolve) {var db, on = function () {  resolve(true)  }, off = function () {  resolve(false)}, tryls = function tryls() { try { ls && ls.length ? off() : (ls.x = 1, ls.removeItem("x"), off());} catch (e) { nv.cookieEnabled ? on() : off(); }};w.webkitRequestFileSystem ? webkitRequestFileSystem(0, 0, off, on) : "MozAppearance" in d.documentElement.style ? (db = indexedDB.open("test"), db.onerror = on, db.onsuccess = off) : /constructor/i.test(w.HTMLElement) ? tryls() : !w.indexedDB && (w.PointerEvent || w.MSPointerEvent) ? on() : off();}).then(function (pm){
+            if (pm){gaid(w, d, w.ct_ga, ct, 2);}else{gaid(w, d, w.ct_ga, ct, 3);}})}else{gaid(w, d, w.ct_ga, ct, 4);}
+    }else{ct(w, d, 'script', cid, 1);}})
+(window, document, navigator, localStorage, "32121695");
+</script>
+<!-- /calltouch code -->
 
 </head>
 
-<body class="<?=LANGUAGE_ID?>-version <?=defined('INDEX')?'index-page':'';?>">
+<body class="<?=LANGUAGE_ID?>-version <?=defined('INDEX')?'index-page':'';?> lk-body">
 <? 
     $criteoHomePageTags = array(SITE_DIR."index.php", SITE_DIR."about/index.php",SITE_DIR."projects/index.php", SITE_DIR."press/index.php",SITE_DIR."contacts/index.php");
 
@@ -159,7 +166,7 @@ window.criteo_q.push(
                     trackHash:true,
                     accurateTrackBounce:true,
                     webvisor:false,
-                    ecommerce:"dataLayer"
+   triggerEvent:true,                 ecommerce:"dataLayer"
                 });
             } catch(e) { }
         });
@@ -215,7 +222,7 @@ window.criteo_q.push(
                 <div class='phone-desctop'>
                     <div class="phone">
                         <i class="icon-phone" style='position: relative; top: 12px; transform: scale(1.2)'></i>
-                        <span class="kupislova" style='font-size: 18px'>+7 (495) 727 02 17</span> <br>
+                        <span class="kupislova" data-phone='+74957270217' style='font-size: 18px'>+7 (495) 727 02 17</span> <br>
                         <span style='font-size: 16px; display: inline-block; float: right;'> <a target="_blank" style='font-size:13px;' href='https://yandex.ru/maps/213/moscow/?source=wizbiz_new_map_single&z=14&ll=37.559634%2C55.758517&mode=search&text=dantone&sll=37.559634%2C55.758517&sspn=0.070896%2C0.024441&sctx=CAAAAAEAa9WuCWnPQkD%2FPuPCgeBLQJP8iF%2BxhuQ%2Faw2l9iLa3T8CAAAAAQIBAAAAAAAAAAFZNXutBeFby9UAAAABAACAPwAAAAAAAAAA&ol=biz&oid=1736135840'>
                         <?=GetMessage('HEADER_SHOWROOM')?></a></span> <br>
                         <a href="#callback" class="btn smart-visible"><?=GetMessage('HEADER_CALLBACK')?></a>
