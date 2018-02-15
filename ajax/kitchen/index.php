@@ -65,12 +65,14 @@ switch(true)
 
 		if($PRODUCT_ID = $el->Add($arLoadProductArray))
 		{
+			$file_getPath = "https://www.dantonehome.ru".$file_getPath;
+
 			$arEventFields = array(
 				"NAME" => $_REQUEST["name"],
 				"PHONE" => $_REQUEST["phone"],
 				"EMAIL" => $_REQUEST["email"],
 				"WISHES" => $_REQUEST["wishes"],
-				"FILE_LINK" => "https://www.dantonehome.ru".$file_getPath,
+				"FILE_LINK" => $file_getPath,
 			);
 
 			$r = CEvent::Send("KITCHEN_LANDING", 's1', $arEventFields);

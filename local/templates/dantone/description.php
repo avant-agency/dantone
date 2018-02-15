@@ -1,7 +1,7 @@
 <?
 $arTemplate = array (
   'NAME' => 'Шаблон Дантон',
-  'DESCRIPTION' => '',
+  'DESCRIPTION' => 'Шаблон для английской версии сайта',
   'SORT' => '',
   'TYPE' => '',
   'EDITOR_STYLES' => 

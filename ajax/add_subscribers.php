@@ -2,6 +2,7 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php"); 
 
 CModule::IncludeModule('subscribe');
+
 global $APPLICATION;
 $APPLICATION->set_cookie("subscribe_popup_showed", "Y", time()+60*60*24*30*12*2);
 // НЕ ПОДПИСАН ЛИ УЖЕ

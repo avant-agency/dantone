@@ -2,14 +2,6 @@
 
 use Bitrix\Main\Localization\Loc;
 
-/**
- * @var array $arParams
- * @var array $arResult
- * @var $APPLICATION CMain
- * @var $USER CUser
- * @var $component SaleOrderAjax
- */
-
 if (empty($arParams['TEMPLATE_THEME']))
 {
     $arParams['TEMPLATE_THEME'] = \Bitrix\Main\ModuleManager::isModuleInstalled('bitrix.eshop') ? 'site' : 'blue';
@@ -110,11 +102,6 @@ switch (LANGUAGE_ID)
     $locale = 'en-US'; break;
 }
 
-
-
-?>
-
-<?
 $context = Bitrix\Main\Application::getInstance()->getContext();
 if (strlen($context->getRequest()->get('ORDER_ID')) > 0):
     include($context->getServer()->getDocumentRoot().$templateFolder."/confirm.php");
@@ -122,8 +109,6 @@ elseif ($arParams["DISABLE_BASKET_REDIRECT"] == 'Y' && $arResult["SHOW_EMPTY_BAS
     include($context->getServer()->getDocumentRoot().$templateFolder."/empty.php");
 else:
     $hideDelivery = empty($arResult["DELIVERY"]);
-
-
 ?>
 
 <h1 class="h2 mb10"><?=GetMessage('ORDER_NAME')?></h1>
@@ -157,7 +142,6 @@ else:
         <input type="hidden" name="PERSON_TYPE_OLD" value="<?=$v["ID"]?>" />
         <?
     }
-
     ?>
 
     <div class="tabs-container">
@@ -172,59 +156,59 @@ else:
 
           <div class="pane active">
             <div class="confirm-form">
-              <div class="help-form">
-                <div class="help-form-calculate" id="delivery_description">
-                  <div class="hfc-info" style="color: #111e35;font-size: 14px;margin-bottom: 16px;">
-                    К оплате: <span class="hfc-price" style="font-size: 16px;font-weight: 700;">  
-                    <span class="hfc-price-value" style="font-size:36px;">
-                      <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
-                    </span> руб.</span>
-                    <?
-                        global $numWindow;
-                        $numWindow = 1;
-                        include('coupon.php')?>
+                <div class="help-form">
+                    <div class="help-form-calculate" id="delivery_description">
+                        <div class="hfc-info" style="color: #111e35;font-size: 14px;margin-bottom: 16px;">
+                            К оплате: <span class="hfc-price" style="font-size: 16px;font-weight: 700;">  
+                            <span class="hfc-price-value" style="font-size:36px;">
+                                <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
+                            </span> руб.</span>
+                            <?
+                                global $numWindow;
+                                $numWindow = 1;
+                                include('coupon.php');
+                            ?>
+                        </div>
+                        <div class="hfc-warning" style="color:#666666;font-weight:300;font-size:14px;">
+                            Сумма указана без учета доставки
+                        </div><br/><br/>
                     </div>
-                  <div class="hfc-warning" style="color:#666666;font-weight:300;font-size:14px;">
-                    Сумма указана без учета доставки
-                  </div>
-                  <br/><br/>
+                    <?=GetMessage('ORDER_PERSONAL_TEXT')?>
                 </div>
-                <?=GetMessage('ORDER_PERSONAL_TEXT')?>
-              </div>
 
-                    <div class="form-container">
-                        <div class="control-group">
-                            <div class="control">
-                                <input type="text" name="ORDER_PROP_8" id="ORDER_PROP_8" required="required" class="input-text required" placeholder="<?=GetMessage('ORDER_FULL_NAME_SHORT')?>" data-name="<?=GetMessage('ORDER_FULL_NAME_SHORT')?>" value="<?=isset($arResult["USER"]) ? $arResult["USER"]["NAME"] : "";?>">                                    
-                                <div class="help-inline help-small"><?=GetMessage('ORDER_FULL_NAME')?></div>
-                            </div>
-                            <div class="control">
-                                <input type="text" name="ORDER_PROP_9" required="required" class="input-text required" placeholder="<?=GetMessage('ORDER_LAST_NAME_SHORT')?>"  data-name="<?=GetMessage('ORDER_LAST_NAME_SHORT')?>"  value="<?=isset($arResult["USER"]) ? $arResult["USER"]["LAST_NAME"] : "";?>">                                    
-                                <div class="help-inline help-small"><?=GetMessage('ORDER_LAST_NAME')?></div>
-                            </div>
-                            <div class="control">
-                                <input type="email" name="ORDER_PROP_2" required="required" class="input-text required" placeholder="E-mail" data-name="E-mail" data-rule="email" value="<?=isset($arResult["USER"]) ? $arResult["USER"]["EMAIL"] : "";?>">                                    
-                                <div class="help-inline help-small"><?=GetMessage('ORDER_EMAIL')?></div>
-                            </div>
-                            <div class="control">
-                                <input type="text" name="ORDER_PROP_3" required="required" class="input-text required phone-input" placeholder="<?=GetMessage('ORDER_PHONE_SHORT')?>" data-name="<?=GetMessage('ORDER_PHONE_SHORT')?>" value="<?=isset($arResult["USER"]["PERSONAL_PHONE"]) ? $arResult["USER"]["PERSONAL_PHONE"] : "";?>">                                   
-                                <div class="help-inline help-small"><?=GetMessage('ORDER_PHONE')?></div>
-                            </div>
-                            <div class="control">
-                                <?
-                                    $APPLICATION->IncludeComponent("bitrix:sale.ajax.locations", "locations", array( "CITY_OUT_LOCATION" => "Y", "ALLOW_EMPTY_CITY" => "Y", 
-                                        "COUNTRY_INPUT_NAME" => "COUNTRY", "REGION_INPUT_NAME" => "REGION", "CITY_INPUT_NAME" => "LOCATION", "COUNTRY" => "1", 
-                                        "ONCITYCHANGE" => "", "NAME" => "", "COMPONENT_TEMPLATE" => "popup"), false);
-                                ?>
-                                <input style="display:none;" type="text" id="ORDER_PROP_5" name="ORDER_PROP_5" required="required" class="required" data-name="<?=GetMessage('ORDER_CITY_SHORT')?>">
-                                <div class="help-inline help-small" style="margin-top:15px;margin-left:15px;"><?=GetMessage('ORDER_CITY')?></div>
-                            </div>
+                <div class="form-container">
+                    <div class="control-group">
+                        <div class="control">
+                            <input type="text" name="ORDER_PROP_8" id="ORDER_PROP_8" required="required" class="input-text required" placeholder="<?=GetMessage('ORDER_FULL_NAME_SHORT')?>" data-name="<?=GetMessage('ORDER_FULL_NAME_SHORT')?>" value="<?=isset($arResult["USER"]) ? $arResult["USER"]["NAME"] : "";?>">                                    
+                            <div class="help-inline help-small"><?=GetMessage('ORDER_FULL_NAME')?></div>
                         </div>
+                        <div class="control">
+                            <input type="text" name="ORDER_PROP_9" required="required" class="input-text required" placeholder="<?=GetMessage('ORDER_LAST_NAME_SHORT')?>"  data-name="<?=GetMessage('ORDER_LAST_NAME_SHORT')?>"  value="<?=isset($arResult["USER"]) ? $arResult["USER"]["LAST_NAME"] : "";?>">                                    
+                            <div class="help-inline help-small"><?=GetMessage('ORDER_LAST_NAME')?></div>
+                        </div>
+                        <div class="control">
+                            <input type="email" name="ORDER_PROP_2" required="required" class="input-text required" placeholder="E-mail" data-name="E-mail" data-rule="email" value="<?=isset($arResult["USER"]) ? $arResult["USER"]["EMAIL"] : "";?>">                                    
+                            <div class="help-inline help-small"><?=GetMessage('ORDER_EMAIL')?></div>
+                        </div>
+                        <div class="control">
+                            <input type="text" name="ORDER_PROP_3" required="required" class="input-text required phone-input" placeholder="<?=GetMessage('ORDER_PHONE_SHORT')?>" data-name="<?=GetMessage('ORDER_PHONE_SHORT')?>" value="<?=isset($arResult["USER"]["PERSONAL_PHONE"]) ? $arResult["USER"]["PERSONAL_PHONE"] : "";?>">                                   
+                            <div class="help-inline help-small"><?=GetMessage('ORDER_PHONE')?></div>
+                        </div>
+                        <div class="control">
+                            <?
+                                $APPLICATION->IncludeComponent("bitrix:sale.ajax.locations", "locations", array( "CITY_OUT_LOCATION" => "Y", "ALLOW_EMPTY_CITY" => "Y", 
+                                    "COUNTRY_INPUT_NAME" => "COUNTRY", "REGION_INPUT_NAME" => "REGION", "CITY_INPUT_NAME" => "LOCATION", "COUNTRY" => "1", 
+                                    "ONCITYCHANGE" => "", "NAME" => "", "COMPONENT_TEMPLATE" => "popup"), false);
+                            ?>
+                            <input style="display:none;" type="text" id="ORDER_PROP_5" name="ORDER_PROP_5" required="required" class="required" data-name="<?=GetMessage('ORDER_CITY_SHORT')?>">
+                            <div class="help-inline help-small" style="margin-top:15px;margin-left:15px;"><?=GetMessage('ORDER_CITY')?></div>
+                        </div>
+                    </div>
 
-                        <div class="pane-errors">
-                            <ul></ul>
-                        </div>
-                        <input  type="hidden" name="ORDER_PROP_22" value="N"/>
+                    <div class="pane-errors">
+                        <ul></ul>
+                    </div>
+                    <input  type="hidden" name="ORDER_PROP_22" value="N"/>
                         <div class="control-group">
                             <div class="control">  <label class="checkbox a-checkbox privacy-checkbox"><input class="required" data-name="<?=GetMessage('ORDER_PRIVACY')?>" type="checkbox" required="required" name="ORDER_PROP_22" value="Y"/></label>
                                 <div class="privacy-check"><?$APPLICATION->IncludeComponent(
@@ -236,224 +220,191 @@ else:
                                         "EDIT_TEMPLATE" => "",
                                         "PATH" => SITE_DIR."include/privacy.php"
                                         )
-                                        );?></div>
-                                    </div>
-                                    <div class="control-btn"><button onclick="changePane(2); return false;" class="btn btn-blue btn-medium input-medium"><?=GetMessage('ORDER_CHOOSE_DELIVERY')?> <i class="icon-next"></i></button></div>
-
-
+                                        );?>
                                 </div>
+                            </div>
+                            <div class="control-btn">
+                                <button onclick="changePane(2); return false;" class="btn btn-blue btn-medium input-medium"><?=GetMessage('ORDER_CHOOSE_DELIVERY')?> 
+                                    <i class="icon-next"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
-
-                    <div class="pane">
-
-
-                    
-
-
-                        <div class="confirm-form" method="post">
-                          <div class="help-form">
-                              <div class="help-form-calculate">
-                                <div class="hfc-info" style="color: #111e35;font-size: 14px;margin-bottom: 16px;">
-                                К оплате: <span class="hfc-price" style="font-size: 16px;font-weight: 700;">  
+                </div>
+            </div>
+            <div class="pane">
+                <div class="confirm-form" method="post">
+                    <div class="help-form">
+                        <div class="help-form-calculate">
+                            <div class="hfc-info" style="color: #111e35;font-size: 14px;margin-bottom: 16px;">
+                                К оплате: 
+                                <span class="hfc-price" style="font-size: 16px;font-weight: 700;">
                                     <span class="hfc-price-value" style="font-size:36px;">
                                         <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
-                                    </span> руб.</span>
+                                    </span> руб.
+                                </span>
                                 <?
                                     $numWindow = 2;
-                                    include('coupon.php')?>
-                                </div>
-                                <div class="hfc-warning" style="color:#666666;font-weight:300;font-size:14px;">
-                                    Сумма указана без учета доставки
-                                </div>
-                                <br/><br/>
-                              </div>
-                              <?=GetMessage('ORDER_PERSONAL_TEXT')?>
+                                    include('coupon.php');
+                                ?>
                             </div>
-                          <div class="form-container">
-                            <div class="control-group control-group-radio clearfix" id="deliveryTypesBlock">
-                              <div class="help-inline help-small"><?=GetMessage('ORDER_DELIVERY_TITLE')?></div>
-                                <br />
-
-
-                              <div class="control">
+                            <div class="hfc-warning" style="color:#666666;font-weight:300;font-size:14px;">
+                                Сумма указана без учета доставки
+                            </div><br/><br/>
+                        </div>
+                        <?=GetMessage('ORDER_PERSONAL_TEXT')?>
+                    </div>
+                    <div class="form-container">
+                        <div class="control-group control-group-radio clearfix" id="deliveryTypesBlock">
+                            <div class="help-inline help-small"><?=GetMessage('ORDER_DELIVERY_TITLE')?></div>
+                            <div class="control">
                                 <label class="radio a-radio">
                                     <input checked type="radio" name="DELIVERY_ID" value="2" data-ourdelivery="1" data-selfdelivery="0" data-customdelivery="0" style="position: absolute; left: -9999px;">
                                     <?=GetMessage('ORDER_DELIVERY_TRANSPORT')?> 
                                 </label>
-                  
-<div class="help-inline"><a class="conditions" target="_blank" href="/delivery/">Условия доставки</a></div>
-                              </div>
-                                <?/*if($arResult["PICKUP_AVAILABLE"]):?>
-                                <div class="control" style="display:none;" id="pickup_moskow_and_mo">
-                                        <label class="radio a-radio">
-                                            <input type="radio" name="DELIVERY_ID" value="3" data-ourdelivery="0" data-selfdelivery="1" data-customdelivery="0" style="position: absolute; left: -9999px;">
-                                            <?=GetMessage('ORDER_DELIVERY_SELF')?>                                 
-                                        </label>
-                                    </div>
-<?endif;*/?>
-                                <div class="control">
-                                  <label class="radio a-radio">
+                                <div class="help-inline">
+                                    <a class="conditions" target="_blank" href="/delivery/">Условия доставки</a>
+                                </div>
+                            </div>
+
+                            <div class="control">
+                                <label class="radio a-radio">
                                       <input type="radio" name="DELIVERY_ID" value="16" data-ourdelivery="0" data-selfdelivery="0" data-customdelivery="1" style="position: absolute; left: -9999px;">
                                       <?=GetMessage('ORDER_DELIVERY_OTHER')?>
-                                  </label>
-
-                              </div>
-
+                                </label>
+                            </div>
                             <div class="control-group" id="addressBlock2" style="display: none;">
-<div class="calculate-div control-group" style="display: block;" style="margin-bottom:34px;text-align:left;font-weight: 400;margin-top: 10px;padding-top: 17px;padding-bottom: 20px;border-top: 1px solid #efeeef;border-bottom: 1px solid #efeeef;" id="our_delivery_description">
-                                  <div class="calc-div-title">
-                                    Стоимость доставки:
-                                  </div>
-                                  <div class="calc-div-block">
-                                    По Москве  <span style="font-weight: 700;">2000</span> руб.
-                                  </div>
-                                  <div class="calc-div-block">
-                                    По Московской области  <span style="font-weight: 700;">2000+50</span>  руб./км  от МКАД.
-                                  </div>
-
-                                  <div class="calc-div-calculate">
-                                    <div class="cdc-title">
-                                      Рассчитать доставку
+                                <div class="calculate-div control-group" style="display: block;" 
+                                style="margin-bottom:34px;text-align:left;font-weight: 400;margin-top: 10px;padding-top: 17px;
+                                padding-bottom: 20px;border-top: 1px solid #efeeef;border-bottom: 1px solid #efeeef;" id="our_delivery_description">
+                                    <div class="calc-div-title">Стоимость доставки:</div>
+                                    <div class="calc-div-block">По Москве  <span style="font-weight: 700;">2000</span> руб.</div>
+                                    <div class="calc-div-block">По Московской области  <span style="font-weight: 700;">2000+50</span>  руб./км  от МКАД.</div>
+                                    <div class="calc-div-calculate">
+                                        <div class="cdc-title">Рассчитать доставку</div>
+                                        <div class="cdc-calculate">
+                                            2000 руб + 50 руб * <input type="text" value="0" class="cdc-input" pattern="/[0-9]/"> км =  <span class="cdc-itog"> 2000</span> руб.
+                                        </div>
                                     </div>
-                                    <div class="cdc-calculate">
-                                      2000 руб + 50 руб * <input type="text" value="0" class="cdc-input" pattern="/[0-9]/"> км =  <span class="cdc-itog"> 2000</span> руб.
-                                    </div>
-                                  </div>
                                 </div>                       
-                                    <div class="control" style="margin-right: 0px;padding-right: 90px;">
-                                      <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_CITY')?>" name="ORDER_PROP_13" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_CITY')?>*" class="city-input input-text" value="<?=$arResult["USER"]["PERSONAL_CITY"]?>">
-                                      <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_CITY_COMMENT1')?></div>
-                                    </div>
-                                    <div class="control" style="margin-right: 0px;padding-right: 90px;">
-                                      <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_STREET')?>" name="ORDER_PROP_14" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_STREET')?>*" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_STREET"]?>">
-                                      <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_STREET_COMMENT')?></div>
-                                    </div>
-                                    <div class="control" style="margin-right: 0px;padding-right: 90px;">
-                                      <input type="text" data-name="Дом" name="ORDER_PROP_15" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_HOUSE')?>*" class=" input-text input-small2" value="<?=$arResult["USER"]["PERSONAL_PROFESSION"]?>">
-                                      <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2">
-                                      <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2">
-                                    </div>
-                                <?/*<div class="control" style="margin-right: 0px;padding-right: 90px;">
-                                      <input type="text" name="ORDER_PROP_4" placeholder="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" data-name="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_ZIP"]?>">
-                                      <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_KNOWINDEX')?> <a href="http://indexp.ru/" class="nounderline" target="_blank"><?=GetMessage('ORDER_ADDRESS_FINDINDEX')?></a></div>
-                                    </div>
-                                    */?>
-                                    <div class="control" style="margin-right: 0px;padding-right: 90px;">
-                                      <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6">
-                                      </textarea>
-                                      <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>
-                                    </div>
+                                <div class="control" style="margin-right: 0px;padding-right: 90px;">
+                                    <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_CITY')?>" name="ORDER_PROP_13" 
+                                    required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_CITY')?>*" class="city-input input-text" 
+                                    value="<?=$arResult["USER"]["PERSONAL_CITY"]?>">
+                                    <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_CITY_COMMENT1')?></div>
                                 </div>
-
-<!--
-                              <div class="control">
-                                  <label class="radio a-radio">
-                                      <input type="radio" name="DELIVERY_ID" value="16" data-ourdelivery="0" data-selfdelivery="0" data-customdelivery="1" style="position: absolute; left: -9999px;">
-                                      <?=GetMessage('ORDER_DELIVERY_OTHER')?>
-                                  </label>
-                              </div>
--->
-                              <div class="control" id="customDeliveryBlock" style="display: none;">
-                                <input type="text" name="ORDER_PROP_11" class="input-text" style="width: 280px;" value="" placeholder="<?=GetMessage('ORDER_DELIVERY_INPUT')?>" name="customDelivery">
-                              </div>
-                            </div>
-
-                            <div class="control-group" id="addressBlock" style="display: none;">
-                                  <!-- <div class="control">
-                                    <input type="text" name="ORDER_PROP_12" placeholder="<?=GetMessage('ORDER_ADDRESS_REGION')?>" class="input-text" value="" disabled="">
-                                    <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_REGION_COMMENT')?></div>
-                                </div> -->
-                                <div class="control">
-                                  <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_CITY')?>" name="ORDER_PROP_13" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_CITY')?>*" class="city-input input-text" value="" disabled="" value="<?=$arResult["USER"]["PERSONAL_CITY"]?>">
-                                  <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_CITY_COMMENT')?></div>
+                                <div class="control" style="margin-right: 0px;padding-right: 90px;">
+                                    <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_STREET')?>" name="ORDER_PROP_14" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_STREET')?>*" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_STREET"]?>">
+                                    <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_STREET_COMMENT')?></div>
                                 </div>
-                                <div class="control">
-                                  <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_STREET')?>" name="ORDER_PROP_14" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_STREET')?>*" class=" input-text" value="" disabled="" value="<?=$arResult["USER"]["PERSONAL_STREET"]?>">
-                                  <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_STREET_COMMENT')?></div>
+                                <div class="control" style="margin-right: 0px;padding-right: 90px;">
+                                    <input type="text" data-name="Дом" name="ORDER_PROP_15" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_HOUSE')?>*" class=" input-text input-small2" value="<?=$arResult["USER"]["PERSONAL_PROFESSION"]?>">
+                                    <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2">
+                                    <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2">
                                 </div>
-                                <div class="control">
-                                  <input type="text" data-name="Дом" name="ORDER_PROP_15" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_HOUSE')?>*" class=" input-text input-small2" value="" disabled="">
-                                  <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2" value="" disabled="">
-                                  <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2" value="" disabled="">
-                                </div>
-                                <?/*
-                                <div class="control">
-                                  <input type="text" name="ORDER_PROP_4" placeholder="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" data-name="<?=GetMessage('ORDER_ADDRESS_INDEX')?>" class=" input-text" value="<?=$arResult["USER"]["PERSONAL_ZIP"]?>" disabled="">
-                                  <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_KNOWINDEX')?> <a href="http://indexp.ru/" class="nounderline" target="_blank"><?=GetMessage('ORDER_ADDRESS_FINDINDEX')?></a></div>
-                                </div>
-                                */?>
-                                <div class="control">
-                                  <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6" disabled=""></textarea>
-                                  <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>
+                                <div class="control" style="margin-right: 0px;padding-right: 90px;">
+                                    <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6">
+                                    </textarea>
+                                    <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>
                                 </div>
                             </div>
-                            <div class="pane-errors"><ul></ul></div>
-      <div class="control-btn">
-        <button onclick="changePane(3); return false;" class="delivery_step_button btn btn-blue btn-medium input-medium"><?=GetMessage('ORDER_PAYMENT_CHOOSE')?> <i class="icon-next"></i></button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="pane last">
+                            <div class="control" id="customDeliveryBlock" style="display: none;">
+                                <input type="text" name="ORDER_PROP_11" class="input-text" style="width: 280px;" value="" 
+                                    placeholder="<?=GetMessage('ORDER_DELIVERY_INPUT')?>" name="customDelivery">
+                            </div>
+                        </div>
 
-    <div class="confirm-form" >
-        <div class="help-form">
-                <div class="help-form-calculate">
-                  <div class="hfc-info" style="color: #111e35;font-size: 14px;margin-bottom: 16px;">
-                    К оплате: <span class="hfc-price" style="font-size: 16px;font-weight: 700;">  
-                    <span class="hfc-price-value" style="font-size:36px;">
-                      <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
-                    </span> руб.</span>
-                    <?
-                    $numWindow = 3;
-                    include('coupon.php')?>
-                  </div>
-                  <div class="hfc-warning" style="color:#666666;font-weight:300;font-size:14px;">
-                    Сумма указана без учета доставки
-                  </div>
-                  <br/><br/>
+                        <div class="control-group" id="addressBlock" style="display: none;">
+                            <div class="control">
+                                <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_CITY')?>" name="ORDER_PROP_13" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_CITY')?>*" class="city-input input-text" value="" disabled="" value="<?=$arResult["USER"]["PERSONAL_CITY"]?>">
+                                <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_CITY_COMMENT')?></div>
+                            </div>
+                            <div class="control">
+                                <input type="text" data-name="<?=GetMessage('ORDER_ADDRESS_STREET')?>" name="ORDER_PROP_14" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_STREET')?>*" class=" input-text" value="" disabled="" value="<?=$arResult["USER"]["PERSONAL_STREET"]?>">
+                                <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_STREET_COMMENT')?></div>
+                            </div>
+                            <div class="control">
+                                <input type="text" data-name="Дом" name="ORDER_PROP_15" required="required" placeholder="<?=GetMessage('ORDER_ADDRESS_HOUSE')?>*" class=" input-text input-small2" value="" disabled="">
+                                <input type="text" name="ORDER_PROP_17" placeholder="<?=GetMessage('ORDER_ADDRESS_KORPUS')?>" class="input-text input-small2" value="" disabled="">
+                                <input type="text" name="ORDER_PROP_18" placeholder="<?=GetMessage('ORDER_ADDRESS_FLAT')?>" class="input-text input-small2" value="" disabled="">
+                            </div>
+                            <div class="control">
+                                <textarea name="ORDER_PROP_16" placeholder="<?=GetMessage('ORDER_ADDRESS_COMMENT')?>" class="input-text" cols="30" rows="6" disabled=""></textarea>
+                                <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>
+                            </div>
+                        </div>
+                        <div class="pane-errors"><ul></ul></div>
+                        <div class="control-btn">
+                            <button onclick="changePane(3); return false;" class="delivery_step_button btn btn-blue btn-medium input-medium">
+                                <?=GetMessage('ORDER_PAYMENT_CHOOSE')?> <i class="icon-next"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="pane last">
+                <div class="confirm-form" >
+                    <div class="help-form">
+                        <div class="help-form-calculate">
+                            <div class="hfc-info" style="color: #111e35;font-size: 14px;margin-bottom: 16px;">
+                                К оплате: <span class="hfc-price" style="font-size: 16px;font-weight: 700;">  
+                                <span class="hfc-price-value" style="font-size:36px;">
+                                    <?=substr_replace(substr_replace($arResult["ORDER_TOTAL_PRICE"], " ", -3, 0), " ", -7,0)?> 
+                                </span> руб.</span>
+                                <?
+                                $numWindow = 3;
+                                include('coupon.php');
+                                ?>
+                            </div>
+                            <div class="hfc-warning" style="color:#666666;font-weight:300;font-size:14px;">Сумма указана без учета доставки</div>
+                            <br/><br/>
+                        </div>
+                        <?=GetMessage('ORDER_PERSONAL_TEXT')?>
+                    </div>
+                    <div class="form-container">
+                        <div class="control-group control-group-radio clearfix">
+                            <div class="help-inline help-small"><?=GetMessage('ORDER_PAYMENT_TITLE')?></div>
+                            <div class="control selected">
+                                <label class="radio a-radio">
+                                    <input type="radio" name="PAY_SYSTEM_ID" value="3" style="position: absolute; left: -9999px;">
+                                    <?=GetMessage('ORDER_PAYMENT_BANK')?>
+                                </label>
+                            </div>
+                            <div class="control">
+                                <label class="radio a-radio">
+                                    <input type="radio" checked="checked" name="PAY_SYSTEM_ID" value="1" style="position: absolute; left: -9999px;">
+                                    <?=GetMessage('ORDER_PAYMENT_CASH')?>
+                                </label>
+                            </div>
+                            <div class="control">
+                                <label class="radio a-radio">
+                                    <input type="radio" name="PAY_SYSTEM_ID" value="4" style="position: absolute; left: -9999px;">
+                                    <?=GetMessage('ORDER_PAYMENT_NOCASH')?>
+                                </label>
+                            </div>
+                        </div>
 
-                </div>
-                <?=GetMessage('ORDER_PERSONAL_TEXT')?>
-              </div>
-            <div class="form-container">
-              <div class="control-group control-group-radio clearfix">
-                <div class="help-inline help-small"><?=GetMessage('ORDER_PAYMENT_TITLE')?></div>
-                <div class="control selected">
-                  <label class="radio a-radio">
-                    <input type="radio" name="PAY_SYSTEM_ID" value="3" style="position: absolute; left: -9999px;">
-                      <?=GetMessage('ORDER_PAYMENT_BANK')?>
-                  </label>
-                </div>
-                <div class="control">
-                  <label class="radio a-radio">
-                    <input type="radio" checked="checked" name="PAY_SYSTEM_ID" value="1" style="position: absolute; left: -9999px;">
-                    <?=GetMessage('ORDER_PAYMENT_CASH')?>
-                  </label>
-                </div>
-                <div class="control">
-                  <label class="radio a-radio">
-                    <input type="radio" name="PAY_SYSTEM_ID" value="4" style="position: absolute; left: -9999px;">
-                    <?=GetMessage('ORDER_PAYMENT_NOCASH')?>
-                  </label>
-                </div>
-              </div>
-
-              <div class="control-group">
-                <div class="control">
-                    <textarea name="ORDER_PROP_20" placeholder="<?=GetMessage('ORDER_COMMENT')?>" class="input-text" cols="30" rows="6"></textarea>
-                    <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>
-                </div>
-              </div>
-              <div class="want-subscribe"><label class="checkbox a-checkbox"><input  type="checkbox" checked="checked" name="ORDER_PROP_21" value="Y"/><?=GetMessage('ORDER_WANT_SUBSCRIBE')?></label></div>
-              <div class="control-btn"><button onclick="submitOrder(form); return false;" class="btn btn-blue btn-medium input-medium"><?=GetMessage('ORDER_PLACE')?> <i class="icon-next"></i></button></div>
-              <div class="pane-errors">
-              <ul></ul>
-          </div>
+                        <div class="control-group">
+                            <div class="control">
+                                <textarea name="ORDER_PROP_20" placeholder="<?=GetMessage('ORDER_COMMENT')?>" class="input-text" cols="30" rows="6"></textarea>
+                                <div class="help-inline help-small"><?=GetMessage('ORDER_ADDRESS_COMMENT_COMMENT')?></div>
+                            </div>
+                        </div>
+                        <div class="want-subscribe">
+                            <label class="checkbox a-checkbox">
+                                <input  type="checkbox" checked="checked" name="ORDER_PROP_21" value="Y"/><?=GetMessage('ORDER_WANT_SUBSCRIBE')?>
+                            </label>
+                        </div>
+                        <div class="control-btn">
+                            <button onclick="submitOrder(form); return false;" class="btn btn-blue btn-medium input-medium"><?=GetMessage('ORDER_PLACE')?> 
+                                <i class="icon-next"></i>
+                            </button>
+                        </div>
+                        <div class="pane-errors">
+                            <ul></ul>
+                        </div>
         </div>
       </div>
     </div>
@@ -461,46 +412,45 @@ else:
 </div>
 </form>
 <script>
-        /*Enter Cupon*/
-function addSpaces(nStr){
-    nStr += '';
-    x = nStr.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+	/*Enter Cupon*/
+    function addSpaces(nStr){
+    	nStr += '';
+    	x = nStr.split('.');
+    	x1 = x[0];
+    	x2 = x.length > 1 ? '.' + x[1] : '';
+    	var rgx = /(\d+)(\d{3})/;
+    	while (rgx.test(x1)) {
+    		x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+    	}
+    	return x1 + x2;
     }
-    return x1 + x2;
-}
 
-    function enterThisCoupon(coupon) //Добавление купона на скидку
-        {
-            var newCoupon = $('#'+coupon).find("input");
-            var zn = newCoupon.val();
-            $.ajax({
-                url: '/ajax/setCoupon.php',
-                data: {'coupon' : zn},
-                type: "post",
-                success: function(response) {
-                console.log(response);
-                location.reload();
-                }
-            })
-        }
-        $(function() { 
-            $('.good').click(function(){ //Деактивация действующего купона на скидку
-            var coupon = $(this).attr('data-coupon');
-                $.ajax({
-                        url: '/ajax/eraseCoupon.php',
-                        data: {'coupon' : coupon},
-                        type: "post",
-                        success: function(response) {
-                        console.log(response);
-                        location.reload();
-                        }
-                    })
-        });
+	function enterThisCoupon(coupon) //Добавление купона на скидку
+	{
+		var newCoupon = $('#'+coupon).find("input");
+		var zn = newCoupon.val();
+		$.ajax({
+			url: '/ajax/setCoupon.php',
+			data: {'coupon' : zn},
+			type: "post",
+			success: function(response) {
+			     location.reload();
+			}
+		})
+	}
+    $(function() { 
+		$('.good').click(function(){ //Деактивация действующего купона на скидку
+			var coupon = $(this).attr('data-coupon');
+			$.ajax({
+					url: '/ajax/eraseCoupon.php',
+					data: {'coupon' : coupon},
+					type: "post",
+					success: function(response) {
+					console.log(response);
+					location.reload();
+					}
+			});
+		});
 
         $('.pane').not('.active').hide();
 
@@ -567,8 +517,7 @@ function addSpaces(nStr){
 
         $("#bx-soa-order-form .pane.last .control:first label").click();
 
-            // var order_price = "<?=$arResult['ORDER_TOTAL_PRICE']?>";
-var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" руб.","");
+        var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" руб.","");
 
         setInterval(function(){
             $("#ORDER_PROP_5").val($("#LOCATION_val").val());
@@ -598,9 +547,8 @@ var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" ру�
                 {
                     case "2": // Доставка Дантона
                         // get delivery price
-                        // $(".hfc-price-value").text((parseFloat(op) + parseFloat($("#our_delivery_description .cdc-itog").text().trim())) + " ");
                         $(".hfc-price-value").text(addSpaces(summop) + " ");
-                      $(".hfc-warning").text("Цена доставки: " + $("#our_delivery_description .cdc-itog").text().trim() + " руб.");
+                        $(".hfc-warning").text("Цена доставки: " + $("#our_delivery_description .cdc-itog").text().trim() + " руб.");
                     break;
                     case "3": // Самовывоз
                         $(".hfc-price-value").text(addSpaces(order_price) + " ");
@@ -665,10 +613,8 @@ var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" ру�
             data: data,
             type: "post",
             success: function(response) {
-                console.log(response);
                  if(response['order']["REDIRECT_URL"]) {
-                 location.href = response['order']["REDIRECT_URL"];
-                //location.href = "/personal/order/make/";
+                    location.href = response['order']["REDIRECT_URL"];
                  }
 
                 var propertyErrors = response['order']["ERROR"]["PROPERTY"];
@@ -681,7 +627,6 @@ var order_price = "<?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?>".replace(" ру�
             }
         })
     }
-
 
     function validatePane($node, requiredClass) {
 

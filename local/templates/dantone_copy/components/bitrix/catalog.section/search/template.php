@@ -24,27 +24,17 @@ $this->setFrameMode(true);
 			$.post(url, data, function(response) {
 				$('#cartInHeaderWrapper').html(response)
 				location.href = "#cart";
-				
 			})
-			
 		}			
 	}
 </script>
 
-<div class="clearfix">
-	
+<div class="clearfix">	
 	<div class="catalog-main-container" >
-
-
-		
-		
 		<?if (!empty($arResult['ITEMS'])):?> 
 		<ul class="product-list-static" id="productCatalogBlock">
 			<?foreach($arResult["ITEMS"] as $arItem):?> 
-			
 			<li>
-
-
 				<div class="photo">
 					<a href="<?=$arItem["DETAIL_PAGE_URL"]?>" title="Посмотреть детали" id="productLink-1<?=$arItem["ID"]?>">
 						<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="">
@@ -64,8 +54,6 @@ $this->setFrameMode(true);
 					<div class="title">
 						<a href="<?=$arItem["DETAIL_PAGE_URL"]?>" id="productLink-2<?=$arItem["ID"]?>" title="<?=GetMessage('CATALOG_SECTION_SEE')?>"><?=$arItem["NAME"]?></a>
 					</div>
-					
-
 					<?$minPrice = false;
 					if (isset($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE']))
 						$minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);?>
@@ -95,14 +83,10 @@ $this->setFrameMode(true);
 						}
 						unset($minPrice);
 						?>
-
 					</div>
-
-
 				</div>
 				<a href="#" onclick="basket('add',<?=$arItem["OFFERS"][0]["ID"]?>); return false;" class="btn btn-blue btn-medium" id=""><?=GetMessage('CATALOG_TOCART')?></a>
-			<a data-fancybox-href="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" rel="g<?=$arItem['ID']?>" class="gallery-list fancybox-media">
-                    </a>
+				<a data-fancybox-href="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" rel="g<?=$arItem['ID']?>" class="gallery-list fancybox-media"></a>
 			 <?if($arItem['PROPERTIES']['MORE_PHOTO']['VALUE']):?>
 				 <?foreach($arItem['PROPERTIES']['MORE_PHOTO']['VALUE'] as $k=>$pid): if($k==0)continue;?>
 				 <a style="display: none;" data-fancybox-href="<?=CFile::GetPath($pid)?>" rel="g<?=$arItem['ID']?>" class="fancybox-media"></a>
@@ -111,7 +95,6 @@ $this->setFrameMode(true);
 			</li>
 			<?endforeach;?>
 		</ul>
-		
 		<?endif;?>
 	</div>
 </div>

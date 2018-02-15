@@ -1,38 +1,31 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
-use Bitrix\Main\Localization\Loc;
+    use Bitrix\Main\Localization\Loc;
 
-CModule::IncludeModule("sale");
+    CModule::IncludeModule("sale");
 
-$arOrder = CSaleOrder::GetByID($arResult["ORDER"]["ID"]);
+    $arOrder = CSaleOrder::GetByID($arResult["ORDER"]["ID"]);
 
+    if($arOrder["PRICE_DELIVERY"] == 0 && $arResult["ORDER"]["PRICE_DELIVERY"] && $_SESSION["PRICE_DELIVERY"] > 0 )
+    {
+    	$arResult["ORDER"]["PRICE"] = $_SESSION["PRICE_DELIVERY"] + $arOrder["PRICE"];
+    	$arResult["ORDER"]["PRICE_DELIVERY"] = $_SESSION["PRICE_DELIVERY"];
+    	$arFields = array("PRICE_DELIVERY" => $_SESSION["PRICE_DELIVERY"]);
+    	CSaleOrder::Update($arResult["ORDER"]["ID"], $arFields);
+    	header("Refresh:0");
+    }
 
-if($arOrder["PRICE_DELIVERY"] == 0 && $arResult["ORDER"]["PRICE_DELIVERY"] && $_SESSION["PRICE_DELIVERY"] > 0 )
-{
-	$arResult["ORDER"]["PRICE"] = $_SESSION["PRICE_DELIVERY"] + $arOrder["PRICE"];
-	$arResult["ORDER"]["PRICE_DELIVERY"] = $_SESSION["PRICE_DELIVERY"];
-	$arFields = array("PRICE_DELIVERY" => $_SESSION["PRICE_DELIVERY"]);
-	CSaleOrder::Update($arResult["ORDER"]["ID"], $arFields);
-	header("Refresh:0");
-}
+    $db_vals = CSaleOrderPropsValue::GetList(array("SORT" => "ASC"), array("ORDER_ID" => $arResult["ORDER"]["ID"]));
 
+    $arProps = Array();
+    while($arVals = $db_vals->Fetch())
+        $arProps[$arVals["CODE"]] = $arVals;
 
-$db_vals = CSaleOrderPropsValue::GetList(array("SORT" => "ASC"), array("ORDER_ID" => $arResult["ORDER"]["ID"]));
+    if($arProps['WANT_SUBSCRIBE']['VALUE']=='Y'){
+        $user = new CUser;
+        $user->Update($USER->GetId(), Array("UF_USER_SUBSCRIBE" => 1));
+    }
 
-$arProps = Array();
-while($arVals = $db_vals->Fetch())
-    $arProps[$arVals["CODE"]] = $arVals;
-
-if($arProps['WANT_SUBSCRIBE']['VALUE']=='Y'){
-    $user = new CUser;
-    $user->Update($USER->GetId(), Array("UF_USER_SUBSCRIBE" => 1));
-}
-
-/**
- * @var array $arParams
- * @var array $arResult
- * @var $APPLICATION CMain
- */
     global $USER;
     $res = CSaleBasket::GetList(array(), array("ORDER_ID" => $arResult["ORDER"]["ID"]));
 
@@ -67,7 +60,8 @@ if ($arParams["SET_TITLE"] == "Y")
 ?>
 
 <? if (!empty($arResult["ORDER"])): 
-    $dbBasketItems = CSaleBasket::GetList(array("ID" => "ASC"),array("ORDER_ID" => $arResult['ORDER']['ID']),false,false,
+    $dbBasketItems = CSaleBasket::GetList(array("ID" => "ASC"),
+        array("ORDER_ID" => $arResult['ORDER']['ID']),false,false,
         array("ID","PRODUCT_ID","QUANTITY", 'PRICE', 'NAME'));
 
     	$k=0;
@@ -85,7 +79,6 @@ if ($arParams["SET_TITLE"] == "Y")
 			$arDatalayer[]=array('id'=>$arItem['PRODUCT_ID'], 'name'=>$arItem['NAME'], 'price'=>$arItem['PRICE'], 'quantity'=>$arItem['QUANTITY'], 'variant'=>$arItem['variant']);
 			$arItems[]=$arItem;
     	}
-
     ?>
 
     <script>
@@ -235,26 +228,13 @@ if ($arParams["SET_TITLE"] == "Y")
                                                 {
                                                     if ($payment["PAID"] != 'Y')
                                                     {
-                                                        if (!empty($arResult['PAY_SYSTEM_LIST'])
-                                                            && array_key_exists($payment["PAY_SYSTEM_ID"], $arResult['PAY_SYSTEM_LIST'])
-                                                            )
+                                                        if (!empty($arResult['PAY_SYSTEM_LIST']) && array_key_exists($payment["PAY_SYSTEM_ID"], $arResult['PAY_SYSTEM_LIST']))
                                                         {
                                                             $arPaySystem = $arResult['PAY_SYSTEM_LIST'][$payment["PAY_SYSTEM_ID"]];
 
 															if (empty($arPaySystem["ERROR"]))
-                                                            {?>
-
-<?
-global $USER;
-if($USER->isAdmin())
-{/*
-?>
-												<?=$payment["PAY_SYSTEM_ID"]?><pre><?print_r($arPaySystem)?></pre>
-<?*/
-}
-
-																?>
-                                                                <? if (strlen($arPaySystem["ACTION_FILE"]) > 0 && $arPaySystem["NEW_WINDOW"] == "Y" && $arPaySystem["IS_CASH"] != "Y"): ?>
+                                                            {
+                                                                if (strlen($arPaySystem["ACTION_FILE"]) > 0 && $arPaySystem["NEW_WINDOW"] == "Y" && $arPaySystem["IS_CASH"] != "Y"): ?>
 																	<?
 																	$orderAccountNumber = urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]));
 																	$paymentAccountNumber = $payment["ACCOUNT_NUMBER"];
@@ -274,8 +254,6 @@ if($USER->isAdmin())
 																	<div class="count mobileVisible_"><a target="_blank" href="/personal/order/payment/?ORDER_ID=<?=$arResult["ORDER"]["ID"]?>&PAYMENT_ID=<?=$payment["PAY_SYSTEM_ID"]?>/1" class="solve-btn">Оплатить</a></div>
 																<?}?>
 
-												<?//=str_ireplace('<a', '<a target="_blank" class="btn btn-blue payment-btn"', $arPaySystem["BUFFERED_OUTPUT"])?>
-
 												<? endif;
 															}
                                             }?></div><?
@@ -293,25 +271,6 @@ if($USER->isAdmin())
         </div>
     </div>
 </div>
-
-<?
-        /*$rsEvents = GetModuleEvents("sale", "OnOrderSave");
-        while ($arEvent = $rsEvents->Fetch())
-        {
-    
-            if (ExecuteModuleEvent($arEvent, $arResult["ORDER"]["ID"], Array(
-                "ORDER_DATE" => $arResult["ORDER"]["DATE_INSERT"],
-                "ORDER_USER" => $arProps["NAME"]["VALUE"]." ".$arProps["LAST_NAME"]["VALUE"],
-                "PRICE" => number_format ( $arResult["ORDER"]["PRICE"], 0, '.', ' ' )." руб.",
-                "EMAIL" => $arProps["EMAIL"]["VALUE"],
-                "ORDER_LIST" => $basket
-                
-                
-            ))===false)
-            {
-    
-            }
-        }*/?>
 
         <?
         /** @var \Bitrix\Sale\Order $order */
@@ -374,65 +333,63 @@ if($USER->isAdmin())
                                     echo '<span style="color:red;">'.Loc::getMessage("SOA_ORDER_PS_ERROR").'</span>';
                                 }
                                 ?>
-										<? endif ?>
-                        </td>
-                    </tr>
-                <? endif ?>
-            </table>
-            <?
-        }
-        else
-        {
-            echo '<span style="color:red;">'.Loc::getMessage("SOA_ORDER_PS_ERROR").'</span>';
-        }
-    }
-    else
-    {
-        echo '<span style="color:red;">'.Loc::getMessage("SOA_ORDER_PS_ERROR").'</span>';
-    }
-}
-}
-		}
-?>
-<? else: ?>
-<b><?=Loc::getMessage("SOA_ERROR_ORDER")?></b>
-<br /><br />
-
-<table class="sale_order_full_table">
-    <tr>
-        <td>
-            <?=Loc::getMessage("SOA_ERROR_ORDER_LOST", array("#ORDER_ID#" => $arResult["ACCOUNT_NUMBER"]))?>
-            <?=Loc::getMessage("SOA_ERROR_ORDER_LOST1")?>
-        </td>
-    </tr>
-</table>
-<? endif ?>
-<?$this->SetViewTarget('google_aim_sale_order_ajax_ready');?>
-   <script>
-        dataLayer.push({
-            "event": "productsPurchase",
-            "ecommerce": {
-                "purchase": {
-                    "actionField": {
-                        "id": "<?=$arResult['ORDER']['ID']?>",
-                        "revenue": "<?=$arResult['ORDER']['PRICE']?>",
-                    },
-                    "products": [
-                    <?foreach($arItems as $k => $v):?>
-                    {
-                        "name": "<?=$v['NAME']?>",
-                        "id": "<?=$v['ID']?>",
-                        "price": "<?=$v['PRICE']?>",
-                        "variant": "<?=$v['variant']?>",
-                        "quantity": <?=$v['QUANTITY']?>,
+								<? endif ?>
+                                    </td>
+                                </tr>
+                            <? endif ?>
+                            </table>
+                        <?}
+                        else
+                        {
+                            echo '<span style="color:red;">'.Loc::getMessage("SOA_ORDER_PS_ERROR").'</span>';
+                        }
                     }
-                    <?if($k + 1 < count($arItems)):?>,<?endif;?>
-                    <?endforeach?>
-                    ]
+                    else
+                    {
+                        echo '<span style="color:red;">'.Loc::getMessage("SOA_ORDER_PS_ERROR").'</span>';
+                    }
                 }
             }
-        });
-    </script>
+		}?>
+<? else: ?>
+    <b><?=Loc::getMessage("SOA_ERROR_ORDER")?></b>
+    <br /><br />
+
+    <table class="sale_order_full_table">
+        <tr>
+            <td>
+                <?=Loc::getMessage("SOA_ERROR_ORDER_LOST", array("#ORDER_ID#" => $arResult["ACCOUNT_NUMBER"]))?>
+                <?=Loc::getMessage("SOA_ERROR_ORDER_LOST1")?>
+            </td>
+        </tr>
+    </table>
+<? endif ?>
+<?$this->SetViewTarget('google_aim_sale_order_ajax_ready');?>
+<script>
+    dataLayer.push({
+        "event": "productsPurchase",
+        "ecommerce": {
+            "purchase": {
+                "actionField": {
+                    "id": "<?=$arResult['ORDER']['ID']?>",
+                    "revenue": "<?=$arResult['ORDER']['PRICE']?>",
+                },
+                "products": [
+                <?foreach($arItems as $k => $v):?>
+                {
+                    "name": "<?=$v['NAME']?>",
+                    "id": "<?=$v['ID']?>",
+                    "price": "<?=$v['PRICE']?>",
+                    "variant": "<?=$v['variant']?>",
+                    "quantity": <?=$v['QUANTITY']?>,
+                }
+                <?if($k + 1 < count($arItems)):?>,<?endif;?>
+                <?endforeach?>
+                ]
+            }
+        }
+    });
+</script>
 <?
 $this->EndViewTarget();
 ?> 
