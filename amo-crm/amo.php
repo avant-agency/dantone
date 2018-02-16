@@ -1,10 +1,6 @@
-<?php
-
-
+<?
 include_once "settings.php";
 include_once "amo_lib.php";
-
-
 
 function Amo_DoRegistration($email, $first_name, $last_name, $phone, $city) {
     $amo = new AmoCrmApi(AMO_SUBDOMAIN, AMO_LOGIN, AMO_HASH);
@@ -36,7 +32,6 @@ function Amo_DoFeedback($name, $phone, $email, $message) {
     );
 }
 
-
 function Amo_DoCallback($name, $phone) {
     $amo = new AmoCrmApi(AMO_SUBDOMAIN, AMO_LOGIN, AMO_HASH);
     return $amo->addContactAndLead($name,[
@@ -47,8 +42,6 @@ function Amo_DoCallback($name, $phone) {
 
 function Amo_DoOrder($first_name, $last_name, $email, $phone, $city, $street, $build, $korpus, $flat, $postcode, $basket, $comment) {
     $name = $first_name." ".$last_name;
-
-
     $price = bitrixBasketSumm($basket);
     $categories = bitrixBasketCategories($basket);
     $product_list = bitrixBasketList($basket);
@@ -75,17 +68,6 @@ function Amo_DoOrder($first_name, $last_name, $email, $phone, $city, $street, $b
     );
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 function bitrixBasketSumm($basket) {
     if (!isset($basket['BASKET_ITEMS'])) return 0;
@@ -117,8 +99,8 @@ function bitrixBasketCategories($basket) {
         if($cat===false) continue;
         $result[$cat] = $cat;
         */
-
-        $cat = bitrixItem2Category($item);
+        //$cat = bitrixItem2Category($item);
+        $cat = $item["IBLOCK_SECTION_ID"];
         if($cat) $result[$cat] = $cat;
     }
     $result = array_keys($result);
@@ -141,18 +123,6 @@ function bitrixBasketList($basket) {
     return $result;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 function Amo_DoOrderCatalogKitchen($phone, $email) {
     global $AMO_RESPONSIBLE_USER_ID;
     $AMO_RESPONSIBLE_USER_ID = 2156509;
@@ -169,7 +139,6 @@ function Amo_DoOrderCatalogKitchen($phone, $email) {
     );
     return $lead_id;
 }
-
 
 function Amo_DoGetCalculationKitchen($name, $phone, $email, $message = false, $file_link = false) {
     global $AMO_RESPONSIBLE_USER_ID;
@@ -189,5 +158,3 @@ function Amo_DoGetCalculationKitchen($name, $phone, $email, $message = false, $f
     ], $lead_info );
     return $lead_id;
 }
-
-
