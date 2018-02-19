@@ -1,0 +1,32 @@
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+

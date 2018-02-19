@@ -429,12 +429,12 @@ if (!empty($arResult["ORDER"]) && !empty($arResult["PAYMENT"])) {
         { event: "setEmail", email: "<? echo md5($USER->GetEmail()) ?>" },
         { event: "setSiteType", type: deviceType },
         { event: "trackTransaction", ecpplugin: "1cbitrix", id: <? echo $arResult["ORDER"]["ID"];; ?>, item: 
-            [
-            <?foreach($arResult['BASKET_ITEMS'] as $k => $v):?>
-                { id: "<?=$k?>", price: "<?=$v['PRICE']?>", quantity: "<?=$v['QUANTITY']?>", section_id: "<?=$v['IBLOCK_SECTION_ID']?>" },
-            <?endforeach;?>
-            ]
-        }
+			[
+			<?foreach($arResult['BASKET_ITEMS'] as $k => $v):?>
+				{ id: "<?=$k?>", price: "<?=$v['PRICE']?>", quantity: "<?=$v['QUANTITY']?>", section_id: "<?=$v['IBLOCK_SECTION_ID']?>" },
+			<?endforeach;?>
+			]
+		}
     );
 </script> 
 <? }; ?>

@@ -506,7 +506,6 @@ label.radio:hover .jq-radio.checked div{opacity:1;}
 }
 #content{text-align:center;padding-top:10px;}
 .promo{overflow:hidden;position:relative;}
->>>>>>> refs/remotes/origin/master
 .promo ul,
 .promo ol{margin:0;padding:0;list-style:none;}
 .promo .slides li{overflow:hidden;position:relative;height:908px;min-height:770px;}
@@ -1261,7 +1260,7 @@ aside.catalog-nav-container{}
 }
 .remodal h2,
 .remodal .h2{margin-bottom:33px;}
-.remodal{padding:35px 40px 40px 40px;text-align:left;}
+.remodal{padding:35px 40px 40px 40px;text-align:left; z-index:10}
 .remodal-close{left:auto;right:0;width:30px;height:30px;}
 .remodal-close:before{content:"";width:11px;height:11px;background:url("../images/sprites.png?2") -320px -70px no-repeat;position:static;display:inline-block;vertical-align:middle;}
 .pane-errors ul{position:relative;margin:10px 0;padding:0;}
@@ -1443,4 +1442,3 @@ to{top:0;}
 }
 .wrap_mW._show_1e._orinationRight_25{height:75px;margin-bottom:50px !important;}
 .fixed-header > .additional-phone{display:inline-block !important;}
->>>>>>> refs/remotes/origin/master
