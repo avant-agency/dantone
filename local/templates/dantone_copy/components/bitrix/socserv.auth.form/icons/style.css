@@ -1,0 +1,20 @@
+.VKontakte, .VKontakte:hover {  
+ display: block; float:left; 
+    width: 35px;
+    height: 35px;
+    background-image: url(/bitrix/components/bitrix/socserv.auth.form/templates/flat/images/sprite.png);
+    background-repeat: no-repeat;
+    border: none;
+    background-position: -616px 0; 
+}
+
+.Facebook, .Facebook:hover  {  
+ display: block; float:left; 
+    width: 35px;
+    height: 35px;
+    background-image: url(/bitrix/components/bitrix/socserv.auth.form/templates/flat/images/sprite.png);
+    background-repeat: no-repeat;
+    border: none;
+    background-position: -704px 0;
+}
+
