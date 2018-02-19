@@ -189,15 +189,19 @@ if (!empty($arResult['ITEMS']))
 	foreach ($arResult['ITEMS'] as $key => $arItem)
 	{
 		$arItem['CHECK_QUANTITY'] = false;
+
 		if (!isset($arItem['CATALOG_MEASURE_RATIO']))
 			$arItem['CATALOG_MEASURE_RATIO'] = 1;
+
 		if (!isset($arItem['CATALOG_QUANTITY']))
 			$arItem['CATALOG_QUANTITY'] = 0;
+
 		$arItem['CATALOG_QUANTITY'] = (
 			0 < $arItem['CATALOG_QUANTITY'] && is_float($arItem['CATALOG_MEASURE_RATIO'])
 			? floatval($arItem['CATALOG_QUANTITY'])
 			: intval($arItem['CATALOG_QUANTITY'])
 			);
+
 		$arItem['CATALOG'] = false;
 		if (!isset($arItem['CATALOG_SUBSCRIPTION']) || 'Y' != $arItem['CATALOG_SUBSCRIPTION'])
 			$arItem['CATALOG_SUBSCRIPTION'] = 'N';
@@ -441,6 +445,8 @@ if (!empty($arResult['ITEMS']))
 					$boolConvert ? $arResult['CONVERT_CURRENCY']['CURRENCY_ID'] : $strBaseCurrency
 					);
 			}
+			// обновляем свойство минимальной цены для корректной сортировке по минимальной цене в разделе скидок
+			CIBlockElement::SetPropertyValuesEx($arItem["ID"], false, array("MINIMUM_PRICE" => $arItem["MIN_PRICE"]["DISCOUNT_VALUE"]));
 		}
 
 		if (

@@ -40,7 +40,7 @@ $arResult["VARIABLES"]["SECTION_CODE_PATH"] = '/';
         }
     }
 
-	
+    
 //если новая категория  
 if($_SESSION["SECTION_CODE"] != $arResult["VARIABLES"]["SECTION_CODE"])
 {
@@ -87,20 +87,29 @@ if(isset($_REQUEST["sortField"]))
 if(isset($_SESSION["sortField"]))
     $arParams["ELEMENT_SORT_FIELD"] = $_SESSION["sortField"];
 else {
-	$_SESSION["sortField"] = "PROPERTY_NEWPRODUCT"; 
+    $_SESSION["sortField"] = "PROPERTY_NEWPRODUCT"; 
 }
 
 if($_SESSION["sortField"] == "PROPERTY_MINIMUM_PRICE_UP" || $_SESSION["sortField"] == "PROPERTY_MINIMUM_PRICE_DOWN")
-	$arParams["ELEMENT_SORT_FIELD"] = "PROPERTY_MINIMUM_PRICE";
+    $arParams["ELEMENT_SORT_FIELD"] = "PROPERTY_MINIMUM_PRICE";
 
 if(isset($_SESSION["sortOrderField"]))
     $arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"];
 else {$arParams["ELEMENT_SORT_ORDER"] = $_SESSION["sortOrderField"] = "ASC";}
 
 if($arParams["ELEMENT_SORT_FIELD"] == "PROPERTY_NEWPRODUCT")
-$arParams["ELEMENT_SORT_ORDER"] = "DESC";
-?>
+    $arParams["ELEMENT_SORT_ORDER"] = "DESC";
 
+if($arParams["ELEMENT_SORT_FIELD"] == "PROPERTY_MINIMUM_PRICE")
+    $arParams["ELEMENT_SORT_ORDER"] = "ASC";
+
+// если мы в разделе скидок и поле не задано, то сортируем по скидочной цене
+if($_SESSION["SECTION_CODE"] == "discount" && $arParams["ELEMENT_SORT_FIELD"] == "PROPERTY_NEWPRODUCT")
+{
+    $arParams["ELEMENT_SORT_FIELD"] = "PROPERTY_MINIMUM_PRICE";
+    $arParams["ELEMENT_SORT_ORDER"] = "ASC";
+}
+?>
 <div class="clearfix">
     <?$intSectionID = $APPLICATION->IncludeComponent(
         "bitrix:catalog.section",
