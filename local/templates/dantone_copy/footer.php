@@ -1,4 +1,4 @@
-﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+﻿﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
     IncludeModuleLangFile(__FILE__);?>
     <div class="push"></div>
 </div>
@@ -72,24 +72,34 @@
             </ul>
             <div class="footer-info">
                 <div class="file">
-                    <a href="<?=SITE_TEMPLATE_PATH?>/DANTONE HOME CATALOGUE 2016-2017.pdf">
-                        <i class="icon-file-pdf"></i>
-                        <div class="file-name"><?=GetMessage('FOOTER_DOWNCATALOG')?></div>
-                        <div class="file-detail">pdf, 330 <?=GetMessage('FOOTER_MB')?>.</div>
-                    </a>
-                </div>                  
-                <div class="file">
-                    <a href="#download3d"><!-- https://yadi.sk/d/Tqcdj97J3QWspt -->
-                        <i class="icon-file-zip" style="background-image: url('/bitrix/templates/dantone/images/dantone-icon.svg'); width: 30px;  height: 34px; background-size:cover; background-position: -3px 0"></i>
-                        <div class="file-name"><?=GetMessage('FOOTER_DOWN3DS')?></div>
-                        <div class="file-detail">zip, 8.44 <?=GetMessage('FOOTER_GB')?>.</div>
-                    </a>
-                </div>              
+                        <a href="<?=SITE_TEMPLATE_PATH?>/furniture-catalog-2018.pdf" target="_blank">
+                            <i class="icon-file-pdf"></i>
+                            <div class="file-name">Скачать каталог мебели</div>
+                            <div class="file-detail">pdf, 240 <?=GetMessage('FOOTER_MB')?>.</div>
+                        </a>
+                    </div>
 
-                <ul class="social">
-                    <li><a target="_blank" href="https://www.facebook.com/dantonehome?skip_nax_wizard=true&ref_type=bookmark" title="<?=GetMessage('FOOTER_WE')?>Facebook"><i class="icon-fb"></i></a></li>
-                    <li><a target="_blank" href="https://instagram.com/Dantonehome/" title="<?=GetMessage('FOOTER_WE')?> Instagram"><i class="icon-ins"></i></a></li>
-                </ul>
+                    <div class="file">
+                        <a href="/bitrix/templates/dantone_copy/fabric-catalog-2018.pdf" target="_blank">
+                            <i class="icon-file-pdf"></i>
+                            <div class="file-name">Скачать каталог тканей</div>
+                            <div class="file-detail">pdf, 75 <?=GetMessage('FOOTER_MB')?>.</div>
+                        </a>
+                    </div>
+                    <div class="file">
+                        <a href="#download3d"><!-- https://yadi.sk/d/Tqcdj97J3QWspt -->
+                            <i class="icon-file-zip" style="background-image: url('/bitrix/templates/dantone/images/dantone-icon.svg'); width: 30px;  height: 34px; background-size:cover; background-position: -3px 0"></i>
+                            <div class="file-name"><?=GetMessage('FOOTER_DOWN3DS')?></div>
+                            <!--<div class="file-detail">zip, 8.44 <?=GetMessage('FOOTER_GB')?>.</div>-->
+                        </a>
+                    </div>
+
+                    <ul class="social">
+                        <li><a target="_blank" href="https://www.facebook.com/dantonehome?skip_nax_wizard=true&ref_type=bookmark" title="<?=GetMessage('FOOTER_WE')?>Facebook"><i class="icon-fb"></i></a></li>
+                        <li><a target="_blank" href="https://instagram.com/Dantonehome/" title="<?=GetMessage('FOOTER_WE')?> Instagram"><i class="icon-ins"></i></a></li>
+            <li><a target="_blank" href="https://vk.com/dantonehome" title="<?=GetMessage('FOOTER_WE')?> VK"> <i  style="background-image: url('/bitrix/templates/dantone_copy/img/vk1.svg'); transform: translateY(1px); width: 22px;  height: 22px; display: block; background-size:cover; background-position: center center"></i>
+                        </a></li>
+                    </ul>
             </div>
         </div>
     </div>
@@ -116,9 +126,9 @@
         </div>
         <img src="https://dantonehome.ru/bitrix/templates/dantone_copy/img/header-logo-blue.svg" alt="" class="newPopup-logo">
         <div class="newPopup-title">
-			Подпишитесь, чтобы стать участником закрытого клуба Dantone Home. Получайте новости, информацию о пополнении ассортимента и специальных предложениях.
+      Подпишитесь, чтобы стать участником закрытого клуба Dantone Home. Получайте новости, информацию о пополнении ассортимента и специальных предложениях.
         </div>
-		<img src="/upload/photoPopup.jpg" alt="" class="newPopup-photo">
+    <img src="/upload/photoPopup.jpg" alt="" class="newPopup-photo">
 
         <form action="#" class="newPopup-form">
             <div class="newPopup-inner">
@@ -135,7 +145,7 @@
                                 onclick="window.open('https://dantonehome.ru/bitrix/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf','_blank')"
                                 href="https://dantonehome.ru/bitrix/templates/dantone/dantonehome.ru_O_personalnih_dannih.pdf"
                                 target="_blank">персональных данных</a>
-        				</span>
+                </span>
                     </label>
                 </div>
             </div>
@@ -447,59 +457,59 @@
     <!-- //Rating@Mail.ru counter -->
 <script>
 setInterval(function(){
-	$.ajax({
-		method: "POST",
-		url: "/ajax/timecounter.php",
-	}).done(function(data){
-		data = JSON.parse(data);
-		if(data.PAGE_QUANTUTY > 7 || data.TIME_ON_SITE > 120)
-		{
-			// show popup
-			$("#submit_popup_trigger").click();
-			$.ajax({
-				method: "POST",
-				url: "/ajax/timecounter.php",
-				data: { "ENDLOGIC" : "Y" }
-			});
-		}
-	});
+  $.ajax({
+    method: "POST",
+    url: "/ajax/timecounter.php",
+  }).done(function(data){
+    data = JSON.parse(data);
+    if(data.PAGE_QUANTUTY > 7 || data.TIME_ON_SITE > 120)
+    {
+      // show popup
+      $("#submit_popup_trigger").click();
+      $.ajax({
+        method: "POST",
+        url: "/ajax/timecounter.php",
+        data: { "ENDLOGIC" : "Y" }
+      });
+    }
+  });
 }, 5000);
 
 $(function () {
-	$("#contact_form_submitter").on("click", function(){
-		var btn = $(this);
+  $("#contact_form_submitter").on("click", function(){
+    var btn = $(this);
 
-		var email = $(this).parents(".newPopup-form").find("input[name='form_email_4']").val();
+    var email = $(this).parents(".newPopup-form").find("input[name='form_email_4']").val();
 
-		if(email.length == 0)
-		{
-			$(this).parents(".newPopup-form").find("input[name='form_email_4']").css("border", "1px solid red");
-			return false;
-		}
+    if(email.length == 0)
+    {
+      $(this).parents(".newPopup-form").find("input[name='form_email_4']").css("border", "1px solid red");
+      return false;
+    }
 
-		if($(this).parents(".newPopup-form").find(".jq-checkbox.checked").length == 0) 
-		{
-			$(this).parents(".newPopup-form").find(".checkbox-title").css('color', 'red');
-			return false;
-		}
+    if($(this).parents(".newPopup-form").find(".jq-checkbox.checked").length == 0) 
+    {
+      $(this).parents(".newPopup-form").find(".checkbox-title").css('color', 'red');
+      return false;
+    }
 
-		$.ajax({
-			method: "POST",
-			url: "/ajax/mailchump_integrate.php",
-			data: { fname : "fname", lname : "lname", email : email }
-		}).done(function(){
+    $.ajax({
+      method: "POST",
+      url: "/ajax/mailchump_integrate.php",
+      data: { fname : "fname", lname : "lname", email : email }
+    }).done(function(){
 
-			$.ajax({ method: "POST", url: "/ajax/add_subscribers.php", data: { fname : "fname", lname : "lname", email : email } });
+      $.ajax({ method: "POST", url: "/ajax/add_subscribers.php", data: { fname : "fname", lname : "lname", email : email } });
 
-			$(btn).parents(".newPopup-wrap").find(".newPopup-title").html("Спасибо!<br/>Ваш email успешно отправлен.");
-			$(btn).parents(".newPopup-wrap").find(".newPopup-photo").css('display', 'none');
-			$(btn).parents(".newPopup-wrap").find(".newPopup-form").css('display', 'none');
+      $(btn).parents(".newPopup-wrap").find(".newPopup-title").html("Спасибо!<br/>Ваш email успешно отправлен.");
+      $(btn).parents(".newPopup-wrap").find(".newPopup-photo").css('display', 'none');
+      $(btn).parents(".newPopup-wrap").find(".newPopup-form").css('display', 'none');
 
-			setTimeout(function(){ $('.close-newPopup, .newPopup-overlay').click(); }, 2000);
-		});
+      setTimeout(function(){ $('.close-newPopup, .newPopup-overlay').click(); }, 2000);
+    });
 
-		return false;
-	});
+    return false;
+  });
 
     $('.test').click(function () {
         $('.newPopup-wrap').fadeIn(300)
@@ -512,6 +522,6 @@ $(function () {
 <?global $APPLICATION; $dir = $APPLICATION->GetCurDir(); 
 if(strpos($dir,'/personal/') === 0){?>
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/main.css" />
-	<?}?>
+  <?}?>
 </body>
 </html>
