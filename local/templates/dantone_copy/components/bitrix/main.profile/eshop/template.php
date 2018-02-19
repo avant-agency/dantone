@@ -63,8 +63,8 @@ if ($arResult['DATA_SAVED'] == 'Y')
 	<form method="post" name="form1" action="<?=$arResult["FORM_TARGET"]?>?" enctype="multipart/form-data" class="profile-form">
 		<?=$arResult["BX_SESSION_CHECK"]?>
 		<input type="hidden" name="lang" value="<?=LANG?>" />
-		<input type="hidden" name="ID" value=<?=$arResult["ID"]?> />
-		<input type="hidden" name="LOGIN" value=<?=$arResult["arUser"]["LOGIN"]?> />
+		<input type="hidden" name="ID" value="<?=$arResult["ID"]?>" />
+
          
         
          
@@ -111,11 +111,15 @@ if ($arResult['DATA_SAVED'] == 'Y')
 					<div class="control">
 						<input placeholder="<?=GetMessage('SECOND_NAME')?>" class="input-text input-middle" type="text" name="SECOND_NAME" maxlength="50"  value="<?=$arResult["arUser"]["SECOND_NAME"]?>" />
 					</div>
-					
+
 					<div class="control">
 						<input placeholder="E-mail" class="input-text input-middle" type="text" name="EMAIL" maxlength="50"  value="<?=$arResult["arUser"]["EMAIL"]?>" />
 					</div>
-			
+
+					<div class="control">
+						<input placeholder="<?=GetMessage('LOGIN')?>" class="input-text input-middle" type="text" name="LOGIN" maxlength="50"  value="<?=$arResult["arUser"]["LOGIN"]?>" />
+					</div>
+
 				    <div class="control">
 						<input class="input-text input-middle" placeholder="<?=GetMessage('NEW_PASSWORD_REQ')?>" type="password" name="NEW_PASSWORD" maxlength="50" value="" autocomplete="off" /> 
 				    </div>	

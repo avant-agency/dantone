@@ -1,5 +1,5 @@
-<?
-$MESS ['PROFILE_DATA_SAVED'] = "Изменения сохранены";
+﻿<?
+$MESS ['PROFILE_DATA_SAVED'] = "Изменения сохранены";$MESS ['LOGIN'] = "Логин";
 $MESS ['NAME'] = "Имя";
 $MESS ['LAST_NAME'] = "Фамилия";
 $MESS ['SECOND_NAME'] = "Отчество";
