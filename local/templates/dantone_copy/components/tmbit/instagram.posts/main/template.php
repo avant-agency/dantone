@@ -1,7 +1,7 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
 <? if (!$_POST["endcursor"]): ?>
 <div class="instagram">
-	<h1 style="font-size:40px;"><?=GetMessage("TMBIT_INSTAGRAMPOSTS_MY_V")?></h1>
+	<h1 style="font-size:22px;"><?=GetMessage("TMBIT_INSTAGRAMPOSTS_MY_V")?></h1>
 	<ul class="instagram-list" data-endcursor="<?=$arResult["POSTS"]->user->media->page_info->end_cursor?>">
 <? endif; ?>
 	<? if (isset($arResult["POSTS"])): ?>

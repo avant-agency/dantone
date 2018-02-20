@@ -1,4 +1,4 @@
-﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+﻿﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 IncludeModuleLangFile(__FILE__);
 include 'ajax.php';
 if(isset($_REQUEST["logout"]) && $_REQUEST["logout"] == "Y" ) {
@@ -29,10 +29,10 @@ CJSCore::Init(array('translit'));
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/animate.css" />
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/style.css" />
     
-	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/subscribe-popup.css" />
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/subscribe-popup.css" />
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-	<?/*<script src="//api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU" type="text/javascript"></script>*/?>
+    <?/*<script src="//api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU" type="text/javascript"></script>*/?>
     <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery-1.11.1.min.js"></script>
     <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.cookie.js"></script>
     <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.maskedInput.js"></script>
@@ -46,6 +46,7 @@ CJSCore::Init(array('translit'));
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <?if($_SERVER["SERVER_NAME"] != "new.dantone.bitter.moscow"):?>
     <!-- BEGIN JIVOSITE CODE {literal} -->
     <script type="text/javascript">
 
@@ -60,13 +61,14 @@ CJSCore::Init(array('translit'));
         })(window, document);
     </script>
     <!-- {/literal} END JIVOSITE CODE -->
+    <?endif;?>
 
 <script type="text/javascript">
     $(function() {
        $('.phone-input').mask("+7(999)999-99-99");
     });
 </script>
-
+<?if($_SERVER["SERVER_NAME"] != "new.dantone.bitter.moscow"):?>
 <script src="https://analytics.alloka.ru/v4/alloka.js" type="text/javascript"></script>
 <!-- FACEBOOK -->
   <meta property="og:url"           content="http://dantonehome.ru" />
@@ -88,51 +90,54 @@ CJSCore::Init(array('translit'));
 (window, document, navigator, localStorage, "32121695");
 </script>
 <!-- /calltouch code -->
-
+<?endif;?>
 </head>
 
 <body class="<?=LANGUAGE_ID?>-version <?=defined('INDEX')?'index-page':'';?> lk-body">
+<?if($_SERVER["SERVER_NAME"] != "new.dantone.bitter.moscow"):?>
 <? 
     $criteoHomePageTags = array(SITE_DIR."index.php", SITE_DIR."about/index.php",SITE_DIR."projects/index.php", SITE_DIR."press/index.php",SITE_DIR."contacts/index.php");
 
-if (in_array($_SERVER['SCRIPT_NAME'],$criteoHomePageTags)):?>
-
-<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
-<script>
-window.criteo_q = window.criteo_q || [];
-var deviceType = /iPad/.test(navigator.userAgent)?"t":/webOS|Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent)?"m":"d";
-window.criteo_q.push(
-    { event: "setAccount", account: 45351 },
-    { event: "setEmail", email: "<?=$USER->GetEmail();?>" },
-    { event: "setSiteType", type: deviceType },
-    { event: "viewHome", ecpplugin: "1cbitrix" });
-</script>
-
-<?endif?>
+    if (in_array($_SERVER['SCRIPT_NAME'],$criteoHomePageTags)):?>
+    
+    <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
+    <script>
+    window.criteo_q = window.criteo_q || [];
+    var deviceType = /iPad/.test(navigator.userAgent)?"t":/webOS|Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent)?"m":"d";
+    window.criteo_q.push(
+        { event: "setAccount", account: 45351 },
+        { event: "setEmail", email: "<?=$USER->GetEmail();?>" },
+        { event: "setSiteType", type: deviceType },
+        { event: "viewHome", ecpplugin: "1cbitrix" });
+    </script>
+    
+    <?endif?>
 <script> 
-	window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 </script>
 <!-- Facebook Pixel Code -->
 <script>
-	!function(f,b,e,v,n,t,s)
-	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-	n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-	if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-	n.queue=[];t=b.createElement(e);t.async=!0;
-	t.src=v;s=b.getElementsByTagName(e)[0];
-	s.parentNode.insertBefore(t,s)}(window,document,'script',
-	'https://connect.facebook.net/en_US/fbevents.js');
-	fbq('init', '1074463552690535');
-	fbq('track', 'PageView');
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1074463552690535');
+    fbq('track', 'PageView');
 </script>
 <noscript>
-	<img height="1" width="1"
-	src="https://www.facebook.com/tr?id=1074463552690535&ev=PageView
-	&noscript=1"/>
+    <img height="1" width="1"
+    src="https://www.facebook.com/tr?id=1074463552690535&ev=PageView
+    &noscript=1"/>
 </noscript>
 <!-- End Facebook Pixel Code -->
+<?endif?>
     <?=$APPLICATION->ShowPanel()?>
-	<?$APPLICATION->ShowViewContent('google_aim_sale_order_ajax_ready');?>
+    <?$APPLICATION->ShowViewContent('google_aim_sale_order_ajax_ready');?>
+    <?if($_SERVER["SERVER_NAME"] != "new.dantone.bitter.moscow"):?>
     <!-- Google Tag Manager -->
     <noscript>
         <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5PZJHN"
@@ -142,54 +147,55 @@ window.criteo_q.push(
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5PZJHN');</script>
-<!-- End Google Tag Manager -->
-
-<!-- Yandex.Metrika -->
-<script type="text/javascript">
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter32121695 = new Ya.Metrika({
-                    id:32121695,
-                    clickmap:true,
-                    trackLinks:true,
-                    trackHash:true,
-                    accurateTrackBounce:true,
-                    webvisor:false,
-                    ecommerce:"dataLayer"
-                });
-                w.yaCounter34931375 = new Ya.Metrika({
-                    id: 34931375,
-                    clickmap:true,
-                    trackLinks:true,
-                    trackHash:true,
-                    accurateTrackBounce:true,
-                    webvisor:false,
-   triggerEvent:true,                 ecommerce:"dataLayer"
-                });
-            } catch(e) { }
-        });
-
-        var n = d.getElementsByTagName("script")[0],
-        s = d.createElement("script"),
-        f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-    })(document, window, "yandex_metrika_callbacks");
-</script>
-<noscript>
-    <div>
-        <img src="https://mc.yandex.ru/watch/32121695" style="position:absolute; left:-9999px;" alt="" />
-        <img src="https://mc.yandex.ru/watch/34931375" style="position:absolute; left:-9999px;" alt="" />
-    </div>
-</noscript>
-<!-- End Yandex.Metrika -->
+    })(window,document,'script','dataLayer','GTM-5PZJHN');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Yandex.Metrika -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter32121695 = new Ya.Metrika({
+                        id:32121695,
+                        clickmap:true,
+                        trackLinks:true,
+                        trackHash:true,
+                        accurateTrackBounce:true,
+                        webvisor:false,
+                        ecommerce:"dataLayer"
+                    });
+                    w.yaCounter34931375 = new Ya.Metrika({
+                        id: 34931375,
+                        clickmap:true,
+                        trackLinks:true,
+                        trackHash:true,
+                        accurateTrackBounce:true,
+                        webvisor:false,
+       triggerEvent:true,                 ecommerce:"dataLayer"
+                    });
+                } catch(e) { }
+            });
+    
+            var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+    
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/32121695" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://mc.yandex.ru/watch/34931375" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+    <!-- End Yandex.Metrika -->
+    <?endif;?>
 <div class="wrapper remodal-bg">
 
     <header id="header" <?= $APPLICATION->GetCurPage() == SITE_DIR ? '' : 'class="1header-light inner-header"' ?>>

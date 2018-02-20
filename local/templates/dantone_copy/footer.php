@@ -1,4 +1,4 @@
-﻿﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+﻿<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
     IncludeModuleLangFile(__FILE__);?>
     <div class="push"></div>
 </div>
@@ -70,7 +70,7 @@
                 <li><a target="_blank" href="https://www.google.com/maps/place/Dantone+Home/@55.758587,37.5596686,3a,75y,289.22h,83.83t/data=!3m6!1e1!3m4!1sqbao1hZnw4cAAAQ8sT4S_g!2e0!7i8000!8i4000!4m5!3m4!1s0x0:0x617c785c874d1a8f!8m2!3d55.7586405!4d37.5594895!6m1!1e1">
                 <?=GetMessage('FOOTER_VIRTUAL')?></a></li>
             </ul>
-            <div class="footer-info">
+            <div class="footer-info" style="transform: translateY(-46px);">
                 <div class="file">
                         <a href="<?=SITE_TEMPLATE_PATH?>/furniture-catalog-2018.pdf" target="_blank">
                             <i class="icon-file-pdf"></i>
@@ -425,6 +425,7 @@
 
 <script type="text/javascript">(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=wh/rD790Qc/5uFUGsi7Dp1ozx3HYGpUXcnYO5APfhzYfXtn0XqKTK0sH9leUz2MdmCFAo24SZgD2*1Y4ZzQc0qEuE*ZtatrtK*/anNpjyaovU7hbmRng0JOeLy/T*roFmLaAs*lzdc1KPJurrJs66FSXRBrO3pvVrDAZKleEc5Y-';</script>
 
+<?if($_SERVER["SERVER_NAME"] != "new.dantone.bitter.moscow"):?>
 <!-- Facebook Pixel Code -->
 <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -455,6 +456,7 @@
         <img src="//top-fwz1.mail.ru/counter?id=2709206;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
     </div></noscript>
     <!-- //Rating@Mail.ru counter -->
+<?endif;?>
 <script>
 setInterval(function(){
   $.ajax({

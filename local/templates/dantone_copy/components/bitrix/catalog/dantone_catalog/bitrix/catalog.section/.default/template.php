@@ -35,6 +35,8 @@ if ($arP = $arDB->Fetch())
 
             var price = $("#productLink-" + productID);
 
+            <?if($_SERVER["SERVER_NAME"] != "new.dantone.bitter.moscow"):?>
+
             dataLayer.push({
                 'event': 'addToCart',
                 'google_tag_params': {
@@ -43,6 +45,8 @@ if ($arP = $arDB->Fetch())
                     'ecomm_totalvalue': price
                 }
             });
+
+            <?endif;?>
         }           
     }
 </script>
@@ -230,7 +234,7 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 }
 $js_array = json_encode(array_slice($productIds, 0, 3)); 
 ?>
-
+<?if($_SERVER["SERVER_NAME"] != "new.dantone.bitter.moscow"):?>
 <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
 <script type="text/javascript">
 window.criteo_q = window.criteo_q || [];
@@ -242,4 +246,5 @@ window.criteo_q.push(
     { event: "viewList", ecpplugin: "1cbitrix", item: <? echo $js_array; ?> }
 );
 </script>
+<?endif?>
 <link rel="stylesheet" href="/local/templates/dantone_copy/css/dantone_catalog_style.css" />

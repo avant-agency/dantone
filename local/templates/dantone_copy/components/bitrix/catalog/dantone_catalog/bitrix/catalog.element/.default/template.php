@@ -330,9 +330,9 @@ $this->setFrameMode(true);
 
             <div class="price-block-container">
                 <?if($arResult["IN_BASKET"] != "Y"):?> 
-				<a href="#" onclick="if($(this).data('go-to-cart') == 'go') { document.location.href = '/personal/cart/'; return false;} basket('add', <?=$arResult["OFFERS"][0]["ID"]?>); $(this).css('padding-top','3px'); return false;" data-count_in_cart="<?=($arResult['COUNT_IN_CART'] > 0) ? $arResult['COUNT_IN_CART'] : 0;?>" class="btn btn-blue basket-btn" id="addToBasket"><?=GetMessage('DETAIL_ADDTOCART')?></a>
+                <a href="#" onclick="if($(this).data('go-to-cart') == 'go') { document.location.href = '/personal/cart/'; return false;} basket('add', <?=$arResult["OFFERS"][0]["ID"]?>); $(this).css('padding-top','3px'); return false;" data-count_in_cart="<?=($arResult['COUNT_IN_CART'] > 0) ? $arResult['COUNT_IN_CART'] : 0;?>" class="btn btn-blue basket-btn" id="addToBasket"><?=GetMessage('DETAIL_ADDTOCART')?></a>
                 <?else:?>
-				<a style="padding-top: <?if($arResult["CART_TEXT"] == ""):?>12px;<?else:?>3px;<?endif;?>" href="<?=SITE_DIR?>personal/cart/" data-count_in_cart="<?=($arResult['COUNT_IN_CART'] > 0) ? $arResult['COUNT_IN_CART'] : 0;?>" class="btn btn-blue basket-btn" id="addToBasket"><?=$arResult["CART_TEXT"]?></a>
+                <a style="padding-top: <?if($arResult["CART_TEXT"] == ""):?>12px;<?else:?>3px;<?endif;?>" href="<?=SITE_DIR?>personal/cart/" data-count_in_cart="<?=($arResult['COUNT_IN_CART'] > 0) ? $arResult['COUNT_IN_CART'] : 0;?>" class="btn btn-blue basket-btn" id="addToBasket"><?=$arResult["CART_TEXT"]?></a>
                 <?endif?> 
                 
                 <a class="favorite-icon tooltips <?if($arResult["IN_FAVORITES"]):?>favorite-icon-active del-favorite<?else:?>add-favorite<?endif;?>" href="#" data-elid="<?=$arResult['ID']?>" style="max-height:39px;">
@@ -460,14 +460,14 @@ $(function () {
         $(this).html('В корзине ' + count + ' шт.' + '<br>'+ 'перейти')
         $(this).data("go-to-cart", "go");
 
-		dataLayer.push({
-			'event': 'addToCart',
-			'google_tag_params': {
-				'ecomm_prodid': ["<? echo $arResult['ID']; ?>"],
-				'ecomm_pagetype': 'cart',
-				'ecomm_totalvalue': '<?=$arResult["MIN_PRICE"]["VALUE"]?>'
-			}
-		});
+        dataLayer.push({
+            'event': 'addToCart',
+            'google_tag_params': {
+                'ecomm_prodid': ["<? echo $arResult['ID']; ?>"],
+                'ecomm_pagetype': 'cart',
+                'ecomm_totalvalue': '<?=$arResult["MIN_PRICE"]["VALUE"]?>'
+            }
+        });
 
     });
     $('.kharacterictic-good-descr .tab').click(function () {
@@ -504,6 +504,7 @@ $(function () {
     });
 });
 </script>
+<?if($_SERVER["SERVER_NAME"] != "new.dantone.bitter.moscow"):?>
 
 <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
 <script type="text/javascript">
@@ -526,3 +527,4 @@ dataLayer.push({
 });
 
 </script>
+<?endif;?>
