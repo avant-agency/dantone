@@ -1,0 +1,16 @@
+double.E: NO
+
+double.P: YES : 32632441
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+

@@ -10,6 +10,8 @@ if($APPLICATION->get_cookie("DONT_SHOW_POPUP") == "Y")
 if($_REQUEST["ENDLOGIC"] == "Y")
 {
 	$APPLICATION->set_cookie("DONT_SHOW_POPUP", "Y", time()+360000, "/");
+	$APPLICATION->set_cookie("subscribe_popup_showed", "Y", time()+60*60*24*30*12*2);
+
 	echo json_encode(array("TIME_ON_SITE" => 0, "PAGE_QUANTUTY" => 0));
 	die();
 }

@@ -1,0 +1,100 @@
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+

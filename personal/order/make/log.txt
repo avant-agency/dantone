@@ -2,6 +2,242 @@ double.E: YES : 32598901
 
 double.P: YES : 32598901
 
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: NO
+
+double.P: NO
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: NO
+
+double.P: NO
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: NO
+
+double.P: NO
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: NO
+
+double.P: NO
+
+double.E: YES : 32632313
+
+double.P: YES : 32632313
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: NO
+
+double.P: NO
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: NO
+
+double.P: YES : 32632441
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: YES : 32598901
+
+double.P: YES : 32598901
+
+double.E: NO
+
+double.P: YES : 32632441
+
+double.E: NO
+
+double.P: YES : 32632441
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
 double.E: YES : 32598901
 
 double.P: YES : 32598901
@@ -18,15 +254,1031 @@ double.E: YES : 32598901
 
 double.P: YES : 32598901
 
-double.E: YES : 32598901
+double.E: NO
 
-double.P: YES : 32598901
+double.P: NO
 
-double.E: YES : 32598901
+double.E: NO
 
-double.P: YES : 32598901
+double.P: NO
 
-double.E: YES : 32598901
+double.E: NO
 
-double.P: YES : 32598901
+double.P: YES : 32633669
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: YES : 32999811
+
+double.P: YES : 32999811
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: YES : 32633345
+
+double.P: YES : 32633345
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: YES : 32633521
+
+double.P: YES : 32633521
+
+double.E: YES : 33184607
+
+double.P: YES : 33184607
+
+double.E: YES : 32694749
+
+double.P: YES : 32694749
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
+
+double.E: NO
+
+double.P: NO
 

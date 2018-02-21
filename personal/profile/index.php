@@ -2,10 +2,9 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Настройки пользователя");
 ?>
-<link rel="stylesheet" href="/local/templates/dantone_copy/css/main.css" />
- <section id="content">
 
-        <div class="lk-wrap container">
+<section id="content">
+<div class="container">
 	
 
 	

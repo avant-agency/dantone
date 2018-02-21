@@ -475,10 +475,6 @@ li.red-item>a{
     font-weight: bold !important;
 }
 
-ul.slides { padding-left: 0 !important;}
-
-.flex-direction-nav li { list-style: none !important; }
-
 </style>
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

@@ -1,0 +1,30 @@
+Host: dantonehome.ru
+Date: 2018-02-15 15:58:21
+Module: main
+ MySql Query Error: 
+			select NAME, PARAM_KEY, PARAM_VALUE
+			from b_bitrixcloud_option
+			order by NAME, SORT
+		 [[2006] MySQL server has gone away]
+    CDatabaseMysql::Query < CAllBitrixCloudOption::_read_all_db < CAllBitrixCloudOption::getArrayValue < CAllBitrixCloudOption::getStringValue < CBitrixCloudCDNConfig::loadFromOptions
+	/home/t/twdantone/dantonehome/public_html/bitrix/modules/bitrixcloud/classes/general/option.php:51
+	/home/t/twdantone/dantonehome/public_html/bitrix/modules/bitrixcloud/classes/general/option.php:180
+	/home/t/twdantone/dantonehome/public_html/bitrix/modules/bitrixcloud/classes/general/option.php:202
+	/home/t/twdantone/dantonehome/public_html/bitrix/modules/bitrixcloud/classes/general/cdn_config.php:459
+	/home/t/twdantone/dantonehome/public_html/bitrix/modules/bitrixcloud/classes/general/cdn.php:226
+----------
+Host: dantonehome.ru
+Date: 2018-02-15 16:00:12
+Module: main
+ MySql Query Error: 
+			select NAME, PARAM_KEY, PARAM_VALUE
+			from b_bitrixcloud_option
+			order by NAME, SORT
+		 [[2006] MySQL server has gone away]
+    CDatabaseMysql::Query < CAllBitrixCloudOption::_read_all_db < CAllBitrixCloudOption::getArrayValue < CAllBitrixCloudOption::getStringValue < CBitrixCloudCDNConfig::loadFromOptions
+	/home/t/twdantone/dantonehome/public_html/bitrix/modules/bitrixcloud/classes/general/option.php:51
+	/home/t/twdantone/dantonehome/public_html/bitrix/modules/bitrixcloud/classes/general/option.php:180
+	/home/t/twdantone/dantonehome/public_html/bitrix/modules/bitrixcloud/classes/general/option.php:202
+	/home/t/twdantone/dantonehome/public_html/bitrix/modules/bitrixcloud/classes/general/cdn_config.php:459
+	/home/t/twdantone/dantonehome/public_html/bitrix/modules/bitrixcloud/classes/general/cdn.php:226
+----------
