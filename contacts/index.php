@@ -32,8 +32,14 @@ $APPLICATION->SetTitle("Контакты | Dantone");
 				<div class="contact-item">
 					<h5>г.Москва</h5>
 					<div class="big call_phone_2" style="font-size: 14px;">
+						Шоурум и интернет-магазин<br/>
 						<a href="tel:+74951083245" class="kupislova">+7 (495) 108 32 45</a>
 					</div>
+					<div class="big" style="font-size: 14px;">
+						Офис<br>
+						<a href="tel:+74957270219">+7 (495) 727 02 19</a>
+					</div>
+
 					<div class="big" style="font-size: 14px;">
 						 Пн-Сб с 11:00 до 20:00<br>
 						 Вс с 11:00 до 18:00
@@ -91,22 +97,20 @@ $APPLICATION->SetTitle("Контакты | Dantone");
 <br />
 <div align="center">
 <div class="fb-page" data-href="https://www.facebook.com/dantonehome/" data-tabs="timeline" data-width="270" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/dantonehome/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/dantonehome/">Dantone HOME</a></blockquote></div></div>
-			<br /><div align="center">
-<!--iframe src="//widget.instagramm.ru/?imageW=4&imageH=2&thumbnail_size=56&type=0&typetext=dantonehome&head_show=1&profile_show=1&shadow_show=0&bg=255,255,255,1&opacity=true&head_bg=46729b&subscribe_bg=ad4141&border_color=c3c3c3&head_title=" allowtransparency="true" frameborder="0" scrolling="no" style="border:none;overflow:hidden;width:270px;height:273px;"></iframe-->
-<?$APPLICATION->IncludeComponent(
-    "tmbit:instagram.posts", 
-    ".default", 
-    array(
-        "USERNAME" => "dantonehome",
-        "COMPONENT_TEMPLATE" => ".default",
-        "PHP_CACHE_TIME" => "3600",
-        "IS_JQUERY" => "Y"
-    ),
-    false
-);?>		
+			<br />
+<div align="center">
+	<?$APPLICATION->IncludeComponent(
+		"tmbit:instagram.posts", 
+		"main", 
+		array(
+			"USERNAME" => "dantonehome",
+			"COMPONENT_TEMPLATE" => ".default",
+			"PHP_CACHE_TIME" => "3600",
+			"IS_JQUERY" => "Y"
+		),
+		false
+	);?>
 </div>
-
-
 </div>
 	</div>
  </article>
