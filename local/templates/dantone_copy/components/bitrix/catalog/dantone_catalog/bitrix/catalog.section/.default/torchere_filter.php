@@ -141,7 +141,10 @@ function submit_handler()
  	if(url != '')
 			url = '<?=$SECTION_CODE_PATH;?>filter' + url + '/';
 		else url = '<?=$SECTION_CODE_PATH;?>';
-	//$("#dantone_filter_box").submit();
+	
+	url = url + "?sortField=" + $("#sort").children(":selected").val();
+
+	$(location).attr('href',url);
 }
 $(function(){
 	$("#sort").on("change", function(){

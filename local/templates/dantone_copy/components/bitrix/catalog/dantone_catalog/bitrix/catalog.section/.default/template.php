@@ -35,7 +35,7 @@ if ($arP = $arDB->Fetch())
 
             var price = $("#productLink-" + productID);
 
-            <?if($_SERVER["SERVER_NAME"] != "new.dantone.bitter.moscow"):?>
+			<?if($_SERVER["SERVER_NAME"] != "new.dantone.bitter.moscow"):?>
 
             dataLayer.push({
                 'event': 'addToCart',
@@ -46,7 +46,7 @@ if ($arP = $arDB->Fetch())
                 }
             });
 
-            <?endif;?>
+			<?endif;?>
         }           
     }
 </script>
@@ -89,7 +89,7 @@ if ($arP = $arDB->Fetch())
     global $USER;  
 
     if( $arParams["SECTION_CODE"] == 'sofas') 
-    {
+	{
         include "sofa_filter.php";
     }
     else if($arParams["SECTION_CODE"] == 'tables_and_consoles' || $arParams["SECTION_CODE"] == 'consoles' || $arParams["SECTION_CODE"] == 'tables')
@@ -124,7 +124,7 @@ if ($arP = $arDB->Fetch())
     }
     else {
         ?><div style="clear:both; height:60px; padding:20px 0; display:block;"><?
-                include "sort.php";
+		include "sort.php";
         ?></div><?
     }
 ?>

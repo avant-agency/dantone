@@ -445,7 +445,6 @@ if (!empty($arResult['ITEMS']))
 					$boolConvert ? $arResult['CONVERT_CURRENCY']['CURRENCY_ID'] : $strBaseCurrency
 					);
 			}
-			// обновляем свойство минимальной цены для корректной сортировке по минимальной цене в разделе скидок
 			CIBlockElement::SetPropertyValuesEx($arItem["ID"], false, array("MINIMUM_PRICE" => $arItem["MIN_PRICE"]["DISCOUNT_VALUE"]));
 		}
 

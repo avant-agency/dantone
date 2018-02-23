@@ -1,6 +1,7 @@
 <form id="selectform" method="POST">
+	<input type="hidden" name="sortField" id="sortFieldValueField"/>
 	<div class="fright sort-container">
-		<select name="sortField" onchange="$('#selectform').submit()" id="sort">
+		<select id="sort">
 			<option value="">Сортировать по</option>
 
 			<option <?if($_SESSION['sortField'] == "PROPERTY_NEWPRODUCT"):?>selected <?endif;?> value="PROPERTY_NEWPRODUCT">Новинки</option>
@@ -11,3 +12,14 @@
 		</select>
 	</div>
 </form>
+<script>
+$(function(){
+	if (typeof submit_handler === 'undefined') {
+		$("#sort").on("change", function(){
+			alert($("#sort").children(":selected").val());
+			$("#sortFieldValueField").val($("#sort").children(":selected").val());
+			$("#selectform").submit();
+		});
+	}
+});
+</script>
