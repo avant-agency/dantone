@@ -1,67 +1,58 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
-use Bitrix\Main\Localization\Loc;
+    use Bitrix\Main\Localization\Loc;
+    include $_SERVER["DOCUMENT_ROOT"] . "/amo-crm/amo.php";
 
-CModule::IncludeModule("sale");
+    CModule::IncludeModule("sale");
+    CModule::IncludeModule("iblock");
+    CModule::IncludeModule("catalog");
 
-$arOrder = CSaleOrder::GetByID($arResult["ORDER"]["ID"]);
-   if($arOrder["PRICE_DELIVERY"] == 0 && $arResult["ORDER"]["PRICE_DELIVERY"] && $_SESSION['ORDER_FORM']['s1']["PRICE_DELIVERY"] > 0 )
+    $arOrder = CSaleOrder::GetByID($arResult["ORDER"]["ID"]);
+
+    if($arOrder["PRICE_DELIVERY"] == 0 && $arResult["ORDER"]["PRICE_DELIVERY"] && $_SESSION["PRICE_DELIVERY"] > 0 )
     {
-        $arResult["ORDER"]["PRICE"] = $_SESSION['ORDER_FORM']['s1']["PRICE_DELIVERY"] + $arOrder["PRICE"];
-        $arResult["ORDER"]["PRICE_DELIVERY"] = $_SESSION['ORDER_FORM']['s1']["PRICE_DELIVERY"];
-        $arFields = array("PRICE_DELIVERY" => $_SESSION['ORDER_FORM']['s1']["PRICE_DELIVERY"]);
+        $arResult["ORDER"]["PRICE"] = $_SESSION["PRICE_DELIVERY"] + $arOrder["PRICE"];
+        $arResult["ORDER"]["PRICE_DELIVERY"] = $_SESSION["PRICE_DELIVERY"];
+        $arFields = array("PRICE_DELIVERY" => $_SESSION["PRICE_DELIVERY"]);
         CSaleOrder::Update($arResult["ORDER"]["ID"], $arFields);
         header("Refresh:0");
     }
-/*
-if($arOrder["PRICE_DELIVERY"] == 0 && $arResult["ORDER"]["PRICE_DELIVERY"] && $_SESSION['ORDER_FORM']['s1']["PRICE_DELIVERY"] > 0 )
-{
-	$arResult["ORDER"]["PRICE_DELIVERY"] = $_SESSION['ORDER_FORM']['s1']['PRICE_DELIVERY'];
-	$arResult["ORDER"]["PRICE"] = $arOrder["PRICE"] - $_SESSION['ORDER_FORM']['s1']['PRICE_PREPAYMENT'];
-	$arFields = array("PRICE_DELIVERY" => $arResult["ORDER"]["PRICE_DELIVERY"], "PRICE" => $arResult["ORDER"]["PRICE"]);
-	//$arFields = array("PRICE_DELIVERY" => $arResult["ORDER"]["PRICE_DELIVERY"]); 
-	CSaleOrder::Update($arResult["ORDER"]["ID"], $arFields);
-	header("Refresh:0");
-}
-elseif($_SESSION['ORDER_FORM']['s1']["PRICE_DELIVERY"] == 0)
-{
-	$_SESSION['ORDER_FORM']['s1']["PRICE_DELIVERY"] = -1;
-	$arResult["ORDER"]["PRICE"] = $arOrder["PRICE"] - $_SESSION['ORDER_FORM']['s1']['PRICE_PREPAYMENT'];
-	$arFields = array("PRICE" => $arResult["ORDER"]["PRICE"]);
-	CSaleOrder::Update($arResult["ORDER"]["ID"], $arFields);
-	header("Refresh:0");
-}
-*/
 
-$db_vals = CSaleOrderPropsValue::GetList(array("SORT" => "ASC"), array("ORDER_ID" => $arResult["ORDER"]["ID"]));
+    $db_vals = CSaleOrderPropsValue::GetList(array("SORT" => "ASC"), array("ORDER_ID" => $arResult["ORDER"]["ID"]));
 
-$arProps = Array();
-while($arVals = $db_vals->Fetch())
-    $arProps[$arVals["CODE"]] = $arVals;
+    $arProps = Array();
+    while($arVals = $db_vals->Fetch())
+        $arProps[$arVals["CODE"]] = $arVals;
 
-if($arProps['WANT_SUBSCRIBE']['VALUE']=='Y'){
-    $user = new CUser;
-    $user->Update($USER->GetId(), Array("UF_USER_SUBSCRIBE" => 1));
-}
+    if($arProps['WANT_SUBSCRIBE']['VALUE']=='Y'){
+        $user = new CUser;
+        $user->Update($USER->GetId(), Array("UF_USER_SUBSCRIBE" => 1));
+    }
 
-/**
- * @var array $arParams
- * @var array $arResult
- * @var $APPLICATION CMain
- */
+    // получаем ID торговых предложений в корзине
+
     global $USER;
     $res = CSaleBasket::GetList(array(), array("ORDER_ID" => $arResult["ORDER"]["ID"]));
 
-    $basket = "";
+    // получаем ID товаров, их разделы и формируем результирующий массив
+    $section_ids = array();
 
     while ($arItem = $res->Fetch())
-        $arResult["BASKET_ITEMS"][] = $arItem;
+    {
+        $el = CCatalogSku::GetProductInfo($arItem["PRODUCT_ID"]);
+        $section_ids[$arItem["PRODUCT_ID"]] = $el["ID"];
+        $arResult["BASKET_ITEMS"][$el["ID"]] = $arItem;
+    }
 
-    include $_SERVER["DOCUMENT_ROOT"] . "/amo-crm/amo.php";
+    $arSelect = Array("ID", "NAME", "IBLOCK_ID", "IBLOCK_SECTION_ID");
+    $arFilter = Array("ID"=>$section_ids);
 
-    $rand = rand(100,999);
-
-    $basket = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/amo-crm/arOrder.txt"), true);
+    $res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
+    while($ob = $res->GetNextElement())
+    {
+        $arFields = $ob->GetFields();
+        $arResult["BASKET_ITEMS"][$arFields["ID"]]["IBLOCK_SECTION_ID"] = $arFields["IBLOCK_SECTION_ID"];
+    }
 
     $resamo = Amo_DoOrder(
         $arProps["NAME"]["VALUE"], 
@@ -83,25 +74,25 @@ if ($arParams["SET_TITLE"] == "Y")
 ?>
 
 <? if (!empty($arResult["ORDER"])): 
-    $dbBasketItems = CSaleBasket::GetList(array("ID" => "ASC"),array("ORDER_ID" => $arResult['ORDER']['ID']),false,false,
+    $dbBasketItems = CSaleBasket::GetList(array("ID" => "ASC"),
+        array("ORDER_ID" => $arResult['ORDER']['ID']),false,false,
         array("ID","PRODUCT_ID","QUANTITY", 'PRICE', 'NAME'));
 
-    	$k=0;
+        $k=0;
 
-		while ($arItem = $dbBasketItems->Fetch())
-		{
-			$k++;
-			$arScripts[]=array('id'=>$arItem['PRODUCT_ID'], 'number'=>$arItem['QUANTITY']);
-			$res = CIBlockElement::GetList(Array(), Array("ID"=>IntVal($arItem['PRODUCT_ID'])), false, Array("nPageSize"=>50), Array("ID", "IBLOCK_ID", "PROPERTY_ARTIKUL", 'PROPERTY_SIZES_CLOTHES'));
-			if($arFields = $res->GetNext())
-			{
-				$arItem['variant']=$arFields['PROPERTY_ARTIKUL_VALUE'];
-				if($arFields['PROPERTY_SIZES_CLOTHES_VALUE'])$arItem['variant'].=' '.$arFields['PROPERTY_SIZES_CLOTHES_VALUE'];
-			}
-			$arDatalayer[]=array('id'=>$arItem['PRODUCT_ID'], 'name'=>$arItem['NAME'], 'price'=>$arItem['PRICE'], 'quantity'=>$arItem['QUANTITY'], 'variant'=>$arItem['variant']);
-			$arItems[]=$arItem;
-    	}
-
+        while ($arItem = $dbBasketItems->Fetch())
+        {
+            $k++;
+            $arScripts[]=array('id'=>$arItem['PRODUCT_ID'], 'number'=>$arItem['QUANTITY']);
+            $res = CIBlockElement::GetList(Array(), Array("ID"=>IntVal($arItem['PRODUCT_ID'])), false, Array("nPageSize"=>50), Array("ID", "IBLOCK_ID", "PROPERTY_ARTIKUL", 'PROPERTY_SIZES_CLOTHES'));
+            if($arFields = $res->GetNext())
+            {
+                $arItem['variant']=$arFields['PROPERTY_ARTIKUL_VALUE'];
+                if($arFields['PROPERTY_SIZES_CLOTHES_VALUE'])$arItem['variant'].=' '.$arFields['PROPERTY_SIZES_CLOTHES_VALUE'];
+            }
+            $arDatalayer[]=array('id'=>$arItem['PRODUCT_ID'], 'name'=>$arItem['NAME'], 'price'=>$arItem['PRICE'], 'quantity'=>$arItem['QUANTITY'], 'variant'=>$arItem['variant']);
+            $arItems[]=$arItem;
+        }
     ?>
 
     <script>
@@ -199,7 +190,7 @@ if ($arParams["SET_TITLE"] == "Y")
                     </div>
                 </div>
 
-			<?endif;?>
+                <?endif;?>
                 <div class="confirm-result">
                     <div class="clearfix">
                         <div class="warning">
@@ -212,7 +203,7 @@ if ($arParams["SET_TITLE"] == "Y")
                                 <div class="param"><strong><?=GetMessage('CONFIRM_TOTAL')?>:</strong></div>
                                 <div class="value">
                                     <div class="price"><span class="value">
-                                        <?=number_format ( $arResult["ORDER"]["PRICE"] , 1, '.', ' ' )?></span> <?=GetMessage('CONFIRM_RUB')?>
+                                        <?=number_format ( $arResult["ORDER"]["PRICE"] , 0, '.', ' ' )?></span> <?=GetMessage('CONFIRM_RUB')?>
                                     </div>
                                 </div>
                             </div>
@@ -221,7 +212,6 @@ if ($arParams["SET_TITLE"] == "Y")
                                 <div class="value">
                                     <div class="price"><span class="value">
                                         <?=number_format ($arResult["ORDER"]["PRICE_DELIVERY"], 0, '.', ' ' )?></span> <?=GetMessage('CONFIRM_RUB')?>
-
                                     </div>
                                 </div>
                             </div>
@@ -252,49 +242,34 @@ if ($arParams["SET_TITLE"] == "Y")
                                                 {
                                                     if ($payment["PAID"] != 'Y')
                                                     {
-                                                        if (!empty($arResult['PAY_SYSTEM_LIST'])
-                                                            && array_key_exists($payment["PAY_SYSTEM_ID"], $arResult['PAY_SYSTEM_LIST'])
-                                                            )
+                                                        if (!empty($arResult['PAY_SYSTEM_LIST']) && array_key_exists($payment["PAY_SYSTEM_ID"], $arResult['PAY_SYSTEM_LIST']))
                                                         {
                                                             $arPaySystem = $arResult['PAY_SYSTEM_LIST'][$payment["PAY_SYSTEM_ID"]];
 
-															if (empty($arPaySystem["ERROR"]))
-                                                            {?>
+                                                            if (empty($arPaySystem["ERROR"]))
+                                                            {
+                                                                if (strlen($arPaySystem["ACTION_FILE"]) > 0 && $arPaySystem["NEW_WINDOW"] == "Y" && $arPaySystem["IS_CASH"] != "Y"): ?>
+                                                                    <?
+                                                                    $orderAccountNumber = urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]));
+                                                                    $paymentAccountNumber = $payment["ACCOUNT_NUMBER"];
+                                                                    ?>
+                                                                    <script>
+                                                                        window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=$orderAccountNumber?>&PAYMENT_ID=<?=$paymentAccountNumber?>');
+                                                                    </script>
+                                                                    <?=GetMessage("SOA_PAY_LINK", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&PAYMENT_ID=".$paymentAccountNumber))?>
+                                                                        <? if (CSalePdf::isPdfAvailable() && $arPaySystem['IS_AFFORD_PDF']): ?>
+                                                                        <br/>
+                                                                        <?=GetMessage("SOA_PAY_PDF", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&pdf=1&DOWNLOAD=Y"))?>
+                                                                    <? endif ?>
+                                                                <? else: ?>
+                                                                    <br>
 
-<?
-global $USER;
-if($USER->isAdmin())
-{/*
-?>
-	<?=$payment["PAY_SYSTEM_ID"]?><pre><?print_r($arPaySystem)?></pre>
-<?*/
-}
+                                                                <?if($payment["PAY_SYSTEM_ID"] == 3){?>
+                                                                    <div class="count mobileVisible_"><a target="_blank" href="/personal/order/payment/?ORDER_ID=<?=$arResult["ORDER"]["ID"]?>&PAYMENT_ID=<?=$payment["PAY_SYSTEM_ID"]?>/1" class="solve-btn">Оплатить</a></div>
+                                                                <?}?>
 
-																?>
-                                                                <? if (strlen($arPaySystem["ACTION_FILE"]) > 0 && $arPaySystem["NEW_WINDOW"] == "Y" && $arPaySystem["IS_CASH"] != "Y"): ?>
-																	<?
-																	$orderAccountNumber = urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]));
-																	$paymentAccountNumber = $payment["ACCOUNT_NUMBER"];
-																	?>
-																	<script>
-																		window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=$orderAccountNumber?>&PAYMENT_ID=<?=$paymentAccountNumber?>');
-																	</script>
-																	<?=GetMessage("SOA_PAY_LINK", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&PAYMENT_ID=".$paymentAccountNumber))?>
-																		<? if (CSalePdf::isPdfAvailable() && $arPaySystem['IS_AFFORD_PDF']): ?>
-																		<br/>
-																		<?=GetMessage("SOA_PAY_PDF", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&pdf=1&DOWNLOAD=Y"))?>
-																	<? endif ?>
-                                                        		<? else: ?>
-																	<br>
-
-												<?if($payment["PAY_SYSTEM_ID"] == 3){?>
-													<div class="count mobileVisible_"><a target="_blank" href="/personal/order/payment/?ORDER_ID=<?=$arResult["ORDER"]["ID"]?>&PAYMENT_ID=<?=$payment["PAY_SYSTEM_ID"]?>/1" class="solve-btn">Оплатить</a></div>
-												<?}?>
-
-												<?//=str_ireplace('<a', '<a target="_blank" class="btn btn-blue payment-btn"', $arPaySystem["BUFFERED_OUTPUT"])?>
-
-												<? endif;
-															}
+                                                <? endif;
+                                                            }
                                             }?></div><?
                                         }
                                     }
@@ -310,25 +285,6 @@ if($USER->isAdmin())
         </div>
     </div>
 </div>
-
-<?
-        /*$rsEvents = GetModuleEvents("sale", "OnOrderSave");
-        while ($arEvent = $rsEvents->Fetch())
-        {
-    
-            if (ExecuteModuleEvent($arEvent, $arResult["ORDER"]["ID"], Array(
-                "ORDER_DATE" => $arResult["ORDER"]["DATE_INSERT"],
-                "ORDER_USER" => $arProps["NAME"]["VALUE"]." ".$arProps["LAST_NAME"]["VALUE"],
-                "PRICE" => number_format ( $arResult["ORDER"]["PRICE"], 0, '.', ' ' )." руб.",
-                "EMAIL" => $arProps["EMAIL"]["VALUE"],
-                "ORDER_LIST" => $basket
-                
-                
-            ))===false)
-            {
-    
-            }
-        }*/?>
 
         <?
         /** @var \Bitrix\Sale\Order $order */
@@ -367,13 +323,13 @@ if($USER->isAdmin())
                                 <? if (strlen($arPaySystem["ACTION_FILE"]) > 0): ?>
                                 <tr>
                                     <td>
-										<? if ($arPaySystem["NEW_WINDOW"] == "Y" && $arPaySystem["IS_CASH"] != "Y"): ?>
+                                        <? if ($arPaySystem["NEW_WINDOW"] == "Y" && $arPaySystem["IS_CASH"] != "Y"): ?>
                                         <?
                                         $orderAccountNumber = urlencode(urlencode($order->getField('ACCOUNT_NUMBER')));
                                         $paymentAccountNumber = $payment->getField('ID');
                                         ?>
                                         <script>
-											window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=$orderAccountNumber?>&PAYMENT_ID=<?=$paymentAccountNumber?>');
+                                            window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=$orderAccountNumber?>&PAYMENT_ID=<?=$paymentAccountNumber?>');
                                         </script>
                                         <?=Loc::getMessage("SOA_PAY_LINK", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&PAYMENT_ID=".$paymentAccountNumber))?>
                                         <? if (CSalePdf::isPdfAvailable() && $service->isAffordPdf()): ?>
@@ -391,101 +347,96 @@ if($USER->isAdmin())
                                     echo '<span style="color:red;">'.Loc::getMessage("SOA_ORDER_PS_ERROR").'</span>';
                                 }
                                 ?>
-										<? endif ?>
-                        </td>
-                    </tr>
-                <? endif ?>
-            </table>
-            <?
-        }
-        else
-        {
-            echo '<span style="color:red;">'.Loc::getMessage("SOA_ORDER_PS_ERROR").'</span>';
-        }
-    }
-    else
-    {
-        echo '<span style="color:red;">'.Loc::getMessage("SOA_ORDER_PS_ERROR").'</span>';
-    }
-}
-}
-		}
-?>
-<? else: ?>
-<b><?=Loc::getMessage("SOA_ERROR_ORDER")?></b>
-<br /><br />
-
-<table class="sale_order_full_table">
-    <tr>
-        <td>
-            <?=Loc::getMessage("SOA_ERROR_ORDER_LOST", array("#ORDER_ID#" => $arResult["ACCOUNT_NUMBER"]))?>
-            <?=Loc::getMessage("SOA_ERROR_ORDER_LOST1")?>
-        </td>
-    </tr>
-</table>
-<? endif ?>
-<?$this->SetViewTarget('google_aim_sale_order_ajax_ready');?>
-   <script>
-        dataLayer.push({
-            "event": "productsPurchase",
-            "ecommerce": {
-                "purchase": {
-                    "actionField": {
-                        "id": "<?=$arResult['ORDER']['ID']?>",
-                        "revenue": "<?=$arResult['ORDER']['PRICE']?>",
-                    },
-                    "products": [
-                    <?foreach($arItems as $k => $v):?>
-                    {
-                        "name": "<?=$v['NAME']?>",
-                        "id": "<?=$v['ID']?>",
-                        "price": "<?=$v['PRICE']?>",
-                        "variant": "<?=$v['variant']?>",
-                        "quantity": <?=$v['QUANTITY']?>,
+                                <? endif ?>
+                                    </td>
+                                </tr>
+                            <? endif ?>
+                            </table>
+                        <?}
+                        else
+                        {
+                            echo '<span style="color:red;">'.Loc::getMessage("SOA_ORDER_PS_ERROR").'</span>';
+                        }
                     }
-                    <?if($k + 1 < count($arItems)):?>,<?endif;?>
-                    <?endforeach?>
-                    ]
+                    else
+                    {
+                        echo '<span style="color:red;">'.Loc::getMessage("SOA_ORDER_PS_ERROR").'</span>';
+                    }
                 }
             }
-        });
-    </script>
+        }?>
+<? else: ?>
+    <b><?=Loc::getMessage("SOA_ERROR_ORDER")?></b>
+    <br /><br />
+
+    <table class="sale_order_full_table">
+        <tr>
+            <td>
+                <?=Loc::getMessage("SOA_ERROR_ORDER_LOST", array("#ORDER_ID#" => $arResult["ACCOUNT_NUMBER"]))?>
+                <?=Loc::getMessage("SOA_ERROR_ORDER_LOST1")?>
+            </td>
+        </tr>
+    </table>
+<? endif ?>
+<?$this->SetViewTarget('google_aim_sale_order_ajax_ready');?>
+<script>
+    dataLayer.push({
+        "event": "productsPurchase",
+        "ecommerce": {
+            "purchase": {
+                "actionField": {
+                    "id": "<?=$arResult['ORDER']['ID']?>",
+                    "revenue": "<?=$arResult['ORDER']['PRICE']?>",
+                },
+                "products": [
+                <?foreach($arItems as $k => $v):?>
+                {
+                    "name": "<?=$v['NAME']?>",
+                    "id": "<?=$v['ID']?>",
+                    "price": "<?=$v['PRICE']?>",
+                    "variant": "<?=$v['variant']?>",
+                    "quantity": <?=$v['QUANTITY']?>,
+                }
+                <?if($k + 1 < count($arItems)):?>,<?endif;?>
+                <?endforeach?>
+                ]
+            }
+        }
+    });
+</script>
 <?
 $this->EndViewTarget();
 ?> 
 
 <?
 if (!empty($arResult["ORDER"]) && !empty($arResult["PAYMENT"])) {
-$transactionId = $arResult["ORDER"]["ID"];
-CModule::IncludeModule('sale');
-$res = CSaleBasket::GetList(array(), array("ORDER_ID" => $arResult["ORDER"]["ID"])); // ID заказа
 
-while ($arItem = $res->Fetch()) {
-    $arBasketItems[] = $arItem["PRODUCT_ID"];
+    $res = CSaleBasket::GetList(array(), array("ORDER_ID" => $arResult["ORDER"]["ID"])); // ID заказа
+
+    $js_basket = array();
+
+    while ($arItem = $res->Fetch()) {
+        $arBasketItems[] = $arItem["PRODUCT_ID"];
 }
-$js_array = json_encode($arBasketItems);  ?>
+?>
 
 <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
 <script type="text/javascript">
-window.criteo_q = window.criteo_q || [];
-var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
-window.criteo_q.push(
-    { event: "setAccount", account: 45351 },
-    { event: "setEmail", email: "<? echo $USER->GetEmail(); ?>" },
-    { event: "setSiteType", type: deviceType },
-    { event: "trackTransaction", ecpplugin: "1cbitrix", id: <? echo $transactionId; ?>, item: <? echo $js_array; ?> }
-);
-
-dataLayer.push({
-    'event': 'productsPurchase',
-    'google_tag_params': {
-        'ecomm_prodid': [<? echo $js_array; ?>],
-        'ecomm_pagetype': 'purchase',
-        'ecomm_totalvalue': '<?=$arResult["ORDER"]["PRICE"]?>';
-    }
-});
+    window.criteo_q = window.criteo_q || [];
+    var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+    window.criteo_q.push(
+        { event: "setAccount", account: 45351 },
+        { event: "setEmail", email: "<? echo md5($USER->GetEmail()) ?>" },
+        { event: "setSiteType", type: deviceType },
+        { event: "trackTransaction", ecpplugin: "1cbitrix", id: <? echo $arResult["ORDER"]["ID"];; ?>, item: 
+            [
+            <?foreach($arResult['BASKET_ITEMS'] as $k => $v):?>
+                { id: "<?=$k?>", price: "<?=$v['PRICE']?>", quantity: "<?=$v['QUANTITY']?>", section_id: "<?=$v['IBLOCK_SECTION_ID']?>" },
+            <?endforeach;?>
+            ]
+        }
+    );
 </script> 
-
 <? }; ?>
 <?
 $user = new CUser;
