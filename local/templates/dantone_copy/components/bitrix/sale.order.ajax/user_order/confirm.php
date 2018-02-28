@@ -9,13 +9,17 @@
 
     $arOrder = CSaleOrder::GetByID($arResult["ORDER"]["ID"]);
 
-    if($arOrder["PRICE_DELIVERY"] == 0 && $arResult["ORDER"]["PRICE_DELIVERY"] && $_SESSION["PRICE_DELIVERY"] > 0 )
+    if($arOrder["PRICE_DELIVERY"] == 0 && $arResult["ORDER"]["PRICE_DELIVERY"] && $_SESSION["PRICE_DELIVERY"] > 0 && $arResult["ORDER"]["PAY_SYSTEM_ID"] != 3)
     {
         $arResult["ORDER"]["PRICE"] = $_SESSION["PRICE_DELIVERY"] + $arOrder["PRICE"];
         $arResult["ORDER"]["PRICE_DELIVERY"] = $_SESSION["PRICE_DELIVERY"];
         $arFields = array("PRICE_DELIVERY" => $_SESSION["PRICE_DELIVERY"]);
         CSaleOrder::Update($arResult["ORDER"]["ID"], $arFields);
         header("Refresh:0");
+    }
+    elseif($arResult["ORDER"]["PAY_SYSTEM_ID"] == 3)
+    {
+        $_SESSION["LAST_COMPLETE_ORDER_ID"] = $arResult["ORDER"]["ID"];
     }
 
     $db_vals = CSaleOrderPropsValue::GetList(array("SORT" => "ASC"), array("ORDER_ID" => $arResult["ORDER"]["ID"]));
@@ -437,6 +441,11 @@ if (!empty($arResult["ORDER"]) && !empty($arResult["PAYMENT"])) {
         }
     );
 </script> 
+<?if($arResult["ORDER"]["PAY_SYSTEM_ID"] == 3):?>
+<script>
+    window.location.href = $($(".solve-btn")[0]).attr("href");
+</script>
+<?endif;?>
 <? }; ?>
 <?
 $user = new CUser;

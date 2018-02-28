@@ -1,6 +1,15 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Альфабанк");
+
+// update order after pay
+if($_SESSION["LAST_COMPLETE_ORDER_ID"] != "" && $_SESSION["PRICE_DELIVERY"] != "")
+{
+	$arFields = array("PRICE_DELIVERY" => $_SESSION["PRICE_DELIVERY"]);
+	CSaleOrder::Update($_SESSION["LAST_COMPLETE_ORDER_ID"], $arFields);
+	unset($_SESSION["LAST_COMPLETE_ORDER_ID"]);
+	unset($_SESSION["PRICE_DELIVERY"]);
+}
 ?><div align="center""><?$APPLICATION->IncludeComponent(
 	"bitrix:sale.order.payment.receive",
 	"",
